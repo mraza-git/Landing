@@ -1,3 +1,10 @@
+
+var Categories = new Meteor.Collection('categories');
+var Thumbs96 = new Meteor.Collection('thumbs96');
+var Images = new Meteor.Collection('images');
+var Services = new Meteor.Collection('services');
+
+
 (function ()
 {
     'use strict';
@@ -11,6 +18,8 @@
             // Core
             'app.core',
 
+
+
             // Navigation
             'app.navigation',
 
@@ -21,6 +30,9 @@
             'app.quick-panel',
 
             // Sample
-            'app.sample'
+            'app.sample',
+
+            'myComponent',
+            'questions',
         ]);
 })();
