@@ -1,0 +1,75 @@
+<div id="questions-app" layout="column" class="md-whiteframe-2dp" layout-align="top center" flex>
+
+  <div>
+    <h1>Questions</h1>
+  </div>
+  <hr />
+  <form name="vm.form" class="question-form" ng-init="v = 'wiz.html'">
+    <wizard on-finish="vm.finishWizard()"
+    template = "wiz.html"
+    indicators-position="top"
+    layout="column"
+    class="question-wizard">
+      <wz-step
+      template = "wizstep.html"
+      class="wizard-step"
+      ng-repeat="page in vm.fields.pages"
+      wz-title="{{page.title}}"
+      layout="column"
+      ms-scroll
+      canexit="vm.exitValidation(vm.form[$index])"
+      >
+
+      <div layout="column" layout-align="center center" ng-class="{next:vm.direction,previous:!vm.direction}">
+        <h2 class="questions-title">{{page.title}}</h2>
+        <formly-form
+        class="foc-form"
+        style="width:590px;"
+        layout="column"
+        layout-align="center center"
+        model="vm.model"
+        fields="page.fields"
+        form="vm.form[$index]">
+        </formly-form>
+      </div>
+    </wz-step>
+    <wz-step
+    wz-order="-1"
+    wz-title = "Confirm"
+    canexit="vm.exitValidation(vm.form[$index+1])">
+
+    </wz-step>
+    <div class="controls-group" layout="column" flex layout-align="end end">
+      <div layout="row" layout-align="space-between-center" class="controls">
+        <md-button ng-disabled="vm.first" wz-previous class="md-accent md-raised" ng-click="myStyle={color:'red'}">Previous</md-button>
+        <md-button ng-disabled="!vm.valid" ng-hide="vm.last" wz-next class="md-primary md-raised" ng-click="vm.direction=true">Next</md-button>
+        <md-button type="submit" ng-disabled="!vm.valid" ng-show="vm.last" wz-finish class="md-primary md-raised">Submit </md-button>
+      </div>
+    </div>
+  </wizard>
+</form>
+<pre>
+  {{vm.direction | json}}
+  <!-- {{vm.model|json}} -->
+</pre>
+</div>
+
+
+<script type="text/ng-template" id="wiz.html">
+
+  <div>
+    <div class="steps" ng-if="indicatorsPosition === 'bottom'" ng-transclude></div>
+    <ul class="steps-indicator steps-{{getEnabledSteps().length}}" ng-if="!hideIndicators">
+      <li ng-class="{default: !step.completed && !step.selected, current: step.selected && !step.completed, done: step.completed && !step.selected, editing: step.selected && step.completed}" ng-repeat="step in getEnabledSteps()">
+        <a ng-click="goTo(step)">{{step.title || step.wzTitle}}</a>
+      </li>
+    </ul>
+    <div class="steps" ng-if="indicatorsPosition === 'top'"  ng-transclude></div>
+</div>
+</script>
+
+<script type="text/ng-template" id="wizstep.html">
+  <section ng-show="selected" ng-class="{current: selected, done: completed}" ng-style="myStyle" class="step" ng-transclude>
+</section>
+
+</script>

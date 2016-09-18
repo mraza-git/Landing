@@ -13,7 +13,10 @@
                 'ngSanitize',
                 'ngMaterial',
                 'pascalprecht.translate',
-                'ui.router'
-                
+                'ui.router',
+                'mgo-angular-wizard',
+                'formly',
+                'formlyMaterial',
+
             ]);
 })();

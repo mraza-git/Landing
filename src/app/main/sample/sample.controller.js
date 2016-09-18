@@ -15,7 +15,10 @@
         vm.helloText = SampleData.data.helloText;
 
         // Methods
-
+        vm.onUpdate = function(event){
+          console.log("message:",event);
+          vm.helloText = "This is updated: "+ event.newmessage;
+        }
         //////////
     }
 })();
