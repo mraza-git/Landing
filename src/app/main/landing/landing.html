@@ -1,0 +1,249 @@
+<div id="landing-app" ms-scroll>
+  <div class="header-with-image">
+    <div class="boxed">
+      <div class="header-content">
+        <h1>
+          Top service provider at your Doorstep!
+        </h1>
+        <div class="search-box-bg">
+          <ms-form-wizard flex>
+            <md-tabs md-dynamic-height md-selected="msWizard.selectedIndex" md-center-tabs="true">
+              <md-tab>
+                <md-tab-label>
+                  <span class="ms-form-wizard-step-label">
+                    <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep1.$invalid">1</span>
+                    <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep1.$valid">
+                      <i class="icon-check s16"></i>
+                    </span>
+                    <span class="ms-form-wizard-step-text">Select Category</span>
+                  </span>
+                </md-tab-label>
+                <md-tab-body>
+                  <form name="wizardStep1" class="md-inline-form" ms-form-wizard-form novalidate>
+                    <div layout="column" layout-gt-xs="row" flex>
+                      <md-input-container flex="100" flex-gt-xs="50">
+                        <input type="text" name="firstname" ng-model="landing.formWizard.firstname" placeholder="Firstname" required>
+                        <div ng-messages="wizardStep1.firstname.$error" ng-show="wizardStep1.firstname.$touched" role="alert">
+                          <div ng-message="required">
+                            <span>Category Name</span>
+                          </div>
+                        </div>
+                      </md-input-container>
+                    </div>
+                  </form>
+                </md-tab-body>
+              </md-tab>
+              <md-tab ng-disabled="wizardStep1.$invalid">
+                <md-tab-label>
+                  <span class="ms-form-wizard-step-label">
+                    <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep2.$invalid">2</span>
+                    <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep2.$valid">
+                      <i class="icon-check s16"></i>
+                    </span>
+                    <span class="ms-form-wizard-step-text">Service</span>
+                  </span>
+                </md-tab-label>
+                <md-tab-body>
+                  <form name="wizardStep2" ms-form-wizard-form novalidate>
+                    <md-input-container class="md-block">
+                      <label>Address</label>
+                      <textarea ng-model="landing.formWizard.address" columns="1" md-maxlength="150" rows="5" required></textarea>
+                      <div ng-messages="wizardStep2.address.$error" ng-show="wizardStep2.address.$touched" role="alert" multiple>
+                        <div ng-message="required"><span>Address field is required.</span></div>
+                        <div ng-message="md-maxlength">
+                          <span>Address can't be longer than 150 characters.</span>
+                        </div>
+                      </div>
+                    </md-input-container>
+                  </form>
+                </md-tab-body>
+              </md-tab>
+              <md-tab ng-disabled="wizardStep1.$invalid || wizardStep2.$invalid">
+                <md-tab-label>
+                  <span class="ms-form-wizard-step-label">
+                    <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep3.$invalid">3</span>
+                    <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep3.$valid">
+                      <i class="icon-check s16"></i>
+                    </span>
+                    <span class="ms-form-wizard-step-text">Day & Time</span>
+                  </span>
+                </md-tab-label>
+                <md-tab-body>
+                  <form name="wizardStep3" ms-form-wizard-form novalidate>
+                    <md-input-container class="md-block">
+                      <input type="text" name="cardholder" ng-model="landing.formWizard.cardholder" placeholder="Card Holder" required>
+                      <div ng-messages="wizardStep3.cardholder.$error" ng-show="wizardStep3.cardholder.$dirty" role="alert">
+                        <div ng-message="required">
+                          <span>Card holder field is required.</span>
+                        </div>
+                      </div>
+                    </md-input-container>
+                  </form>
+                </md-tab-body>
+              </md-tab>
+            </md-tabs>
+            <div class="navigation" flex layout="row" layout-align="center center">
+              <md-button class="md-raised md-accent" ng-click="msWizard.previousStep()" ng-disabled="msWizard.isFirstStep()">
+                Previous
+              </md-button>
+              <div class="steps">
+                <span ng-repeat="form in msWizard.forms" ng-class="{'selected md-accent-bg':msWizard.selectedIndex === $index}"></span>
+              </div>
+              <md-button class="md-raised md-accent" ng-click="msWizard.nextStep()" ng-hide="msWizard.isLastStep()" ng-disabled="msWizard.currentStepInvalid()">
+                Next
+              </md-button>
+              <md-button class="md-raised md-warn" ng-click="landing.sendForm(); msWizard.resetForm();" ng-show="msWizard.isLastStep()" ng-disabled="msWizard.formsIncomplete()">
+                Send
+              </md-button>
+            </div>
+          </ms-form-wizard>
+        </div>
+      </div>
+      <div layout="column" flex class="main-card">
+        <section id="categories">
+          <h2>Featured Categories</h2>
+          <div layout="row"  flex layout-align="center center">
+            <div layout="column" flex-gt-sm="90" flex-sm="90" flex="33">
+              <md-grid-list
+              md-cols-xs="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="4"
+              md-row-height-gt-md="1:1" md-row-height="4:3"
+              md-gutter-gt-md="20px" md-gutter-gt-sm="12px" md-gutter="8px">
+
+              <md-grid-tile class="gray" ng-mouseover="itemShow=true" ng-mouseleave="itemShow=false" ng-repeat="cat in landing.categories"
+              md-rowspan="1" md-colspan="1" md-colspan-sm="1" md-colspan-xs="1"
+              style="     "
+              >
+              <div style="background-image:url({{cat.image.url}});
+              background-repeat:no-repeat;
+              background-size:cover;
+              width:100%;
+              height:100%;">
+              <!-- <img ng-src="{{cat.image.url}}" alt=""> -->
+              <h3 style="font-size: 30px;
+              color: #FFFFFF;
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              margin: 0;
+              z-index: 999;
+              cursor: pointer;
+              background: rgba(0,0,0,0.3);
+              height: 100%;
+              width: 100%;
+              text-align: center;
+              padding-top: 40%;">
+              {{cat.name}}</h3>
+            </div>
+            <!-- <thumb-image image-id="cat.image.id"></thumb-image> -->
+            <md-grid-tile-footer  ng-show="itemShow" style="height: 100%; cursor: pointer;">
+            </md-grid-tile-footer>
+          </md-grid-tile>
+        </md-grid-list>
+
+      </div>
+    </div>
+  </section>
+  <section id="categories"  style="font-size: 34px;text-align: center; padding:20px 0 50px;">
+    <h2>Select your service & hire best service provider now!</h2>
+    <div class="search-box-bg">
+      <ms-form-wizard flex>
+        <md-tabs md-dynamic-height md-selected="msWizard.selectedIndex" md-center-tabs="true">
+          <md-tab>
+            <md-tab-label>
+              <span class="ms-form-wizard-step-label">
+                <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep1.$invalid">1</span>
+                <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep1.$valid">
+                  <i class="icon-check s16"></i>
+                </span>
+                <span class="ms-form-wizard-step-text">Select Category</span>
+              </span>
+            </md-tab-label>
+            <md-tab-body>
+              <form name="wizardStep1" class="md-inline-form" ms-form-wizard-form novalidate>
+                <div layout="column" layout-gt-xs="row" flex>
+                  <md-input-container flex="100" flex-gt-xs="50">
+                    <input type="text" name="firstname" ng-model="landing.formWizard.firstname" placeholder="Firstname" required>
+                    <div ng-messages="wizardStep1.firstname.$error" ng-show="wizardStep1.firstname.$touched" role="alert">
+                      <div ng-message="required">
+                        <span>Category Name</span>
+                      </div>
+                    </div>
+                  </md-input-container>
+                </div>
+              </form>
+            </md-tab-body>
+          </md-tab>
+          <md-tab ng-disabled="wizardStep1.$invalid">
+            <md-tab-label>
+              <span class="ms-form-wizard-step-label">
+                <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep2.$invalid">2</span>
+                <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep2.$valid">
+                  <i class="icon-check s16"></i>
+                </span>
+                <span class="ms-form-wizard-step-text">Service</span>
+              </span>
+            </md-tab-label>
+            <md-tab-body>
+              <form name="wizardStep2" ms-form-wizard-form novalidate>
+                <md-input-container class="md-block">
+                  <label>Address</label>
+                  <textarea ng-model="landing.formWizard.address" columns="1" md-maxlength="150" rows="5" required></textarea>
+                  <div ng-messages="wizardStep2.address.$error" ng-show="wizardStep2.address.$touched" role="alert" multiple>
+                    <div ng-message="required"><span>Address field is required.</span></div>
+                    <div ng-message="md-maxlength">
+                      <span>Address can't be longer than 150 characters.</span>
+                    </div>
+                  </div>
+                </md-input-container>
+              </form>
+            </md-tab-body>
+          </md-tab>
+          <md-tab ng-disabled="wizardStep1.$invalid || wizardStep2.$invalid">
+            <md-tab-label>
+              <span class="ms-form-wizard-step-label">
+                <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep3.$invalid">3</span>
+                <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep3.$valid">
+                  <i class="icon-check s16"></i>
+                </span>
+                <span class="ms-form-wizard-step-text">Day & Time</span>
+              </span>
+            </md-tab-label>
+            <md-tab-body>
+              <form name="wizardStep3" ms-form-wizard-form novalidate>
+                <md-input-container class="md-block">
+                  <input type="text" name="cardholder" ng-model="landing.formWizard.cardholder" placeholder="Card Holder" required>
+                  <div ng-messages="wizardStep3.cardholder.$error" ng-show="wizardStep3.cardholder.$dirty" role="alert">
+                    <div ng-message="required">
+                      <span>Card holder field is required.</span>
+                    </div>
+                  </div>
+                </md-input-container>
+              </form>
+            </md-tab-body>
+          </md-tab>
+        </md-tabs>
+        <div class="navigation" flex layout="row" layout-align="center center">
+          <md-button class="md-raised md-accent" ng-click="msWizard.previousStep()" ng-disabled="msWizard.isFirstStep()">
+            Previous
+          </md-button>
+          <div class="steps">
+            <span ng-repeat="form in msWizard.forms" ng-class="{'selected md-accent-bg':msWizard.selectedIndex === $index}"></span>
+          </div>
+          <md-button class="md-raised md-accent" ng-click="msWizard.nextStep()" ng-hide="msWizard.isLastStep()" ng-disabled="msWizard.currentStepInvalid()">
+            Next
+          </md-button>
+          <md-button class="md-raised md-warn" ng-click="landing.sendForm(); msWizard.resetForm();" ng-show="msWizard.isLastStep()" ng-disabled="msWizard.formsIncomplete()">
+            Send
+          </md-button>
+        </div>
+      </ms-form-wizard>
+    </div>
+  </section>
+</div>
+</div>
+</div>
+
+
+
+</div>
