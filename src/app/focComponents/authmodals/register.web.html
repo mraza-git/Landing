@@ -1,0 +1,93 @@
+<md-dialog aria-label="Register" >
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>Register </h2>
+      <span flex></span>
+      <md-button ng-click="modalRegister.close()">
+        Close
+      </md-button>
+    </div>
+  </md-toolbar>
+<md-dialog-content layout="row" layout-align="center start" layout-fill layout-margin>
+
+  <div layout="column" layout-fill layout-margin layout-padding>
+
+    <div layout="row" layout-fill layout-margin>
+      <p class="md-body-2">Use your email?</p>
+    </div>
+
+    <form name="registerForm" layout="column" layout-fill layout-padding layout-margin class="md-dialog-content">
+      <md-input-container >
+        <label>
+          Name
+        </label>
+        <input type="text" ng-model="modalRegister.credentials.profile.name" placeholder="Full Name" aria-label="Full Name" required/>
+      </md-input-container>
+      <md-input-container >
+        <label>
+          Email
+        </label>
+        <input type="text" ng-model="modalRegister.credentials.email" placeholder="email" aria-label="email" required/>
+      </md-input-container>
+      <md-input-container >
+        <label>
+          Password
+        </label>
+        <input type="password" ng-model="modalRegister.credentials.password" placeholder="password" aria-label="password" required/>
+      </md-input-container>
+      <div layout="row" layout-align="end center">
+        <md-button
+        ng-class="{'md-raised md-primary': registerForm.$dirty && registerForm.$valid, 'register-button-loading layout-row layout-align-space-between-center': modalRegister.loading}"
+        ng-click="modalRegister.register()"
+        aria-label="Register"
+        ng-disabled="!registerForm.$valid || modalRegister.loading"
+        >
+        Create Account
+        <md-progress-circular
+        ng-show="modalRegister.loading"
+        md-diameter="25" class="md-accent"></md-progress-circular>
+
+        </md-button>
+
+
+      </div>
+    </form>
+
+    <md-divider class="inset"></md-divider>
+
+    <div layout="row" layout-fill layout-margin>
+      <p class="md-body-2">
+        Want to use an existing account?
+      </p>
+    </div>
+
+    <div layout="row" layout-fill layout-margin layout-padding layout-wrap>
+      <md-button class="md-raised">
+        <md-icon md-svg-icon="social:ic_google_24px" style="color: #DC4A38;"></md-icon>
+        <span>
+          Google</span>
+      </md-button>
+      <md-button class="md-raised">
+        <md-icon md-svg-icon="social:ic_facebook_24px" style="color: #3F62B4;"></md-icon>
+        <span>Facebook
+        </span>
+      </md-button>
+      <md-button class="md-raised">
+        <md-icon md-svg-icon="social:ic_twitter_24px" style="color: #27AAE2;"></md-icon>
+        <span>Twitter
+        </span>
+      </md-button>
+    </div>
+    <md-toolbar ng-show="modalRegister.error" class="md-warn" layout="row" layout-fill layout-padding layout-margin>
+      <p class="md-body-1">{{ modalRegister.error }}</p>
+    </md-toolbar>
+
+    <md-divider></md-divider>
+    <div layout="row" layout-align="center">
+      <a class="md-button" ng-click="modalRegister.login($event)">Already a user?</a>
+    </div>
+
+  </div>
+
+</md-dialog-content>
+</md-dialog>

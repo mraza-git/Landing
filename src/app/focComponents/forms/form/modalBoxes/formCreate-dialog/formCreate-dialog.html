@@ -1,0 +1,65 @@
+<md-dialog class="form-create-dialog " aria-label="New Form">
+  <form class="md-inline-form" name="formCreate" ng-submit="formCreate.$valid && form.save()">
+    <md-toolbar class="md-accent md-hue-2">
+      <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+        <span class="title" translate="FORM.NEW_MESSAGE">Add or Edit Form</span>
+        <md-button class="md-icon-button" ng-click="form.closeDialog()" aria-label="Close dialog" tranlate translate-aria-label="FORM.CLOSE_DIALOG">
+          <md-icon md-font-icon="icon-close"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content ms-scroll>
+      <md-input-container class="md-block">
+        <label translate="FORM.TITLE">Title</label>
+        <input ng-model="form.form.title"
+         type="text" name="formTitle"
+         ng-maxlength="50" ng-minlength="5"
+         md-autofocus required>
+        <div class="errors" ng-messages="formCreate.formTitle.$error">
+          <div ng-message="required">Folder name is Required</div>
+          <div ng-message="minlength">Name should contain at least 5 characters</div>
+          <div ng-message="maxlength">Max length is 50 characters</div>
+        </div>
+      </md-input-container>
+      <div layout="row" layout-align="space-between center">
+        <label translate="FORM.SERVICES">
+          Select services for this form.
+        </label>
+        <md-input-container >
+          <md-select ng-model="form.form.serviceIds" multiple class="flex-no" placeholder="Apply this form to service">
+            <md-option ng-value="service._id" ng-repeat="service in form.services" ng-disabled="service.form">
+              <div layout="row" layout-padding layout-align="center center" >
+                <thumb-image image-id="service.image.id" image-class="avatar" size="40"></thumb-image>
+                {{service.name}}
+              </div>
+            </md-option>
+
+          </md-select>
+      </md-input-container>
+    </div>
+
+    </md-dialog-content>
+    <md-divider md-inset></md-divider>
+    <md-dialog-actions layout="row" layout-align="space-between center">
+      <div layout="row" layout-align="start center">
+        <md-button  type="submit"
+        ng-disabled="!formCreate.$valid"
+        class="send-button md-accent md-raised"
+        aria-label="Save" translate="FORM.SAVE" translate-attr-aria-label="FORM.SAVE">
+          Save
+        </md-button>
+
+      </div>
+
+      <div layout="row" ng-if="form.edit">
+        <md-button class="md-icon-button" aria-label="Delete" ng-click="form.remove()" translate-attr-aria-label="MAIL.DELETE">
+          <md-icon md-font-icon="icon-delete"></md-icon>
+          <md-tooltip>
+            <span translate="MAIL.DELETE"></span>
+          </md-tooltip>
+        </md-button>
+      </div>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

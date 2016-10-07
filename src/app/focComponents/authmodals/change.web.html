@@ -1,0 +1,43 @@
+<md-dialog aria-label="Change Password" >
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>Change Password</h2>
+      <span flex></span>
+      <md-button ng-click="modalChange.close()">
+        Close
+      </md-button>
+    </div>
+  </md-toolbar>
+<md-dialog-content layout="row" layout-align="center start" layout-fill layout-margin>
+
+  <div layout="column" layout-fill layout-margin layout-padding class="md-dialog-content">
+
+    <form name="changeForm" layout="column" layout-fill layout-padding layout-margin>
+      <md-input-container>
+        <label> New Password </label>
+        <input type="password" ng-model="modalChange.credentials.password" placeholder="New password" aria-label="new password" required/>
+      </md-input-container>
+      <md-input-container>
+        <label> Confirm Password </label>
+        <input type="password" ng-model="modalChange.confirmPassword" placeholder="Confirm password" aria-label="Confirm password" required/>
+      </md-input-container>
+      <div layout="row" layout-align="end center">
+        <md-button ng-class="{'md-raised md-primary': changeForm.$dirty && changeForm.$valid && modalChange.credentials.password==modalChange.confirmPassword}" ng-click="modalChange.change()" aria-label="change"
+                   ng-disabled="!changeForm.$valid || modalChange.credentials.password!=modalChange.confirmPassword">Save
+        </md-button>
+      </div>
+    </form>
+
+    <md-toolbar ng-show="modalChange.error" class="md-warn" layout="row" layout-fill layout-padding layout-margin>
+      <p class="md-body-1">{{ modalChange.error }}</p>
+    </md-toolbar>
+
+    <md-divider></md-divider>
+    <div layout="row" layout-align="center">
+      <a class="md-button" ng-click="modalChange.login($event)">Sign in</a>
+    </div>
+
+  </div>
+
+</md-dialog-content>
+</md-dialog>

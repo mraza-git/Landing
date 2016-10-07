@@ -1,0 +1,20 @@
+#new-placeholder {
+  width: 80%;
+
+
+  .new-question {
+    height: 20px;
+
+    &.hover {
+      height: 70px;
+    }
+
+    .bordered {
+      border: 1px dashed rgba(128, 128, 128, 0.55);
+      background: rgba(211, 211, 211, 0.61);
+      color: rgba(0, 0, 0, 0.68);
+      height: 50px;
+      width: 100%;
+    }
+  }
+}

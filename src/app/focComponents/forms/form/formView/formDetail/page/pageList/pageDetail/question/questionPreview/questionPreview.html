@@ -1,0 +1,40 @@
+<div id="question-preview">
+  <div class="list" layout="column">
+    <md-toolbar class="md-accent md-hue-2 toolbar-height">
+      <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+        <span class="title">Question {{questionPreview.index+1}}</span>
+        <div>
+          <md-button class="md-icon-button" ng-click="questionPreview.updateQuestion($event)" aria-label="Edit dialog" tranlate translate-aria-label="FORM.EDIT_DIALOG">
+            <md-icon md-font-icon="icon-pencil"></md-icon>
+            <md-tooltip md-delay="300"
+                        md-autohide="true"
+                        md-direction="bottom">
+              Edit
+            </md-tooltip>
+          </md-button>
+          <md-button class="md-icon-button" ng-click="question.closeDialog()" aria-label="Close dialog" tranlate translate-aria-label="FORM.CLOSE_DIALOG">
+            <md-icon md-font-icon="icon-close"></md-icon>
+            <md-tooltip md-delay="300"
+                        md-autohide="true"
+                        md-direction="bottom">
+              Delete
+            </md-tooltip>
+          </md-button>
+        </div>
+      </div>
+    </md-toolbar>
+    <div layout="row" class="preview-content">
+      <div flex="50">
+        <formly-form model="questionPreview.model" fields="questionPreview.fields">
+
+        </formly-form>
+
+      </div>
+      <div flex>
+        <pre>
+          {{questionPreview.model | json}}
+        </pre>
+      </div>
+    </div>
+  </div>
+</div>
