@@ -1,6 +1,1 @@
-<div id="thumbImage">
-  <img ng-src="{{thumbImage.thumb.url}}"
-  alt="image_thumb"
-  class="{{thumbImage.imageClass}}"/>
-
-</div>
+<img ng-src="{{thumbImage.thumb.url || 'assets/images/avatars/profile.jpg'}}" ng-load="animation='slide-top'" alt="image_thumb" class="{{thumbImage.imageClass}} {{animation}}" />
