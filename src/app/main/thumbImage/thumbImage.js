@@ -13,6 +13,7 @@
           controllerAs: name,
           bindings:{
             imageId:'<',
+            imageClass: '@'
           }
         });
         // .config(config);
@@ -35,12 +36,12 @@
           //   }
           // });
 
-           this.subscribe('singleThumb96');
+           this.subscribe('singleThumb40');
 
           this.helpers({
             thumb: function(){
               console.log(this.imageId);
-              return Thumbs96.findOne({
+              return Thumbs40.findOne({
                 originalId: this.getReactively('imageId',true)
               });
             }

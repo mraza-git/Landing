@@ -3,7 +3,7 @@
     'use strict';
 
     angular
-        .module('app.toolbar', [])
+        .module('app.toolbar', ['app.core'])
         .config(config);
 
     /** @ngInject */

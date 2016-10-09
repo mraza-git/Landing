@@ -155,7 +155,7 @@
             }
             else
             {
-                fuseTheming.setActiveTheme('default');
+                fuseTheming.setActiveTheme('pinkTheme');
             }
         }
 

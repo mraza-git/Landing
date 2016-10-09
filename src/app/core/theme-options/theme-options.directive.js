@@ -60,6 +60,7 @@
 
         vm.layoutMode = 'wide';
         vm.layoutStyle = $cookies.get('layoutStyle') || 'verticalNavigation';
+        
 
         // Methods
         vm.setActiveTheme = setActiveTheme;
@@ -69,6 +70,7 @@
 
         //////////
 
+
         /**
          * Set active theme
          *
@@ -77,6 +79,8 @@
         function setActiveTheme(themeName)
         {
             fuseTheming.setActiveTheme(themeName);
+
+
         }
 
         /**

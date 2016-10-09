@@ -1,0 +1,241 @@
+<div id="landing-consumer" layout="column" flex focscroll>
+  <!-- Header -->
+  <section id="header">
+    <div class="header" layout="column" flex>
+      <div class="header-woimage toggle" ng-hide="landing.servicesReady"></div>
+
+      <div ng-show="landing.servicesReady" class="header-image toggle" ng-cloak>
+      </div>
+      <!-- <div class="boxed"> -->
+        <div class="header-content ">
+          <h1>
+            Service needs, made easy.
+          </h1>
+          <div class="search-box-bg">
+
+            <i class="icon icon-magnify s40"></i>
+            <md-autocomplete
+              id="autocomplete"
+              md-selected-item="item"
+              md-search-text="landing.searchText"
+              md-search-text-change="landing.searchTextChange(landing.searchText)"
+              md-selected-item-change="landing.selectedItemChange(item)"
+              md-items="item in landing.services | filter: landing.searchText"
+              md-item-text="item.name"
+              md-min-length="0"
+              placeholder="What service are you looking for today?">
+              <md-item-template>
+                <div layout="row" layout-align="start center">
+                  <thumb-image image-id="item.image.id"
+                  image-class="circle tn-padding" class="thumbnail"
+                  size="96">
+                </thumb-image>
+
+                <div layout="column">
+                  <!-- <div md-highlight-text="landing.searchText" md-highlight-flags="^i"> -->
+                    <h4>{{item.name}}</h4>
+                    <p>{{item.description}}</p>
+                  <!-- </div> -->
+                </div>
+              </div>
+              </md-item-template>
+              <!-- <md-not-found>
+                No states matching "{{landing.searchText}}" were found.
+                <a ng-click="landing.newState(landing.searchText)">Create a new one!</a>
+              </md-not-found> -->
+            </md-autocomplete>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- / HEADER -->
+
+  <!-- CONTENT -->
+  <md-content class="content">
+
+    <!-- Categories -->
+    <section id="categories">
+      <div layout="row" layout-align="center center" layout-padding>
+        <div flex-gt-md="70" flex-md="90" flex-gt-sm="100" flex-sm="100" flex-gt-xs="100" flex-xs="100" layout="column">
+          <h2 class="md-display-1">Categories</h2>
+            <div layout="row" flex layout-align="center center">
+              <div layout="column" flex-gt-sm="90" flex-sm="90" flex="90" class="section-block" ng-class="{height:position100}">
+                <md-grid-list class="list"
+                md-cols-xs="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="4"
+                md-row-height-gt-md="1:1" md-row-height="4:3"
+                md-gutter-gt-md="20px" md-gutter-gt-sm="12px" md-gutter="8px">
+
+                  <md-grid-tile class="slide-top" ng-class="{'foc-tile':landing.imageShow}" ng-mouseover="itemShow=true" ng-mouseleave="itemShow=false" ng-repeat="cat in landing.categories"
+                  md-rowspan="1" md-colspan="1" md-colspan-sm="1" md-colspan-xs="1">
+                      <!-- <div style="background-image:url({{cat.image.url}});
+                      background-repeat:no-repeat;
+                      background-size:cover;
+                      width:100%;
+                      height:100%;"> -->
+                      <div class="post__image-container img-box-shadow">
+                        <!-- <img ng-src="{{cat.image.url}}"
+                        id="{{cat.image.id}}"
+                        ng-load="imageShow = true;"
+                        ng-show="imageShow" alt=""
+                        onload="checkBrowser();"
+                        class="post__featured-image animate-show"> -->
+                          <md-progress-circular md-mode="query"
+                                                ng-hide="landing.imageShow"
+                                                class="md-hue-2 img-progress"
+                                                md-diameter="20px">
+
+                          </md-progress-circular>
+                        <img ng-src="{{cat.image.url}}"
+                          id="{{cat.image.id}}"
+                          ng-load="landing.showImage($index,landing.categories.length)"
+                          ng-show="landing.imageShow"
+                          alt="{{cat.name}}"
+                          ng-class="{'coming-soon-category':!cat.published}"
+                          class="post__featured-image toggle">
+                          <md-tooltip md-visible="true" md-delay="400" md-direction="bottom" md-autohide="true" >
+                              Coming Soon...
+                          </md-tooltip>
+                          <h3 class="md-headline">
+                            {{cat.name}}
+                          </h3>
+                        </div>
+                      <!-- <md-grid-tile-footer  ng-show="itemShow" style="height: 100%; cursor: pointer;">
+                      </md-grid-tile-footer> -->
+                  </md-grid-tile>
+                </md-grid-list>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    <!-- / categories -->
+
+    <!-- Video -->
+    <section id="video">
+      <div layout="row" layout-align="center start">
+        <div flex-gt-md="70" flex-md="80" layout="column">
+          <h2 class="md-display-1">How it works?</h2>
+          <div layout="column"  flex layout-align="center center" >
+            <div class="video-placeholder" ng-hide="position400"></div>
+            <div class="vidoe-outer-wrap slide-top-slow" ng-show="position400">
+              <div class="video-bg">
+                <iframe class="video-frame toggle" ng-show="position400" width="780" height="439" src="https://www.youtube-nocookie.com/embed/r9YPdUKAIVQ?rel=0" frameborder="0" allowfullscreen></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- / Video -->
+
+    <!-- How it works -->
+    <section id="work">
+      <div layout="row" layout-align="center start" layout-padding layout-wrap>
+        <div flex-gt-md="70" flex-md="80" layout="column">
+          <!-- <h2 class="md-display-1"></h2> -->
+          <div layout="row"  flex layout-align="center center">
+            <!-- <svg width="640" height="480" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+             <g>
+
+              <path stroke="#000000" id="svg_1" d="m212.997683,93.99775l179.99991,0l0,207.999754l-90.000016,51.999995l-89.999998,-51.999995l0.000103,-207.999754z" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" fill="#f78f1e"/>
+             </g>
+            </svg> -->
+
+                <!-- <div flex class="md-display-1 step-1" layout-align="center start">Step 1</div>
+                <div flex class="md-display-1 step-2" layout-align="center start">Step 2</div>
+                <div flex class="md-display-1 step-3" layout-align="center start">Step 3</div>
+                <div flex class="md-display-1 step-4" layout-align="center start">Step 4</div> -->
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- / How it works -->
+
+    <!-- Our Partners -->
+    <section id="partner">
+      <div layout="row" layout-align="center start" layout-padding layout-wrap>
+        <div flex-gt-md="70" flex-md="80" flex-xs="100" flex-gt-xs="100" layout="column">
+          <h2 class="md-display-1">Our <span class="md-accent-fg">Partners</span></h2>
+          <div layout="row" layout-xs="column" layout-wrap>
+                <div flex="25">
+                  <div class="partner-placeholder slide-left-slow" ng-show="position1700"></div>
+                  </div>
+                <div flex="25">
+                  <div class="partner-placeholder slide-left-slow" style="background-color:white;    background-image: none;" ng-show="position1700"></div>
+                </div>
+                <div flex="25">
+                  <div class="partner-placeholder slide-right-slow" style="background-color:#bbb7df;    background-image: none;" ng-show="position1700"></div>
+                </div>
+                <div flex="25">
+                  <div class="partner-placeholder slide-right-slow" style="background-color:#bbb7cc;    background-image: none;" ng-show="position1700"></div>
+                </div>
+                <div flex="25">
+                  <div class="partner-placeholder slide-left-slow" style="background-color:#bbb7df;    background-image: none;" ng-show="position1700"></div>
+                  </div>
+                <div flex="25">
+                  <div class="partner-placeholder slide-left-slow" style="background-color:#bbb7cc;    background-image: none;" ng-show="position1700"></div>
+                </div>
+                <div flex="25">
+                  <div class="partner-placeholder slide-right-slow" style="background-color:white;    background-image: none;" ng-show="position1700"></div>
+                </div>
+                <div flex="25">
+                  <div class="partner-placeholder slide-right-slow" ng-show="position1700"></div>
+                </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- / Our Partners -->
+
+    <!-- Bottom -->
+    <section id="bottom">
+      <div class="bottom-content">
+
+    <p class="uk-text-large uk-margin-large">Are you ready to hire a professional? <br>
+      Send your inquiry now</p>
+      <p class="small"><a href="http://www.fixonclick.com/" >www.fixonclick.com</a><br>
+        <a href="mailto:info@fixonclick.com">info@fixonclick.com</a><br>
+        +4 555 3335</p>
+
+
+            </div>
+        </section>
+    <!-- / Bottom -->
+
+    <!-- Footer -->
+    <section id="footer" du-scroll-container="content">
+      <div class="footer-content">
+        <div layout="row" layout-align="center start" layout-padding layout-wrap>
+          <div flex="100" layout="column">
+            <div class="footer-align">
+              <div class="footer-left">
+                <ul class="footer-subnav">
+                  <li><a href="#categories" du-smooth-scroll du-scrollspy >Categories</a></li>
+                  <li><a href="#header" du-smooth-scroll>Search</a></li>
+                  <li><a href="#work" du-smooth-scroll du-scrollspy>How It Works?</a></li>
+                </ul>
+              </div>
+              <a class="" href="#header"  du-smooth-scroll>
+                <md-icon md-font-icon="icon-arrow-up" class="s24 totop-scroller" aria-hidden="true">
+              </a>
+            <div class="footer-right">
+              	<a href="#">
+                  <md-icon md-font-icon="icon-facebook" class="s24 footer-icons" aria-hidden="true">
+              	</a>
+                <a href="#">
+                  <md-icon md-font-icon="icon-twitter" class="s24 footer-icons" aria-hidden="true">
+              	</a>
+                <a href="#">
+                  <md-icon md-font-icon="icon-youtube-play" class="s24 footer-icons" aria-hidden="true">
+                </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+    <!-- / Footer -->
+  </md-content>
+  <!-- / CONTENT -->
+</div>
+<!-- </div> -->

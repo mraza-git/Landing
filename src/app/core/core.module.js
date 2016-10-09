@@ -12,11 +12,13 @@
                 'ngResource',
                 'ngSanitize',
                 'ngMaterial',
+                'timer',
                 'pascalprecht.translate',
                 'ui.router',
                 'mgo-angular-wizard',
                 'formly',
                 'formlyMaterial',
+                'duScroll',
 
             ]);
 })();

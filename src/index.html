@@ -31,7 +31,7 @@
     <![endif]-->
 
     <body md-theme="{{vm.themes.active.name}}" md-theme-watch ng-controller="IndexController as vm"
-          class="{{state.current.bodyClass || ''}}">
+          class="{{state.current.bodyClass || ''}}" >
 
         <!-- SPLASH SCREEN -->
         <ms-splash-screen id="splash-screen">
@@ -58,7 +58,7 @@
         </ms-splash-screen>
         <!-- / SPLASH SCREEN -->
 
-        <div id="main" class="animate-slide-up" ui-view="main" layout="column"></div>
+        <div id="main" ui-view="main" layout="column"></div>
 
         <ms-theme-options></ms-theme-options>
 

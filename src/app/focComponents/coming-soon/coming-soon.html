@@ -1,0 +1,81 @@
+<div id="coming-soon" class="flex-scrollable" layout="column" ms-scroll>
+    <div id="coming-soon-form-wrapper"  layout="row" layout-xs="column" layout-sm="column" flex>
+      <div layout="row"  layout-align="end center" flex flex-order-sm="2"  flex-order-xs="2">
+        <div class="vidoe-outer-wrap">
+          <div class="video-bg">
+            <iframe class="video-frame toggle" width="780" height="439" src="https://www.youtube-nocookie.com/embed/r9YPdUKAIVQ?rel=0" frameborder="0" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+      <div layout="row"  layout-align="center center" flex flex-order="1">
+        <div id="coming-soon-form" class="md-whiteframe-8dp">
+          <div class="top">
+            <div class="logo">
+              <span>
+                <img src="assets/images/logos/fix-200.png" alt="">
+              </span>
+            </div>
+
+            <div class="title">As said by Jean Rousseau and my Grandma,<br>
+              <span class="md-accent-fg">"Patience is bitter, but its fruit is sweet."</span>
+            </div>
+            <div class="subtitle" ><p>We are working very hard to make this a lifestyle change for you, so hang on for tentatively:</p>
+            </div>
+            <p style="margin-bottom: -20px;"></p>
+
+
+            <timer end-time="vm.endTime" layout="row" layout-wrap>
+              <div flex-xs="50">
+                <div class="value">{{days}}</div>
+                <div class="type" translate="COMINGSOON.DAYS">days</div>
+              </div>
+
+              <div flex-xs="50">
+                <div class="value">{{hours}}</div>
+                <div class="type" translate="COMINGSOON.HOURS">hours</div>
+              </div>
+
+              <div flex-xs="50">
+                <div class="value">{{minutes}}</div>
+                <div class="type" translate="COMINGSOON.MINUTES">minutes</div>
+              </div>
+
+              <div flex-xs="50">
+                <div class="value">{{seconds}}</div>
+                <div class="type" translate="COMINGSOON.SECONDS">seconds</div>
+              </div>
+            </timer>
+            <div class="counters" >
+              (Yes we love counters)
+            </div>
+          </div>
+
+          <form style="margin: 0px 0px 0px 0px;" name="emailListForm">
+            <div class="message" >
+              Don’t miss out when FixonClick launches!
+            </div>
+
+            <md-input-container flex md-no-float>
+              <input type="email" placeholder="Email address" translate ng-model="vm.model.email"
+              translate-attr-placeholder="COMINGSOON.EMAIL_ADRESS">
+            </md-input-container>
+
+            <md-button class="md-raised md-accent" aria-label="SUBSCRIBE" translate="COMINGSOON.SUBSCRIBE"
+            ng-click="vm.save()"
+            translate-attr-aria-label="COMINGSOON.SUBSCRIBE">
+            SUBSCRIBE
+          </md-button>
+        </form>
+        <div layout="row">
+          <div flex class="creation md-primary-fg" layout="row" layout-align="center center">Creativity of<br>
+            Dexterous Technology
+          </div>
+
+          <div flex="45">
+            <img src="assets/images/logos/dexterous-logo.png" alt="">
+          </span>
+        </div>
+      </div>
+      </div>
+    </div>
+</div>
