@@ -1,0 +1,60 @@
+<div id="question-preview">
+  <div class="list" layout="column">    
+    <div layout="row" class="preview-content" ng-show="questionPreview.previewPage">
+      <div flex="70">
+        <formly-form model="questionPreview.model" fields="questionPreview.fields">
+
+        </formly-form>
+
+      </div>
+      <div flex>
+        <pre>
+          {{questionPreview.model | json}}
+        </pre>
+      </div>
+    </div>
+    <div class="question-preview" layout="row" class="preview-content" ng-hide="questionPreview.previewPage" ng-cloak>
+      <div flex layout="row" layout-align="space between center" layout-padding>
+        <div>
+          <label>{{questionPreview.index+1}}. </label>
+          <label>{{questionPreview.question.customerDescription}}</label>
+        </div>
+        <div>
+          <label class="md-accent-bg md-hue-2 label-padding">{{questionPreview.question.questionType}}</label>
+          <md-menu md-position-mode="target-right target">
+            <md-button class="md-icon-button" ng-click="$mdOpenMenu()" aria-label="more">
+              <md-icon md-font-icon="icon-plus"></md-icon>
+            </md-button>
+
+            <md-menu-content width="3">
+              <md-menu-item>
+                <md-button ng-click="questionPreview.addQuestion($event,questionPreview.index)" aria-label="Add above">
+                  Add above
+                </md-button>
+              </md-menu-item>
+              <md-menu-item>
+                <md-button ng-click="questionPreview.addQuestion($event,questionPreview.index+1)" aria-label="Add below">
+                  Add below
+                </md-button>
+              </md-menu-item>
+            </md-menu-content>
+
+          </md-menu>
+          <md-button class="md-icon-button" ng-click="questionPreview.updateQuestion($event)" aria-label="Edit dialog" tranlate translate-aria-label="FORM.EDIT_DIALOG">
+            <md-icon md-font-icon="icon-pencil"></md-icon>
+            <md-tooltip md-delay="300" md-autohide="true" md-direction="bottom">
+              Edit
+            </md-tooltip>
+          </md-button>
+          <md-button class="md-icon-button" ng-click="questionPreview.deleteQuestion()" aria-label="delete question" tranlate translate-aria-label="FORM.CLOSE_DIALOG">
+            <md-icon md-font-icon="icon-close"></md-icon>
+            <md-tooltip md-delay="300" md-autohide="true" md-direction="bottom">
+              Delete
+            </md-tooltip>
+          </md-button>        
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

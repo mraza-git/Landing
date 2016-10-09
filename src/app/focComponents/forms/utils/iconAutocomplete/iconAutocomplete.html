@@ -1,0 +1,21 @@
+<md-autocomplete
+  required
+  md-input-name = "icons"
+  md-selected-item-change="iconAutocomplete.selectedItemChange(item.properties.name)"
+  md-search-text="iconAutocomplete.iconSearch"
+  md-items="item in iconAutocomplete.icons"
+  md-item-text="item.properties.name"
+  placeholder="search for an icon">
+  <md-item-template>
+    <md-icon class="md-font material-icons md-default-theme icon-{{item.properties.name}} foc20"></md-icon>
+      <span md-highlight-text="iconAutocomplete.searchText" md-highlight-flags="^i">
+        {{item.properties.name}}
+      </span>
+  </md-item-template>
+  <div ng-messages="folderForm.icons.$error">
+    <div ng-message="required">This field is required</div>
+  </div>
+  <md-not-found>
+     No matches found.
+   </md-not-found>
+</md-autocomplete>

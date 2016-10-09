@@ -1,9 +1,9 @@
-(function ()
-{
-    'use strict';
+(function() {
+  'use strict';
 
 
-    var name = "thumbImage";
+  var name = "thumbImage";
+         
 
     angular
         .module(name, ['angular-meteor'])
@@ -15,26 +15,10 @@
             imageId:'<',
             imageClass: '@'
           }
-        });
-        // .config(config);
-        // /** @ngInject */
-        // function config($stateProvider, $translatePartialLoaderProvider, msApiProvider, msNavigationServiceProvider)
-        // {
-        // }
+        });       
          /** @ngInject */
         function ThumbImage($scope,$reactive){
-           $reactive(this).attach($scope);
-          //  server.subscribe('thumbs96',function(){
-          //   return [[this.getReactively('imageId',true)]];
-          // });
-          // this.helpers({
-          //   thumb: function(){
-          //     console.log(this.imageId);
-          //     return Thumbs96.findOne({
-          //       originalId: this.getReactively('imageId',true)
-          //     });
-          //   }
-          // });
+           $reactive(this).attach($scope);         
 
            this.subscribe('singleThumb40');
 
@@ -45,8 +29,11 @@
                 originalId: this.getReactively('imageId',true)
               });
             }
+
           });
-
-
         }
+   
+
+
+  
 })();

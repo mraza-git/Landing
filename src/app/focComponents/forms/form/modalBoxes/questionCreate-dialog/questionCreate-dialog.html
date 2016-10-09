@@ -1,0 +1,45 @@
+<md-dialog class="question-create-dialog " aria-label="New Question">
+  <form class="md-inline-form" name="questionCreate" ng-submit="questionCreate.$valid && question.save()">
+    <md-toolbar class="md-accent md-hue-2">
+      <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+        <span class="title" translate="FORM.NEW_QUESTION">Add or Edit QUESTION</span>
+        <md-button class="md-icon-button" ng-click="question.closeDialog()" aria-label="Close dialog" tranlate translate-aria-label="FORM.CLOSE_DIALOG">
+          <md-icon md-font-icon="icon-close"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content ms-scroll layout="column" flex>
+      <formly-form
+        class="md-inline-form"
+        style = "width:100%"
+        layout="column"
+        flex
+        layout-align="center center"
+        model="question.question"
+        fields="question.fields"
+        form="questionCreate">
+        </formly-form>        
+    </md-dialog-content>
+
+    <md-divider md-inset></md-divider>
+    <md-dialog-actions layout="row" layout-align="space-between center">
+      <div layout="row" layout-align="start center">
+        <md-button  type="submit"
+        ng-disabled="!questionCreate.$valid"
+        class="send-button md-accent md-raised"
+        aria-label="Save" translate="FORM.SAVE" translate-attr-aria-label="FORM.SAVE">
+          Save
+        </md-button>
+      </div>
+      <div layout="row" ng-if="question.edit">
+        <md-button class="md-icon-button" aria-label="Delete" ng-click="question.remove()" translate-attr-aria-label="MAIL.DELETE">
+          <md-icon md-font-icon="icon-delete"></md-icon>
+          <md-tooltip>
+            <span translate="MAIL.DELETE"></span>
+          </md-tooltip>
+        </md-button>
+      </div>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

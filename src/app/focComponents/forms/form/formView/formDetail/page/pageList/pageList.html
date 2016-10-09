@@ -1,0 +1,53 @@
+<!--  IF NO PAGES-->
+<div ng-if="!pageList.pages" class="" layout="column" layout-align="center center" flex>
+  <md-icon md-font-icon="icon-format-float-none" class="s120 grey-400-fg"></md-icon>
+  <span class="hint-text" translate="FORM.SELECT_FORM_TO_DEFINE">No pages yet in the form</span>
+  <md-button class="md-raised md-primary" ng-click="pageList.openAddPageModal($event)">
+    Add Page
+  </md-button>
+</div>
+<!--  /IF NO PAGES-->
+<!--  CONTENT-->
+<div ng-if="pageList.pages" layout="column" flex>
+  <!--  CURRENT PAGE TOOLS-->
+  <page-tools current-page="pageList.currentPage" preview-page="pageList.previewPage" add-page="pageList.openAddPageModal($event)"></page-tools>
+  <!--  /CURRENT PAGE TOOLS-->
+  <!--  TABS WRAPPER DETAILS-->
+  <div class="thread-content" flex layout="column">
+    <div class="info" layout="column" flex  >
+      <!--  TABS-->
+      <md-tabs  md-border-bottom flex layout="column" >
+        <!--  PAGE TAB-->
+        <md-tab label="{{page.title}}" ng-repeat="page in pageList.pages"  ng-click="pageList.setCurrentPage(page,$index)" layout="column" flex>
+          <!--  PAGE CONTENT-->
+          <md-content class="md-padding" flex layout="column">
+            <!--  PAGE DETAIL-->
+            <page-detail page="page" update="pageList.done($event)" preview-page="pageList.previewPage" flex></page-detail>
+
+            <!--  /PAGE DETAIL-->
+          </md-content>
+          <!--  /PAGE CONTENT-->
+        </md-tab>
+
+        <!--  ADD NEW TAB-->
+        <md-tab label="+"  ng-click="pageList.addPageAtEnd($event)" layout="column" flex>
+          <!--  PAGE CONTENT-->
+          <md-content class="md-padding" flex layout="column">
+            <!--  PAGE DETAIL-->
+            <div id="new-tab">
+              new tab here
+            </div>
+            <!--  /PAGE DETAIL-->
+          </md-content>
+          <!--  /PAGE CONTENT-->
+        </md-tab>
+
+        <!--  /ADD NEW TAB-->
+
+        <!--  /PAGE TAB-->
+      </md-tabs>
+      <!--  /TABS-->
+    </div>
+  </div>
+</div>
+<!--  /CONTENT-->

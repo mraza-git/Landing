@@ -1,0 +1,52 @@
+<md-dialog aria-label="Login" ng-cloak>
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>Login to continue</h2>
+      <span flex></span>
+      <md-button ng-click="modalForgot.close()">
+        Close
+      </md-button>
+    </div>
+  </md-toolbar>
+<md-dialog-content layout="row" layout-align="center start" layout-fill layout-margin>
+
+  <div layout="column" layout-fill layout-margin layout-padding class="md-dialog-content">
+
+    <div layout="row" layout-fill layout-margin>
+      <p class="md-body-2">Enter your email so we can send you a reset link</p>
+    </div>
+
+    <form name="resetForm" layout="column" layout-fill layout-padding layout-margin>
+      <md-input-container>
+        <label> Email </label>
+        <input type="email" ng-model="modalForgot.credentials.email" placeholder="email" aria-label="email" required/>
+      </md-input-container>
+      <div layout="row" layout-align="end center">
+        <md-button
+        ng-class="{'md-raised md-primary': resetForm.$dirty && resetForm.$valid, 'forgot-button-loading layout-row layout-align-space-between-center': modalForgot.loading}"
+        ng-click="modalForgot.forgot()"
+        aria-label="Register"
+        ng-disabled="!resetForm.$valid || modalForgot.loading"
+        >
+        Send Email
+        <md-progress-circular
+        ng-show="modalForgot.loading"
+        md-diameter="25" class="md-accent"></md-progress-circular>
+
+        </md-button>
+      </div>
+    </form>
+
+    <md-toolbar ng-show="modalForgot.error" class="md-warn" layout="row" layout-fill layout-padding layout-margin>
+      <p class="md-body-1">{{ modalForgot.error }}</p>
+    </md-toolbar>
+
+    <md-divider></md-divider>
+    <div layout="row" layout-align="center">
+      <a class="md-button" ng-click="modalForgot.login($event)">Sign in</a>
+    </div>
+
+  </div>
+
+</md-dialog-content>
+</md-dialog>

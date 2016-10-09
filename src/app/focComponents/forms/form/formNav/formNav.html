@@ -1,0 +1,39 @@
+<!-- SIDENAV HEADER -->
+<div class="header" layout="column" layout-align="space-between start">
+
+  <div class="logo" layout="row" layout-align="start center">
+    <span class="logo-icon">
+      <md-icon md-font-icon="icon-format-float-none" class="icon"></md-icon>
+    </span>
+    <span class="logo-text" translate="FORM.APPTITLE">FOC FORMS</span>
+  </div>
+
+  <div class="account">
+    <div class="title">{{formNav.currentUser.profile.name}}</div>
+    <!-- <md-select class="account-selection simplified" placeholder="Mail Selection"
+                   ng-model="vm.selectedAccount">
+            <md-option ng-repeat="(provider, address) in vm.accounts" value="{{provider}}">{{address}}
+            </md-option>
+        </md-select> -->
+  </div>
+
+</div>
+<!-- / SIDENAV HEADER -->
+
+<!-- SIDENAV CONTENT -->
+<md-content ms-scroll class="content" flex>
+
+  <div class="compose-button">
+    <md-button class="md-accent md-raised" aria-label="compose" ng-click="formNav.openCreateDialog($event)" translate="FORM.CREATE">CREATE
+    </md-button>
+  </div>
+  <form-folders
+  current-form="formNav.currentForm"
+  master-settings = "formNav.masterSettings"
+  current-folder = "formNav.currentFolder"
+  ></form-folders>
+
+
+
+</md-content>
+<!-- / SIDENAV CONTENT -->

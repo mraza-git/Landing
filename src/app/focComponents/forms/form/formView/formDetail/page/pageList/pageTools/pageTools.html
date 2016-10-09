@@ -1,0 +1,58 @@
+<div id="page-tools">
+  <md-toolbar  class="md-background-bg" layout="row" layout-align="start center">
+    <md-button aria-label="add page" class="md-icon-button">
+    <md-tooltip md-direction="bottom">
+      Add new page
+    </md-tooltip>
+      <md-icon md-font-icon="icon-plus"></md-icon>
+    </md-button>
+    <md-button aria-label="add page" class="md-icon-button">
+      <md-tooltip md-direction="bottom">
+        Edit page
+      </md-tooltip>
+       <md-icon md-font-icon="icon-pencil"></md-icon>
+    </md-button>
+    <md-button aria-label="photo" class="md-icon-button" ng-click="pageTools.addpage($event)">
+      <md-tooltip md-direction="bottom">
+        Add new page
+      </md-tooltip>
+      <md-icon md-font-icon="icon-google-pages"></md-icon>
+    </md-button>
+    <md-button aria-label="label" class="md-icon-button">
+      <md-tooltip md-direction="bottom">
+        Delete page
+      </md-tooltip>
+      <md-icon md-font-icon="icon-delete"></md-icon>
+    </md-button>
+    <md-button aria-label="preview" class="md-icon-button" ng-click="pageTools.previewPage=!pageTools.previewPage">
+      <md-tooltip md-direction="bottom">
+        Preview page
+      </md-tooltip>
+      <md-icon md-font-icon="icon-magnify"></md-icon>
+    </md-button>
+  </md-toolbar>
+    <!-- <md-fab-toolbar count="demo.count" md-direction="left" >
+    <md-fab-trigger class="align-with-text">
+      <md-button aria-label="menu" class="md-fab md-accent md-hue-4" >
+        <md-icon md-font-icon="icon-menu"></md-icon>
+      </md-button>
+    </md-fab-trigger>
+
+    <md-toolbar>
+      <md-fab-actions class="md-toolbar-tools" >
+        <md-button aria-label="comment" class="md-icon-button" ng-click="pageTools.toggleKeepOpen()">
+          <md-icon class="s18" ng-class="{'rotate-icon-0':!pageTools.keepOpen,'rotate-icon-180':pageTools.keepOpen}" md-font-icon="icon-backburger"></md-icon>
+        </md-button>
+        <md-button aria-label="label" class="md-icon-button">
+          <md-icon md-font-icon="icon-delete"></md-icon>
+        </md-button>
+        <md-button aria-label="photo" class="md-icon-button" >
+          <md-icon md-font-icon="icon-google-pages"></md-icon>
+        </md-button>
+        <md-button aria-label="add page" class="md-icon-button">
+          <md-icon md-font-icon="icon-plus"></md-icon>
+        </md-button>
+      </md-fab-actions>
+    </md-toolbar>
+  </md-fab-toolbar> -->
+</div>

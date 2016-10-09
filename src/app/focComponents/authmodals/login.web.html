@@ -1,0 +1,83 @@
+<md-dialog aria-label="Login">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>Login to continue</h2>
+      <span flex></span>
+      <md-button ng-click="modalLogin.close()">
+        Close
+      </md-button>
+    </div>
+  </md-toolbar>
+<md-dialog-content layout="row" layout-align="center start" layout-fill layout-margin>
+
+    <div layout="column" layout-fill layout-margin layout-padding class="md-dialog-content">
+      <div layout="row" layout-fill layout-margin>
+        <p class="md-body-2">
+          Use existing account</p>
+      </div>
+
+      <div layout="row" layout-fill layout-margin layout-padding layout-wrap>
+        <md-button class="md-raised">
+          <md-icon md-svg-icon="social:ic_google_24px" style="color: #DC4A38;"></md-icon>
+          <span>Google</span>
+        </md-button>
+        <md-button class="md-raised">
+          <md-icon md-svg-icon="social:ic_facebook_24px" style="color: #3F62B4;"></md-icon>
+          <span>Facebook</span>
+        </md-button>
+        <md-button class="md-raised">
+          <md-icon md-svg-icon="social:ic_twitter_24px" style="color: #27AAE2;"></md-icon>
+          <span>Twitter</span>
+        </md-button>
+      </div>
+      <md-divider class="inset"></md-divider>
+
+      <div layout="row" layout-fill layout-margin>
+        <p class="md-body-2">
+          Sign in with your email</p>
+      </div>
+
+      <form name="loginForm" layout="column" layout-fill layout-padding layout-margin>
+        <md-input-container>
+          <label>
+            Email
+          </label>
+          <input type="email" ng-model="modalLogin.credentials.email" aria-label="email" required/>
+        </md-input-container>
+        <md-input-container>
+          <label>
+            Password
+          </label>
+          <input type="password" ng-model="modalLogin.credentials.password" aria-label="password" required/>
+        </md-input-container>
+        <div layout="row" layout-align="space-between center">
+          <a class="md-button" ng-click="modalLogin.forgot($event)">Forgot password?</a>
+
+          <md-button
+          ng-class="{'md-raised md-primary': loginForm.$dirty && loginForm.$valid, 'signin-button-loading layout-row layout-align-space-between-center': modalLogin.loading}"
+          ng-click="modalLogin.login()"
+          aria-label="login"
+          ng-disabled="!loginForm.$valid || modalLogin.loading"
+          >
+          Sign In
+          <md-progress-circular
+          ng-show="modalLogin.loading"
+          md-diameter="25" class="md-accent"></md-progress-circular>
+
+          </md-button>
+        </div>
+      </form>
+
+      <md-toolbar ng-show="modalLogin.error" class="md-warn" layout="row" layout-fill layout-padding layout-margin>
+        <p class="md-body-1">{{ modalLogin.error }}</p>
+      </md-toolbar>
+
+      <md-divider></md-divider>
+
+      <div layout="row" layout-align="center">
+        <a class="md-button" ng-click="modalLogin.register($event)">Need an account?</a>
+      </div>
+    </div>
+
+</md-dialog-content>
+</md-dialog>
