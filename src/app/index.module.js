@@ -1,9 +1,10 @@
 
 var Categories = new Meteor.Collection('categories');
 var Thumbs96 = new Meteor.Collection('thumbs96');
+var Thumbs40 = new Meteor.Collection('thumbs40');
 var Images = new Meteor.Collection('images');
 var Services = new Meteor.Collection('services');
-
+var EmailList = new Meteor.Collection('emaillist');
 
 (function ()
 {
@@ -17,7 +18,9 @@ var Services = new Meteor.Collection('services');
 
             // Core
             'app.core',
-
+            'angular-meteor',
+            'thumbImage',
+            'landing',
 
 
             // Navigation
@@ -28,6 +31,7 @@ var Services = new Meteor.Collection('services');
 
             // Quick panel
             'app.quick-panel',
+            'app.coming-soon',
 
             // Sample
             'app.sample',

@@ -1,4 +1,4 @@
-<div layout="column" layout-align="space-between stretch" class="h-128">
+<div layout="column" layout-align="space-between stretch" class="h-128" du-scroll-container="content">
     <div class="top-row" layout="row" layout-align="space-between center">
 
         <div layout="row" layout-align="start center">
@@ -8,12 +8,25 @@
                     <md-icon md-font-icon="icon-menu"></md-icon>
                 </md-button>
             </div>
-
-            <div class="logo" layout="row" layout-align="start center">
-                <span class="logo-image">F</span>
-                <span class="logo-text">FUSE</span>
-            </div>
-        </div>
+          <div class="logo layout-align-start-center layout-row" layout="row" layout-align="start center">
+            <a href="#header" du-smooth-scroll>
+              <span class="logo-image">Fix</span>
+            </a>
+              <span class="logo-text">onClick</span>
+          </div>
+          <div class="toolbar-separator"></div>
+            <!-- <md-button href="#header" du-smooth-scroll class="md-primary md-hue-1">Home</md-button>
+            <div class="toolbar-separator"></div> -->
+            <md-button href="#categories" du-smooth-scroll du-scrollspy class="md-primary md-hue-1 foc-nav">Categories</md-button>
+            <div class="toolbar-separator"></div>
+            <!-- <md-button href="#video" du-smooth-scroll class="md-primary md-hue-1">Video</md-button>
+            <div class="toolbar-separator"></div> -->
+            <md-button href="#work" du-smooth-scroll du-scrollspy class="md-primary md-hue-1 foc-nav">How it works?</md-button>
+            <div class="toolbar-separator"></div>
+            <md-button href="#partner" du-smooth-scroll du-scrollspy class="md-primary md-hue-1 foc-nav">Our Partners</md-button>
+            <div class="toolbar-separator"></div>
+            <md-button href="#" class="md-accent md-raised md-hue-1">Become a Service Partner</md-button>
+          </div>
 
         <div layout="row" layout-align="start center">
             <md-progress-circular id="toolbar-progress" ng-if="$root.loadingProgress" class="md-accent"
@@ -21,7 +34,7 @@
             </md-progress-circular>
         <md-button class="md-primary md-raised"></md-button>
 
-            <!--<ms-shortcuts></ms-shortcuts>-->
+            <!-- <ms-shortcuts></ms-shortcuts>-->
 
             <!--<md-menu-bar id="user-menu">
                 <md-menu md-position-mode="left bottom">
@@ -82,10 +95,11 @@
                         </md-menu-item>
                     </md-menu-content>
                 </md-menu>
-            </md-menu-bar>-->
+            </md-menu-bar> -->
 
-            <ms-search-bar on-search="vm.search(query)" on-result-click="vm.searchResultClick(item)" debounce="300"></ms-search-bar>
-
+            <!-- <ms-search-bar on-search="vm.search(query)" on-result-click="vm.searchResultClick(item)" debounce="300"></ms-search-bar>
+            <div class="toolbar-separator"></div> -->
+            <md-button class="md-warn md-raised md-hue-2">LOGIN</md-button>
             <md-menu id="language-menu" md-offset="0 72" md-position-mode="target-right target">
                 <md-button class="language-button" ng-click="$mdOpenMenu()"
                            aria-label="Language" md-menu-origin md-menu-align-target>
@@ -108,10 +122,10 @@
                 </md-menu-content>
             </md-menu>
 
-            <md-button id="quick-panel-toggle" class="md-icon-button" ng-click="vm.toggleSidenav('quick-panel')"
+            <!-- <md-button id="quick-panel-toggle" class="md-icon-button" ng-click="vm.toggleSidenav('quick-panel')"
                        aria-label="Toggle quick panel" translate translate-attr-aria-label="TOOLBAR.TOGGLE_QUICK_PANEL">
                 <md-icon md-font-icon="icon-format-list-bulleted" class="icon"></md-icon>
-            </md-button>
+            </md-button> -->
         </div>
     </div>
 
@@ -119,3 +133,18 @@
         <div id="horizontal-navigation" ui-view="navigation"></div>
     </div>
 </div>
+
+<!-- <script type="text/javascript">
+angular.module('myApp', ['duScroll'])
+  .value('duScrollDuration', 2000)
+  .value('duScrollOffset', 30)
+  .controller('myCtrl', function($scope, $document) {
+    $document.scrollTopAnimated(400).then(function() {
+      console && console.log('You just scrolled to the top!');
+    });
+
+    var someElement = angular.element(document.getElementById('some-id'));
+    $document.scrollToElementAnimated(someElement);
+  }
+);
+</script> -->
