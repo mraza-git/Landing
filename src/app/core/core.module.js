@@ -17,6 +17,7 @@
                 'mgo-angular-wizard',
                 'formly',
                 'formlyMaterial',
+                
 
             ]);
 })();

@@ -5,8 +5,11 @@
 
     var main = 'statement'; // Change this with containing folder name
     var type = 'Show';
-    function ControllerFunction(){
-      'ngInject';      
+    function ControllerFunction($scope){
+      'ngInject';  
+      var self = this;
+      
+
     }
 
   var name = main + type; // Change This with Component Name
@@ -19,7 +22,9 @@
     controller: controller,
     controllerAs: name,
     bindings:{
-      statement:'='           
+      map:'<',
+      marker: '<',
+      location: '='           
     }
   });
 

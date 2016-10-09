@@ -13,12 +13,7 @@
       <!--  FORM NAME-->
       <div class="subject" flex>{{formDetail.currentForm.title}}</div>
       <!--  /FORM NAME-->
-      <!--  FORM SERVICES-->
-      <div class="">
-        This form is assigned to following services:
-        <form-services service-ids="formDetail.currentForm.serviceIds"></form-services>
-      </div>
-      <!--  /FORM SERVICES-->
+     
       <!--  FORM TAGS-->
       <!-- <div class="labels">
                 <div class="label" ng-repeat="labelId in formDetail.currentForm.labels"
@@ -29,15 +24,20 @@
     </div>
     <!--  /TITLE-->
     <!--  FORM ACTIONS-->
-    <div class="actions" layout="row" layout-align="start center">
+    <div class="actions" layout="column" layout-align="start start">
+       <!--  FORM SERVICES-->
+      <div class="">        
+        <form-services service-ids="formDetail.currentForm.serviceIds"></form-services>
+      </div>
+      <!--  /FORM SERVICES-->
       <!--  FORM ACTION BUTTONS-->
-      <md-button class="md-icon-button" ng-click="formDetail.toggleFormStatus('live')" aria-label="Toggle live" translate translate-attr-toogle-starred="FORM.TOGGLE_LIVE">
+      <!--<md-button class="md-icon-button" ng-click="formDetail.toggleFormStatus('live')" aria-label="Toggle live" translate translate-attr-toogle-starred="FORM.TOGGLE_LIVE">
         <md-icon ng-if="formDetail.currentForm.live" md-font-icon="icon-label" class="amber-fg"></md-icon>
         <md-icon ng-if="!formDetail.currentForm.live" md-font-icon="icon-label-outline"></md-icon>
         <md-tooltip md-direction="bottom">
           Live
         </md-tooltip>
-      </md-button>
+      </md-button>-->
       <!--  /FORM ACTION BUTTONS-->
     </div>
     <!--  /FORM ACTIONS-->

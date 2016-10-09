@@ -51,7 +51,10 @@ function CreateQuestionDialogController($mdDialog, selectedQuestion, questions, 
   },{
     'id': 5,
     'label': 'divider'
-  },
+  },{
+    'id': 6,
+    'label': 'gmap'
+  }
 
 ];  
 

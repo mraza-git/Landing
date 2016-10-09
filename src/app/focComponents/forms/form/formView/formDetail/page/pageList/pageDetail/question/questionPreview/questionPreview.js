@@ -16,6 +16,8 @@
 
     ///////////Methods Declarations///////////
     self.updateQuestion = updateQuestion;
+    self.addQuestion = addQuestion;
+    self.deleteQuestion = deleteQuestion;
     self.checkInit = checkInit;
     self.init = init;
     self.setup = setup;
@@ -25,13 +27,7 @@
     self.getHideExpression = getHideExpression; // add Hide Expressions
 
 
-    ///////////Method Definitions///////////     
-
-    // self.autorun(function(){
-    //   self.checkInit();
-    //   console.log("Watching in autorun...");
-    // })
-
+    ///////////Method Definitions///////////
     self.checkInit();
 
     function checkInit() {
@@ -139,7 +135,6 @@
 
     ////////////////////////////////////////////////////////
     function updateQuestion(event) {
-
       self.update({
         $event: {
           question: self.question,
@@ -149,6 +144,26 @@
       });
 
 
+    }
+
+    function addQuestion(event, index) {
+      self.update({
+        $event: {
+          question: undefined,
+          index: index,
+          event: event,
+        }
+      });
+    }
+
+    function deleteQuestion() {
+      if (self.remove) {        
+        self.remove({
+          $event: {
+            index: self.index
+          }
+        });
+      }
     }
 
 
@@ -162,6 +177,7 @@
       'angular-meteor',
       'questionSetupService',
       'statementShow',
+      'focGmap',
       'formly',
       'formlyMaterial',
     ])
@@ -173,7 +189,9 @@
         question: '<',
         questions: '<',
         index: '<',
+        previewPage: '<',
         update: '&',
+        remove: '&',
       }
     }).run(run);
 
@@ -188,6 +206,11 @@
     formlyConfig.setType({
       name: 'divider',
       template: '<md-divider></md-divider>'
+    });
+
+    formlyConfig.setType({
+      name: 'gmap',
+      template: '<foc-gmap map="to.map" marker="to.marker" location="model[options.key]" ></foc-gmap>'
     });
   }
 

@@ -1,20 +1,20 @@
-<div id="condition-create" flex ms-scroll>
+<div id="condition-create" flex >
   <!--  QUESTION LIST-->
-  <div class="question-edit slide-down" ng-hide="questionList.previewPage" ng-cloak>
+  <div class="question-edit slide-down" ng-if="!questionList.previewPage" ng-cloak>
 
     <!--  NEW QUESTION-->
-    <new-placeholder index="0" update="questionList.openAddQuestionModal($event)"></new-placeholder>
+    <!--<new-placeholder index="0" update="questionList.openAddQuestionModal($event)"></new-placeholder>-->
     <!--  /NEW QUESTION-->
     <ul dnd-list="questionList.questions">
-      <li ng-repeat="question in questionList.questions track by $index" dnd-draggable="question" dnd-moved="questionList.questions.splice($index, 1)"
+      <li ng-repeat="question in questionList.questions track by $index" dnd-draggable="question" dnd-moved="questionList.questions.splice($index, 1);questionList.done()"
       dnd-selected="questionList.selected = question" dnd-effect-allowed="move" ng-class="{'selected': questionList.selected === question}">
 
       <!--  LIST QUESTIONS-->
-      <question-preview question="question" index="$index" update="questionList.openQuestionUpdateModal($event)"></question-preview>
+      <question-preview question="question" index="$index" preview-page="questionList.previewPage" remove="questionList.questions.splice($event.index,1);questionList.done()" update="questionList.openQuestionUpdateModal($event)"></question-preview>
       <!--  /LIST QUESTION-->
 
       <!--  NEW QUESTION-->
-      <new-placeholder index="$index+1" update="questionList.openAddQuestionModal($event)"></new-placeholder>
+      <!--<new-placeholder index="$index+1" update="questionList.openAddQuestionModal($event)"></new-placeholder>-->
       <!--  /NEW QUESTION-->
       </li>
     </ul>
@@ -25,7 +25,7 @@
   </div>
   <!--PAGE PREVIEW-->
   <div class="questions-preview slide-down" ng-if="questionList.previewPage" ng-cloak>
-    <question-preview questions="questionList.questions" index="questionList.questions.length" update="questionList.openAddQuestionModal($event)"></question-preview>
+    <question-preview questions="questionList.questions" index="questionList.questions.length"  preview-page="questionList.previewPage" update="questionList.openAddQuestionModal($event)"></question-preview>
   </div>
   <!--/PAGE PREVIEW-->
 </div>

@@ -60,9 +60,7 @@
   var controller = ControllerFunction;
   angular
     .module(name, [
-      'angular-meteor',
-      'formly',
-      'formlyMaterial',
+      'angular-meteor',      
       'questionPreview',
       'newPlaceholder',
       'optionCreate',

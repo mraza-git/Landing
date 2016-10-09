@@ -1,6 +1,16 @@
-#question-list{
+#condition-create{
   width:100%;
   // .question{
   //   height:100%;
   // }
+  .question-edit{
+    ul>li{
+      padding: 0px !important;
+      border: 0px !important;
+    }
+    ul[dnd-list] .dndPlaceholder {      
+      min-height: 72px !important;
+    }
+  }
+
 }

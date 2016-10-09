@@ -1,11 +1,10 @@
 #question-preview {
   width: 100%;
   .list {
-    border: solid 1px rgba(194, 194, 194, 0.78);
-    width: 80%;
-    -webkit-box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.24);
-    -moz-box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.24);
-    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.24);
+    border: solid 1px rgba(194, 194, 194, 0.78);    
+    -webkit-box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.1);
     .toolbar-height {
       height: 23px;
       .md-toolbar-tools{
@@ -15,17 +14,16 @@
       }
     }
     .preview-content {
-      padding: 0 20px;
-      cursor: pointer;
+      padding: 0 20px;      
       .formly {        
         .formly-field {
-          width: 80%;
+          width: 100%;
           label {
             font-size: 16px !important;
             margin-bottom: 10px;
           }
           md-input-container{
-            width: 80%;
+            width: 100%;
           }
           md-select{
             font-size: 16px !important;
@@ -33,5 +31,15 @@
         }
       }
     }
+    .question-preview{
+      min-height: 40px;    
+    }
   }
+}
+
+.label-padding{
+  padding: 1px 10px;    
+  vertical-align: super;
+  margin-right: 3px;
+  border-radius: 3px;
 }
