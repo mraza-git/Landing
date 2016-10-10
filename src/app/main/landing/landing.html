@@ -61,10 +61,13 @@
                           alt="{{cat.name}}"
                           ng-class="{'coming-soon-category':!cat.publish}"
                           class="post__featured-image toggle">
-                          <md-tooltip ng-show="!cat.publish" md-delay="400" md-direction="top" md-autohide="true" >
+                          <!--<md-tooltip ng-show="!cat.publish" md-delay="400" md-direction="top" md-autohide="true" class="cat-tooltip">
                               Coming Soon...
-                          </md-tooltip>
-                          <h3 class="md-headline">
+                          </md-tooltip>-->
+                          <h3 class="md-headline" ng-show="!cat.publish" ng-class="{'change-category-name':!cat.publish}">
+                            <span>{{cat.name}}</span>
+                          </h3>
+                          <h3 class="md-headline" ng-show="cat.publish">
                             {{cat.name}}
                           </h3>
                         </div>
@@ -88,21 +91,21 @@
       <div layout="row" layout-align="center start" layout-padding layout-wrap>
         <div flex-gt-md="70" flex-md="80" layout="column">
           <h2 class="md-display-1">How it works?</h2>
-          <div layout="row"  flex layout-align="center start">
+          <div layout="row"  flex layout-align="center start" layout-xs="column">
                 <div flex class="steps" layout-align="start center" layout="column">
-                  <div layout-align="center start" flex> <img src="../../../assets/images/backgrounds/post-your-requirements.png"></div>
+                  <div layout-align="center start" flex flex-xs="100"> <img src="../../../assets/images/backgrounds/post-your-requirements.png"></div>
                   <div flex><h3>Post your requirments</h3></div>
                 </div>
                 <div flex class="steps" layout-align="start center" layout="column">
-                  <div layout-align="center start" flex> <img src="../../../assets/images/backgrounds/get-quotes.png"></div>
+                  <div layout-align="center start" flex flex-xs="100"> <img src="../../../assets/images/backgrounds/get-quotes.png"></div>
                   <div flex><h3>Get quotes</h3></div>
                 </div>
                <div flex class="steps" layout-align="start center" layout="column">
-                  <div layout-align="center start" flex> <img src="../../../assets/images/backgrounds/select-a-service-provider.png"></div>
+                  <div layout-align="center start" flex flex-xs="100"> <img src="../../../assets/images/backgrounds/select-a-service-provider.png"></div>
                   <div flex><h3>Select a service provider</h3></div>
                 </div>
                 <div flex class="steps" layout-align="start center" layout="column">
-                  <div layout-align="center start" flex> <img src="../../../assets/images/backgrounds/sit-back-and-relax.png"></div>
+                  <div layout-align="center start" flex flex-xs="100"> <img src="../../../assets/images/backgrounds/sit-back-and-relax.png"></div>
                   <div flex><h3>Sit back & relax<br><span>(Yes that is mandatory step)</span><br>   
                       <svg  xmlns="http://www.w3.org/2000/svg" x="0px" y="25px"
                       width="20px" height="20px" viewBox="0 0 78.838 78.838" 
@@ -152,28 +155,28 @@
         <div flex-gt-md="70" flex-md="80" flex-xs="100" flex-gt-xs="100" layout="column">
           <h2 class="md-display-1">Our <span class="md-accent-fg">Partners</span></h2>
           <div layout="row" layout-xs="column" layout-wrap>
-                <div flex="25">
+                <div flex="25" flex-xs="100" >
                   <div class="partner-placeholder slide-left-slow" ng-show="position1000"></div>
                   </div>
-                <div flex="25">
+                <div flex="25" flex-xs="100">
                   <div class="partner-placeholder slide-left-slow" style="background-color:white;    background-image: none;" ng-show="position1000"></div>
                 </div>
-                <div flex="25">
+                <div flex="25" flex-xs="100">
                   <div class="partner-placeholder slide-right-slow" style="background-color:#bbb7df;    background-image: none;" ng-show="position1000"></div>
                 </div>
-                <div flex="25">
+                <div flex="25" flex-xs="100">
                   <div class="partner-placeholder slide-right-slow" style="background-color:#bbb7cc;    background-image: none;" ng-show="position1000"></div>
                 </div>
-                <div flex="25">
+                <div flex="25" flex-xs="100">
                   <div class="partner-placeholder slide-left-slow" style="background-color:#bbb7df;    background-image: none;" ng-show="position1000"></div>
                   </div>
-                <div flex="25">
+                <div flex="25" flex-xs="100">
                   <div class="partner-placeholder slide-left-slow" style="background-color:#bbb7cc;    background-image: none;" ng-show="position1000"></div>
                 </div>
-                <div flex="25">
+                <div flex="25" flex-xs="100">
                   <div class="partner-placeholder slide-right-slow" style="background-color:white;    background-image: none;" ng-show="position1000"></div>
                 </div>
-                <div flex="25">
+                <div flex="25" flex-xs="100">
                   <div class="partner-placeholder slide-right-slow" ng-show="position1000"></div>
                 </div>
           </div>

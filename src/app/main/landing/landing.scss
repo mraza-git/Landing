@@ -157,6 +157,20 @@
               }
             }
         }
+        .coming-soon-category {
+          -webkit-filter: blur(2px);
+          -moz-filter: blur(2px);
+          -o-filter: blur(2px);
+          -ms-filter: blur(2px);
+          filter: blur(2px);
+        }
+        .change-category-name:hover span {
+          display: none;
+        }
+        .change-category-name:hover::after {
+          content: 'Coming soon...';
+        }
+
     }
 
       #video {
@@ -229,7 +243,7 @@
           }
       #work {
 
-       padding-top: 40px;
+       //padding-top: 40px;
         // background-image: url("../../../assets/images/backgrounds/fix-on-click.jpg");
         // background-repeat: no-repeat;
         // background-position: bottom;
@@ -237,7 +251,7 @@
 
         h2 {
           text-align: center;
-          margin: 10px 0 20px;
+          margin: 10px 0 30px;
           }
         h3 {
           font-weight: bold;
@@ -531,7 +545,6 @@
   object-fit: cover;
  }
 }
-
 
 .animate-show {
   // line-height: 20px;
