@@ -40,6 +40,7 @@
       controllerAs: name,
       bindings: {
         serviceIds: '<',
+        type:'@',
       }
     });
 

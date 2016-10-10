@@ -1,0 +1,62 @@
+.service-selector {
+    height: 411px;
+    min-width: 300px;
+    overflow: hidden;
+    z-index: 1000;
+    md-input-container {
+        margin: 10px 0px 0px 0px;
+        padding: 0px;
+        height: 30px;
+        input {
+            padding-left: 15px;
+        }
+    }
+    md-dialog-content {
+        padding: 0px !important;
+        .md-button {
+            height: 53px;
+            text-transform: capitalize;
+            margin: 0px;
+            padding: 0px;
+            overflow: visible;
+            // border-radius: 3px;
+            // box-sizing: border-box;
+            // color: currentColor;
+            // -webkit-user-select: inherit;
+            // -moz-user-select: none;
+            // -ms-user-select: none;
+            // user-select: none;            
+            // outline: none;
+            // border: 0;
+            // display: inline-block;            
+            // -ms-flex-align: center;
+            // -ms-grid-row-align: center;
+            // align-items: center;            
+            // line-height: 36px;
+            // min-height: 36px;
+            // background: transparent;
+            // white-space: nowrap;
+            // min-width: 88px;
+            // text-align: center;            
+            // font-weight: 500;
+            // font-size: 14px;
+            // font-style: inherit;
+            // font-variant: inherit;
+            // font-family: inherit;
+            // text-decoration: none;
+            // cursor: pointer;            
+            // -webkit-transition: box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), background-color 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            // transition: box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), background-color 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); */
+        }
+            .info-container {
+                border-bottom-style: groove;
+                .info {
+                    form-services {
+                        padding: 0px 10px 0px 15px;
+                    }
+                    padding: 5px 15px 5px 5px;
+                    cursor: pointer;
+                }
+            }
+    }
+}
