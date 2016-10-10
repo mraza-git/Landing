@@ -20,14 +20,18 @@ Meteor.subscribe("categories");
         })
         .config(config)
         .directive("focscroll", function () {
-            return function (scope, element, attrs) {
-                angular.element(document.getElementById('content')).bind("scroll", function () {
-                    if (this.scrollTop >= 100) {
-                        scope.position100 = true;
-                    }
+            return function(scope, element, attrs) {
+                angular.element(document.getElementById('content')).bind("scroll", function() {
+                     if (this.scrollTop >= 100) {
+                         scope.position100 = true;
+                     }
 
-                    if (this.scrollTop >= 400) {
-                        scope.position400 = true;
+                     if(this.scrollTop>= 400){
+                       scope.position400 = true;
+                     }
+
+                    if(this.scrollTop>= 1000){
+                      scope.position1000 = true;
                     }
 
                     if (this.scrollTop >= 1700) {

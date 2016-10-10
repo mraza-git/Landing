@@ -15,13 +15,13 @@
   .header {
     // position: relative;
     // min-height: 100%;
-    height: 480px;
-    min-height: 480px;
-    max-height: 480px;
+    height: 520px;
+    min-height: 520px;
+    max-height: 520px;
 
       .header-woimage {
         width: 100%;
-        height: 480px;
+        height: 520px;
         // visibility: inherit;
         z-index: 19;
         background-color: gray;
@@ -34,7 +34,7 @@
         @extend .header-woimage;
         // z-index: 20;
         // top: -16px;
-        background-image: url("../../../assets/images/backgrounds/foc-bg.jpg");
+        background-image: url("../../../assets/images/backgrounds/fix-landing-bg.jpg");
         background-repeat: no-repeat;
         // position: absolute !important;
        }
@@ -51,28 +51,35 @@
           //   max-width : 1600px !important;
           // }}
       .header-content {
-        top: 50px;
+        /* top: 50px; */
+        top: 30%;
         z-index: 30;
         position: relative;
-        height: 85%;
-        padding-bottom: 200px;
+        /* height: 85%; */
+        /* padding-bottom: 200px; */
+        margin-left: 30px;
+        -webkit-transition: all 300ms ease-out 50ms;
+        -moz-transition: all 300ms ease-out 50ms;
+        -o-transition: all 300ms ease-out 50ms;
+        transition: all 300ms ease-out 50ms;
+
           h1 {
-            text-align: center;
+            //text-align: center;
             color: white;
-            padding-top: 70px;
+           // padding-top: 70px;
             text-shadow: 0px 4px 3px rgba(0,0,0,0.7),
                          0px 8px 13px rgba(0,0,0,0.3),
                          0px 18px 23px rgba(0,0,0,0.1);
               }
           .search-box-bg {
-            position: relative;
+           // position: relative;
             width: 100%;
-            max-width: 720px;
+            max-width: 550px;
             box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 5px -3px, rgba(0, 0, 0, 0.137255) 0px 8px 10px 1px, rgba(0, 0, 0, 0.117647) 0px 3px 14px 2px;
-            overflow: hidden;
+            //overflow: hidden;
             // border-radius: 7px;
             background: rgb(255, 255, 255);
-            margin: 0 auto;
+           // margin: 0 auto;
 
               .icon-magnify {
                 float: left;
@@ -83,10 +90,19 @@
                 }
               input {
                 font-size: 1.4em;
-                font-weight: 200;
+                font-weight: 300;
+                font-style: italic;   
                 }
               }
             }
+            
+        @media (max-width:1000px) {
+        .header-content {
+          top: 0;
+          margin: 0 auto;
+          text-align: center;
+          width: 520px;
+          }}
       }
     /* Content */
     md-content {
@@ -112,7 +128,7 @@
 
           h2 {
             text-align: center;
-            margin: 10px 0 20px;
+            margin: 10px auto 20px;
             }
           .section-block {
             display: block;
@@ -236,47 +252,39 @@
           }
       #work {
 
-        height: 600px;
-        background-image: url("../../../assets/images/backgrounds/fix-on-click.jpg");
-        background-repeat: no-repeat;
-        background-position: bottom;
+       padding-top: 40px;
+        // background-image: url("../../../assets/images/backgrounds/fix-on-click.jpg");
+        // background-repeat: no-repeat;
+        // background-position: bottom;
 
 
         h2 {
           text-align: center;
           margin: 10px 0 20px;
           }
-        .step-1 {
+        h3 {
+          font-weight: bold;
+          span {
+            font-weight: normal;
+            font-size: 1em;
+          }
+        }
+        .steps {
           width: 150px;
-          height: 380px;
-          background: #f78f1e;
-          color: white;
-          -webkit-clip-path: polygon(0 0, 100% 0, 100% 90%, 50% 100%, 0 90%);
-          clip-path: polygon(0 0, 100% 0, 100% 90%, 50% 100%, 0 90%);
+          text-align: center;
+          display: block;
         }
         .step-2 {
           width: 150px;
-          height: 380px;
-          background: #e55027;
-          color: white;
-          -webkit-filter: drop-shadow(0 5px 5px rgba(0,0,0,0.3));
-          filter: drop-shadow(0 5px 5px rgba(0,0,0,0.3));
+
         }
         .step-3 {
           width: 150px;
-          height: 380px;
-          background: #4e4d4e;
-          color: white;
-          -webkit-clip-path: polygon(0 0, 100% 0, 100% 90%, 50% 100%, 0 90%);
-          clip-path: polygon(0 0, 100% 0, 100% 90%, 50% 100%, 0 90%);
+
         }
         .step-4 {
           width: 150px;
-          height: 380px;
-          background: #53b37e;
-          color: white;
-          -webkit-clip-path: polygon(0 0, 100% 0, 100% 90%, 50% 100%, 0 90%);
-          clip-path: polygon(0 0, 100% 0, 100% 90%, 50% 100%, 0 90%);
+
         }
       }
       #partner {
