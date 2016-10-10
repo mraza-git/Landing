@@ -7,7 +7,7 @@
       <div ng-show="landing.servicesReady" class="header-image toggle" ng-cloak>
       </div>
       <!-- <div class="boxed"> -->
-        <div class="header-content ">
+        <div class="header-content foc-tile">
           <h1>
             Service needs, made easy.
           </h1>
@@ -104,17 +104,66 @@
                   </md-grid-tile>
                 </md-grid-list>
               </div>
+            </div>          
+            <div layout="center center"><h2>
+            <md-button class="md-warn md-raised md-hue-2">View all services</md-button></h2>
             </div>
-          </div>
+          </div> 
         </div>
+
       </section>
     <!-- / categories -->
+
+    <!-- How it works -->
+    <section id="work">
+      <div layout="row" layout-align="center start" layout-padding layout-wrap>
+        <div flex-gt-md="70" flex-md="80" layout="column">
+          <h2 class="md-display-1">How it works?</h2>
+          <div layout="row"  flex layout-align="center start">
+                <div flex class="steps" layout-align="start center" layout="column">
+                  <div layout-align="center start" flex> <img src="../../../assets/images/backgrounds/post-your-requirements.png"></div>
+                  <div flex><h3>Post your requirments</h3></div>
+                </div>
+                <div flex class="steps" layout-align="start center" layout="column">
+                  <div layout-align="center start" flex> <img src="../../../assets/images/backgrounds/get-quotes.png"></div>
+                  <div flex><h3>Get quotes</h3></div>
+                </div>
+               <div flex class="steps" layout-align="start center" layout="column">
+                  <div layout-align="center start" flex> <img src="../../../assets/images/backgrounds/select-a-service-provider.png"></div>
+                  <div flex><h3>Select a service provider</h3></div>
+                </div>
+                <div flex class="steps" layout-align="start center" layout="column">
+                  <div layout-align="center start" flex> <img src="../../../assets/images/backgrounds/sit-back-and-relax.png"></div>
+                  <div flex><h3>Sit back & relax<br><span>(Yes that is mandatory step)</span><br>   
+                      <svg  xmlns="http://www.w3.org/2000/svg" x="0px" y="25px"
+                      width="20px" height="20px" viewBox="0 0 78.838 78.838" 
+                      xml:space="preserve">
+                        <g>
+                          <path d="M16.443,51.331c-0.636-1.529,0.089-3.285,1.62-3.922c0.376-0.156,0.766-0.23,1.15-0.23
+                            c1.176,0.002,2.292,0.697,2.771,1.852c2.777,6.685,9.655,11.004,17.523,11.004c7.69,0,14.528-4.321,17.421-11.012
+                            c0.658-1.52,2.424-2.221,3.943-1.562c1.521,0.658,2.221,2.424,1.563,3.945c-3.843,8.887-12.843,14.629-22.928,14.629
+                            C29.206,66.034,20.153,60.262,16.443,51.331z"/>
+                          <path d="M68.732,25.97c0,7.262-5.908,13.168-13.168,13.168c-7.098,0-12.887-5.65-13.142-12.688h-6.095
+                            c-0.236,7.055-6.034,12.725-13.144,12.725c-7.259,0-13.166-5.906-13.166-13.168c0-0.111,0.014-0.219,0.017-0.33L0,21.148
+                            c0.379-0.78,1.045-2.104,1.576-2.899l8.982,4.054c1.605-5.461,6.654-9.461,12.626-9.461c6.281,0,11.541,4.424,12.847,10.316h6.677
+                            c1.293-5.912,6.563-10.354,12.856-10.354c5.946,0,10.979,3.965,12.607,9.389l9.098-4.106c0.014,0.053,0.031,0.105,0.063,0.153
+                            c0.495,0.74,1.114,1.955,1.505,2.751L68.71,25.562C68.716,25.698,68.732,25.833,68.732,25.97z"/>
+                        </g>
+
+                        </svg> 
+    
+                  </h3></div>
+                </div>                
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- / How it works -->
 
     <!-- Video -->
     <section id="video">
       <div layout="row" layout-align="center start">
         <div flex-gt-md="70" flex-md="80" layout="column">
-          <h2 class="md-display-1">How it works?</h2>
           <div layout="column"  flex layout-align="center center" >
             <div class="video-placeholder" ng-hide="position400"></div>
             <div class="vidoe-outer-wrap slide-top-slow" ng-show="position400">
@@ -128,29 +177,6 @@
     </section>
     <!-- / Video -->
 
-    <!-- How it works -->
-    <section id="work">
-      <div layout="row" layout-align="center start" layout-padding layout-wrap>
-        <div flex-gt-md="70" flex-md="80" layout="column">
-          <!-- <h2 class="md-display-1"></h2> -->
-          <div layout="row"  flex layout-align="center center">
-            <!-- <svg width="640" height="480" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
-             <g>
-
-              <path stroke="#000000" id="svg_1" d="m212.997683,93.99775l179.99991,0l0,207.999754l-90.000016,51.999995l-89.999998,-51.999995l0.000103,-207.999754z" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" fill="#f78f1e"/>
-             </g>
-            </svg> -->
-
-                <!-- <div flex class="md-display-1 step-1" layout-align="center start">Step 1</div>
-                <div flex class="md-display-1 step-2" layout-align="center start">Step 2</div>
-                <div flex class="md-display-1 step-3" layout-align="center start">Step 3</div>
-                <div flex class="md-display-1 step-4" layout-align="center start">Step 4</div> -->
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- / How it works -->
-
     <!-- Our Partners -->
     <section id="partner">
       <div layout="row" layout-align="center start" layout-padding layout-wrap>
@@ -158,28 +184,28 @@
           <h2 class="md-display-1">Our <span class="md-accent-fg">Partners</span></h2>
           <div layout="row" layout-xs="column" layout-wrap>
                 <div flex="25">
-                  <div class="partner-placeholder slide-left-slow" ng-show="position1700"></div>
+                  <div class="partner-placeholder slide-left-slow" ng-show="position1000"></div>
                   </div>
                 <div flex="25">
-                  <div class="partner-placeholder slide-left-slow" style="background-color:white;    background-image: none;" ng-show="position1700"></div>
+                  <div class="partner-placeholder slide-left-slow" style="background-color:white;    background-image: none;" ng-show="position1000"></div>
                 </div>
                 <div flex="25">
-                  <div class="partner-placeholder slide-right-slow" style="background-color:#bbb7df;    background-image: none;" ng-show="position1700"></div>
+                  <div class="partner-placeholder slide-right-slow" style="background-color:#bbb7df;    background-image: none;" ng-show="position1000"></div>
                 </div>
                 <div flex="25">
-                  <div class="partner-placeholder slide-right-slow" style="background-color:#bbb7cc;    background-image: none;" ng-show="position1700"></div>
+                  <div class="partner-placeholder slide-right-slow" style="background-color:#bbb7cc;    background-image: none;" ng-show="position1000"></div>
                 </div>
                 <div flex="25">
-                  <div class="partner-placeholder slide-left-slow" style="background-color:#bbb7df;    background-image: none;" ng-show="position1700"></div>
+                  <div class="partner-placeholder slide-left-slow" style="background-color:#bbb7df;    background-image: none;" ng-show="position1000"></div>
                   </div>
                 <div flex="25">
-                  <div class="partner-placeholder slide-left-slow" style="background-color:#bbb7cc;    background-image: none;" ng-show="position1700"></div>
+                  <div class="partner-placeholder slide-left-slow" style="background-color:#bbb7cc;    background-image: none;" ng-show="position1000"></div>
                 </div>
                 <div flex="25">
-                  <div class="partner-placeholder slide-right-slow" style="background-color:white;    background-image: none;" ng-show="position1700"></div>
+                  <div class="partner-placeholder slide-right-slow" style="background-color:white;    background-image: none;" ng-show="position1000"></div>
                 </div>
                 <div flex="25">
-                  <div class="partner-placeholder slide-right-slow" ng-show="position1700"></div>
+                  <div class="partner-placeholder slide-right-slow" ng-show="position1000"></div>
                 </div>
           </div>
         </div>
