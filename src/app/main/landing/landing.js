@@ -148,7 +148,7 @@ Meteor.subscribe("categories");
         }
         function typedFunction(){
             $(".typed-heading").typed({
-            strings: ["Problem no problem...", "Another description....",'Service needs, made easy.'],
+            strings: ["Service needs, made easy.", ".احتياجات الخدمة، جعلت من السهل", "besoins de service, en toute simplicité."],
             // Optionally use an HTML element to grab strings from (must wrap each string in a <p>)
             stringsElement: null,
             // typing speed
@@ -158,7 +158,7 @@ Meteor.subscribe("categories");
             // backspacing speed
             backSpeed: 0,
             // shuffle the strings
-            shuffle: true,
+            shuffle: false,
             // time before backspacing
             backDelay: 1000,
             // loop
