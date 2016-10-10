@@ -5,14 +5,24 @@
 
     var main = 'service'; // Change this with containing folder name
     var type = 'Questions';
-    function ControllerFunction($scope,$reactive){
+    function ControllerFunction($scope,$reactive,$stateParams){
       'ngInject';
       ///////////Initialization Checks///////////
       var self = this;
-
+      $reactive(self).attach($scope);
+      if($stateParams.serviceId){
+        console.log("ServiceID: ", $stateParams.serviceId);
+      }
 
       ///////////Data///////////
-
+      self.subscribe("forms");
+      self.helpers({
+        form: function(){
+          return FocForms.findOne({
+            serviceIds: $stateParams.serviceId,
+          });
+        }
+      });
 
       ///////////Methods Declarations///////////
 
@@ -29,6 +39,7 @@
   .module(name, [
       'angular-meteor',
       'questionsToolbar',
+      'questionPreview',
       ])
   .component(name,{
     templateUrl: templateUrl,
@@ -42,7 +53,7 @@
   .config(config);
   var template = '<'+main+'-'+type.toLowerCase()+'></'+main+'-'+type.toLowerCase()+'>';
   var state = 'app.'+name;
-  var stateUrl = '/'+name;
+  var stateUrl = '/'+name + '/:serviceId';
   var views = {
     'content@app.serviceQuestions': {
       template: template,

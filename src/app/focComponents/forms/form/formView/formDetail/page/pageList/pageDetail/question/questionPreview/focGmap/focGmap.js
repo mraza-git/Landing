@@ -11,17 +11,16 @@
     /////////////////Data/////////////////////
     self.myScopeVar = {};
     self.refresh = true;
-    // self.map={
-    //   center: {
-    //     latitude: 25,
-    //     longitude: 55,
-    //   }
-    // };    
+    self.geoLocation = {
+      latitude: 25,
+      longitude: 55,
+    };
 
     ///////////Methods Declarations///////////
     self.init = init;
     self.setLocation = setLocation;
     self.updateLocation = updateLocation;
+    
 
 
     ///////////Initialization/////////////////
@@ -35,7 +34,7 @@
         longitude: 55,
       };
       self.map = {
-        center: self.location,
+        center: self.geoLocation,
         zoom: 13,
         options: {
               minZoom: 3,
@@ -60,14 +59,13 @@
             $scope.$apply();
           }
         }
-      };
+      };      
       self.refresh = false;
-
     }
 
     function updateLocation() {
       self.setLocation(self.myScopeVar.geometry.location.lat(), self.myScopeVar.geometry.location.lng());
-      self.map.center = self.location;
+      self.map.center = angular.copy(self.location);
     }
 
     function setLocation(latitude, longitude) {

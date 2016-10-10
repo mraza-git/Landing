@@ -119,8 +119,9 @@
 
     function getValidationMessages(meta) {
       var messages = {};
-      if (meta.requiredCheck) {
-        messages.required = 'This is a required question';
+      if (angular.isDefined(meta.requiredCheck)) {
+        if(meta.requiredCheck)
+          messages.required = 'This is a required question';
       }
       return messages;
     }
