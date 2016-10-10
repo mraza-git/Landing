@@ -7,7 +7,9 @@ Meteor.subscribe("categories");
         .module(name, [
             'angular-meteor',
             'ngLoad',
+            'landingToolbar',
             'serviceQuestions',
+            'serviceAutocomplete',
         ])
         .component(name, {
             templateUrl: "app/main/landing/landing.html",
@@ -58,8 +60,7 @@ Meteor.subscribe("categories");
                         controller: "MainController as self"
                     },
                     'toolbar@app.landing': {
-                        templateUrl: 'app/toolbar/layouts/horizontal-navigation/toolbar.html',
-                        controller: "ToolbarController as self"
+                        template: '<landing-toolbar></landing-toolbar>',                        
                     },
                     'content@app.landing': {
                         template: '<landing></landing>',
