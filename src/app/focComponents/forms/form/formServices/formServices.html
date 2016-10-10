@@ -1,9 +1,11 @@
 <div layout="row">
   <div ng-repeat="ser in formServices.services">
-    <!--<thumb-image layout="row" image-id="ser.image.id" size="40" image-class="avatar"></thumb-image>-->
-    <label class="md-grey-600-bg label-padding">
+    
+    <thumb-image ng-if="formServices.type==='image'" layout="row" image-id="ser.image.id" size="40" image-class="avatar"></thumb-image>
+    <label ng-if="formServices.type!=='image'" class="md-grey-600-bg label-padding">
       {{ser.name}}
     </label>
+
     
   </div>
 

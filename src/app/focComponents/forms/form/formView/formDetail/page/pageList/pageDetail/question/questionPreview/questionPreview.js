@@ -210,7 +210,7 @@
 
     formlyConfig.setType({
       name: 'gmap',
-      template: '<foc-gmap map="to.map" marker="to.marker" location="model[options.key]" ></foc-gmap>'
+      template: '<foc-gmap key="options.key" location="model[options.key]" ></foc-gmap>'
     });
   }
 

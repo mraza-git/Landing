@@ -1,6 +1,6 @@
 <div id="question-preview">
   <div class="list" layout="column">    
-    <div layout="row" class="preview-content" ng-show="questionPreview.previewPage">
+    <div layout="row" class="preview-content" ng-if="questionPreview.previewPage">
       <div flex="70">
         <formly-form model="questionPreview.model" fields="questionPreview.fields">
 

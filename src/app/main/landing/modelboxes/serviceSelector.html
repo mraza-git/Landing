@@ -1,0 +1,26 @@
+<md-dialog class="service-selector" aria-label="select service">
+    <!--SERVICE SEARCH BAR-->
+    <md-input-container md-no-float>
+        <input name="search" type="type" ng-model="serviceList.search" placeholder="search..." aria-label="search">
+    </md-input-container>
+    <!--SERVICE SEARCH BAR-->
+
+    <!--SERVICE DESCRIPTION-->
+    <md-dialog-content layout="column" flex ms-scroll>
+        <div class="md-button slide-top" ng-if="!serviceList.loading" md-ink-ripple ng-repeat="service in serviceList.services | filter: serviceList.search"
+            ui-sref="app.serviceQuestions({serviceId: service._id})" ng-cloak>
+            <div class="info-container" layout="row" layout-align="start center">
+                <div class="info" flex layout="column">
+                    <div class="name" layout="row" layout-align="start center">
+                        <!--<md-icon md-font-icon="{{service.icon.name || icon-settings}}" aria-label="service.name" class="s20"></md-icon>-->
+                        <form-services service-ids="[service._id]" type="image"></form-services>
+                        <span class="text-truncate">{{service.name}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/SERVICE DESCRIPTION-->
+    </md-dialog-content>
+
+
+</md-dialog>

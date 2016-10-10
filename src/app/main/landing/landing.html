@@ -8,8 +8,10 @@
       </div>
       <!-- <div class="boxed"> -->
         <div class="header-content ">
-          <h1>
-            Service needs, made easy.
+          <h1 >
+            <span class="typed-heading">            
+
+            </span>
           </h1>
           <div class="search-box-bg">
 
@@ -66,7 +68,7 @@
                 md-gutter-gt-md="20px" md-gutter-gt-sm="12px" md-gutter="8px">
 
                   <md-grid-tile class="slide-top" ng-class="{'foc-tile':landing.imageShow}" ng-mouseover="itemShow=true" ng-mouseleave="itemShow=false" ng-repeat="cat in landing.categories"
-                  md-rowspan="1" md-colspan="1" md-colspan-sm="1" md-colspan-xs="1">
+                  md-rowspan="1" md-colspan="1" md-colspan-sm="1" md-colspan-xs="1" ng-click="landing.openServiceListDialog(cat,$event)">
                       <!-- <div style="background-image:url({{cat.image.url}});
                       background-repeat:no-repeat;
                       background-size:cover;
@@ -90,9 +92,9 @@
                           ng-load="landing.showImage($index,landing.categories.length)"
                           ng-show="landing.imageShow"
                           alt="{{cat.name}}"
-                          ng-class="{'coming-soon-category':!cat.published}"
+                          ng-class="{'coming-soon-category':!cat.publish}"
                           class="post__featured-image toggle">
-                          <md-tooltip md-visible="true" md-delay="400" md-direction="bottom" md-autohide="true" >
+                          <md-tooltip ng-show="!cat.publish" md-delay="400" md-direction="top" md-autohide="true" >
                               Coming Soon...
                           </md-tooltip>
                           <h3 class="md-headline">

@@ -1,6 +1,9 @@
-<div>
+<div layout="column">
     <div class="google-map-autocomplete">
         <form ng-submit="focGmap.updateLocation()" layout="row">
+            <md-button ng-mousedown="focGmap.refresh=true" ng-mouseup="focGmap.refresh=false" class="md-icon-button md-raised" md-ripple-size="partial" md-no-ink="true" aria-label="map search go">
+                <md-icon md-font-icon="icon-refresh" aria-label="refresh" class="s20"></md-icon>
+             </md-button>
             <md-input-container md-no-float>
                 <input type="text" g-places-autocomplete ng-model="focGmap.myScopeVar" placeholder="Enter a location" />
             </md-input-container>
@@ -8,12 +11,9 @@
             Go </md-button>
         </form>
 
-    </div>
-    <div class="angular-google-map-container">
-        <ui-gmap-google-map center="focGmap.map.center" events="focGmap.map.events" zoom="focGmap.map.zoom">
-            <ui-gmap-marker coords="focGmap.location" options="focGmap.marker.options" events="focGmap.marker.events" idKey="'focGmap.job._id'">
-            </ui-gmap-marker>
-        </ui-gmap-google-map>
-    </div>
-
+    </div>    
+    <ui-gmap-google-map ng-if="!focGmap.refresh" center="focGmap.map.center" events="focGmap.map.events" zoom="focGmap.map.zoom" options="focGmap.map.options">
+        <ui-gmap-marker coords="focGmap.location" options="focGmap.marker.options" events="focGmap.marker.events" idKey="'focGmap.key'">            
+        </ui-gmap-marker>
+    </ui-gmap-google-map>    
 </div>

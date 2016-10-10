@@ -10,12 +10,13 @@
     var self = this;
     /////////////////Data/////////////////////
     self.myScopeVar = {};
-    self.map={
-      center: {
-        latitude: 25,
-        longitude: 55,
-      }
-    };    
+    self.refresh = true;
+    // self.map={
+    //   center: {
+    //     latitude: 25,
+    //     longitude: 55,
+    //   }
+    // };    
 
     ///////////Methods Declarations///////////
     self.init = init;
@@ -35,7 +36,11 @@
       };
       self.map = {
         center: self.location,
-        zoom: 15,
+        zoom: 13,
+        options: {
+              minZoom: 3,
+              scrollwheel: true
+        },
         events: {
           click: function (mapModel, eventName, originalEventArgs) {
             self.setLocation(originalEventArgs[0].latLng.lat(), originalEventArgs[0].latLng.lng());
@@ -56,6 +61,7 @@
           }
         }
       };
+      self.refresh = false;
 
     }
 
@@ -89,6 +95,7 @@
       controllerAs: name,
       bindings: {
         location: '=',
+        key:'<',
       }
     }).config(config);
 
