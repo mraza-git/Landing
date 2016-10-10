@@ -13,40 +13,7 @@
 
             </span>
           </h1>
-          <div class="search-box-bg">
-
-            <i class="icon icon-magnify s40"></i>
-            <md-autocomplete
-              id="autocomplete"
-              md-selected-item="item"
-              md-search-text="landing.searchText"
-              md-search-text-change="landing.searchTextChange(landing.searchText)"
-              md-selected-item-change="landing.selectedItemChange(item)"
-              md-items="item in landing.services | filter: landing.searchText"
-              md-item-text="item.name"
-              md-min-length="0"
-              placeholder="What service are you looking for today?">
-              <md-item-template>
-                <div layout="row" layout-align="start center">
-                  <thumb-image image-id="item.image.id"
-                  image-class="circle tn-padding" class="thumbnail"
-                  size="96">
-                </thumb-image>
-
-                <div layout="column">
-                  <!-- <div md-highlight-text="landing.searchText" md-highlight-flags="^i"> -->
-                    <h4>{{item.name}}</h4>
-                    <p>{{item.description}}</p>
-                  <!-- </div> -->
-                </div>
-              </div>
-              </md-item-template>
-              <!-- <md-not-found>
-                No states matching "{{landing.searchText}}" were found.
-                <a ng-click="landing.newState(landing.searchText)">Create a new one!</a>
-              </md-not-found> -->
-            </md-autocomplete>
-          </div>
+          <service-autocomplete></service-autocomplete>
         </div>
       </div>
     </section>

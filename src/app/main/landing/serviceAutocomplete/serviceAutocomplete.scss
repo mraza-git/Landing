@@ -1,0 +1,22 @@
+.search-box-bg {
+    // position: relative;
+    width: 100%;
+    max-width: 550px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 5px -3px, rgba(0, 0, 0, 0.137255) 0px 8px 10px 1px, rgba(0, 0, 0, 0.117647) 0px 3px 14px 2px;
+    //overflow: hidden;
+    // border-radius: 7px;
+    background: rgb(255, 255, 255);
+    // margin: 0 auto;
+    .icon-magnify {
+        float: left;
+        z-index: 9;
+        position: relative;
+        font-size: 30px!important;
+        padding-left: 5px;
+    }
+    input {
+        font-size: 1.4em;
+        font-weight: 300;
+        font-style: italic;
+    }
+}
