@@ -15,7 +15,7 @@
         vm.subscribe("emaillist");
 
         // Data
-        vm.endTime = 1476963083000;
+        vm.endTime = 1477944000000;
         vm.model.email = "";
 
         // Methods

@@ -3,7 +3,7 @@
 
         <div layout="row" layout-align="start center">
             <div class="navigation-toggle" hide-gt-sm>
-                <md-button class="md-icon-button" ng-click="vm.toggleHorizontalMobileMenu()"
+                <md-button class="md-icon-button" ng-click="landingToolbar.toggleHorizontalMobileMenu()"
                            aria-label="Toggle Mobile Navigation">
                     <md-icon md-font-icon="icon-menu"></md-icon>
                 </md-button>
@@ -44,8 +44,8 @@
                         <div layout="row" layout-align="space-between center">
                             <div class="avatar-wrapper">
                                 <img md-menu-align-target class="avatar" src="assets/images/avatars/profile.jpg">
-                                <md-icon md-font-icon ng-class="vm.userStatus.icon"
-                                         ng-style="{'color': vm.userStatus.color }"
+                                <md-icon md-font-icon ng-class="landingToolbar.userStatus.icon"
+                                         ng-style="{'color': landingToolbar.userStatus.color }"
                                          class="icon status s16">
                                 </md-icon>
                             </div>
@@ -67,19 +67,19 @@
                         </md-menu-item>
 
                         <md-menu-item class="md-indent">
-                            <md-icon md-font-icon ng-class="vm.userStatus.icon"
-                                     ng-style="{'color': vm.userStatus.color }" class="icon"></md-icon>
+                            <md-icon md-font-icon ng-class="landingToolbar.userStatus.icon"
+                                     ng-style="{'color': landingToolbar.userStatus.color }" class="icon"></md-icon>
                             <md-menu id="user-status-menu">
-                                <md-button ng-click="$mdOpenMenu()" class="status" ng-class="vm.userStatus.class">
-                                    {{vm.userStatus.title}}
+                                <md-button ng-click="$mdOpenMenu()" class="status" ng-class="landingToolbar.userStatus.class">
+                                    {{landingToolbar.userStatus.title}}
                                 </md-button>
                                 <md-menu-content width="2">
                                     <md-menu-item class="status md-indent"
-                                                  ng-class="{'selected': status === vm.userStatus}"
-                                                  ng-repeat="status in vm.userStatusOptions">
+                                                  ng-class="{'selected': status === landingToolbar.userStatus}"
+                                                  ng-repeat="status in landingToolbar.userStatusOptions">
                                         <md-icon md-font-icon="{{status.icon}}" ng-style="{'color': status.color }"
                                                  class="icon"></md-icon>
-                                        <md-button ng-click="vm.setUserStatus(status)">
+                                        <md-button ng-click="landingToolbar.setUserStatus(status)">
                                             {{status.title}}
                                         </md-button>
                                     </md-menu-item>
@@ -91,27 +91,28 @@
 
                         <md-menu-item class="md-indent">
                             <md-icon md-font-icon="icon-logout" class="icon"></md-icon>
-                            <md-button ng-click="vm.logout()">Logout</md-button>
+                            <md-button ng-click="landingToolbar.logout()">Logout</md-button>
                         </md-menu-item>
                     </md-menu-content>
                 </md-menu>
             </md-menu-bar> -->
 
-            <!-- <ms-search-bar on-search="vm.search(query)" on-result-click="vm.searchResultClick(item)" debounce="300"></ms-search-bar>
+            <!-- <ms-search-bar on-search="landingToolbar.search(query)" on-result-click="landingToolbar.searchResultClick(item)" debounce="300"></ms-search-bar>
             <div class="toolbar-separator"></div> -->
-            <md-button class="md-warn md-raised md-hue-2">LOGIN</md-button>
+            <toolbar-user ng-show="landingToolbar.isLoggedIn"></toolbar-user>
+            <md-button class="md-warn md-raised md-hue-2" ng-click="landingToolbar.openLogin($event)" ng-hide="landingToolbar.isLoggedIn">LOGIN</md-button>
             <md-menu id="language-menu" md-offset="0 72" md-position-mode="target-right target">
                 <md-button class="language-button" ng-click="$mdOpenMenu()"
                            aria-label="Language" md-menu-origin md-menu-align-target>
                     <div layout="row" layout-align="center center">
-                        <img class="flag" ng-src="assets/images/flags/{{vm.selectedLanguage.flag}}.png">
-                        <span class="iso">{{vm.selectedLanguage.code}}</span>
+                        <img class="flag" ng-src="assets/images/flags/{{landingToolbar.selectedLanguage.flag}}.png">
+                        <span class="iso">{{landingToolbar.selectedLanguage.code}}</span>
                     </div>
                 </md-button>
 
                 <md-menu-content width="3" id="language-menu-content">
-                    <md-menu-item ng-repeat="(iso, lang) in vm.languages">
-                        <md-button ng-click="vm.changeLanguage(lang)" aria-label="{{lang.title}}" translate
+                    <md-menu-item ng-repeat="(iso, lang) in landingToolbar.languages">
+                        <md-button ng-click="landingToolbar.changeLanguage(lang)" aria-label="{{lang.title}}" translate
                                    translate-attr-aria-label="{{lang.title}}">
                         <span layout="row" layout-align="start center">
                             <img class="flag" ng-src="assets/images/flags/{{lang.flag}}.png">
@@ -122,7 +123,7 @@
                 </md-menu-content>
             </md-menu>
 
-            <!-- <md-button id="quick-panel-toggle" class="md-icon-button" ng-click="vm.toggleSidenav('quick-panel')"
+            <!-- <md-button id="quick-panel-toggle" class="md-icon-button" ng-click="landingToolbar.toggleSidenav('quick-panel')"
                        aria-label="Toggle quick panel" translate translate-attr-aria-label="TOOLBAR.TOGGLE_QUICK_PANEL">
                 <md-icon md-font-icon="icon-format-list-bulleted" class="icon"></md-icon>
             </md-button> -->
