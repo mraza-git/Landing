@@ -1,18 +1,18 @@
 <div id="question-preview">
   <div class="list" layout="column">    
     <div layout="row" class="preview-content" ng-if="questionPreview.previewPage">
-      <div flex="70">
-        <formly-form model="questionPreview.model" fields="questionPreview.fields">
+      <div flex>
+        <formly-form model="questionPreview.model" fields="questionPreview.fields" form="questionPreview.formName">
 
         </formly-form>
 
       </div>
-      <div flex>
+      <!--<div flex>
         <pre>
           {{questionPreview.model | json}}
         </pre>
       </div>
-    </div>
+    </div>-->
     <div class="question-preview" layout="row" class="preview-content" ng-hide="questionPreview.previewPage" ng-cloak>
       <div flex layout="row" layout-align="space between center" layout-padding>
         <div>

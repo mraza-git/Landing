@@ -1,0 +1,20 @@
+<div layout="column" layout-align="start center">
+<h1>Lead Summary</h1>
+<table class="lead">
+    <tr>
+      <th>adminKey</th>
+      <th>Customer Description</th>
+      <th>Supplier Description</th>
+      <th>Answer</th>
+      <th>Answer Type</th>
+      
+    </tr>
+    <tr ng-repeat="q in leadSummary.lead.questions | orderBy:'adminKey'">
+      <td>{{q.adminKey}}</td>
+      <td>{{q.customerDescription}}</td>
+      <td>{{q.supplierDescription}}</td>
+      <td>{{q.answer}}</td>
+      <td>{{q.questionType}}</td>
+    </tr>
+  </table>
+</div>

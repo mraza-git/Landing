@@ -1,6 +1,6 @@
 var serviceSelectorModelController = serviceSelectorModelController;
 
-function serviceSelectorModelController($scope,$reactive,$mdDialog,category,$state){
+function serviceSelectorModelController($scope,$rootScope,$reactive,$mdDialog,category,$state){
     'ngInject';
 
     ///////////Data/////////////
@@ -19,7 +19,7 @@ function serviceSelectorModelController($scope,$reactive,$mdDialog,category,$sta
     self.goToQuestions = goToQuestions;
 
 
-    /////////////Method Definication///////////////////
+    /////////////Method Definication///////////////////    
     function goToQuestions(serviceId){
         $state.go('app.serviceQuestions',{serviceId:serviceId});
         $mdDialog.hide();

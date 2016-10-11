@@ -1,15 +1,15 @@
 <div layout="column">
     <div class="google-map-autocomplete">
-        <form ng-submit="focGmap.updateLocation()" layout="row">
+        <ng-form name="gmap" ng-submit="focGmap.updateLocation()" layout="row">
             <md-button ng-mousedown="focGmap.refresh=true" ng-mouseup="focGmap.refresh=false" class="md-icon-button md-raised" md-ripple-size="partial" md-no-ink="true" aria-label="map search go">
                 <md-icon md-font-icon="icon-refresh" aria-label="refresh" class="s20"></md-icon>
              </md-button>
             <md-input-container md-no-float>
                 <input type="text" g-places-autocomplete ng-model="focGmap.myScopeVar" placeholder="Enter a location" />
             </md-input-container>
-            <md-button type="submit" class="md-raised md-primary" md-ripple-size="partial" md-no-ink="true" aria-label="map search go">
+            <md-button type="submit" ng-click="focGmap.updateLocation()" class="md-raised md-primary" md-ripple-size="partial" md-no-ink="true" aria-label="map search go">
             Go </md-button>
-        </form>
+        </ng-form>
 
     </div>    
     <ui-gmap-google-map ng-if="!focGmap.refresh" center="focGmap.map.center" events="focGmap.map.events" zoom="focGmap.map.zoom" options="focGmap.map.options">

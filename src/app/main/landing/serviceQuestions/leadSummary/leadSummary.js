@@ -3,26 +3,29 @@
     'use strict';
 
 
-    var main = 'service'; // Change this with containing folder name
-    var type = 'Questions';
+    var main = 'lead'; // Change this with containing folder name
+    var type = 'Summary';
     function ControllerFunction($scope,$reactive,$stateParams){
       'ngInject';
       ///////////Initialization Checks///////////
       var self = this;
       $reactive(self).attach($scope);
-      if($stateParams.serviceId){
-        console.log("ServiceID: ", $stateParams.serviceId);
+      if($stateParams.lead){
+        console.log("lead: ", $stateParams.lead);
+        self.lead = JSON.parse($stateParams.lead);        
       }
 
       ///////////Data///////////
-      self.subscribe("forms");
-      self.helpers({
-        form: function(){
-          return FocForms.findOne({
-            serviceIds: $stateParams.serviceId,
-          });
-        }
-      });
+    //   self.subscribe("leads",function(){
+    //       return [self.getReactively(lead._id)];
+    //   });
+    //   self.helpers({
+    //     form: function(){
+    //       return FocForms.findOne({
+    //         serviceIds: $stateParams.serviceId,
+    //       });
+    //     }
+    //   });
 
       ///////////Methods Declarations///////////
 
@@ -33,13 +36,12 @@
     }
 
   var name = main + type; // Change This with Component Name
-  var templateUrl = 'app/main/landing/' + name + '/' + name + '.html';
+  var templateUrl = 'app/main/landing/serviceQuestions/' + name + '/' + name + '.html';
   var controller = ControllerFunction;
   angular
   .module(name, [
       'angular-meteor',
-      'questionsToolbar',
-      'formPreview',
+      'questionsToolbar',      
       ])
   .component(name,{
     templateUrl: templateUrl,
@@ -52,16 +54,16 @@
   .config(config);
   var template = '<'+main+'-'+type.toLowerCase()+'></'+main+'-'+type.toLowerCase()+'>';
   var state = 'app.'+name;
-  var stateUrl = '/'+name + '/:serviceId';
+  var stateUrl = '/'+name + '/:lead';
   var views = {
-    'content@app.serviceQuestions': {
+    'content@app.leadSummary': {
       template: template,
     },     
      'main@':{
        templateUrl: 'app/core/layouts/content-with-toolbar.html',
        controller: 'MainController as vm'
      },
-     'toolbar@app.serviceQuestions':{
+     'toolbar@app.leadSummary':{
        template: '<questions-toolbar></questions-toolbar>',       
      },
      

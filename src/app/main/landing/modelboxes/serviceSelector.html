@@ -7,8 +7,8 @@
 
     <!--SERVICE DESCRIPTION-->
     <md-dialog-content layout="column" flex ms-scroll>
-        <div class="md-button slide-top" ng-if="!serviceList.loading" md-ink-ripple ng-repeat="service in serviceList.services | filter: serviceList.search"
-            ng-click="serviceList.goToQuestions(service._id)" ng-cloak>
+        <div class="slide-top" ng-if="!serviceList.loading" md-ink-ripple ng-repeat="service in serviceList.services | filter: serviceList.search"
+            ng-class="{'md-button': serviceList.ready}" ng-click="serviceList.goToQuestions(service._id)" ng-cloak>
             <div class="info-container" layout="row" layout-align="start center">
                 <div class="info" flex layout="column">
                     <div class="name" layout="row" layout-align="start center">

@@ -121,7 +121,9 @@
       var messages = {};
       if (angular.isDefined(meta.requiredCheck)) {
         if(meta.requiredCheck)
-          messages.required = 'This is a required question';
+          messages.required = function (viewValue,modelvalue,scope){
+            return 'This is a required field';
+          }
       }
       return messages;
     }
@@ -193,6 +195,8 @@
         previewPage: '<',
         update: '&',
         remove: '&',
+        formName: '=',
+        model: '=',
       }
     }).run(run);
 
