@@ -1,11 +1,9 @@
-<div>
-<question-preview ng-if="serviceQuestions.form" questions="serviceQuestions.form.pages[0].questions" index="serviceQuestions.form.pages[0].questions.length"  preview-page="true" update="serviceQuestions.openAddQuestionModal($event)"></question-preview>
-<pre>
-    {{serviceQuestions.form.pages[0].questions | json:4}}
-</pre>
-<!--<form-preview form="serviceQuestions.form">
+<div layout="column" flex>
 
-</form-preview>-->
+<form-preview form="serviceQuestions.form" layout="column" flex>
+
+</form-preview>
+
 
 
 </div>

@@ -1,0 +1,14 @@
+.lead {
+  border-collapse: collapse;
+}
+
+.lead th {
+  border-bottom: 1px solid;
+}
+.lead td, .lead th {
+  border-left: 1px solid;
+  padding: 5px 10px;
+}
+.lead td:first-child, .lead th:first-child {
+  border-left: none;
+}

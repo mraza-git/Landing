@@ -65,7 +65,8 @@
 
     function updateLocation() {
       self.setLocation(self.myScopeVar.geometry.location.lat(), self.myScopeVar.geometry.location.lng());
-      self.map.center = angular.copy(self.location);
+      self.map.center = self.location;
+      
     }
 
     function setLocation(latitude, longitude) {
