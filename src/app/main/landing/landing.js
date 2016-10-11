@@ -32,6 +32,19 @@ Meteor.subscribe("categories");
                        scope.position400 = true;
                      }
 
+                     if(this.scrollTop>= 500){
+                       scope.position500 = true;
+                     }
+
+                     if(this.scrollTop>= 600){
+                       scope.position600 = true;
+                     }
+                                         
+ 
+                     if(this.scrollTop>= 700){
+                       scope.position700 = true;
+                     }
+                            
                     if(this.scrollTop>= 1000){
                       scope.position1000 = true;
                     }
