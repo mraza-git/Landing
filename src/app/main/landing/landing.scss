@@ -163,6 +163,8 @@
           -o-filter: blur(2px);
           -ms-filter: blur(2px);
           filter: blur(2px);
+            -webkit-filter: blur(5px);filter:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' ><filter id='blur5'><feGaussianBlur in='SourceGraphic' stdDeviation='5' /></filter></svg>#blur5");
+  filter:blur(5px);
         }
         .change-category-name:hover span {
           display: none;

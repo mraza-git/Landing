@@ -1,10 +1,13 @@
-<div id="form-preview" layout="row" class="md-whiteframe-2dp" layout-align="start center" flex>
-
-    <div flex>
-    <div>
+<div id="form-preview" layout="row" layout-align="start center" flex>
+     <!-- TOP BACKGROUND -->
+    <div class="top-bg md-accent-bg">
         <h1>Questions</h1>
     </div>
-    <hr />
+   
+    <!-- / TOP BACKGROUND -->
+
+    <div flex>
+    
         <form name="formPreview.serviceForm" class="question-form" ng-if="formPreview.form">
             <wizard on-finish="formPreview.finishedWizard()" template="wiz.html" indicators-position="top" layout="column" class="question-wizard">
                 <!--<wz-step  wz-title="Confirm" canexit="true">

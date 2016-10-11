@@ -1,0 +1,12 @@
+#form-preview {
+    .top-bg {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 200px;
+    background-image: url(/assets/images/backgrounds/header-bg.png);
+    background-size: cover;
+    }
+}
