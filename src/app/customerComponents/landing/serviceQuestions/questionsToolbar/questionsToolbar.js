@@ -4,7 +4,7 @@
   var main = 'questions'; // Change this with containing folder name
   var type = 'Toolbar'; // Change This with Component functionality Detail, Add, Remove, Delete, List etc.
 
-  function ControllerFunction($scope,$reactive) {
+  function ControllerFunction($scope,$reactive,AuthModals) {
     'ngInject';
     ///////////Data///////////
     var self = this;
