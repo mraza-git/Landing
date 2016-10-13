@@ -4,17 +4,28 @@
   var main = 'landing'; // Change this with containing folder name
   var type = 'Toolbar'; // Change This with Component functionality Detail, Add, Remove, Delete, List etc.
 
-  function ControllerFunction() {
+  function ControllerFunction($scope,$reactive,AuthModals) {
     'ngInject';
     ///////////Data///////////
     var self = this;
+    $reactive(self).attach($scope);
+    self.helpers({
+      isLoggedIn: function (){
+        return !!Meteor.userId();
+      }
+    });
 
 
     ///////////Methods Declarations///////////
-   
+    self.openLogin = openLogin;
 
 
     ///////////Method Definitions///////////
+    function openLogin(event){
+      AuthModals.openLoginModal(event);
+    }
+
+
    
   }
 
@@ -22,7 +33,11 @@
   var templateUrl = 'app/main/landing/' + name + '/' + name + '.html';
   var controller = ControllerFunction;
   angular
-    .module(name, ['angular-meteor', ])
+    .module(name, [
+      'angular-meteor',
+      'AuthModals',
+      
+      ])
     .component(name, {
       templateUrl: templateUrl,
       controller: controller,
