@@ -315,8 +315,8 @@
       #bottom {
         background-image: none;
         background: #1e1c43;
-        padding-top: 60px;
-        padding-bottom: 5px;
+        padding-top: 30px;
+        padding-bottom: 15px;
 
           .bottom-content {
             margin-left: auto;
@@ -331,20 +331,22 @@
             margin: 10px 0 20px;
             color: #d1d1de;
             }
-          p {
-            margin-top: 50px;
+   
+          .bottom-subnav {
             margin-bottom: 50px;
-            font-size: 27px;
-            line-height: 1.4;
+            font-size: 18px;
+            line-height: 1.8;
             font-weight: 300;
             color: #8988ab;
-            text-align: center
+            list-style: none;
+            a {
+              color: #8988ab;
+            }
           }
-          a, .small{
-            color: #8988ab;
-            font-size: 13px;
-            font-weight: 300;
-            letter-spacing: 1px;
+
+          .bottom-subnav > * > :hover, .bottom-subnav > * > :focus {
+              color: #e1e0ef;
+              text-decoration: none;
           }
 
       }
@@ -388,6 +390,7 @@
             display: block;
             position: relative;
             text-decoration: none;
+            color: #8988ab;
           }
           .footer-left:after {
             clear: both;
