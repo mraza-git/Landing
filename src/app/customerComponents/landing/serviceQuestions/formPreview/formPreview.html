@@ -1,4 +1,4 @@
-<div id="form-preview" layout="column" layout-align="center center" flex>
+<div id="form-preview" layout="column" flex>
      <!-- TOP BACKGROUND -->
     <div class="top-bg md-accent-bg">
         <h1>Questions</h1>
@@ -6,7 +6,7 @@
    
     <!-- / TOP BACKGROUND -->
 
-    <div class="form-content" layout="row" flex>
+    <div class="form-content" layout-align="start center" flex-xs>
     
         <form name="formPreview.serviceForm" class="question-form" ng-if="formPreview.form" layout="column" flex>
             <wizard on-finish="formPreview.finishedWizard()" template="wiz.html" indicators-position="top" layout="column" class="question-wizard" flex>

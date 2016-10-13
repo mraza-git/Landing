@@ -2,9 +2,11 @@
   width: 100%;
   .list {
     border: solid 1px rgba(194, 194, 194, 0.78);    
-    -webkit-box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.1);
-    box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.1);
+    // -webkit-box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.1);
+    // -moz-box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.1);
+    // box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.1);
+    background-color: whitesmoke;
+    
     .toolbar-height {
       height: 23px;
       .md-toolbar-tools{
@@ -14,7 +16,9 @@
       }
     }
     .preview-content {
-      padding: 0 20px;      
+      padding: 0 20px;    
+      height: 450px;
+       min-height: 450px;  
       .formly {        
         .formly-field {
           width: 100%;
