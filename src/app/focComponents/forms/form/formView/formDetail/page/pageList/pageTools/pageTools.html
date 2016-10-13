@@ -1,22 +1,22 @@
 <div id="page-tools">
   <md-toolbar  class="md-background-bg" layout="row" layout-align="start center">
-    <md-button aria-label="add page" class="md-icon-button">
+    <md-button aria-label="add page" class="md-icon-button" ng-click="pageTools.addquestion($event)">
     <md-tooltip md-direction="bottom">
-      Add new page
+      Add new question
     </md-tooltip>
       <md-icon md-font-icon="icon-plus"></md-icon>
-    </md-button>
-    <md-button aria-label="add page" class="md-icon-button">
-      <md-tooltip md-direction="bottom">
-        Edit page
-      </md-tooltip>
-       <md-icon md-font-icon="icon-pencil"></md-icon>
     </md-button>
     <md-button aria-label="photo" class="md-icon-button" ng-click="pageTools.addpage($event)">
       <md-tooltip md-direction="bottom">
         Add new page
       </md-tooltip>
       <md-icon md-font-icon="icon-google-pages"></md-icon>
+    </md-button>
+    <md-button aria-label="add page" class="md-icon-button">
+      <md-tooltip md-direction="bottom">
+        Edit page
+      </md-tooltip>
+       <md-icon md-font-icon="icon-pencil"></md-icon>
     </md-button>
     <md-button aria-label="label" class="md-icon-button">
       <md-tooltip md-direction="bottom">

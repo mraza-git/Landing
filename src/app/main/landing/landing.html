@@ -59,7 +59,7 @@
                           ng-load="landing.showImage($index,landing.categories.length)"
                           ng-show="landing.imageShow"
                           alt="{{cat.name}}"
-                          ng-class="{'coming-soon-category':!cat.publish}"
+                          ng-class="{'coming-soon-category':!cat.publish && itemShow}"
                           class="post__featured-image toggle">
                           <!--<md-tooltip ng-show="!cat.publish" md-delay="400" md-direction="top" md-autohide="true" class="cat-tooltip">
                               Coming Soon...
@@ -78,7 +78,7 @@
               </div>
             </div>          
             <div layout="center center"><h2>
-            <md-button class="md-warn md-raised md-hue-2">View all services</md-button></h2>
+            <md-button class="md-warn md-raised md-hue-2" ng-click="landing.openServiceListDialog(null,ev)">View all services</md-button></h2>
             </div>
           </div> 
         </div>

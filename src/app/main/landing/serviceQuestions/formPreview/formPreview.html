@@ -1,4 +1,4 @@
-<div id="form-preview" layout="row" layout-align="start center" flex>
+<div id="form-preview" layout="column" layout-align="center center" flex>
      <!-- TOP BACKGROUND -->
     <div class="top-bg md-accent-bg">
         <h1>Questions</h1>
@@ -6,23 +6,23 @@
    
     <!-- / TOP BACKGROUND -->
 
-    <div flex>
+    <div class="form-content" layout="row" flex>
     
-        <form name="formPreview.serviceForm" class="question-form" ng-if="formPreview.form">
-            <wizard on-finish="formPreview.finishedWizard()" template="wiz.html" indicators-position="top" layout="column" class="question-wizard">
+        <form name="formPreview.serviceForm" class="question-form" ng-if="formPreview.form" layout="column" flex>
+            <wizard on-finish="formPreview.finishedWizard()" template="wiz.html" indicators-position="top" layout="column" class="question-wizard" flex>
                 <!--<wz-step  wz-title="Confirm" canexit="true">
             </wz-step>-->
                 <wz-step template="wizstep.html" class="wizard-step" ng-repeat="page in formPreview.form.pages" wz-title="{{page.title}}"
-                    layout="column" ms-scroll canexit="formPreview.exitValidation(formPreview.serviceForm)">
+                    layout="column" ms-scroll canexit="formPreview.exitValidation(formPreview.serviceForm)" flex="80">
 
-                    <div layout="row" layout-padding class="" layout-align="center center" ng-class="{next:formPreview.direction,previous:!formPreview.direction}">                        
+                    <div layout="row" layout-padding class="" layout-align="start center" ng-class="{next:formPreview.direction,previous:!formPreview.direction}" flex>                        
                         <!--<div class="page-content" layout="row">-->
                         <question-preview questions="page.questions" form-name="formPreview.serviceForm" index="page.questions.length" model="formPreview.model[$index]"
-                            preview-page="true" flex></question-preview>
+                            preview-page="true" layout="column" flex></question-preview>
                         <!--</div>-->
                     </div>
                 </wz-step>
-                <div class="controls-group" layout="column" flex layout-align="end end">
+                <div class="controls-group" layout="column" layout-align="space between center">
                     <div layout="row" layout-align="space-between-center" class="controls">
                         <md-button ng-disabled="formPreview.first" wz-previous class="md-accent md-raised" ng-click="myStyle={color:'red'}">Previous</md-button>
                         <md-button ng-hide="formPreview.last" wz-next class="md-primary md-raised" ng-click="formPreview.direction=true">Next</md-button>
@@ -39,20 +39,19 @@
 
 
 <script type="text/ng-template" id="wiz.html">
-
   <div layout-padding>
-    <div class="steps" ng-if="indicatorsPosition === 'bottom'" ng-transclude></div>
+    <div class="steps" ng-if="indicatorsPosition === 'bottom'" ng-transclude layout="column" flex="80"></div>
     <ul class="steps-indicator steps-{{getEnabledSteps().length}}" ng-if="!hideIndicators">
       <li ng-class="{default: !step.completed && !step.selected, current: step.selected && !step.completed, done: step.completed && !step.selected, editing: step.selected && step.completed}" ng-repeat="step in getEnabledSteps()">
         <a ng-click="goTo(step)">{{step.title || step.wzTitle}}</a>
       </li>
     </ul>
-    <div class="steps" ng-if="indicatorsPosition === 'top'"  ng-transclude></div>
+    <div class="steps" ng-if="indicatorsPosition === 'top'"  ng-transclude layout="column" flex></div>
 </div>
 </script>
 
 <script type="text/ng-template" id="wizstep.html">
-  <section ng-show="selected" ng-class="{current: selected, done: completed}" ng-style="myStyle" class="step" ng-transclude>
+  <section ng-show="selected" ng-class="{current: selected, done: completed}" ng-style="myStyle" class="step" ng-transclude flex>
 </section>
 
 </script>

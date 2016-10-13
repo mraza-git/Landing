@@ -1,12 +1,18 @@
 #form-preview {
+    height: 100%;    
     .top-bg {
-    position: absolute;
+    position: relative;
     z-index: 1;
     top: 0;
     right: 0;
     left: 0;
     height: 200px;
+    width: 100%;
     background-image: url(/assets/images/backgrounds/header-bg.png);
     background-size: cover;
+    }
+
+    .form-content{
+        width: 100%;
     }
 }

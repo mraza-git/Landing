@@ -14,6 +14,7 @@
 
     ///////////Methods Declarations///////////
     self.addpage = addpage;
+    self.addquestion = addquestion;
     
 
 
@@ -21,7 +22,9 @@
     function addpage(event){
       self.addPage({event:{}});
     }
-
+    function addquestion(event){
+      self.addQuestion({event:{}});
+    }
 
   }
 

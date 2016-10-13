@@ -9,9 +9,14 @@ function serviceSelectorModelController($scope,$rootScope,$reactive,$mdDialog,ca
     
     self.helpers({
         services: function(){
-            return Services.find({
-                categoryIds: category._id
-            });
+            if(category){
+                return Services.find({
+                    categoryIds: category._id
+                });
+            }
+            else{
+                return Services.find();
+            }
         }
     });
 
