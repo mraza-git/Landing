@@ -1,13 +1,12 @@
 (function() {
   'use strict';
 
-  var main = 'questions'; // Change this with containing folder name
+  var main = 'pages'; // Change this with containing folder name
   var type = 'Toolbar'; // Change This with Component functionality Detail, Add, Remove, Delete, List etc.
 
-  function ControllerFunction($scope,$reactive) {
+  function ControllerFunction($scope,$reactive,AuthModals) {
     'ngInject';
     ///////////Data///////////
-    var self = this;
     var self = this;
     $reactive(self).attach($scope);
     self.helpers({
@@ -17,7 +16,7 @@
     });
 
 
-  ///////////Methods Declarations///////////
+    ///////////Methods Declarations///////////
     self.openLogin = openLogin;
 
 
@@ -26,19 +25,20 @@
       AuthModals.openLoginModal(event);
     }
 
+
    
   }
 
   var name = main + type;
-  var templateUrl = 'app/customerComponents/landing/serviceQuestions/' + name + '/' + name + '.html';
+  var templateUrl = 'app/sharedComponents/toolbars/' + name + '/' + name + '.html';
   var controller = ControllerFunction;
   angular
     .module(name, [
       'angular-meteor',
-       'AuthModals',
+      'AuthModals',
       'toolbarUser',
-    
-     ])
+      
+      ])
     .component(name, {
       templateUrl: templateUrl,
       controller: controller,

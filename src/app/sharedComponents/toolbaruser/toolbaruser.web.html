@@ -1,0 +1,73 @@
+<md-menu-bar id="user-menu">
+    <md-menu md-position-mode="left bottom">
+        <md-button class="user-button" ng-click="$mdOpenMenu()"
+                   aria-label="User settings"
+                   translate translate-attr-aria-label="TOOLBAR.USER_SETTINGS">
+            <div layout="row" layout-align="space-between center">
+                <div class="avatar-wrapper">
+                  <!-- Include image and image filter here -->
+                    <img md-menu-align-target class="avatar" ng-src="{{toolbarUser.thumbs[0].url || 'assets/images/avatars/profile.jpg'}}">
+                    <md-icon md-font-icon ng-class="toolbarUser.user.profile.userStatus.icon"
+                             ng-style="{'color': toolbarUser.user.profile.userStatus.color }"
+                             class="icon status s16">
+                    </md-icon>
+                </div>
+                <span class="username" hide-sm>{{toolbarUser.user.profile.name}}</span>
+                <md-icon md-font-icon="icon-chevron-down"
+                         class="icon s16" hide-sm></md-icon>
+            </div>
+        </md-button>
+
+        <md-menu-content width="3">
+            <md-menu-item class="md-indent" ui-sref='app.pages_profile({userId:""})'>
+                <md-icon md-font-icon="icon-account" class="icon"></md-icon>
+                <md-button>My Profile</md-button>
+            </md-menu-item>
+
+            <md-menu-item class="md-indent" ui-sref="app.chat">
+                <md-icon md-font-icon="icon-email" class="icon"></md-icon>
+                <md-button>Chats</md-button>
+            </md-menu-item>
+
+            <!-- Change Password  -->
+            <md-menu-item class="md-indent" ng-click="toolbarUser.openChangePassword($event)">
+                <md-icon md-font-icon="icon-email" class="icon"></md-icon>
+                <md-button>Change Password</md-button>
+            </md-menu-item>
+
+            <!--  Change profile picture -->
+            <md-menu-item class="md-indent" ng-click="toolbarUser.openChangePictureModal($event)">
+                <md-icon md-font-icon="icon-email" class="icon"></md-icon>
+                <md-button>Change Picture</md-button>
+            </md-menu-item>
+
+            <md-menu-item class="md-indent">
+                <md-icon md-font-icon ng-class="toolbarUser.user.profile.userStatus.icon"
+                         ng-style="{'color': toolbarUser.user.profile.userStatus.color }" class="icon"></md-icon>
+                <md-menu id="user-status-menu">
+                    <md-button ng-click="$mdOpenMenu()" class="status" ng-class="toolbarUser.user.profile.userStatus.class">
+                        {{toolbarUser.user.profile.userStatus.title}}
+                    </md-button>
+                    <md-menu-content width="2">
+                        <md-menu-item class="status md-indent"
+                                      ng-class="{'selected': status === toolbarUser.user.profile.userStatus}"
+                                      ng-repeat="status in toolbarUser.userStatusOptions">
+                            <md-icon md-font-icon="{{status.icon}}" ng-style="{'color': status.color }"
+                                     class="icon"></md-icon>
+                            <md-button ng-click="toolbarUser.setUserStatus(status)">
+                                {{status.title}}
+                            </md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+            </md-menu-item>
+
+            <md-menu-divider></md-menu-divider>
+
+            <md-menu-item class="md-indent">
+                <md-icon md-font-icon="icon-logout" class="icon"></md-icon>
+                <md-button ng-click="toolbarUser.logout($event)">Logout</md-button>
+            </md-menu-item>
+        </md-menu-content>
+    </md-menu>
+</md-menu-bar>
