@@ -5,7 +5,7 @@
       <li ng-repeat="question in questionList.questions track by $index" dnd-draggable="question" dnd-moved="questionList.questions.splice($index, 1);questionList.done()"
       dnd-selected="questionList.selected = question" dnd-effect-allowed="move" ng-class="{'selected': questionList.selected === question}">
       <!--  LIST QUESTIONS-->
-      <question-preview question="question" index="$index" preview-page="questionList.previewPage" remove="questionList.questions.splice($event.index,1);questionList.done()" update="questionList.openQuestionUpdateModal($event)"></question-preview>
+      <question-preview question="question" index="$index" preview-page="questionList.previewPage" remove="questionList.questions.splice($event.index,1);questionList.done()" update="questionList.openQuestionUpdateModal($event)" model="questionList.model"></question-preview>
       <!--  /LIST QUESTION-->
       </li>
     </ul>

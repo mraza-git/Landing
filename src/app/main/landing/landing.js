@@ -188,6 +188,11 @@ Meteor.subscribe("categories");
         //////////
 
         function openServiceListDialog(category,ev) {
+            if(category){
+                if(!category.publish){
+                    return ;
+                }
+            }
             $mdDialog.show({
                 controller: serviceSelectorModelController,
                 controllerAs: 'serviceList',
