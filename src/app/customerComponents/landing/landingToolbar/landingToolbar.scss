@@ -35,6 +35,18 @@
             }
 
         }
+            @media (max-width: 768px) {
+                            #landing-toolbar {
+                                padding-top: 10px;
+                            }}
+           @media (min-width: 768px) {
+                            .navigation-toggle {
+                                display: none;
+                            }}
+           @media (max-width: 768px) {
+                            .top-row {
+                                display: none;
+                            }}         
     }
     .foc-nav:hover,
     .foc-nav:focus {

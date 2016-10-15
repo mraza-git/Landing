@@ -1,4 +1,11 @@
 #questions-toolbar {
+                .navigation-toggle {
+                    h1 {
+                        text-align: center;
+                        padding-right: 40px;
+                        color: grey;
+                    }
+                }
                 .logo {
                 margin-right: 16px;
                 .logo-image {
@@ -27,6 +34,14 @@
                     margin-left: 7px;
                     font-size: 18px;
                 }
+                @media (min-width: 768px) {
+                            .navigation-toggle {
+                                display: none;
+                            }}
+                @media (max-width: 768px) {
+                            .top-row {
+                                display: none;
+                            }}              
             }
         
   

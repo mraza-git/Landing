@@ -1,20 +1,29 @@
 <div id="landing-toolbar" layout="column" layout-align="space-between stretch" du-scroll-container="content">
-    <div class="top-row" layout="row" layout-align="space-between center">
-
-        <div layout="row" layout-align="start center">
-            <div class="navigation-toggle" hide-gt-sm>
-                <md-button class="md-icon-button" ng-click="landingToolbar.toggleHorizontalMobileMenu()"
+     <div class="navigation-toggle" layout="row" layout-align="start center" flex>
+                <md-button class="md-icon-button" ng-click="vm.toggleHorizontalMobileMenu()"
                            aria-label="Toggle Mobile Navigation">
                     <md-icon md-font-icon="icon-menu"></md-icon>
                 </md-button>
-            </div>
+            <div class="logo" layout="row" layout-align="center center" flex>
+            <a href="#header" du-smooth-scroll>
+              <span class="logo-image">Fix</span>
+            </a>
+              <span class="logo-text">on Click</span>
+          </div>
+             </div>
+    
+    
+    <div class="top-row" layout="row" layout-align="space-between center">
           <div class="logo" layout="row" layout-align="start center">
             <a href="#header" du-smooth-scroll>
               <span class="logo-image">Fix</span>
             </a>
               <span class="logo-text">on Click</span>
           </div>
-            <div layout="row" layout-align="start center" hide-sm hide-xs>
+
+        <div layout="row" layout-align="start center">
+       
+            <div layout="row" layout-align="start center">
                 <div class="toolbar-separator"></div>
                 <!-- <md-button href="#header" du-smooth-scroll class="md-primary md-hue-1">Home</md-button>
                 <div class="toolbar-separator"></div> -->
@@ -102,7 +111,7 @@
             <!-- <ms-search-bar on-search="landingToolbar.search(query)" on-result-click="landingToolbar.searchResultClick(item)" debounce="300"></ms-search-bar>
             <div class="toolbar-separator"></div> -->
             <toolbar-user ng-show="landingToolbar.isLoggedIn"></toolbar-user>
-            <md-button class="md-warn md-raised md-hue-2" ng-click="landingToolbar.openLogin($event)" ng-hide="landingToolbar.isLoggedIn">LOGIN</md-button>
+            <md-button class="md-warn md-raised md-hue-2" ng-click="landingToolbar.openLogin($event)" ng-hide="landingToolbar.isLoggedIn">LOGIN | REGISTER</md-button>
             <md-menu id="language-menu" md-offset="0 72" md-position-mode="target-right target">
                 <md-button class="language-button" ng-click="$mdOpenMenu()"
                            aria-label="Language" md-menu-origin md-menu-align-target>
