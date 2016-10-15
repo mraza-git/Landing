@@ -21,6 +21,9 @@
           return FocForms.findOne({
             serviceIds: $stateParams.serviceId,
           });
+        },
+        service: function(){
+          return Services.findOne($stateParams.serviceId);
         }
       });
 

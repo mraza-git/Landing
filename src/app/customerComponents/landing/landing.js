@@ -97,7 +97,7 @@ Meteor.subscribe("categories");
         });
     }
 
-    function LandingController($scope, $reactive, $mdMedia, $mdDialog) {
+    function LandingController($scope, $reactive, $mdMedia, $mdDialog,$state) {
 
 
         ////////////////Data///////////////////
@@ -127,13 +127,19 @@ Meteor.subscribe("categories");
         self.showImage = showImage;
         self.openServiceListDialog = openServiceListDialog;
         self.typedFunction = typedFunction;
+        self.goToService = goToService;
 
 
 
         ////////////////Method Definitions///////////////////
 
+
         self.typedFunction();
         // Methods
+
+        function goToService(event){
+            $state.go('app.serviceQuestions',{serviceId:event.serviceId});            
+        }
 
         function showImage(index, length) {
             self.counter++;
