@@ -45,6 +45,7 @@ var EmailList = new Meteor.Collection('emaillist');
 
 
             'formMain',
+            'aboutUs',
 
 
         ]);

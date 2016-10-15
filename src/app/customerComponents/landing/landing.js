@@ -7,6 +7,7 @@ Meteor.subscribe("categories");
         .module(name, [
             'angular-meteor',
             'ngLoad',
+            'toolbarUser',
             'landingToolbar',
             'serviceQuestions',
             'serviceAutocomplete',
