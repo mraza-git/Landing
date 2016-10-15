@@ -11,6 +11,12 @@
     background-image: url(/assets/images/backgrounds/header-bg.png);
     background-size: cover;
   text-align: center;
+  h1{
+    margin: 10px 0px 0px 0px;
+  }
+  h3{
+    margin: 0px 0px 0px 0px;
+  }
     }
 
     .form-content {
@@ -20,7 +26,7 @@
         margin-top: -50px;
         margin-right: auto;
         margin-left: auto;
-        z-index: 999;
+        z-index: 10;
     }
 }
 

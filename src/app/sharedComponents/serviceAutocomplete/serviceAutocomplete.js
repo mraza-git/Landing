@@ -17,15 +17,26 @@
 
 
     ///////////Methods Declarations///////////
-    
+    self.selectedItemChange = selectedItemChange;
 
 
     ///////////Method Definitions///////////
+    function selectedItemChange(item){
+      if(item){
+        if(self.done){
+          self.done({
+            $event:{
+              serviceId: item._id,
+            }
+          });
+        }
+      }
+    }
    
   }
 
   var name = main + type;
-  var templateUrl = 'app/customerComponents/landing/' + name + '/' + name + '.html';
+  var templateUrl = 'app/sharedComponents/' + name + '/' + name + '.html';
   var controller = ControllerFunction;
   angular
     .module(name, ['angular-meteor', ])
@@ -33,9 +44,7 @@
       templateUrl: templateUrl,
       controller: controller,
       controllerAs: name,
-      bindings: {
-        index: '<',
-        list: '=',
+      bindings: {        
         done: '&',
       }
     });

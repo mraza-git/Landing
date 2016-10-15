@@ -22,9 +22,7 @@
     controller: controller,
     controllerAs: name,
     bindings:{
-      map:'<',
-      marker: '<',
-      location: '='           
+      statement: '<'           
     }
   });
 

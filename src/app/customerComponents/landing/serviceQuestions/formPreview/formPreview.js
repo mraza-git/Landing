@@ -9,7 +9,7 @@
     ///////////Data///////////
     var self = this;
     self.model = [];
-    self.lead = {questions:[]};
+    self.lead = {pages:[{questions:[]}]};
     self.originalForm = angular.copy(self.form);
 
 
@@ -26,14 +26,15 @@
     }
 
     function setupLead(){
-      angular.forEach(self.model,function(value,vindex){        
+      angular.forEach(self.model,function(value,vindex){
+        self.lead.pages[vindex] = {questions:[]};        
          angular.forEach(value,function(val,key){           
            var question = self.form.pages[vindex].questions.find(function(obj){
              return obj.adminKey === key;
            });
                       
            question.answer = val;
-           self.lead.questions.push(question);
+           self.lead.pages[vindex].questions.push(question);
          });
       });
       self.lead.createdAt = new Date();
@@ -82,6 +83,7 @@
       controllerAs: name,
       bindings: {
         form: '=',
+        service: '<',
       }
     });
 
