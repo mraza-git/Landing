@@ -51,6 +51,9 @@ var EmailList = new Meteor.Collection('emaillist');
             'tnc',
             'howitWorks',
 
+            //supplier
+            'supplierRegistration',
+
 
         ]);
 })();
