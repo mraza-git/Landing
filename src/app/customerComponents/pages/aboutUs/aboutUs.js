@@ -23,7 +23,7 @@
     }
 
   var name = main + type; // Change This with Component Name
-  var templateUrl = 'app/customerComponents/' + name + '/' + name + '.html';
+  var templateUrl = 'app/customerComponents/pages/' + name + '/' + name + '.html';
   var controller = ControllerFunction;
   angular
   .module(name, [
@@ -41,18 +41,18 @@
     }
   })
   .config(config);
-  var template = '<'+main+'-'+type.toLowerCase()+'></'+main+'-'+type.toLowerCase()+'>';
-  var state = 'app.'+name;
-  var stateUrl = '/'+name;
+  var template = '<'+main+ (type?'-':'')+(type?type.toLowerCase():'')+'></'+main+(type?'-':'')+(type?type.toLowerCase():'')+'>';
+  var state = 'app.'+name.toLowerCase();
+  var stateUrl = '/'+name.toLowerCase();
   var views = {
     'main@': {
           templateUrl: 'app/core/layouts/content-with-toolbar.html',
           controller: "MainController as self"
     },
-    'content@app.aboutUs': {
+    'content@app.aboutus': {
       template: template,
     },     
-    'toolbar@app.aboutUs':{
+    'toolbar@app.aboutus':{
       template: '<pages-toolbar></pages-toolbar>',
       
     },

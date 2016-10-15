@@ -45,7 +45,11 @@ var EmailList = new Meteor.Collection('emaillist');
 
 
             'formMain',
+            //pages
             'aboutUs',
+            'faq',
+            'tnc',
+            'howitWorks',
 
 
         ]);
