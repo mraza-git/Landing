@@ -112,7 +112,7 @@
       bodyClass: 'register',
 
     });
-    $translatePartialLoaderProvider.addPart('app/supplierComponents/supplierLogin');
+    $translatePartialLoaderProvider.addPart('app/supplierComponents/proLogin');
   }
 
 })();

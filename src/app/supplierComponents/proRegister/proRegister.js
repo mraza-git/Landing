@@ -127,7 +127,7 @@
       bodyClass: 'register',
 
     });
-    $translatePartialLoaderProvider.addPart('app/supplierComponents/supplierRegistration');
+    $translatePartialLoaderProvider.addPart('app/supplierComponents/proRegister');
   }
 
 })();
