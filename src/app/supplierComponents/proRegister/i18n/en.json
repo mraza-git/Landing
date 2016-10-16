@@ -1,8 +1,9 @@
 {
     "REGISTER": {
         "TITLE": "Create a supplier account",
-        "NAME": "Name",
+        "NAME": "UserName",
         "EMAIL": "Email",
+        "CELLPHONE": "Cell Phone (+971-551234567)",
         "PASSWORD": "Password",
         "PASSWORD_CONFIRM": "Password (Confirm)",
         "READ_ACCEPT": "I read and accept",
@@ -14,6 +15,8 @@
             "USERNAME_REQUIRED": "Username field is required",
             "EMAIL_REQUIRED": "Email field is required",
             "EMAIL_MUST_VALID": "Email must be a valid e-mail address",
+            "PHONE_REQUIRED": "Phone field is required",
+            "PHONE_MUST_VALID": "Phone must be valid e.g +971-551234567",
             "PASSWORD_REQUIRED": "Password field is required",
             "PASSWORD_CONFIRM_REQUIRED": "Password confirm field is required",
             "TERMS_REQUIRED": "You must accept terms and conditions before submitting the form"
