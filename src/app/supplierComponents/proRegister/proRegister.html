@@ -1,0 +1,120 @@
+<div id="register" class="flex-scrollable" layout="column" ms-scroll>
+    <div id="register-form-wrapper" layout="column" layout-align="center center">
+        <div id="register-form" class="md-whiteframe-8dp">
+            <div class="logo">
+                <span>
+                    <img src="assets/images/logos/fix-200.png" alt="">                    
+                </span>
+            </div>
+
+            <div class="title" translate="REGISTER.TITLE">Create a supplier account</div>
+            <div >http://www.fixonclick/pro/{{proRegister.form.username}}</div>
+
+            <form name="registerForm" novalidate ng-submit="registerForm.$valid && proRegister.register()">
+                <md-input-container class="md-block">
+                    <label for="username" translate="REGISTER.NAME"></label>
+                    <input name="username" ng-model="proRegister.form.username" 
+                        required unique-username ng-pattern="/^[a-z0-9A-Z_]{4,20}$/">
+                    <div ng-if="registerForm.username.$pending">
+                        Searching for availability....
+                    </div>
+                    <div ng-messages="registerForm.username.$error" role="alert">
+                        <div ng-message="required">
+                            <span translate="REGISTER.ERRORS.USERNAME_REQUIRED">Username field is required</span>
+                        </div>
+                        <div ng-message="uniqueUsername">
+                            <span>Username not available</span>
+                        </div>                        
+                        <div ng-message="pattern">
+                            <span>username should contain 4 to 20 alphanumeric characters only without spaces</span>
+                        </div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container class="md-block">
+                    <label for="email" translate="REGISTER.EMAIL"></label>
+                    <input type="email" name="email" ng-model="proRegister.form.email" 
+                        ng-pattern="/^.+@.+\..+$/" required unique-email>
+                    <div ng-if="registerForm.email.$pending">
+                        Searching for availability....
+                    </div>
+                    <div ng-messages="registerForm.email.$error" role="alert" multiple>
+                        <div ng-message="required">
+                            <span translate="REGISTER.ERRORS.EMAIL_REQUIRED">Email field is required</span>
+                        </div>
+                        <div ng-message="pattern">
+                            <span translate="REGISTER.ERRORS.EMAIL_MUST_VALID">Email must be a valid e-mail address</span>
+                        </div>
+                        <div ng-message="uniqueEmail">
+                            <span>Email not available</span>
+                        </div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container class="md-block">
+                    <label for="cellPhone" translate="REGISTER.CELLPHONE"></label>
+                    <input name="cellPhone" ng-model="proRegister.form.profile.cellPhone" 
+                        ng-pattern="/^(\+\971{1,3}[- ])\d{6,9}$/" required>                    
+                    <div ng-messages="registerForm.cellPhone.$error" role="alert">
+                        <div ng-message="pattern">
+                            <span translate="REGISTER.ERRORS.PHONE_MUST_VALID">Phone must be valid e.g +971-551234567</span>
+                        </div>                        
+                        <div ng-message="required">
+                            <span translate="REGISTER.ERRORS.PHONE_REQUIRED">Phone field is required</span>
+                        </div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container class="md-block">
+                    <label for="password" translate="REGISTER.PASSWORD"></label>
+                    <input type="password" name="password" ng-model="proRegister.form.password" placeholder="Password" translate translate-attr-placeholder="REGISTER.PASSWORD"
+                        required ng-pattern="/^[a-z0-9A-Z_]{6,50}$/">
+                    <div ng-messages="registerForm.password.$error" role="alert">
+                        <div ng-message="required">
+                            <span translate="REGISTER.ERRORS.PASSWORD_REQUIRED">Password field is required</span>
+                        </div>
+                        <div ng-message="pattern">
+                            <span>password should contain 6 alphanumeric characters only without spaces</span>
+                        </div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container class="md-block">
+                    <label for="passwordConfirm" translate="REGISTER.PASSWORD_CONFIRM"></label>
+                    <input type="password" name="passwordConfirm" ng-model="passwordConfirm"  required match="proRegister.form.password"
+                        match-ignore-empty="true">
+                    <div ng-messages="registerForm.passwordConfirm.$error" role="alert">
+                        <div ng-message="required">
+                            <span translate="REGISTER.ERRORS.PASSWORD_CONFIRM_REQUIRED">Password (Confirm) field is required</span>
+                        </div>
+                        <div ng-message="match">
+                            <span>Password does not match</span>
+                        </div>
+                    </div>
+                </md-input-container>
+
+                <div class="terms" layout="row" layout-align="center center">
+                    <md-checkbox name="terms" ng-model="data.cb1" aria-label="I read and accept" required></md-checkbox>
+                    <div layout="row" layout-sm="column" layout-align="start center">
+                        <span translate="REGISTER.READ_ACCEPT">I read and accept</span>
+                        <a href="/tnc" class="md-accent-color" translate="REGISTER.TERMS_COND">terms and conditions</a>
+                    </div>
+                </div>
+                <md-toolbar ng-show="proRegister.error" class="md-warn" layout="row" layout-fill>
+                    <p class="md-body-1">{{ proRegister.error }}</p>
+                </md-toolbar>
+
+                <md-button type="submit" class="md-raised md-accent submit-button" aria-label="CREATE MY ACCOUNT" ng-disabled="registerForm.$invalid || registerForm.$pristine"
+                    translate="REGISTER.CREATE_ACCOUNT" translate-attr-aria-label="REGISTER.CREATE_ACCOUNT">
+                    CREATE MY ACCOUNT
+                    <md-progress-circular ng-show="proRegister.loading" md-diameter="25" class="md-accent"></md-progress-circular>
+                </md-button>
+            </form>
+
+            <div class="login" layout="row" layout-xs="column" layout-align="center center">
+                <span class="text" translate="REGISTER.ALREADY_HAVE">Already have an account?</span>
+                <a class="link" href="/supplierlogin" translate="REGISTER.LOGIN">Log in</a>
+            </div>
+        </div>
+    </div>
+</div>

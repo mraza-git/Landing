@@ -27,7 +27,6 @@ var EmailList = new Meteor.Collection('emaillist');
             'app.core',
             'angular-meteor',
             'thumbImage',
-            'landing',
 
 
             // Navigation
@@ -45,14 +44,21 @@ var EmailList = new Meteor.Collection('emaillist');
 
 
             'formMain',
-            //pages
+            //Customer landing and related.
+            'landing',
             'aboutUs',
             'faq',
             'tnc',
             'howitWorks',
 
             //supplier
-            'supplierRegistration',
+            'p', // profile view page or supplier homepage
+            'proRegister', // supplier registeration page
+            'proLogin', // supplier login page
+            'proDetail', // supplier profile detail page.
+            'proFaq',
+            'proHowitWorks',
+            'proTnc',
 
 
         ]);
