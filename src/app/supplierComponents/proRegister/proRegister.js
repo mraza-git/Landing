@@ -11,6 +11,7 @@
       var self = this;
       $reactive(self).attach($scope);
       ///////////Data///////////
+      self.loading = false;
       self.form = {};
       self.emailAvailable = true;
       self.usernameAvailable = true;
@@ -24,18 +25,18 @@
       ///////////Method Definitions///////////
       function register(){
         self.loading = true;        
-        Meteor.call('createNewUser',self.form,['supplier'],'supplier-group',function(error){
-          if(error){
-            self.error = error;            
-            self.loading = false;
-          }
-          else{
-            self.loading = false;
-            console.log("User with role supplier created");
-            $state.go('app.profileedit',{username: Meteor.user().username});
-          }
+        // Meteor.call('createNewUser',self.form,['supplier'],'supplier-group',function(error){
+        //   if(error){
+        //     self.error = error;            
+        //     self.loading = false;
+        //   }
+        //   else{
+        //     self.loading = false;
+        //     console.log("User with role supplier created");
+        //     $state.go('app.proDetail',{username: Meteor.user().username});
+        //   }
 
-        });
+        // });
       }
 
     }

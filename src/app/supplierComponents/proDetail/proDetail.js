@@ -74,7 +74,7 @@
     'content@app.proDetail': {
       template: template,
     },     
-    'toolbar@app.pro-detail': {
+    'toolbar@app.proDetail': {
       template: '<pages-toolbar></pages-toolbar>',
     },
      
