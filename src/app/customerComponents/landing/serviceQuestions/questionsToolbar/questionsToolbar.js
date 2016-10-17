@@ -4,7 +4,7 @@
   var main = 'questions'; // Change this with containing folder name
   var type = 'Toolbar'; // Change This with Component functionality Detail, Add, Remove, Delete, List etc.
 
-  function ControllerFunction($scope,$reactive,AuthModals) {
+  function ControllerFunction($scope,$reactive,AuthModals,serviceName) {
     'ngInject';
     ///////////Data///////////
     var self = this;
@@ -13,6 +13,9 @@
     self.helpers({
       isLoggedIn: function (){
         return !!Meteor.userId();
+      },
+      service: function (){
+        return serviceName.get();
       }
     });
 
@@ -37,6 +40,7 @@
       'angular-meteor',
        'AuthModals',
       'toolbarUser',
+      'ServiceNameModule',
     
      ])
     .component(name, {
@@ -46,7 +50,7 @@
       bindings: {
         index: '<',
         list: '=',
-        done: '&',
+        done: '&',        
       }
     });
 

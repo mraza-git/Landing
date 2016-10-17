@@ -1,7 +1,7 @@
-<div id="question-preview" flex>
-  <div class="list" layout="column">    
-    <div layout="row" class="preview-content flex-scrollable" ng-if="questionPreview.previewPage"  ms-scroll>
-      <div flex>
+<div id="question-preview" layout="column" flex>
+  <div class="list" layout="column" flex>    
+    <div layout="column" class="preview-content flex-scrollable" ng-if="questionPreview.previewPage"  ms-scroll flex>
+      <div class="formly-container" flex>
         <formly-form model="questionPreview.model" fields="questionPreview.fields" form="questionPreview.formName">
 
         </formly-form>
@@ -14,7 +14,7 @@
       </div>-->
     </div>
     <div class="question-preview" layout="row" class="preview-content" ng-hide="questionPreview.previewPage" ng-cloak>
-      <div flex layout="row" layout-align="space between center" layout-padding>
+      <div flex layout="row" layout-align="space between center" >
         <div>
           <label>{{questionPreview.index+1}}. </label>
           <label>{{questionPreview.question.customerDescription}}</label>
