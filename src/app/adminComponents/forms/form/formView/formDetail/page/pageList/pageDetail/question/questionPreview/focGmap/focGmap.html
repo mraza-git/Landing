@@ -1,4 +1,4 @@
-<div layout="column">
+<div layout="column" flex>
     <div class="google-map-autocomplete">
         <ng-form name="gmap" ng-submit="focGmap.updateLocation()" layout="row">
             <md-button ng-mousedown="focGmap.refresh=true" ng-mouseup="focGmap.refresh=false" class="md-icon-button md-raised" md-ripple-size="partial" md-no-ink="true" aria-label="map search go">
@@ -12,8 +12,11 @@
         </ng-form>
 
     </div>    
-    <ui-gmap-google-map ng-if="!focGmap.refresh" center="focGmap.map.center" events="focGmap.map.events" zoom="focGmap.map.zoom" options="focGmap.map.options">
+    <div class="foc-map-container" layout="column" flex>
+    <ui-gmap-google-map ng-if="!focGmap.refresh && focGmap.map.center" center="focGmap.map.center" events="focGmap.map.events" zoom="focGmap.map.zoom" options="focGmap.map.options" flex>
         <ui-gmap-marker coords="focGmap.location" options="focGmap.marker.options" events="focGmap.marker.events" idKey="'focGmap.key'">            
         </ui-gmap-marker>
     </ui-gmap-google-map>    
+
+    </div>
 </div>

@@ -1,22 +1,24 @@
 <div id="form-preview" layout="column" flex>
-     <!-- TOP BACKGROUND -->
+    <!-- TOP BACKGROUND -->
     <div class="top-bg md-accent-bg" layout="column">
         <h1>{{formPreview.service.name}}</h1>
         <h3>{{formPreview.service.description}}</h3>
     </div>
-   
+
     <!-- / TOP BACKGROUND -->
 
-    <div class="form-content" layout-align="start center">
-    
+    <div class="form-content" layout="column" flex layout-align="start center">
+
         <form name="formPreview.serviceForm" class="question-form" ng-if="formPreview.form" layout="column" flex>
-            <wizard on-finish="formPreview.finishedWizard()" template="wiz.html" indicators-position="top" layout="column" class="question-wizard" flex>
+            <wizard on-finish="formPreview.finishedWizard()" template="wiz.html" indicators-position="top" layout="column" class="question-wizard"
+                flex>
                 <!--<wz-step  wz-title="Confirm" canexit="true">
             </wz-step>-->
                 <wz-step template="wizstep.html" class="wizard-step" ng-repeat="page in formPreview.form.pages" wz-title="{{page.title}}"
                     layout="column" ms-scroll canexit="formPreview.exitValidation(formPreview.serviceForm)" flex="80">
 
-                    <div layout="row" layout-padding class="" layout-align="start center" ng-class="{next:formPreview.direction,previous:!formPreview.direction}" flex>                        
+                    <div layout="column" class="" layout-align="start center" ng-class="{next:formPreview.direction,previous:!formPreview.direction}"
+                        flex>
                         <!--<div class="page-content" layout="row">-->
                         <question-preview questions="page.questions" form-name="formPreview.serviceForm" index="page.questions.length" model="formPreview.model[$index]"
                             preview-page="true" layout="column" flex></question-preview>
@@ -33,21 +35,23 @@
             </wizard>
         </form>
 
-    </div>  
-    
-    
+    </div>
+
+
 </div>
 
 
 <script type="text/ng-template" id="wiz.html">
-  <div layout-padding>
+  <div>
     <div class="steps" ng-if="indicatorsPosition === 'bottom'" ng-transclude layout="column" flex="80"></div>
-    <ul class="steps-indicator steps-{{getEnabledSteps().length}}" ng-if="!hideIndicators">
+    <ul class="steps-indicator steps-{{getEnabledSteps().length}}"  ng-if="!hideIndicators">
       <li ng-class="{default: !step.completed && !step.selected, current: step.selected && !step.completed, done: step.completed && !step.selected, editing: step.selected && step.completed}" ng-repeat="step in getEnabledSteps()">
-        <a ng-click="goTo(step)">{{step.title || step.wzTitle}}</a>
+        <a ng-click="goTo(step)" class="steps-name">{{step.title || step.wzTitle}}</a>
       </li>
     </ul>
     <div class="steps" ng-if="indicatorsPosition === 'top'"  ng-transclude layout="column" flex></div>
+              
+    
 </div>
 </script>
 

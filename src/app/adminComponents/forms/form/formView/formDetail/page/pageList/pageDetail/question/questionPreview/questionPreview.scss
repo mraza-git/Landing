@@ -16,15 +16,35 @@
       }
     }
     .preview-content {
-      padding: 0 20px;    
-      height: 450px;
-       min-height: 450px;  
+          
+      // height: 450px;
+      //  min-height: 450px;  
+      .formly-container{
+        padding: 10px 20px;
+      }
       .formly {        
         .formly-field {
           width: 100%;
+          md-radio-button, md-checkbox {
+            margin-bottom: 0;
+          ._md-container, ._md-off, ._md-on, ._md-icon, .md-checked {
+                width: 15px;
+                height: 15px;
+               }
+               ._md-icon:after {
+                 
+                    left: 4.66667px;
+                    top: 1.0px;
+                    width: 5.66667px;
+                    height: 12.33333px;
+                    }
+               }
           label {
-            font-size: 16px !important;
-            margin-bottom: 10px;
+               font-size: 16px !important;
+                margin-bottom: 10px;
+                padding-left: 0 !important;
+                font-weight: 500;
+                color: rgb(45,50,62) !important;
           }
           md-input-container{
             width: 70%;
@@ -32,6 +52,9 @@
           md-select{
             font-size: 16px !important;
           }
+        }
+        .formly-field-radio {
+          // padding: 20px 0;
         }
       }
     }

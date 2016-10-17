@@ -1,7 +1,7 @@
-#layout-content-with-toolbar {
-    text-transform: none;
-    #toolbar {
-        padding: 0 0 0 16px;
+// #layout-content-with-toolbar {
+//     text-transform: none;
+//     #toolbar {
+//         padding: 0 0 0 16px;
         #landing-toolbar {
             .logo {
                 margin-right: 16px;
@@ -34,12 +34,11 @@
                 }
             }
 
-        }
-            @media (max-width: 768px) {
+           @media (max-width: 768px) {
                             #landing-toolbar {
                                 padding-top: 10px;
                             }}
-           @media (min-width: 768px) {
+           @media (min-width: 767px) {
                             .navigation-toggle {
                                 display: none;
                             }}
@@ -47,7 +46,6 @@
                             .top-row {
                                 display: none;
                             }}         
-    }
     .foc-nav:hover,
     .foc-nav:focus {
         height: 64px;
@@ -55,5 +53,7 @@
         border-radius: 0;
         padding: 14px 14px 0;
     }
-}
+        }
+//     }
+// }
      
