@@ -12,7 +12,7 @@
     $reactive(self).attach($scope);
     ///////////Data///////////
     self.fields = [];
-    self.model = {};
+    // self.model = {};
 
     ///////////Methods Declarations///////////
     self.updateQuestion = updateQuestion;
