@@ -8,7 +8,7 @@
             </div>
 
             <div class="title" translate="REGISTER.TITLE">Create a supplier account</div>
-            <div >http://www.fixonclick/pro/{{proRegister.form.username}}</div>
+            <div >www.fixonclick.com/p/{{proRegister.form.username}}</div>
 
             <form name="registerForm" novalidate ng-submit="registerForm.$valid && proRegister.register()">
                 <md-input-container class="md-block">
@@ -97,23 +97,36 @@
                     <md-checkbox name="terms" ng-model="data.cb1" aria-label="I read and accept" required></md-checkbox>
                     <div layout="row" layout-sm="column" layout-align="start center">
                         <span translate="REGISTER.READ_ACCEPT">I read and accept</span>
-                        <a href="/tnc" class="md-accent-color" translate="REGISTER.TERMS_COND">terms and conditions</a>
+                        <a href="/pro/tnc" class="md-accent-color" translate="REGISTER.TERMS_COND">terms and conditions</a>
                     </div>
                 </div>
                 <md-toolbar ng-show="proRegister.error" class="md-warn" layout="row" layout-fill>
                     <p class="md-body-1">{{ proRegister.error }}</p>
                 </md-toolbar>
 
-                <md-button type="submit" class="md-raised md-accent submit-button" aria-label="CREATE MY ACCOUNT" ng-disabled="registerForm.$invalid || registerForm.$pristine"
-                    translate="REGISTER.CREATE_ACCOUNT" translate-attr-aria-label="REGISTER.CREATE_ACCOUNT">
+                <md-button type="submit" 
+                class="md-raised md-accent submit-button" 
+                ng-class="{'signin-button-loading layout-row layout-align-space-between-center': proRegister.loading}"
+                ng-click="proRegister.register()" 
+                aria-label="CREATE MY ACCOUNT" 
+                ng-disabled="registerForm.$invalid || registerForm.$pristine || proRegister.loading"
+               >
+               <span>
                     CREATE MY ACCOUNT
-                    <md-progress-circular ng-show="proRegister.loading" md-diameter="25" class="md-accent"></md-progress-circular>
+
+               </span>
+                    
+                     <md-progress-circular
+                        ng-show="proRegister.loading"
+                        md-diameter="25" class="md-accent">
+                    </md-progress-circular>
                 </md-button>
+               
             </form>
 
             <div class="login" layout="row" layout-xs="column" layout-align="center center">
                 <span class="text" translate="REGISTER.ALREADY_HAVE">Already have an account?</span>
-                <a class="link" href="/supplierlogin" translate="REGISTER.LOGIN">Log in</a>
+                <a class="link" href="/pro/login" translate="REGISTER.LOGIN">Log in</a>
             </div>
         </div>
     </div>

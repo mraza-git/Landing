@@ -5,7 +5,7 @@
 
     var main = 'service'; // Change this with containing folder name
     var type = 'Questions';
-    function ControllerFunction($scope,$reactive,$stateParams){
+    function ControllerFunction($scope,$reactive,$stateParams,serviceName){
       'ngInject';
       ///////////Initialization Checks///////////
       var self = this;
@@ -26,10 +26,14 @@
           });
         },
         service: function(){
-          return Services.findOne($stateParams.serviceId);
+          var service = Services.findOne($stateParams.serviceId);
+          if(service){
+            serviceName.set(service);
+          }
+          return service;
         }
       });
-
+      
       ///////////Methods Declarations///////////
 
 
@@ -46,6 +50,7 @@
       'angular-meteor',
       'questionsToolbar',
       'formPreview',
+      'ServiceNameModule',
       ])
   .component(name,{
     templateUrl: templateUrl,
@@ -85,3 +90,31 @@
   }
 
 })();
+
+(function() {
+'use strict';
+
+  angular
+    .module('ServiceNameModule',[])
+    .service('serviceName', serviceName);
+
+  serviceName.$inject = [];
+  function serviceName() {
+    this.set = set;
+    this.get = get;
+    this.service = {};
+    
+    ////////////////
+
+    function set(service) {
+      if(service){
+        this.service.name = service.name;
+        this.service.description = service.description;
+      }
+     }
+     function get (){
+       return this.service;
+     }
+    }
+})();
+

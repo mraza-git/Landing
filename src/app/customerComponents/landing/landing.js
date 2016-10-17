@@ -78,7 +78,6 @@ Meteor.subscribe("categories");
                     },
                     'content@app.landing': {
                         template: '<landing></landing>',
-
                     }
                 },
 

@@ -1,12 +1,30 @@
-.angular-google-map-foccontainer{
-    width: 100%;
-    min-height: 400px;
-    padding-bottom: 10px; 
+.foc-map-container{
+    .angular-google-map-container{
+        overflow: hidden;
+        height: 100%;
+        width: 100%;
 
-    /*
- * These are the default styles applied to the stock Google Places Autocomplete component. Importantly they preserve
- * the required "powered by Google" logo.
- */
+        /*
+    * These are the default styles applied to the stock Google Places Autocomplete component. Importantly they preserve
+    * the required "powered by Google" logo.
+    */
+    }
+    .angular-google-map{
+        left:0px;
+        height:100%;
+        width:100%;
+        position: absolute;
+
+    }
+}
+
+
+
+@media screen and ( max-width: 760px ){
+    .google-map-autocomplete{
+        padding: 50px 0px 0px 0px !important;
+    left: 0px;
+    }
 }
 .google-map-autocomplete{
     md-input-container{
@@ -14,4 +32,8 @@
         height: 30px;
         padding-top: 10px;        
     }
+    z-index: 10;
+    position: absolute;
+    width: 100%;
+    padding: 10px 0px 0px 125px;
 }
