@@ -3,8 +3,8 @@
     'use strict';
 
 
-    var main = 'howit'; // Change this with containing folder name
-    var type = 'Works';
+    var main = 'tnc'; // Change this with containing folder name
+    var type = false;
     function ControllerFunction($scope,$reactive){
       'ngInject';
       ///////////Initialization Checks///////////
@@ -49,11 +49,11 @@
           templateUrl: 'app/core/layouts/content-with-toolbar.html',
           controller: "MainController as self"
     },
-    'content@app.howitworks': {
+    'content@app.tnc': {
       template: template,
     },     
-    'toolbar@app.howitworks':{
-      template: '<landing-toolbar></landing-toolbar>',
+    'toolbar@app.tnc':{
+      template: '<pages-toolbar></pages-toolbar>',
       
     },
      

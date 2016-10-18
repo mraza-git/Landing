@@ -9,28 +9,28 @@
 
     <div class="form-content" layout="column" flex layout-align="start center">
 
-        <form name="formPreview.serviceForm" class="question-form" ng-if="formPreview.form" layout="column" flex>
+        <form name="justForm" class="question-form" ng-if="formPreview.form" layout="column" flex>
             <wizard on-finish="formPreview.finishedWizard()" template="wiz.html" indicators-position="top" layout="column" class="question-wizard"
                 flex>
                 <!--<wz-step  wz-title="Confirm" canexit="true">
             </wz-step>-->
                 <wz-step template="wizstep.html" class="wizard-step" ng-repeat="page in formPreview.form.pages" wz-title="{{page.title}}"
-                    layout="column" ms-scroll canexit="formPreview.exitValidation(formPreview.serviceForm)" flex="80">
+                    layout="column" ms-scroll canexit="formPreview.exitValidation(formPreview.serviceForm[$index])" flex="80">
 
                     <div layout="column" class="" layout-align="start center" ng-class="{next:formPreview.direction,previous:!formPreview.direction}"
                         flex>
                         <!--<div class="page-content" layout="row">-->
-                        <question-preview questions="page.questions" form-name="formPreview.serviceForm" index="page.questions.length" model="formPreview.model[$index]"
+                        <question-preview questions="page.questions" form-name="formPreview.serviceForm[$index]" index="page.questions.length" model="formPreview.model[$index]"
                             preview-page="true" layout="column" flex></question-preview>
                         <!--</div>-->
                     </div>
                 </wz-step>
                 <div class="controls-group" layout="column" layout-align="space between center">
                     <div layout="row" layout-align="space-between-center" class="controls">
-                        <md-button ng-disabled="formPreview.first" wz-previous class="md-accent md-raised" ng-click="myStyle={color:'red'}">Previous</md-button>
-                        <md-button ng-hide="formPreview.last" wz-next class="md-primary md-raised" ng-click="formPreview.direction=true">Next</md-button>
-                        <md-button type="submit" ng-disabled="!formPreview.valid" ng-show="formPreview.last" wz-finish class="md-primary md-raised">Submit </md-button>
-                    </div>
+                        <md-button ng-disabled="formPreview.first" wz-previous class="md-accent md-raised" ng-click="formPreview.formIndex=formPreview.formIndex-1">Previous</md-button>
+                        <md-button ng-disabled="formPreview.serviceForm[formPreview.formIndex].$invalid" ng-hide="formPreview.last" wz-next class="md-primary md-raised" ng-click="formPreview.formIndex=formPreview.formIndex+1">Next</md-button>
+                        <md-button type="submit" ng-disabled="formPreview.serviceForm[formPreview.formIndex].$invalid" ng-show="formPreview.last" wz-finish class="md-primary md-raised">Submit </md-button>
+                    </div>                    
                 </div>
             </wizard>
         </form>

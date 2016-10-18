@@ -23,6 +23,9 @@
 
     ///////////Method Definitions///////////
     function done(event) {
+      angular.forEach(self.questions,function(value,index){
+        self.questions[index].adminKey = 'key'+index;
+      });
       self.update(event);
     }
 

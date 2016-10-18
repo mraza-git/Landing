@@ -300,6 +300,7 @@
         .partner-placeholder {
           width :80%;
           height :150px;
+          margin: 0 auto;
           background-color: #d91d50;
           color: #e3839e;
           background-image: none, linear-gradient(156deg, #d91d50, #c93c63);
@@ -310,6 +311,7 @@
           z-index: 10;
           border-radius: 5px;
           margin-bottom: 30px;
+          
         }
       }
       #bottom {

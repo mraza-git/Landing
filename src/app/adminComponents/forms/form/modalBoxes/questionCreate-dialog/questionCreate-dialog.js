@@ -54,7 +54,15 @@ function CreateQuestionDialogController($mdDialog, selectedQuestion, questions, 
   },{
     'id': 6,
     'label': 'gmap'
+  },{
+    'id': 7,
+    'label': 'datepicker'
+  },{
+    'id':8,
+    'label': 'textarea',
   }
+
+  
 
 ];  
 
@@ -114,7 +122,7 @@ function CreateQuestionDialogController($mdDialog, selectedQuestion, questions, 
             label: 'adminKey',
             required: true,
             placeholder: 'should be in camelCase',
-            disabled: false,
+            disabled: true,
           },
           hideExpression: 'model.requiredCheck',
         },
@@ -122,7 +130,7 @@ function CreateQuestionDialogController($mdDialog, selectedQuestion, questions, 
           key: 'questionType',
           type: 'select',
           className: 'flex-35',
-          defaultValue: 'radio',
+          defaultValue: 'input',
           templateOptions: {
             label: 'Select question Type',
             // required: true,

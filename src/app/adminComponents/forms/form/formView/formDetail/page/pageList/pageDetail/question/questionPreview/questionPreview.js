@@ -12,7 +12,7 @@
     $reactive(self).attach($scope);
     ///////////Data///////////
     self.fields = [];
-    self.model = {};
+    // self.model = {};
 
     ///////////Methods Declarations///////////
     self.updateQuestion = updateQuestion;
@@ -109,10 +109,16 @@
       var toObject = {};
       toObject.label = meta.customerDescription;
       toObject.required = meta.requiredCheck;
-      if (meta.options.length > 0) {
-        toObject.options = meta.options;
-        toObject.labelProp = 'value';
-        toObject.valueProp = 'value';
+      if(angular.isDefined(meta.options)){
+        if (meta.options.length > 0) {
+          toObject.options = meta.options;
+          toObject.labelProp = 'value';
+          toObject.valueProp = 'value';
+        }
+      }
+      if(meta.questionType === 'textarea'){
+        toObject.rows = 5;
+        toObject.grow = false;
       }
       return toObject;
     }
@@ -216,6 +222,16 @@
     formlyConfig.setType({
       name: 'gmap',
       template: '<foc-gmap key="options.key" location="model[options.key]" ></foc-gmap>'
+    });
+
+    formlyConfig.setType({
+      name: 'budget',
+      template: '<budget-field key="options.type" options="to.options" selected-budget="model[options.key]" ></budget-field>'
+    });
+
+    formlyConfig.setType({
+      name: 'icon-radio',
+      template: '<icon-radio key="options.type" options="to.options" selected-radio="model[options.key]" ></icon-radio>'
     });
   }
 

@@ -1,22 +1,23 @@
 <div layout="column" flex>
     <div class="google-map-autocomplete">
-        <ng-form name="gmap" ng-submit="focGmap.updateLocation()" layout="row">
-            <md-button ng-mousedown="focGmap.refresh=true" ng-mouseup="focGmap.refresh=false" class="md-icon-button md-raised" md-ripple-size="partial" md-no-ink="true" aria-label="map search go">
-                <md-icon md-font-icon="icon-refresh" aria-label="refresh" class="s20"></md-icon>
-             </md-button>
-            <md-input-container md-no-float>
-                <input type="text" g-places-autocomplete ng-model="focGmap.myScopeVar" placeholder="Enter a location" />
-            </md-input-container>
-            <md-button type="submit" ng-click="focGmap.updateLocation()" class="md-raised md-primary" md-ripple-size="partial" md-no-ink="true" aria-label="map search go">
-            Go </md-button>
+        <ng-form name="gmap" ng-submit="focGmap.updateLocation()" class="search-form" layout="row">
+            <div class="search-form-fields" layout="row" layout-align="start start" flex>
+                <md-button ng-mousedown="focGmap.refresh=true" ng-mouseup="focGmap.refresh=false" class="md-icon-button md-raised" md-ripple-size="partial" md-no-ink="true" aria-label="map search go">
+                    <md-icon md-font-icon="icon-refresh" aria-label="refresh" class="s20"></md-icon>
+                </md-button>
+                <md-input-container md-no-float>
+                    <input type="text" g-places-autocomplete ng-model="focGmap.myScopeVar" placeholder="Enter a location" />
+                </md-input-container>
+                <md-button type="submit" ng-click="focGmap.updateLocation()" class="md-raised md-primary" md-ripple-size="partial" md-no-ink="true" aria-label="map search go">
+                Go </md-button>
+            </div>
         </ng-form>
 
     </div>    
-    <div class="foc-map-container" layout="column" flex>
-    <ui-gmap-google-map ng-if="!focGmap.refresh && focGmap.map.center" center="focGmap.map.center" events="focGmap.map.events" zoom="focGmap.map.zoom" options="focGmap.map.options" flex>
+    <div class="foc-map-container" layout="column" flex ng-if="!focGmap.refresh">
+    <ui-gmap-google-map center="focGmap.map.center" events="focGmap.map.events" zoom="focGmap.map.zoom" options="focGmap.map.options" flex>
         <ui-gmap-marker coords="focGmap.location" options="focGmap.marker.options" events="focGmap.marker.events" idKey="'focGmap.key'">            
         </ui-gmap-marker>
-    </ui-gmap-google-map>    
-
+    </ui-gmap-google-map>
     </div>
 </div>

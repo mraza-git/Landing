@@ -53,7 +53,7 @@
       template: template,
     },     
     'toolbar@app.tnc':{
-      template: '<pages-toolbar></pages-toolbar>',
+      template: '<landing-toolbar></landing-toolbar>',
       
     },
      

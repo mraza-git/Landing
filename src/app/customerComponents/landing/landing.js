@@ -67,7 +67,7 @@ Meteor.subscribe("categories");
         // State
         $stateProvider
             .state('app.landing', {
-                url: '/landing',
+                url: '/home',
                 views: {
                     'main@': {
                         templateUrl: 'app/core/layouts/content-with-toolbar.html',

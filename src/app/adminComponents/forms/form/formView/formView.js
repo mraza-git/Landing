@@ -19,6 +19,7 @@
         return Meteor.user();
       },
       forms: function() {
+        self.loading = true;
         var forms =[];
         var selector = {};
         if(self.getReactively('currentFolder') !== 'all'){
@@ -28,14 +29,13 @@
             {deleted: false}
           ]};
         }
-        var cursor = FocForms.find(selector);
-        $timeout(function(){
-          if(!self.loading){
-            self.currentForm = cursor.fetch()[0]; //populating the first item at the start.
-            if(self.currentForm)
-            self.loading=false;
-          }
-        },1);
+        var cursor = FocForms.find(selector);        
+        if(self.loading){
+          self.currentForm = cursor.fetch()[0]; //populating the first item at the start.
+          if(self.currentForm)
+          self.loading=false;
+        }
+        
         return cursor;
       }
     });
