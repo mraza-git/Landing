@@ -53,7 +53,7 @@
       template: template,
     },     
     'toolbar@app.faq':{
-      template: '<pages-toolbar></pages-toolbar>',
+      template: '<landing-toolbar></landing-toolbar>',
       
     },
      

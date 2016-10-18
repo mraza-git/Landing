@@ -53,7 +53,7 @@
       template: template,
     },     
     'toolbar@app.aboutus':{
-      template: '<pages-toolbar></pages-toolbar>',
+      template: '<landing-toolbar></landing-toolbar>',
       
     },
      
