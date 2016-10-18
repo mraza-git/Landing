@@ -10,8 +10,11 @@
       ///////////Initialization Checks///////////
       var self = this;
       $reactive(self).attach($scope);
-      if($stateParams.serviceId){
-        console.log("ServiceID: ", $stateParams.serviceId);
+      if($stateParams.serviceId){        
+      }
+
+      if($stateParams.lead){        
+        self.lead = JSON.parse($stateParams.lead);        
       }
 
       ///////////Data///////////
@@ -60,7 +63,7 @@
   .config(config);
   var template = '<'+main+'-'+type.toLowerCase()+'></'+main+'-'+type.toLowerCase()+'>';
   var state = 'app.'+name;
-  var stateUrl = '/'+name + '/:serviceId';
+  var stateUrl = '/'+name + '/:serviceId/:lead';
   var views = {
     'content@app.serviceQuestions': {
       template: template,

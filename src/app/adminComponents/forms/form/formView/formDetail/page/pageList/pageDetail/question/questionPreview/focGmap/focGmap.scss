@@ -11,9 +11,13 @@
     }
     .angular-google-map{
         left:0px;
+        top:0px;
         height:100%;
         width:100%;
         position: absolute;
+        .gmnoprint{
+            visibility: hidden;
+        }
 
     }
 }
@@ -22,18 +26,33 @@
 
 @media screen and ( max-width: 760px ){
     .google-map-autocomplete{
-        padding: 50px 0px 0px 0px !important;
-    left: 0px;
+        padding: 0px 0px !important;
+        left: 0px;
     }
 }
 .google-map-autocomplete{
-    md-input-container{
-        margin: 1px !important;
-        height: 30px;
-        padding-top: 10px;        
+    .search-form{
+        background: rgba(0, 0, 0, 0.341176);
+        padding: 5px;
+        .search-form-fields{
+                background-color: rgba(240,248,255,0.80);
+                padding: 0px;
+            .md-icon-button.md-button{
+                margin:3px;
+            }
+            md-input-container{
+                margin: 5px 0px 0px 0px !important;
+                height: 30px;      
+                width: 100% !important;                          
+            }
+            .md-button.md-primary {
+                min-width: 60px
+            }
+        }
     }
     z-index: 10;
     position: absolute;
-    width: 100%;
-    padding: 10px 0px 0px 125px;
+    width: 100%;    
+    left: 0px;
+    padding: 0px 10px;
 }

@@ -1,5 +1,5 @@
-<md-dialog class="question-create-dialog " aria-label="New Question">
-  <form class="md-inline-form" name="questionCreate" ng-submit="questionCreate.$valid && question.save()">
+<md-dialog class="question-create-dialog " aria-label="New Question" layout="column">
+  <form class="md-inline-form" name="questionCreate" ng-submit="questionCreate.$valid && question.save()" flex>
     <md-toolbar class="md-accent md-hue-2">
       <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
         <span class="title" translate="FORM.NEW_QUESTION">Add or Edit QUESTION</span>

@@ -10,7 +10,7 @@
     var self = this;
     /////////////////Data/////////////////////
     self.myScopeVar = {};
-    self.refresh = true;
+    self.refresh = false;
     self.geoLocation = {
       latitude: 25,
       longitude: 55,
@@ -28,45 +28,48 @@
 
 
     ////////////Method Definitions////////////
-    function init() {
-      self.location = { // get geolocation
-        latitude: 25,
-        longitude: 55,
-      };
-      self.map = {
-        center: self.geoLocation,
-        zoom: 13,
+    function init() {      
+      self.map = {        
+        zoom: 14,
         options: {
               minZoom: 3,
               scrollwheel: true
         },
         events: {
           click: function (mapModel, eventName, originalEventArgs) {
-            self.setLocation(originalEventArgs[0].latLng.lat(), originalEventArgs[0].latLng.lng());
-            console.log(self.location);
+            self.setLocation(originalEventArgs[0].latLng.lat(), originalEventArgs[0].latLng.lng());            
             $scope.$apply();
           }
         }
       };
+
+      if(angular.isUndefined(self.location)){
+        self.location = self.geoLocation;
+      }
+      self.map.center = angular.copy(self.location);
+
       self.marker = {
         options: {
           draggable: true
         },
         events: {
           dragend: function (marker, eventName, args) {
-            self.setLocation(marker.getPosition().lat(), marker.getPosition().lng());
-            console.log(self.location);
+            self.setLocation(marker.getPosition().lat(), marker.getPosition().lng());            
             $scope.$apply();
+          },
+          click: function (marker,eventName,args){
+            
           }
         }
       };      
-      self.refresh = false;
+      // self.refresh = false;
     }
 
     function updateLocation() {
+      console.log(self.myScopeVar);
       self.setLocation(self.myScopeVar.geometry.location.lat(), self.myScopeVar.geometry.location.lng());
-      self.map.center = self.location;
-      
+      self.map.center = angular.copy(self.location);      
+      self.location.title = self.myScopeVar.formatted_address;
     }
 
     function setLocation(latitude, longitude) {

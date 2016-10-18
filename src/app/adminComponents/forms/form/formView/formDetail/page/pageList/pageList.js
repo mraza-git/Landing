@@ -14,9 +14,10 @@
     ///////////Initialization Checks///////////
     var self = this;
     self.index = 0;
+    self.currentPage = {};
     ///////////Data///////////
     if (self.pages) {
-      self.index = self.pages.length;
+      // self.index = self.pages.length;
       self.currentPage = self.pages[0];
     }
 
@@ -26,6 +27,8 @@
     self.done = done;
     self.addPageAtEnd = addPageAtEnd;
     self.openAddPageModal = openAddPageModal;
+    self.openEditPageModal = openEditPageModal;
+    self.deletePage = deletePage;
     self.openAddQuestionModal = openAddQuestionModal;
     self.setCurrentPage = setCurrentPage;
 
@@ -50,17 +53,27 @@
       }
       self.openAddPageModal(event);
     }
+    function deletePage(ev){
+      if(self.index){
+        self.pages.splice(self.index,1);
+        self.done();
+      }
+    }
+
+    function openEditPageModal(ev){      
+      self.openAddPageModal(ev);
+    }
     /**
      * Opens a model for adding a new page.
      * 
      * @param {any} ev
      */
-    function openAddPageModal(ev) {
+    function openAddPageModal(ev) {            
       $mdDialog.show({
         controller: CreatePageDialogController,
         controllerAs: 'page',
         locals: {
-          selectedPage: undefined,
+          selectedPage: self.pages[self.index],
           pages: self.pages,
           index: self.index,
         },
@@ -117,9 +130,8 @@
      * @param {any} page
      * @param {any} index
      */
-    function setCurrentPage(page, index) {
+    function setCurrentPage(page) {
       self.currentPage = page;
-      self.index = index;
     }
 
 

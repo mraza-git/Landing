@@ -23,8 +23,7 @@
            this.subscribe('singleThumb40');
 
           this.helpers({
-            thumb: function(){
-              console.log(this.imageId);
+            thumb: function(){              
               return Thumbs40.findOne({
                 originalId: this.getReactively('imageId',true)
               });

@@ -4,12 +4,15 @@
   var main = 'form'; // Change this with containing folder name
   var type = 'Preview'; // Change This with Component functionality Detail, Add, Remove, Delete, List etc.
 
-  function ControllerFunction($scope,WizardHandler,$state) {
+  function ControllerFunction($scope,WizardHandler,$state,$stateParams) {
     'ngInject';
     ///////////Data///////////
-    var self = this;
-    self.model = [];
-    self.lead = {pages:[{questions:[]}]};
+    var self = this;    
+    self.valid = [];
+    self.previousStep = 0;
+    self.serviceForm = [];
+    self.formIndex = 0;
+
     self.originalForm = angular.copy(self.form);
 
 
@@ -17,15 +20,22 @@
     self.finishedWizard = finishedWizard;
     self.exitValidation = exitValidation;
     self.setupLead = setupLead;
+    self.setupModel = setupModel;
 
 
+    if(angular.isDefined(self.lead)){
+      self.setupModel();
+    }
+    
 
     ///////////Method Definitions///////////
-    function finishedWizard() {      
+    function finishedWizard() {
+      console.log("Original model:",self.model);      
       self.setupLead();
     }
 
-    function setupLead(){
+    function setupLead(){      
+      self.lead = {pages:[{questions:[]}]};
       angular.forEach(self.model,function(value,vindex){
         self.lead.pages[vindex] = {questions:[]};        
          angular.forEach(value,function(val,key){           
@@ -39,11 +49,24 @@
       });
       self.lead.createdAt = new Date();
       self.lead.owner = Meteor.userId();
-      $state.go('app.leadSummary',{lead:JSON.stringify(self.lead)});
+      $state.go('app.serviceQuestions',{lead:JSON.stringify(self.lead),serviceId:self.service._id});
       
     }
 
-    function exitValidation(form) {
+    function setupModel(){      
+      self.model=[{}];
+      angular.forEach(self.lead.pages,function(value,vindex){        
+        self.model[vindex]={};
+        angular.forEach(value,function(val,hindex){          
+          angular.forEach(val,function(v,index){
+            self.model[vindex][v.adminKey]=v.answer;            
+          });
+        });
+      });
+      console.log("Revamped Model",self.model);
+    }
+
+    function exitValidation(form,index) {
       var cs = WizardHandler.wizard().currentStepNumber();
       var ts = WizardHandler.wizard().totalStepCount();
       // if(vm.previousStep > cs ){
@@ -60,9 +83,10 @@
       self.first = cs === 1 ? true : false;
 
       self.previousStep = cs;
+      
 
-      self.valid = form && !form.$invalid;
-      return self.valid;
+      self.valid[index] = form && !form.$invalid;
+      return self.valid[index];
     }
 
   }
@@ -83,7 +107,8 @@
       controllerAs: name,
       bindings: {
         form: '=',
-        service: '<',
+        service:'<',
+        lead:'=',
       }
     });
 

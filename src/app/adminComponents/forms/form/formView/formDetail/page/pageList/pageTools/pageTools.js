@@ -14,6 +14,8 @@
 
     ///////////Methods Declarations///////////
     self.addpage = addpage;
+    self.editpage = editpage;
+    self.deletepage = deletepage;
     self.addquestion = addquestion;
     
 
@@ -21,6 +23,14 @@
     ///////////Method Definitions///////////
     function addpage(event){
       self.addPage({event:{}});
+    }
+    function editpage(event){
+      self.editPage({
+        event:event
+      });
+    }
+    function deletepage(event){
+      self.deletePage({event:{}});
     }
     function addquestion(event){
       self.addQuestion({event:{}});
@@ -39,11 +49,10 @@
       controllerAs: name,
       bindings: {
         addPage: '&',
-        addQuestion: '&',
-        deletePage: '&',
-        delteteQuestion: '&',
         editPage: '&',
+        deletePage: '&',        
         previewPage:'=',
+        addQuestion: '&',
       }
     });
 
