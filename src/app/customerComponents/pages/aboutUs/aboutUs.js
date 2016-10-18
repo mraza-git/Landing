@@ -28,7 +28,8 @@
   angular
   .module(name, [
     'angular-meteor',  
-    'pagesToolbar',    
+    'pagesToolbar',   
+    'landingFooter' 
 
     ])
   .component(name,{
@@ -43,7 +44,7 @@
   .config(config);
   var template = '<'+main+ (type?'-':'')+(type?type.toLowerCase():'')+'></'+main+(type?'-':'')+(type?type.toLowerCase():'')+'>';
   var state = 'app.'+name.toLowerCase();
-  var stateUrl = '/'+name.toLowerCase();
+  var stateUrl = '/'+main+'-'+type.toLowerCase();
   var views = {
     'main@': {
           templateUrl: 'app/core/layouts/content-with-toolbar.html',

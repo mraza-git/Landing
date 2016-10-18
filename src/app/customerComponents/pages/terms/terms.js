@@ -3,8 +3,8 @@
     'use strict';
 
 
-    var main = 'pro'; // Change this with containing folder name
-    var type = 'Tnc';
+    var main = 'terms'; // Change this with containing folder name
+    var type = false;
     function ControllerFunction($scope,$reactive){
       'ngInject';
       ///////////Initialization Checks///////////
@@ -29,7 +29,7 @@
   .module(name, [
     'angular-meteor',  
     'pagesToolbar',    
-
+    
     ])
   .component(name,{
     templateUrl: templateUrl,
@@ -42,18 +42,18 @@
   })
   .config(config);
   var template = '<'+main+ (type?'-':'')+(type?type.toLowerCase():'')+'></'+main+(type?'-':'')+(type?type.toLowerCase():'')+'>';
-  var state = 'app.'+name;
-  var stateUrl = '/pro/'+type.toLowerCase();
+  var state = 'app.'+name.toLowerCase();
+  var stateUrl = '/terms';
   var views = {
     'main@': {
           templateUrl: 'app/core/layouts/content-with-toolbar.html',
           controller: "MainController as self"
     },
-    'content@app.proTnc': {
+    'content@app.terms': {
       template: template,
     },     
-    'toolbar@app.proTnc':{
-      template: '<pages-toolbar></pages-toolbar>',
+    'toolbar@app.terms':{
+      template: '<landing-toolbar></landing-toolbar>',
       
     },
      

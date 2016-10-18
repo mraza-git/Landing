@@ -43,7 +43,7 @@
   .config(config);
   var template = '<'+main+ (type?'-':'')+(type?type.toLowerCase():'')+'></'+main+(type?'-':'')+(type?type.toLowerCase():'')+'>';
   var state = 'app.'+name.toLowerCase();
-  var stateUrl = '/'+name.toLowerCase();
+  var stateUrl = '/how-it-works';
   var views = {
     'main@': {
           templateUrl: 'app/core/layouts/content-with-toolbar.html',

@@ -11,7 +11,7 @@
     {
         $locationProvider.html5Mode(true);
 
-        $urlRouterProvider.otherwise('/formMain');
+        $urlRouterProvider.otherwise('/home');
 
         /**
          * Layout Style Switcher
