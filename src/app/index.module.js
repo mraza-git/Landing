@@ -48,8 +48,11 @@ var EmailList = new Meteor.Collection('emaillist');
             'landing',
             'aboutUs',
             'faq',
-            'tnc',
+            'terms',
             'howitWorks',
+            'contactUs',
+            'privacyPolicy',
+            'partnerList',
 
             //supplier
             'p', // profile view page or supplier homepage
@@ -57,8 +60,8 @@ var EmailList = new Meteor.Collection('emaillist');
             'proLogin', // supplier login page
             'proDetail', // supplier profile detail page.
             'proFaq',
-            'proHowitWorks',
-            'proTnc',
+            'proHowitworks',
+            'proTerms',
 
 
         ]);

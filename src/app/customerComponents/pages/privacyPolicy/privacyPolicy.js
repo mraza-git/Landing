@@ -3,8 +3,8 @@
     'use strict';
 
 
-    var main = 'pro'; // Change this with containing folder name
-    var type = 'Howitworks';
+    var main = 'privacy'; // Change this with containing folder name
+    var type = 'Policy';
     function ControllerFunction($scope,$reactive){
       'ngInject';
       ///////////Initialization Checks///////////
@@ -22,8 +22,8 @@
 
     }
 
-  var name = main + (type?type:""); // Change This with Component Name
-  var templateUrl = 'app/supplierComponents/pages/' + name + '/' + name + '.html';
+  var name = main + (type?type:''); // Change This with Component Name
+  var templateUrl = 'app/customerComponents/pages/' + name + '/' + name + '.html';
   var controller = ControllerFunction;
   angular
   .module(name, [
@@ -42,18 +42,18 @@
   })
   .config(config);
   var template = '<'+main+ (type?'-':'')+(type?type.toLowerCase():'')+'></'+main+(type?'-':'')+(type?type.toLowerCase():'')+'>';
-  var state = 'app.'+name;
-  var stateUrl = '/pro/how-it-works';
+  var state = 'app.'+name.toLowerCase();
+  var stateUrl = '/'+main+'-'+type.toLowerCase();
   var views = {
     'main@': {
           templateUrl: 'app/core/layouts/content-with-toolbar.html',
           controller: "MainController as self"
     },
-    'content@app.proHowitworks': {
+    'content@app.privacypolicy': {
       template: template,
     },     
-    'toolbar@app.proHowitworks':{
-      template: '<pages-toolbar></pages-toolbar>',
+    'toolbar@app.privacypolicy':{
+      template: '<landing-toolbar></landing-toolbar>',
       
     },
      

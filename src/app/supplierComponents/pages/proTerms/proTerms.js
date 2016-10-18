@@ -4,7 +4,7 @@
 
 
     var main = 'pro'; // Change this with containing folder name
-    var type = 'Howitworks';
+    var type = 'Terms';
     function ControllerFunction($scope,$reactive){
       'ngInject';
       ///////////Initialization Checks///////////
@@ -43,16 +43,16 @@
   .config(config);
   var template = '<'+main+ (type?'-':'')+(type?type.toLowerCase():'')+'></'+main+(type?'-':'')+(type?type.toLowerCase():'')+'>';
   var state = 'app.'+name;
-  var stateUrl = '/pro/how-it-works';
+  var stateUrl = '/pro/'+type.toLowerCase();
   var views = {
     'main@': {
           templateUrl: 'app/core/layouts/content-with-toolbar.html',
           controller: "MainController as self"
     },
-    'content@app.proHowitworks': {
+    'content@app.proTerms': {
       template: template,
     },     
-    'toolbar@app.proHowitworks':{
+    'toolbar@app.proTerms':{
       template: '<pages-toolbar></pages-toolbar>',
       
     },
