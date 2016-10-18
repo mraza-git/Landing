@@ -10,15 +10,21 @@
 <!--  CONTENT-->
 <div ng-if="pageList.pages" layout="column" flex>
   <!--  CURRENT PAGE TOOLS-->
-  <page-tools current-page="pageList.currentPage" preview-page="pageList.previewPage" add-page="pageList.openAddPageModal($event)" add-question="pageList.openAddQuestionModal($event)"></page-tools>
+  <page-tools 
+  current-page="pageList.currentPage" 
+  add-page="pageList.openAddPageModal($event)"
+  edit-page="pageList.openEditPageModal($event)"
+  delete-page="pageList.deletePage($event)"   
+  preview-page="pageList.previewPage" 
+  add-question="pageList.openAddQuestionModal($event)"></page-tools>
   <!--  /CURRENT PAGE TOOLS-->
   <!--  TABS WRAPPER DETAILS-->
   <div class="thread-content" flex layout="column">
     <div class="info" layout="column" flex  >
       <!--  TABS-->
-      <md-tabs  md-border-bottom flex layout="column" >
+      <md-tabs  md-border-bottom flex layout="column" md-selected="pageList.index" md-autoselect md-swipe-content>
         <!--  PAGE TAB-->
-        <md-tab label="{{page.title}}" ng-repeat="page in pageList.pages"  ng-click="pageList.setCurrentPage(page,$index)" layout="column" flex>
+        <md-tab label="{{page.title}}" ng-repeat="page in pageList.pages"  ng-click="pageList.setCurrentPage(page)" layout="column" flex>
           <!--  PAGE CONTENT-->
           <md-content class="md-padding" flex layout="column">
             <!--  PAGE DETAIL-->

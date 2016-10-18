@@ -109,10 +109,16 @@
       var toObject = {};
       toObject.label = meta.customerDescription;
       toObject.required = meta.requiredCheck;
-      if (meta.options.length > 0) {
-        toObject.options = meta.options;
-        toObject.labelProp = 'value';
-        toObject.valueProp = 'value';
+      if(angular.isDefined(meta.options)){
+        if (meta.options.length > 0) {
+          toObject.options = meta.options;
+          toObject.labelProp = 'value';
+          toObject.valueProp = 'value';
+        }
+      }
+      if(meta.questionType === 'textarea'){
+        toObject.rows = 5;
+        toObject.grow = false;
       }
       return toObject;
     }
