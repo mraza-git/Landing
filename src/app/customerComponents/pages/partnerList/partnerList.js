@@ -3,8 +3,8 @@
     'use strict';
 
 
-    var main = 'tnc'; // Change this with containing folder name
-    var type = false;
+    var main = 'partner'; // Change this with containing folder name
+    var type = 'List';
     function ControllerFunction($scope,$reactive){
       'ngInject';
       ///////////Initialization Checks///////////
@@ -43,17 +43,17 @@
   .config(config);
   var template = '<'+main+ (type?'-':'')+(type?type.toLowerCase():'')+'></'+main+(type?'-':'')+(type?type.toLowerCase():'')+'>';
   var state = 'app.'+name.toLowerCase();
-  var stateUrl = '/'+name.toLowerCase();
+  var stateUrl = '/'+main+'-'+type.toLowerCase();
   var views = {
     'main@': {
           templateUrl: 'app/core/layouts/content-with-toolbar.html',
           controller: "MainController as self"
     },
-    'content@app.tnc': {
+    'content@app.partnerlist': {
       template: template,
     },     
-    'toolbar@app.tnc':{
-      template: '<pages-toolbar></pages-toolbar>',
+    'toolbar@app.partnerlist':{
+      template: '<landing-toolbar></landing-toolbar>',
       
     },
      

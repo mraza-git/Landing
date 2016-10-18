@@ -43,19 +43,19 @@
   .config(config);
   var template = '<'+main+ (type?'-':'')+(type?type.toLowerCase():'')+'></'+main+(type?'-':'')+(type?type.toLowerCase():'')+'>';
   var state = 'app.'+name.toLowerCase();
-  var stateUrl = '/'+name.toLowerCase();
+  var stateUrl = '/'+main+'-'+type.toLowerCase();
   var views = {
     'main@': {
           templateUrl: 'app/core/layouts/content-with-toolbar.html',
           controller: "MainController as self"
     },
-    'content@app.aboutus': {
+    'content@app.contactus': {
       template: template,
     },     
-    'toolbar@app.aboutus':{
+    'toolbar@app.contactus':{
       template: '<landing-toolbar></landing-toolbar>',
       
-    },
+    }
      
   };
   /** @ngInject */
