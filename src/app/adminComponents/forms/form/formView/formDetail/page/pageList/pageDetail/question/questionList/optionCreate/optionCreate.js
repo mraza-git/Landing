@@ -35,7 +35,7 @@
           }
         });
       }
-      function addOption(index,option){
+      function addOption(index){
         self.options.insert({value:'New...'},index+1);
         self.done();
       }

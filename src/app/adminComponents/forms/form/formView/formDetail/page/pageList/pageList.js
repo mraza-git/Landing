@@ -131,8 +131,7 @@
      * @param {any} index
      */
     function setCurrentPage(page) {
-      self.currentPage = page;  
-      console.log(self.index);    
+      self.currentPage = page;
     }
 
 

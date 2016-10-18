@@ -223,6 +223,16 @@
       name: 'gmap',
       template: '<foc-gmap key="options.key" location="model[options.key]" ></foc-gmap>'
     });
+
+    formlyConfig.setType({
+      name: 'budget',
+      template: '<budget-field key="options.type" options="to.options" selected-budget="model[options.key]" ></budget-field>'
+    });
+
+    formlyConfig.setType({
+      name: 'icon-radio',
+      template: '<icon-radio key="options.type" options="to.options" selected-radio="model[options.key]" ></icon-radio>'
+    });
   }
 
 })();
