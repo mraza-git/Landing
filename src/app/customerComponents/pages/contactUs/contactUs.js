@@ -3,8 +3,8 @@
     'use strict';
 
 
-    var main = 'pro'; // Change this with containing folder name
-    var type = 'Tnc';
+    var main = 'contact'; // Change this with containing folder name
+    var type = 'Us';
     function ControllerFunction($scope,$reactive){
       'ngInject';
       ///////////Initialization Checks///////////
@@ -22,7 +22,7 @@
 
     }
 
-  var name = main + (type?type:""); // Change This with Component Name
+  var name = main + type; // Change This with Component Name
   var templateUrl = 'app/customerComponents/pages/' + name + '/' + name + '.html';
   var controller = ControllerFunction;
   angular
@@ -42,20 +42,20 @@
   })
   .config(config);
   var template = '<'+main+ (type?'-':'')+(type?type.toLowerCase():'')+'></'+main+(type?'-':'')+(type?type.toLowerCase():'')+'>';
-  var state = 'app.'+name;
-  var stateUrl = '/pro/'+type.toLowerCase();
+  var state = 'app.'+name.toLowerCase();
+  var stateUrl = '/'+main+'-'+type.toLowerCase();
   var views = {
     'main@': {
           templateUrl: 'app/core/layouts/content-with-toolbar.html',
           controller: "MainController as self"
     },
-    'content@app.proTnc': {
+    'content@app.contactus': {
       template: template,
     },     
-    'toolbar@app.proTnc':{
-      template: '<pages-toolbar></pages-toolbar>',
+    'toolbar@app.contactus':{
+      template: '<landing-toolbar></landing-toolbar>',
       
-    },
+    }
      
   };
   /** @ngInject */

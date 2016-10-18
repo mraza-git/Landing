@@ -11,6 +11,7 @@ Meteor.subscribe("categories");
             'landingToolbar',
             'serviceQuestions',
             'serviceAutocomplete',
+            'landingFooter',
         ])
         .component(name, {
             templateUrl: "app/customerComponents/landing/landing.html",
