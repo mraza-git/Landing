@@ -42,23 +42,26 @@ function CreateQuestionDialogController($mdDialog, selectedQuestion, questions, 
   }, {
     'id': 2,
     'label': 'checkbox'
-  }, {
+  },{
     'id': 3,
-    'label': 'input'
+    'label': 'icon-radio'
   },{
     'id': 4,
-    'label': 'statement'
+    'label': 'input'
   },{
     'id': 5,
-    'label': 'divider'
+    'label': 'statement'
   },{
     'id': 6,
-    'label': 'gmap'
+    'label': 'divider'
   },{
     'id': 7,
+    'label': 'gmap'
+  },{
+    'id': 8,
     'label': 'datepicker'
   },{
-    'id':8,
+    'id':9,
     'label': 'textarea',
   }
 
@@ -148,14 +151,10 @@ function CreateQuestionDialogController($mdDialog, selectedQuestion, questions, 
       key: 'options',
       type: 'optionCreate',
       className: annimationClass,
-      templateOptions:{
-        co: vm.question.options,
-        model: vm.question.options,
-        data: function(event){
-          vm.question.options = event.data;
-        },
+      templateOptions:{        
+        type: vm.question.questionType,        
       },
-      hideExpression: 'model.questionType !== "radio"',
+      hideExpression: 'model.questionType !== "radio" ',
     },
     {
       template: '<md-divider></md-divider>',

@@ -86,7 +86,7 @@
     // Custom Option Create
     formlyConfig.setType({
       name: 'optionCreate',
-      template: '<option-create options="to.co" update="to.data($event)"></option-create>'
+      template: '<option-create type="to.type" options=model[options.key] update="to.data($event)"></option-create>'
     });
 
     // Custom Condition Create

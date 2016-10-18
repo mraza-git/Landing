@@ -5,7 +5,7 @@
 
     var main = 'option'; // Change this with containing folder name
     var type = 'Create';
-    function ControllerFunction($mdDialog,$mdMedia){
+    function ControllerFunction(){
       'ngInject';
       ///////////Initialization Checks///////////
       var self = this;
@@ -58,10 +58,10 @@
     templateUrl: templateUrl,
     controller: controller,
     controllerAs: name,
-    bindings:{
-      options:'=',
+    bindings:{      
       update: '&',
       model: '=',
+      type: '='
     }
   });
 
