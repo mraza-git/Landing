@@ -29,7 +29,7 @@
   .module(name, [
     'angular-meteor',  
     'pagesToolbar',   
-    'landingFooter' 
+    'landingFooter',
 
     ])
   .component(name,{
