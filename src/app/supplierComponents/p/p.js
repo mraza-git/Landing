@@ -51,7 +51,7 @@
     'pagesToolbar',
     'validation.match',
     ])
-  .component(name,{
+  .component('pro',{
     templateUrl: templateUrl,
     controller: controller,
     controllerAs: name,
@@ -72,7 +72,7 @@
           controller: "MainController as self"
     },
     'content@app.p': {
-      template: template,
+      template: '<pro></pro>', //p is for paragraph so renamed the tag for the component as <pro>
     },     
     'toolbar@app.p': {
       template: '<pages-toolbar></pages-toolbar>',

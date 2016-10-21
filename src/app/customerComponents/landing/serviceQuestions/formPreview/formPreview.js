@@ -4,7 +4,7 @@
   var main = 'form'; // Change this with containing folder name
   var type = 'Preview'; // Change This with Component functionality Detail, Add, Remove, Delete, List etc.
 
-  function ControllerFunction($scope,WizardHandler,$state,$stateParams) {
+  function ControllerFunction($scope,WizardHandler,$state,$stateParams,$cookies) {
     'ngInject';
     ///////////Data///////////
     var self = this;    
@@ -14,7 +14,7 @@
     self.formIndex = 0;
 
     self.originalForm = angular.copy(self.form);
-
+    
 
     ///////////Methods Declarations///////////
     self.finishedWizard = finishedWizard;
@@ -29,8 +29,7 @@
     
 
     ///////////Method Definitions///////////
-    function finishedWizard() {
-      console.log("Original model:",self.model);      
+    function finishedWizard() {            
       self.setupLead();
     }
 
@@ -49,7 +48,11 @@
       });
       self.lead.createdAt = new Date();
       self.lead.owner = Meteor.userId();
-      $state.go('app.serviceQuestions',{lead:JSON.stringify(self.lead),serviceId:self.service._id});
+      self.lead.serviceId = self.service._id;
+      self.lead.formId = self.form._id;
+      $cookies.putObject('foc.lead',self.lead);
+
+      $state.go('app.leadSummary');
       
     }
 

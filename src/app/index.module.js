@@ -7,10 +7,13 @@ var Services = new Meteor.Collection('services');
 var FocForms = new Meteor.Collection('forms');
 var Settings = new Meteor.Collection('settings');
 var Icons = new Meteor.Collection('icons');
+var EmailList = new Meteor.Collection('emaillist');
+var Leads = new Meteor.Collection('leads');
+
+
 Meteor.subscribe("categories");
 Meteor.subscribe("services");
 Meteor.subscribe("settings");
-var EmailList = new Meteor.Collection('emaillist');
 
 
 (function ()

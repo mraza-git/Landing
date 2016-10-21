@@ -5,7 +5,7 @@
   var main = 'question'; // Change this with containing folder name
   var type = 'List';
 
-  function ControllerFunction($scope,$mdDialog, $mdMedia) {
+  function ControllerFunction($scope, $mdDialog, $mdMedia) {
     'ngInject';
     ///////////Initialization Checks///////////
     var self = this;
@@ -23,8 +23,8 @@
 
     ///////////Method Definitions///////////
     function done(event) {
-      angular.forEach(self.questions,function(value,index){
-        self.questions[index].adminKey = 'key'+index;
+      angular.forEach(self.questions, function (value, index) {
+        self.questions[index].adminKey = 'key' + index;
       });
       self.update(event);
     }
@@ -50,7 +50,7 @@
       }).then(function (questions, question) {
         if (questions) {
           self.questions = questions;
-          self.currentQuestion = question;          
+          self.currentQuestion = question;
           self.done();
         }
       });
@@ -63,7 +63,7 @@
   var controller = ControllerFunction;
   angular
     .module(name, [
-      'angular-meteor',      
+      'angular-meteor',
       'questionPreview',
       'newPlaceholder',
       'optionCreate',
@@ -77,7 +77,7 @@
       bindings: {
         questions: '=',
         update: '&',
-        previewPage:"<",
+        previewPage: "<",
       }
     }).run(run);
 
@@ -86,8 +86,8 @@
     // Custom Option Create
     formlyConfig.setType({
       name: 'optionCreate',
-      template: '<option-create type="to.type" options=model[options.key] update="to.data($event)"></option-create>'
-    });
+      template: '<option-create options="model[options.key]"></option-create>'
+    });    
 
     // Custom Condition Create
     formlyConfig.setType({

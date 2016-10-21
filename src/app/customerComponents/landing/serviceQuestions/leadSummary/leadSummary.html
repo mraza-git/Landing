@@ -26,3 +26,61 @@
     <br>
   </table>  
 </div>
+
+<files-upload  
+  ok-to-save="leadSummary.okToSave"
+  done="leadSummary.uploadedPictures($event)"
+  crop-settings = "leadSummary.cropSettings"
+  >
+</files-upload>
+<!--<md-button aria-label="ok to save"
+ng-click="leadSummary.okToSave=true;"
+> ok to save </md-button>
+
+<br>
+<pre>
+  {{leadSummary.images|json:4}}
+</pre>-->
+
+<div layout="row" layout-align="center center">
+  <md-button ng-click="leadSummary.isLoggedIn && leadSummary.startSave()"
+             id="save-lead"             
+             ng-class="{'md-raised md-primary': leadSummary.isLoggedIn}"
+             aria-label="post query"> Post
+             <md-tooltip 
+              md-direction="top">
+              <span ng-hide="leadSummary.isLoggedIn">
+                You need to Signin or register to post this querry.
+              </span> 
+              <span ng-show="leadSummary.isLoggedIn">
+                Post now!
+              </span>
+             </md-tooltip>
+  </md-button>
+  <md-button ng-click="leadSummary.login($event)"
+             ng-hide="leadSummary.isLoggedIn"
+             class="md-raised md-warn md-hue-2"
+             aria-label="sign in"> Sign In 
+             <md-tooltip
+              md-direction="bottom">
+              <span ng-hide="leadSummary.isLoggedIn">
+                Signin to post
+              </span>
+             </md-tooltip>
+  </md-button>
+  <md-button ng-click="leadSummary.register($event)"
+             ng-hide="leadSummary.isLoggedIn"
+             class="md-raised md-warn"
+             aria-label="sign up"> Register
+             <md-tooltip 
+              md-direction="bottom">
+              <span ng-hide="leadSummary.isLoggedIn">
+                Register to post
+              </span>
+             </md-tooltip>
+  </md-button>
+
+
+            
+</div>
+

@@ -14,12 +14,9 @@
           <md-button class="md-icon-button" dnd-handle aria-label="drag and drop options from here">
             <md-icon md-font-icon="icon-menu"></md-icon>
           </md-button>
-          <!-- Show options tags based on type of options required-->
-          {{optionCreate.type}}
-          <input ng-if="optionCreate.type==='radio'" type="text" ng-model="option.value" placeholder="option text" required flex />
-          <div ng-if="optionCreate.type==='icon-radio'" flex>
-            Hello there this is icon-radio
-          </div>
+          <!-- Show options tags based on type of options required-->          
+          <input type="text" ng-model="option.value" placeholder="option text" required flex />
+          
 
           
 

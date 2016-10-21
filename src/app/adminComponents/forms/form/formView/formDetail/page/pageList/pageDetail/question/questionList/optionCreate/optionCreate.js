@@ -35,10 +35,12 @@
           }
         });
       }
+
       function addOption(index){
         self.options.insert({value:'New...'},index+1);
         self.done();
       }
+      
       function removeOption(index){
         self.options.splice(index,1);
         self.done();
@@ -60,8 +62,7 @@
     controllerAs: name,
     bindings:{      
       update: '&',
-      model: '=',
-      type: '='
+      options: '=',      
     }
   });
 

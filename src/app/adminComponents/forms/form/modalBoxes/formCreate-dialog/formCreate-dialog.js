@@ -30,6 +30,8 @@ function CreateEditDialogController($mdDialog, selectedForm, $scope, $reactive) 
       var id = vm.form._id;
       delete vm.form._id;
       var form = angular.copy(vm.form);
+      form.updatedAt = new Date();
+      form.updater = Meteor.userId();
       FocForms.update({
         _id:id
       }, {
@@ -39,6 +41,7 @@ function CreateEditDialogController($mdDialog, selectedForm, $scope, $reactive) 
       vm.closeDialog(vm.form);
     } else {
       vm.form.createdAt = new Date();
+      vm.form.pages = [{title:"Page 0"}];
       vm.form.deleted = false;
       vm.form.folder ="draft";
       vm.form.owner = Meteor.userId();

@@ -1,0 +1,27 @@
+
+<div flex>
+    <img ng-src="{{saveImage.file.$ngfDataUrl}}" ng-class="{{saveImage.imageClass}}"/>
+    <md-icon
+    ng-show="saveImage.uploaded" 
+    md-font-icon="icon-check"  
+    aria-label="tick" 
+    class="s18 md-warn">
+    </md-icon>
+    <md-button
+        ng-hide="saveImage.uploading"
+        ng-click="saveImage.remove()" 
+        aria-label="remove" class="md-icon-button md-accent">
+       <md-icon md-font-icon="icon-close-circle-outline" class="s25"></md-icon>       
+    </md-button> 
+    <md-progress-circular
+        ng-show="saveImage.uploading"
+        ng-disabled="!saveImage.uploading"
+        md-diameter="25"
+        md-mode="determinate" class="md-warn"
+        value="{{saveImage.progress}}">
+    </md-progress-circular>
+
+</div>
+
+
+

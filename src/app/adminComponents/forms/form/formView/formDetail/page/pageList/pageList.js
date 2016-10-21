@@ -68,12 +68,16 @@
      * 
      * @param {any} ev
      */
-    function openAddPageModal(ev) {            
+    function openAddPageModal(ev) {      
+      var selected_page = {};
+      if(self.pages){
+        selected_page = self.pages[self.index]
+      }
       $mdDialog.show({
         controller: CreatePageDialogController,
         controllerAs: 'page',
         locals: {
-          selectedPage: self.pages[self.index],
+          selectedPage: selected_page ,
           pages: self.pages,
           index: self.index,
         },

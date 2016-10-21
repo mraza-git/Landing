@@ -44,7 +44,7 @@ function CreateQuestionDialogController($mdDialog, selectedQuestion, questions, 
     'label': 'checkbox'
   },{
     'id': 3,
-    'label': 'icon-radio'
+    'label': 'budget'
   },{
     'id': 4,
     'label': 'input'
@@ -154,7 +154,8 @@ function CreateQuestionDialogController($mdDialog, selectedQuestion, questions, 
       templateOptions:{        
         type: vm.question.questionType,        
       },
-      hideExpression: 'model.questionType !== "radio" ',
+      data: {type:vm.question.questionType},
+      hideExpression: 'model.questionType !== "radio" && model.questionType !== "budget" ',
     },
     {
       template: '<md-divider></md-divider>',

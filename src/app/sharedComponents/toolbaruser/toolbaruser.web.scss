@@ -1,0 +1,28 @@
+md-menu-item{
+    image-upload-button{
+        padding:0px;
+        .menu-image-upload-button{ 
+            line-height: 40px;
+            border-radius: 0;
+            margin: auto 0;
+            font-size: 15px;
+            text-transform: none;
+            font-weight: 400;
+            height: 100%;
+            padding-left: 16px;
+            padding-right: 16px;
+            text-align: left;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: baseline;
+            -ms-flex-align: baseline;
+            align-items: baseline;
+            -ms-flex-line-pack: start;
+            align-content: flex-start;
+            width: 100%;
+            padding: 0 32px 0 64px;
+
+        }
+    }
+}
