@@ -31,14 +31,20 @@
 
             <!-- Change Password  -->
             <md-menu-item class="md-indent" ng-click="toolbarUser.openChangePassword($event)">
-                <md-icon md-font-icon="icon-email" class="icon"></md-icon>
+                <md-icon md-font-icon="icon-alphabetical" class="icon"></md-icon>
                 <md-button>Change Password</md-button>
             </md-menu-item>
 
             <!--  Change profile picture -->
-            <md-menu-item class="md-indent" ng-click="toolbarUser.openChangePictureModal($event)">
-                <md-icon md-font-icon="icon-email" class="icon"></md-icon>
-                <md-button>Change Picture</md-button>
+            <md-menu-item class="md-indent" layout="row">
+                <md-icon md-font-icon="icon-account-box" class="icon"></md-icon>
+                <image-upload-button 
+                label="Change Picture" 
+                crop-settings="{aspectRatio: 1, resultImageSize: {w:300,h:300}, crop:true, areaType:'circle'}" 
+                update="toolbarUser.pictureUploaded($event)" 
+                type="button" 
+                type-class="'md-button md-ink-ripple menu-image-upload-button'" >
+                </image-upload-button>
             </md-menu-item>
 
             <md-menu-item class="md-indent">

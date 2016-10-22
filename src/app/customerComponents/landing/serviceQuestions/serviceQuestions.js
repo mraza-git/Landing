@@ -18,7 +18,14 @@
       }
 
       ///////////Data///////////
-      self.subscribe("forms");
+      self.subscribe("forms",function(){
+         var selector = {
+          serviceIds:$stateParams.serviceId,
+        };
+        return [
+          {},selector
+        ];
+      });
       self.helpers({
         form: function(){
           return FocForms.findOne({

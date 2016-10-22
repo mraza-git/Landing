@@ -40,6 +40,7 @@
            self.selectedForms = [];
         }, function() {
           // Canceled
+          console.log("Canceled");
         });
       }
     }

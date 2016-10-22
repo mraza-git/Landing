@@ -1,0 +1,50 @@
+<div id="form-folders"  class="navigation-simple" layout="column">
+  <div class="item subheader" translate="FORM.STATUSES">STATUSES</div>
+  <md-button class="item"
+  aria-label="inbox"
+  ng-repeat="folder in formFolders.masterSettings[0].forms.folders"
+  ng-click="formFolders.setCurrentFolder(folder.key)" ng-class="{'selected':formFolders.isFolderActive(folder.key)}">
+    <div layout="row" layout-align="start center">
+      <md-icon md-font-icon="icon-{{folder.icon}}" class="s16"></md-icon>
+      <span class="title">{{folder.name}}</span>
+    </div>
+  </md-button>
+  <div id="add-controls" layout="column">
+
+    <md-button class="md-raised md-primary toggle" ng-show="!formFolders.addingFolder" ng-click="formFolders.addingFolder=!formNav.addingFolder">
+      Add
+    </md-button>
+    <div class="slide-down" layout="column" ng-show="formFolders.addingFolder" ng-cloak>
+      <form name="folderForm" ng-submit="formFolders.addFolder()">
+        <div class="controls-form" layout="column">
+          <md-input-container  md-no-float class="md-block">
+            <input type="text" ng-maxlength="20" ng-minlength="3" name="newfolder" ng-model="formFolders.newFolder.name" placeholder="Folder name" autofocus required/>
+            <div class="errors" ng-messages="folderForm.newfolder.$error">
+              <div ng-message="required">Folder name is Required</div>
+              <div ng-message="minlength">Name should contain at least 3 characters</div>
+              <div ng-message="maxlength">Max length is 20 characters</div>
+            </div>
+          </md-input-container>
+          <icon-autocomplete icon-search="formFolders.iconSearch" done="formFolders.iconSelected($event)"></icon-autocomplete>
+          </div>
+          <div layout="row" class="controls toggle" layout-align="space between center">
+            <md-button type="submit" class="md-raised md-primary" ng-disabled="!folderForm.$valid">
+              Save
+            </md-button>
+            <md-button class="md-raised md-primary" ng-click="formFolders.addingFolder=false;">
+              Cancel
+            </md-button>
+          </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- <div class="item subheader" translate="FORM.LABELS">Labels</div>
+  <md-button class="item" ng-repeat="label in vm.labels" ng-click="vm.loadLabel(label.name)" ng-class="{'selected':vm.isLabelActive(label.name)}">
+    <div layout="row" layout-align="start center">
+      <div class="h-10 w-10 mr-16" ng-class="label.color"></div>
+      <span class="title">{{label.title}}</span>
+    </div>
+  </md-button>
+
+</div> -->

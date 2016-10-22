@@ -12,6 +12,7 @@ Meteor.subscribe("categories");
             'serviceQuestions',
             'serviceAutocomplete',
             'landingFooter',
+            'imageUpload'
         ])
         .component(name, {
             templateUrl: "app/customerComponents/landing/landing.html",

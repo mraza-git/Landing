@@ -1,0 +1,57 @@
+﻿<div layout="column">
+  <div
+    ng-hide="filesUpload.okToSave" class="slide-down drop-box" 
+    ngf-drop 
+    ngf-select
+    ngf-change="filesUpload.addImages($files)"
+    ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"    
+    ngf-multiple="true"
+    ngf-max-files="10"
+    ngf-allow-dir="false"
+    ngf-accept="'image/*'"
+    ngf-drop-available="true"
+    ngf-resize = "{width: 1000}"
+    ngf-resize-if = "$width > 1000 || $height > 1000">
+    <div>
+      <md-button class="md-raised md-accent" aria-label="upload">
+        <!--<md-icon md-font-icon="icon-upload" aria-label="upload" class="s20"></md-icon>-->
+        Click here to select image
+      </md-button>
+    </div>
+    <div>
+      <h3 style="line-height: 3px;">
+      <strong>OR</strong>
+      </h3>
+    </div>
+    <div>
+      <strong>
+        You can also drop image here
+      </strong>
+    </div>    
+    <br>    
+    <div style="font-size:9px;">A Maximum of 10 files can be selected.<br>All files will be resized to max of 1000px width or height</div>
+  </div>    
+  <md-progress-linear
+        ng-show="filesUpload.progress>0"
+        ng-disabled="filesUpload.progressCompleted"        
+        md-mode="determinate" class="md-warn"
+        value="{{filesUpload.progress}}">
+    </md-progress-linear>
+  <div layout-xs="column" layout-gt-xs="row">
+    <div ng-repeat="file in filesUpload.files" flex="25">
+      <save-image 
+      file="file" 
+      done="filesUpload.updated($event,$index)" 
+      ok-to-save="filesUpload.okToSave" 
+      image-class="''"
+      send-progress="filesUpload.setProgress($event,$index)"
+      delete ="filesUpload.files.splice($index,1)" 
+      layout="column" 
+      layout-padding flex>
+        
+      </save-image>
+    </div>
+
+  </div>
+  
+</div>

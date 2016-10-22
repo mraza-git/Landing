@@ -21,15 +21,19 @@
       forms: function() {
         self.loading = true;
         var forms =[];
-        var selector = {};
+        var selector = {
+          folder:{$ne:'deleted'}
+        };
         if(self.getReactively('currentFolder') !== 'all'){
           selector = {
-            $and : [
-            {folder: self.getReactively('currentFolder') || 'all'},
-            {deleted: false}
-          ]};
+              $and : [
+                {folder: self.getReactively('currentFolder') || 'all'},
+                {deleted: false},                
+              ]
+          };
         }
-        var cursor = FocForms.find(selector);        
+        var cursor = FocForms.find(selector,{sort:{updatedAt:-1,}});          
+                
         if(self.loading){
           self.currentForm = cursor.fetch()[0]; //populating the first item at the start.
           if(self.currentForm)

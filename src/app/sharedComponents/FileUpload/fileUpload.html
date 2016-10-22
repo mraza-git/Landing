@@ -1,0 +1,64 @@
+﻿<div layout="column">
+  <div ngf-drop
+    ngf-select
+    ngf-change="fileUpload.addImage($files)"
+    ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
+    class="drop-box"
+    ngf-multiple="false"
+    ngf-allow-dir="false"
+    ngf-accept="'image/*'"
+    ngf-drop-available="true"
+    ngf-resize = "{width: 2000}"
+    ngf-resize-if = "$width > 2000 || $height > 2000"
+    ng-hide="fileUpload.cropImgSrc">
+    <div>Click here to select image</div>
+    <div>
+      <strong>OR</strong>
+    </div>
+    <div>You can also drop image here</div>
+  </div>
+  <md-progress-linear
+    ng-disabled="!fileUpload.uploading"
+    md-mode="determinate" class="md-warn"
+    value="{{fileUpload.progress}}">
+  </md-progress-linear>
+  <!-- <md-progress-circular
+  ng-disabled="!fileUpload.uploading"
+  class="md-accent" md-diameter="40"
+  md-mode="determinate"
+  value="{{fileUpload.progress}}">
+  </md-progress-circular> -->
+
+  <div ng-if="fileUpload.cropImgSrc" layout="column" layout-align="center center" class="ng-crop" ng-hide="fileUpload.uploading">
+    
+    <div ng-hide='fileUpload.cropIsDone'>
+      <div class="ng-crop-container" >
+        <img-crop
+        area-min-size = "40"
+        image="fileUpload.cropImgSrc"
+        result-image="fileUpload.myCroppedImage"
+        area-type="{{fileUpload.cropSettings.areaType || 'square'}}"
+        aspect-ratio = "fileUpload.cropSettings.aspectRatio || 1"
+        init-max-area = "true"
+        area-init-is-relative-to-image="true"
+        result-image-size="fileUpload.cropSettings.resultImageSize">
+      </img-crop>
+    </div>
+    </div>
+    <div layout="row" layout-align="center center">
+      <md-button ng-click="fileUpload.cropDone()" class="md-accent md-raised">
+        Crop Image
+      </md-button>
+      <md-button ng-click="fileUpload.reset()" class="md-primary md-raised">
+        Cancel
+      </md-button>
+
+    </div>
+  </div>
+  <div layout="row" class="images-container-title" ng-hide='!fileUpload.cropIsDone || fileUpload.uploading'>
+    <div  class="file-image-container main-image" >
+      <img ng-src="{{fileUpload.croppedImage}}"/>
+      <md-icon md-font-icon="icon-pencil" style="left:10px;bottom:100px;" ng-click='fileUpload.cropNow()'></md-icon>
+    </div>
+  </div>
+</div>

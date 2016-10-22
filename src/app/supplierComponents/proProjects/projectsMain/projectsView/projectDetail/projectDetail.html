@@ -1,0 +1,51 @@
+<!-- EMPTY DETAILS PAGE -->
+<div ng-if="!formDetail.currentForm" class="no-thread-selected" layout="column" layout-align="center center" flex ng-cloak>
+  <md-icon md-font-icon="icon-format-float-none" class="s120 grey-400-fg"></md-icon>
+  <span class="hint-text" translate="FORM.SELECT_FORM_TO_DEFINE">Select a form to view and edit</span>
+</div>
+<!--  /EMPTY DETAILS PAGE-->
+<!-- DETAILS PAGE -->
+<div ng-show="formDetail.currentForm" flex layout="column" class="slide-top" ng-cloak>
+  <!--  HEADER-->
+  <div class="thread-header" layout="row" layout-align="space-between center">
+    <!--  TITLE-->
+    <div>
+      <!--  FORM NAME-->
+      <div class="subject" flex>{{formDetail.currentForm.title}}</div>
+      <!--  /FORM NAME-->
+     
+      <!--  FORM TAGS-->
+      <!-- <div class="labels">
+                <div class="label" ng-repeat="labelId in formDetail.currentForm.labels"
+                     ng-class="vm.getLabelColor(labelId)">{{vm.getLabelTitle(labelId)}}
+                </div>
+            </div> -->
+      <!--  /FORM TAGS-->
+    </div>
+    <!--  /TITLE-->
+    <!--  FORM ACTIONS-->
+    <div class="actions" layout="column" layout-align="start start">
+       <!--  FORM SERVICES-->
+      <div class="">        
+        <form-services service-ids="formDetail.currentForm.serviceIds"></form-services>
+      </div>
+      <!--  /FORM SERVICES-->
+      <!--  FORM ACTION BUTTONS-->
+      <!--<md-button class="md-icon-button" ng-click="formDetail.toggleFormStatus('live')" aria-label="Toggle live" translate translate-attr-toogle-starred="FORM.TOGGLE_LIVE">
+        <md-icon ng-if="formDetail.currentForm.live" md-font-icon="icon-label" class="amber-fg"></md-icon>
+        <md-icon ng-if="!formDetail.currentForm.live" md-font-icon="icon-label-outline"></md-icon>
+        <md-tooltip md-direction="bottom">
+          Live
+        </md-tooltip>
+      </md-button>-->
+      <!--  /FORM ACTION BUTTONS-->
+    </div>
+    <!--  /FORM ACTIONS-->
+  </div>
+  <!--  /HEADER-->
+  <!--  FORM PAGE LIST-->
+  <!--   send currentForms's PAGES as input and get the updated PAGES in $event object.    -->
+  <page-list pages="formDetail.currentForm.pages" update="formDetail.done($event)" flex layout="column"></page-list>
+  <!--  /FORM PAGE LIST-->
+</div>
+<!--  /DETAILS PAGE-->

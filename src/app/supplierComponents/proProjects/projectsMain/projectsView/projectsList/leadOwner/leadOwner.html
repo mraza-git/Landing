@@ -1,0 +1,6 @@
+<thumb-image ng-if="leadOwner.owner" layout="row" image-id="leadOwner.owner.profile.dpImageId" size="40" image-class="avatar"></thumb-image>
+<md-tooltip>Creator: {{leadOwner.owner.profile.name}}</md-tooltip>
+  <div class="avatar" ng-if="!leadOwner.owner" ms-random-class="leadOwner.colors">
+      {{leadOwner.owner.profile.name[0]}}
+      <md-tooltip>Creator: {{leadOwner.owner.profile.name}}</md-tooltip>
+  </div>

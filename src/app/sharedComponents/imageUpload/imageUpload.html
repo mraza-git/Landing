@@ -1,0 +1,31 @@
+<button 
+           ng-if="imageUpload.type ==='button'"
+           id="button-id"
+           ng-class="{{imageUpload.typeClass}}"
+           md-no-ink="true"
+           ng-click="imageUpload.openChangePictureModal($event)"
+           aria-label="upload image">
+           <md-icon ng-if="imageUpload.icon" md-font-icon="{{imageUpload.icon}}" aria-label="upload" class="s20"></md-icon> 
+           <span>
+           {{imageUpload.label}} 
+           </span> 
+           
+</button>
+
+<a
+           ng-if="imageUpload.type ==='anchor'"           
+          ng-class="{{imageUpload.typeClass}}"
+           md-no-ink="true"
+           ng-click="imageUpload.openChangePictureModal($event)"
+           aria-label="upload image">
+           <md-icon ng-if="imageUpload.icon" md-font-icon="{{imageUpload.icon}}" aria-label="upload" class="s20"></md-icon> 
+           {{imageUpload.label}} 
+           
+</a>
+
+
+<!-- COMPONENT USAGE-->
+
+<!--<image-upload-button icon="icon-upload" crop-settings="{aspectRatio: 4/3, resultImageSize: {w:300,h:300}, crop:true, areaType:'rectangle'}" update="landing.done($event)" type="button" type-class="'md-button md-raised md-icon-button md-accent md-ink-ripple'" ></image-upload-button>-->
+
+<!-- /COMPONENT USAGE-->

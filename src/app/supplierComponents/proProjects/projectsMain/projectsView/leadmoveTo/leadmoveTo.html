@@ -1,0 +1,9 @@
+<md-button class="md-icon-button bouncy-slide-left" aria-label="Archive"
+translate translate-attr-aria-label="FORM.ARCHIVE"
+ng-click="moveTo.updateFormFolder($event,folder.key)"
+ng-repeat="folder in moveTo.masterSettings[0].forms.folders">
+  <md-icon md-font-icon="icon-{{folder.icon}}"></md-icon>
+  <md-tooltip>
+    <span>{{folder.name}}</span>
+  </md-tooltip>
+</md-button>

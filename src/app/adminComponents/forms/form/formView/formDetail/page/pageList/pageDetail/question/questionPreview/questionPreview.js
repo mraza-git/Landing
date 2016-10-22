@@ -226,7 +226,25 @@
 
     formlyConfig.setType({
       name: 'budget',
-      template: '<budget-field key="options.type" options="to.options" selected-budget="model[options.key]" ></budget-field>'
+      wrapper: ['label'],
+      apiCheck: function (check) {
+        return {
+          templateOptions: {
+            options: check.arrayOf(check.object),
+            labelProp: check.string.optional,
+            valueProp: check.string.optional,
+            theme: check.string.optional
+          }
+        };
+      },
+      template: '<md-radio-group ng-model="model[options.key]" md-theme="{{to.theme}}">'+
+                '<md-radio-button '+
+                  ' ng-repeat="option in to.options"'+
+                  ' ng-disabled="to.disabled"'+
+                  ' ng-value="option[to.valueProp]">'+
+                  ' {{option[to.labelProp]}}'+
+                '</md-radio-button>'+
+            '</md-radio-group>'
     });
 
     formlyConfig.setType({
