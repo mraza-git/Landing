@@ -1,12 +1,12 @@
-﻿<div layout="column">
-  <div
-    ng-hide="filesUpload.okToSave" class="slide-down drop-box" 
+﻿<div layout="column" id="files-upload">
+  <div 
+    ng-hide="filesUpload.okToSave || $mdMedia('(max-width: 768px)')" class="slide-down drop-box" 
     ngf-drop 
     ngf-select
     ngf-change="filesUpload.addImages($files)"
     ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"    
     ngf-multiple="true"
-    ngf-max-files="10"
+    ngf-max-files="15"
     ngf-allow-dir="false"
     ngf-accept="'image/*'"
     ngf-drop-available="true"
@@ -31,26 +31,54 @@
     <br>    
     <div style="font-size:9px;">A Maximum of 10 files can be selected.<br>All files will be resized to max of 1000px width or height</div>
   </div>    
+  <md-button 
+    ng-hide="filesUpload.okToSave || $mdMedia('(min-width: 768px)')" 
+    class="slide-down md-raised md-accent"     
+    ngf-select
+    ngf-change="filesUpload.addImages($files)"   
+    ngf-multiple="true"
+    ngf-max-files="15"
+    ngf-allow-dir="false"
+    ngf-accept="'image/*'"
+    ngf-drop-available="true"
+    ngf-resize = "{width: 1000}"
+    ngf-resize-if = "$width > 1000 || $height > 1000"
+    aria-label="upload" > Select pictures </md-button>
+    
   <md-progress-linear
         ng-show="filesUpload.progress>0"
         ng-disabled="filesUpload.progressCompleted"        
         md-mode="determinate" class="md-warn"
         value="{{filesUpload.progress}}">
     </md-progress-linear>
-  <div layout-xs="column" layout-gt-xs="row">
-    <div ng-repeat="file in filesUpload.files" flex="25">
-      <save-image 
-      file="file" 
-      done="filesUpload.updated($event,$index)" 
-      ok-to-save="filesUpload.okToSave" 
-      image-class="''"
-      send-progress="filesUpload.setProgress($event,$index)"
-      delete ="filesUpload.files.splice($index,1)" 
-      layout="column" 
-      layout-padding flex>
-        
-      </save-image>
-    </div>
+  <div layout-xs="column" layout-gt-xs="row" class="upload-content" flex style="width:100%">
+    <md-grid-list class="list"
+                layout="column" flex
+                md-cols-xs="3" md-cols-sm="4" md-cols-md="6" md-cols-gt-md="8"
+                md-row-height-gt-md="1:1" md-row-height="4:3"
+                md-gutter-gt-md="20px" md-gutter-gt-sm="12px" md-gutter="8px">
+
+      <md-grid-tile class="foc-tile"                
+                ng-repeat="file in filesUpload.files" 
+                md-rowspan="1" md-colspan="1" md-colspan-sm="1" md-colspan-xs="1">
+      <!--CONTENT IMAGE-->
+        <save-image 
+        file="file" 
+        done="filesUpload.updated($event,$index)" 
+        ok-to-save="filesUpload.okToSave" 
+        send-progress="filesUpload.setProgress($event,$index)"
+        delete ="filesUpload.files.splice($index,1)"        
+        style="width:100%;" 
+       >          
+        </save-image>
+      <!--CONTENT IMAGE-->
+
+      </md-grid-tile>
+
+
+    </md-grid-list>
+    <!--<div ng-repeat="file in filesUpload.files" flex="25">
+    </div>-->
 
   </div>
   

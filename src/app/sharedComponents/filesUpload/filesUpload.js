@@ -12,11 +12,11 @@ angular.module(name, [
     },
     controllerAs: name,
 
-    controller: FileUpload
+    controller: FilesUpload
 });
 
 
-function FileUpload($scope, $reactive) {
+function FilesUpload($scope, $reactive,$mdMedia) {
     'ngInject';
 
     var self = this;
@@ -27,6 +27,7 @@ function FileUpload($scope, $reactive) {
     self.count = 0;
     self.progress = 0;
     $reactive(self).attach($scope);
+    $scope.$mdMedia = $mdMedia;
 
     /////////// Method Declaration //////////////
     self.addImages = addImages;   
