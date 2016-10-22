@@ -1,230 +1,273 @@
 #partner-list {
     .header {
-        height: 50px;
-        min-height: 50px;
-        max-height: 50px;
-        padding: 0;
-        }
+        height: 80px;
+        min-height: 80px;
+        max-height: 80px;
+        padding: 20px ;
+          .header-content {
+            margin: auto;
+            width: 50%;
+            -webkit-transition: all 300ms ease-out 50ms;
+            -moz-transition: all 300ms ease-out 50ms;
+            -o-transition: all 300ms ease-out 50ms;
+            transition: all 300ms ease-out 50ms;
+          
+          }
+      }
         .content-card {
 
         }
 
-.food
-{
-  position: relative;
-  min-width: 550px;
-  max-width: 550px;
-  background: #FFF;
-  border-radius: 2px;
-  margin: 0 22px;
-  box-shadow: 0 2px 15px rgba(0, 0, 0, .5);
-}
+      .tile {
+        position: relative;
+        // min-width: 550px;
+        // max-width: 550px;
+        background: #FFF;
+        border-radius: 2px;
+        margin: 0 22px;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, .5);
 
-.food > .cover
-{
-  position: relative;
-  height: 190px;
-  background: transparent center no-repeat;
-  background-size: 100% auto;
-  border-radius: 2px 2px 0 0;
-}
+        .cover {
+          position: relative;
+          height: 190px;
+          background: transparent center no-repeat;
+          background-size: 100% auto;
+          border-radius: 2px 2px 0 0;
 
-.food > .cover > label
-{
-  position: absolute;
-  top: 22px;
-  left: -33px;
-  height: 33px;
-  padding: 0 30px 0 63px;
-  line-height: 33px;
-  vertical-align: middle;
-  font-family: sans-serif;
-  font-size: 13px;
-  text-transform: uppercase;
-  color: #FFF;
-  text-shadow: 0 1px 2px #000;
-  background: rgba(136, 86, 168, .6);
-}
+          .youtube {
+            display: block;
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: rgba(196, 48, 43, 0.6);
+            border-radius: 100%;
+          
+            svg {
+              margin: 0;
+              width: 40px;
+            }
+            &:hover { 
+              background: #c4302b 
+              }
+          }
+           .facebook {
+            display: block;
+            position: absolute;
+            bottom: 20px;
+            right: 70px;
+            width: 40px;
+            height: 40px;
+            background: rgba(59,89,152,0.6);
+            border-radius: 100%;
+          
+            svg {
+              margin: 0;
+              width: 40px;
+            }
+            &:hover { 
+              background: #3B5998 
+              }
+          }
 
-.food > .cover > label > i
-{
-  position: absolute;
-  top: 0;
-  left: 0;
-}
+           .twitter {
+            display: block;
+            position: absolute;
+            bottom: 20px;
+            right: 120px;
+            width: 40px;
+            height: 40px;
+            background: rgba(85,172,238,0.6);
+            border-radius: 100%;
+          
+            svg {
+              margin: 0;
+              width: 40px;
+            }
+            &:hover { 
+              background: #55ACEE 
+              }
+          }
 
-.food > .cover > label > i > svg
-{
-  margin: 5px;
-  width: 24px;
-}
-.description {
-    position: absolute;
-    bottom: 16px;
-    left: 0px;
-    padding: 5px 0 5px 15px;
-    font-size: 14px;
-    color: #FFF;
-    text-shadow: 0 1px 2px #000;
-    width: 58%;
-    background: rgba(0, 0, 0, 0.31);
-    border-top-right-radius: 5px;
-    box-shadow: 0px 4px 5px -2px rgba(0, 0, 0, 0.2), 0px 7px 10px 1px rgba(0, 0, 0, 0.14), 0px 2px 16px 1px rgba(0, 0, 0, 0.12);
-}
 
-.outter {
-    padding: 0px;
-    border: 1px solid rgba(255, 255, 255, 0.29);
-    border-radius: 50%;
-    width: 100px;
-    height: 100px;
-    position: relative;
-    top: 15px;
-    right: 15px;
-    float: right;
-}
-.image-circle {
-    border-radius: 50%;
-    width: 90px;
-    height: 90px;
-    border: 3px solid #FFF;
-    margin: 4px;
-    background: white;
-}
-.food > .cover > .youtube
-{
-  display: block;
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  width: 40px;
-  height: 40px;
-  background: rgba(196, 48, 43, 0.6);
-  border-radius: 100%;
-}
 
-.food > .cover > .youtube:hover { background: #c4302b }
+          label {
+            position: absolute;
+            top: 22px;
+            left: 0;
+            height: 33px;
+            padding: 0 20px;
+            line-height: 33px;
+            vertical-align: middle;
+            font-family: sans-serif;
+            font-size: 13px;
+            text-transform: uppercase;
+            color: #FFF;
+            text-shadow: 0 1px 2px #000;
+            background: rgba(136, 86, 168, .6);
 
-.food > .cover > .youtube > svg
-{
-   margin: 3px;
-    width: 40px;
-}
+             i {
+              position: absolute;
+              top: 0;
+              left: 0;
+              svg {
+                margin: 5px;
+                width: 24px;
+              }
+            }
+          }
+         }
+          .info {
+          position: relative;
+          height: 80px;
+          overflow: hidden;
+          border-radius: 0 0 2px 2px;
 
-.food > .cover > .facebook
-{
-  display: block;
-  position: absolute;
-  bottom: 20px;
-  right: 70px;
-  width: 40px;
-  height: 40px;
-  background: rgba(59,89,152,0.6) ;
-  border-radius: 100%;
-}
+          .detail {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 90px;
+            height: 80px;
+            background: #8856A8;
+            font-family: sans-serif;
+            font-size: 14px;
+            color: #FFF;
+            text-transform: uppercase;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 0 0 0 2px;
 
-.food > .cover > .facebook:hover { background: #3B5998 }
+            &:hover { 
+              background: #9967B9 
+              }
+            i {
+              display: block;
+              margin: 15px 0;
+              width: 100%;
+            }
+          }
+          .content-p {
+              //position: absolute;
+             // top: 4px;
+             // left: 90px;
+              font-family: sans-serif;
+              font-size: 14px;
+              color: #888;
 
-.food > .cover > .facebook > svg
-{
-   margin: 3px;
-    width: 40px;
-}
+              strong { 
+                font-weight: normal; 
+                color: #333;
+                }
+             .border-right { 
+               border-right: 1px solid #D9D9D9;
+               }
+              .pad-right { 
+                padding-right: 8px; 
+                padding-left: 10px;
+                }
+              .consumers img, .consumers span { 
+                display: inline-block; 
+                width: 32px; 
+                height: 32px; 
+                margin: 0 2px 0 0; 
+                line-height: 32px; 
+                vertical-align: middle; 
+                border-radius: 100% 
+                }
+              .consumers span { 
+                  margin: 0 
+                }
+            }
 
-.food > .cover > .twitter
-{
-  display: block;
-  position: absolute;
-  bottom: 20px;
-  right: 120px;
-  width: 40px;
-  height: 40px;
-  background: rgba(85,172,238,0.6);
-  border-radius: 100%;
-}
+            .star-ratings {
+             // position: absolute;
+             // top: 4px;
+             // right: 10px;
+              font-family: sans-serif;
+              font-size: 14px;
+              color: #888;
+              margin-left: 10px;
+               margin-right: 10px;
 
-.food > .cover > .twitter:hover { background: #55ACEE }
+              small {
+                text-align: center;
+                display: block;
+              }
 
-.food > .cover > .twitter > svg
-{
-   margin: 3px;
-    width: 40px;
-}
-.food > .info
-{
-  position: relative;
-  height: 80px;
-  overflow: hidden;
-  border-radius: 0 0 2px 2px;
-}
+              strong { 
+                font-weight: normal; 
+                color: #333;
+                }
+            
+              h1 {
+              margin: 0;
+              font-size: 22px;
+              font-weight: bold;
+              color: #333;
+              text-align: center;
+            }
+            .stars, .stars > em {
+              display: block;
+              width: 99px;
+              height: 18px;
+              margin: 0;
+              text-align: center;
+              background: url("../../../assets/images/backgrounds/stars.png");
+            }
 
-.food > .info > .recipe
-{
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 115px;
-  height: 115px;
-  background: #8856A8;
-  font-family: sans-serif;
-  font-size: 14px;
-  color: #FFF;
-  text-transform: uppercase;
-  text-decoration: none;
-  text-align: center;
-  border-radius: 0 0 0 2px;
-}
+            .stars > em {
+              width: 99px;
+              height: 18px;
+              margin: 0;
+              background: url("../../../assets/images/backgrounds/stars.png");
+              background-position: 0 -18px;
+            }
+          }
+        }
+      }
 
-.food > .info > .recipe:hover { background: #9967B9 }
 
-.food > .info > .recipe > i
-{
-  display: block;
-  margin: 30px 0 15px;
-  width: 100%;
-}
+            .category {
+              right: 0;
+              position: absolute;
+              background: #1565c0;
+              padding: 1px 5px;
+              color: white;
+            }
+            .description {
+                position: absolute;
+                bottom: 16px;
+                left: 0px;
+                padding: 5px 0 5px 15px;
+                font-size: 14px;
+                color: #FFF;
+                text-shadow: 0 1px 2px #000;
+                width: 58%;
+                background: rgba(0, 0, 0, 0.40);
+                border-top-right-radius: 5px;
+                box-shadow: 0px 4px 5px -2px rgba(0, 0, 0, 0.2), 0px 7px 10px 1px rgba(0, 0, 0, 0.14), 0px 2px 16px 1px rgba(0, 0, 0, 0.12);
+            }
 
-.food > .info > .content-p
-{
-    position: absolute;
-    top: 4px;
-    left: 119px;
-    font-family: sans-serif;
-    font-size: 14px;
-    color: #888;
-}
-
-.food > .info > .content-p strong { font-weight: normal; color: #333 }
-.food > .info > .content-p .border-right { border-right: 1px solid #D9D9D9 }
-.food > .info > .content-p .pad-right { padding-right: 8px; padding-left: 10px;}
-.food > .info > .content-p .consumers img, .food > .info > .content-p .consumers span { display: inline-block; width: 32px; height: 32px; margin: 0 2px 0 0; line-height: 32px; vertical-align: middle; border-radius: 100% }
-.food > .info > .content-p .consumers span { margin: 0 }
-
-.food > .info > .content-p h1
-{
-  margin: 0;
-  font-size: 22px;
-  font-weight: bold;
-  color: #333;
-}
-
-.food > .info > .content-p .stars, .food > .info > .content-p .stars > em
-{
-  display: block;
-  width: 99px;
-  height: 18px;
-  margin: 0;
-  text-align: left;
-  background: url(http://c.boylett.uk/generic/image_png_00004.png);
-}
-
-.food > .info > .content-p .stars > em
-{
-  width: 99px;
-  height: 18px;
-  margin: 0;
-  background: url(http://c.boylett.uk/generic/image_png_00004.png);
-  background-position: 0 -18px;
-}
+            .logo-outter {
+                padding: 0px;
+                border: 1px solid rgba(255, 255, 255, 0.29);
+                border-radius: 50%;
+                width: 100px;
+                height: 100px;
+                position: relative;
+                top: 25px;
+                right: 20px;
+                float: right;
+            }
+            .logo {
+                border-radius: 50%;
+                width: 90px;
+                height: 90px;
+                border: 3px solid #FFF;
+                margin: 4px;
+                background: white;
+            }
 }
