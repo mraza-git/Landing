@@ -57,7 +57,7 @@
           }
         });
 
-        $state.go('app.landing');
+        // $state.go('app.landing');
 
       }
       function login(event){
@@ -82,6 +82,7 @@
       'questionsToolbar',   
       'AuthModals',
       'filesUpload',
+      'imageUpload',
       ])
   .component(name,{
     templateUrl: templateUrl,

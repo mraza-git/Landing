@@ -11,12 +11,12 @@
     ngf-accept="'image/*'"
     ngf-drop-available="true"
     ngf-resize = "{width: 1000}"
-    ngf-resize-if = "$width > 1000 || $height > 1000"
-    ng-hide="filesUpload.cropImgSrc">
+    ngf-resize-if = "$width > 1000 || $height > 1000">
     <div>
-      <strong>
+      <md-button class="md-raised md-accent" aria-label="upload">
+        <!--<md-icon md-font-icon="icon-upload" aria-label="upload" class="s20"></md-icon>-->
         Click here to select image
-      </strong>
+      </md-button>
     </div>
     <div>
       <h3 style="line-height: 3px;">
@@ -30,7 +30,7 @@
     </div>    
     <br>    
     <div style="font-size:9px;">A Maximum of 10 files can be selected.<br>All files will be resized to max of 1000px width or height</div>
-  </div>  
+  </div>    
   <md-progress-linear
         ng-show="filesUpload.progress>0"
         ng-disabled="filesUpload.progressCompleted"        

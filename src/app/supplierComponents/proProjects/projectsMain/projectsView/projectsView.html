@@ -1,0 +1,59 @@
+<!-- TOOLBAR -->
+<div class="toolbar" layout="row" layout-align="space-between center">
+
+  <div layout="row" layout-align="start center">
+    <!-- ACTION BUTTONS -->
+    <div class="action-buttons" layout="row" layout-align="start center">
+
+      <!-- <md-button ng-click="formView.toggleListNav('form-list-sidenav')" -->
+      <md-button class="md-icon-button" hide-gt-md aria-label="Toggle navigation fold" translate translate-attr-aria-label="TOOLBAR.TOGGLE_NAVIGATION_FOLD"
+        ng-click="formView.toggleListNav('formlist-sidenav')">
+        <md-icon class="s18" ng-class="{'rotate-icon-0':formView.listNavIsOpen,'rotate-icon-180':!formView.listNavIsOpen}" md-font-icon="icon-backburger"></md-icon>
+      </md-button>
+      <md-checkbox class="no-label" aria-label="select or unselect all" ng-checked="formView.selectedForms.length > 0" ng-click="formView.toggleSelectForms()"></md-checkbox>
+
+      <div class="divider-vertical"></div>
+      <div class="" ng-show="formView.currentForm && formView.selectedForms.length <= 0">
+        <form-edit current-form="formView.currentForm"></form-edit>
+      </div>
+      <div class="mybouncy-slide-left" ng-show="formView.selectedForms.length > 0">
+        <move-to ng-cloak master-settings="formView.masterSettings" selected-forms="formView.selectedForms"></move-to>
+      </div>
+
+    </div>
+    <!-- /ACTION BUTTONS -->
+
+  </div>
+  <md-button class="md-warn md-raised" aria-label="button-label" ng-disabled="!formView.currentForm.isChanged" ng-click="formView.update()"> Save </md-button>
+
+
+</div>
+
+<!-- CONTENT WRAPPER -->
+<!--<div class="content-wrapper" layout="row" layout-align="center center" flex ng-if="formView.loading">
+  <md-progress-circular md-diameter="50"></md-progress-circular>
+</div>-->
+
+<div class="content-wrapper trigger" layout="row" flex ng-hide="formView.loading" ng-cloak>
+
+  <!-- THREAD LIST -->
+  <!--<md-sidenav class="sidenav" md-is-locked-open="$mdMedia('gt-md')" md-component-id="formlist-sidenav" ms-scroll ms-sidenav-helper>
+    <div class="content thread-list" ms-scroll flex>
+      <form-list search="formView.search" current-form="formView.currentForm" selected-forms="formView.selectedForms" forms="formView.forms"
+        master-settings="formView.masterSettings"></form-list>
+    </div>
+  </md-sidenav>-->
+  <!-- / THREAD LIST -->
+
+  <div ui-view="content">
+
+  </div>
+
+  <!-- THREAD DETAIL -->
+  <!--<div class="content thread-detail" layout="column" flex>
+    <form-detail layout="column" flex current-form="formView.currentForm" update="formView.done($event)"></form-detail>
+  </div>-->
+  <!-- / THREAD DETAIL -->
+
+</div>
+<!-- / CONTENT WRAPPER -->

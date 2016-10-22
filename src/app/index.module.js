@@ -65,6 +65,8 @@ Meteor.subscribe("settings");
             'proFaq',
             'proHowitworks',
             'proTerms',
+            'projects',
+            'projectsList',
 
 
         ]);
