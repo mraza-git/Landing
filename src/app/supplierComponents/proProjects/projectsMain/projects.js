@@ -70,7 +70,9 @@
         return Meteor.user();
       },
       masterSettings: function() {
-        return Settings.find();
+        return Settings.findOne({
+          owner: Meteor.userId(),
+        });
       }
     });
 
@@ -97,7 +99,7 @@
     .module(name, [
       'angular-meteor',
       'pagesToolbar',
-      // 'projectsView',  
+      'projectsView',  
       'projectsNav',  
          
     ])

@@ -6,7 +6,7 @@
 
   <!-- SIDENAV -->
   <md-sidenav class="sidenav" md-is-locked-open="$mdMedia('gt-md')" md-component-id="projects-sidenav" ms-scroll ms-sidenav-helper>
-    <projects-nav current-folder="formMain.currentFolder" master-settings="formMain.masterSettings" current-form="formMain.currentForm"></projects-nav>
+    <projects-nav current-folder="projects.currentFolder" master-settings="projects.masterSettings" current-project="projects.currentForm"></projects-nav>
   </md-sidenav>
   <!-- / SIDENAV -->
 
@@ -17,13 +17,19 @@
     <div class="header" layout="row" layout-align="start center">
 
       <div class="search-wrapper md-whiteframe-4dp" layout="row" layout-align="start center" flex>
-        <md-button class="md-icon-button sidenav-toggle" ng-click="formMain.toggleSidenav('projects-sidenav')" hide-gt-md aria-label="Toggle Sidenav" translate translate-attr-aria-label="FORM.TOGGLE_SIDENAV">
+        <md-button class="md-icon-button sidenav-toggle" ng-click="projects.toggleSidenav('projects-sidenav')" 
+          hide-gt-md aria-label="Toggle Sidenav" translate translate-attr-aria-label="FORM.TOGGLE_SIDENAV">
           <md-icon class="icon" md-font-icon="icon-menu"></md-icon>
         </md-button>
 
         <div class="search" flex layout="row" layout-align="start center">
           <md-icon md-font-icon="icon-magnify" class="icon s24"></md-icon>
-          <input flex ng-model="formMain.search" type="text" placeholder="Search for an e-mail or contact" translate translate-attr-placeholder="FORM.SEARCH_PLACEHOLDER">
+          <input flex ng-model="projects.search" type="text" placeholder="Search for an e-mail or contact" translate translate-attr-placeholder="FORM.SEARCH_PLACEHOLDER"/>
+          <md-icon md-font-icon="icon-menu" class="icon s24">
+            <md-tooltip md-direction="top">
+              Advanced Search
+            </md-tooltip>
+          </md-icon>
         </div>
       </div>
 

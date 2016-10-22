@@ -14,34 +14,35 @@
     self.loading = false;
     self.selectedForms = [];
     self.selectedForm = undefined;
+    
     self.helpers({
       currentUser: function() {
         return Meteor.user();
       },
-      forms: function() {
-        self.loading = true;
-        var forms =[];
-        var selector = {
-          folder:{$ne:'deleted'}
-        };
-        if(self.getReactively('currentFolder') !== 'all'){
-          selector = {
-              $and : [
-                {folder: self.getReactively('currentFolder') || 'all'},
-                {deleted: false},                
-              ]
-          };
-        }
-        var cursor = FocForms.find(selector,{sort:{updatedAt:-1,}});          
+      // forms: function() {
+      //   self.loading = true;
+      //   var forms =[];
+      //   var selector = {
+      //     folder:{$ne:'deleted'}
+      //   };
+      //   if(self.getReactively('currentFolder') !== 'all'){
+      //     selector = {
+      //         $and : [
+      //           {folder: self.getReactively('currentFolder') || 'all'},
+      //           {deleted: false},                
+      //         ]
+      //     };
+      //   }
+      //   var cursor = FocForms.find(selector,{sort:{updatedAt:-1,}});          
                 
-        if(self.loading){
-          self.currentForm = cursor.fetch()[0]; //populating the first item at the start.
-          if(self.currentForm)
-          self.loading=false;
-        }
+      //   if(self.loading){
+      //     self.currentForm = cursor.fetch()[0]; //populating the first item at the start.
+      //     if(self.currentForm)
+      //     self.loading=false;
+      //   }
         
-        return cursor;
-      }
+      //   return cursor;
+      // }
     });
 
 
@@ -133,8 +134,8 @@
   angular
     .module(name, [
       'angular-meteor',
-      'leadmoveTo',      
-      'projectDetail',
+      // 'leadmoveTo',      
+      // 'projectDetail',
       // 'projectsList',
     ])
     .component(name, {
