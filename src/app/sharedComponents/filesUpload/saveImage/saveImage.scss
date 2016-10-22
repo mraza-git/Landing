@@ -1,0 +1,40 @@
+#save-image {
+
+    &.img-box-shadow {
+          -webkit-box-shadow: 0 13px 12px -6px rgba(0, 0, 0, 0.62);
+           -moz-box-shadow: 0 13px 12px -6px rgba(0, 0, 0, 0.62);
+          box-shadow: 0 13px 12px -6px rgba(0, 0, 0, 0.62);
+
+            .img-progress {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              margin: 0;
+              z-index: 31;
+            }
+    }
+    
+
+    .md-button.md-icon-button {
+        margin: 0 6px;
+        height: 100%;
+        min-width: 0;
+        line-height: 24px;
+        padding: 0;
+        width: 100%;
+        border-radius: 0;
+
+    }
+        .icon-remove {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+        }
+        .icon-check {
+            position: absolute;
+            top: 5px;
+            right: 34px;
+            color: #007b69;
+        }
+}

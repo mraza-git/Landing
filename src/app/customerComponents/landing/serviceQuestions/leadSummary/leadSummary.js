@@ -5,12 +5,12 @@
 
     var main = 'lead'; // Change this with containing folder name
     var type = 'Summary';
-    function ControllerFunction($scope,$reactive,$cookies,AuthModals,$mdToast,$state){
+    function ControllerFunction($scope,$reactive,$cookies,AuthModals,$mdToast,$state,serviceName){
       'ngInject';
       ///////////Initialization Checks///////////
       var self = this;
       $reactive(self).attach($scope);
-
+      
       ///////////Data///////////
       self.lead = $cookies.getObject('foc.lead');
       self.okToSave = false;
@@ -22,9 +22,18 @@
       self.helpers({
         isLoggedIn: function (){
           return !!Meteor.userId();
-        }
+        },
+         service: function (){
+          var service = Services.findOne(self.getReactively('lead.serviceId'));
+          if(service){
+            serviceName.set(service);
+          }
+          return service;
+        },         
       });
+      
 
+    
       ///////////Methods Declarations///////////
       self.startSave = startSave;
       self.saveLead = saveLead;   
@@ -68,7 +77,12 @@
       }
       function uploadedPictures(event){
         self.lead.images = event.images;
-        self.saveLead();
+        // self.saveLead();
+
+        angular.forEach(event.images,function(value,index){
+          Images.remove(value.id);
+          console.log("Removing: ",value.url);
+        });
       }
 
     }
@@ -83,6 +97,7 @@
       'AuthModals',
       'filesUpload',
       'imageUpload',
+      'ServiceNameModule',
       ])
   .component(name,{
     templateUrl: templateUrl,

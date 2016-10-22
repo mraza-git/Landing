@@ -1,25 +1,33 @@
 
-<div flex>
-    <img ng-src="{{saveImage.file.$ngfDataUrl}}" ng-class="{{saveImage.imageClass}}"/>
-    <md-icon
-    ng-show="saveImage.uploaded" 
-    md-font-icon="icon-check"  
-    aria-label="tick" 
-    class="s18 md-warn">
-    </md-icon>
-    <md-button
-        ng-hide="saveImage.uploading"
-        ng-click="saveImage.remove()" 
-        aria-label="remove" class="md-icon-button md-accent">
-       <md-icon md-font-icon="icon-close-circle-outline" class="s25"></md-icon>       
-    </md-button> 
-    <md-progress-circular
-        ng-show="saveImage.uploading"
-        ng-disabled="!saveImage.uploading"
-        md-diameter="25"
-        md-mode="determinate" class="md-warn"
-        value="{{saveImage.progress}}">
-    </md-progress-circular>
+<div id="save-image" class="post__image-container img-box-shadow">
+    
+        <md-progress-circular
+            ng-show="saveImage.uploading"
+            ng-disabled="!saveImage.uploading"
+            md-diameter="25"
+            md-mode="determinate" class="md-warn img-progress"
+            value="{{saveImage.progress}}">
+        </md-progress-circular>
+        <md-icon
+        ng-show="saveImage.uploaded" 
+        md-font-icon="icon-check"  
+        aria-label="tick" 
+        class="s22 md-warn icon-check">
+        </md-icon>
+        <md-icon
+            ng-hide="saveImage.uploading"
+            ng-click="saveImage.remove()" 
+            md-font-icon="icon-minus-circle-outline"
+            aria-label="remove" class="md-icon-button md-accent icon-remove s25">     
+        </md-icon> 
+        <img ng-src="{{saveImage.blob}}"
+        class="post__featured-image toggle"
+         alt="alt">
+        <!--<md-icon 
+        md-font-icon="icon-close-circle-outline" class="s25"></md-icon>       -->
+
+
+    
 
 </div>
 
