@@ -96,9 +96,10 @@
   angular
     .module(name, [
       'angular-meteor',
-      'formView',  
-      'formNav',
-      'settingService'
+      'pagesToolbar',
+      // 'projectsView',  
+      'projectsNav',  
+         
     ])
     .component(name, {
       templateUrl: templateUrl,

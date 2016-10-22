@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  var main = 'move'; // Change this with containing folder name
+  var main = 'leadmove'; // Change this with containing folder name
   var type = 'To'; // Change This with Component functionality Detail, Add, Remove, Delete, List etc.
 
   function ControllerFunction($scope,$mdDialog) {
@@ -70,7 +70,7 @@
   }
 
   var name = main + type;
-  var templateUrl = 'app/adminComponents/forms/form/formView/' + name + '/' + name + '.html';
+  var templateUrl = 'app/supplierComponents/proProjects/projectsMain/projectsView/'+ name + '/' + name + '.html';
   var controller = ControllerFunction;
   angular
     .module(name, ['angular-meteor', ])

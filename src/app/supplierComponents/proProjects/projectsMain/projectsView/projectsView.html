@@ -14,7 +14,7 @@
 
       <div class="divider-vertical"></div>
       <div class="" ng-show="formView.currentForm && formView.selectedForms.length <= 0">
-        <form-edit current-form="formView.currentForm"></form-edit>
+        <!--<form-edit current-form="formView.currentForm"></form-edit>-->
       </div>
       <div class="mybouncy-slide-left" ng-show="formView.selectedForms.length > 0">
         <move-to ng-cloak master-settings="formView.masterSettings" selected-forms="formView.selectedForms"></move-to>
@@ -37,12 +37,12 @@
 <div class="content-wrapper trigger" layout="row" flex ng-hide="formView.loading" ng-cloak>
 
   <!-- THREAD LIST -->
-  <!--<md-sidenav class="sidenav" md-is-locked-open="$mdMedia('gt-md')" md-component-id="formlist-sidenav" ms-scroll ms-sidenav-helper>
+  <md-sidenav class="sidenav" md-is-locked-open="$mdMedia('gt-md')" md-component-id="formlist-sidenav" ms-scroll ms-sidenav-helper>
     <div class="content thread-list" ms-scroll flex>
-      <form-list search="formView.search" current-form="formView.currentForm" selected-forms="formView.selectedForms" forms="formView.forms"
-        master-settings="formView.masterSettings"></form-list>
+      <projects-list search="formView.search" current-form="formView.currentForm" selected-forms="formView.selectedForms" forms="formView.forms"
+        master-settings="formView.masterSettings"></projects-list>
     </div>
-  </md-sidenav>-->
+  </md-sidenav>
   <!-- / THREAD LIST -->
 
   <div ui-view="content">
@@ -50,9 +50,9 @@
   </div>
 
   <!-- THREAD DETAIL -->
-  <!--<div class="content thread-detail" layout="column" flex>
-    <form-detail layout="column" flex current-form="formView.currentForm" update="formView.done($event)"></form-detail>
-  </div>-->
+  <div class="content thread-detail" layout="column" flex>
+    <project-detail layout="column" flex current-form="formView.currentForm" update="formView.done($event)"></project-detail>
+  </div>
   <!-- / THREAD DETAIL -->
 
 </div>

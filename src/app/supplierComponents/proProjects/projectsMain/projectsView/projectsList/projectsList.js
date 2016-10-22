@@ -64,10 +64,8 @@
   angular
     .module(name, [
       'angular-meteor',
-      'formView',
-      'formServices',
-      'formOwner',
-      'formFoldericon',
+      'leadOwner',
+      'leadFoldericon',
     ])
     .component(name, {
       templateUrl: templateUrl,

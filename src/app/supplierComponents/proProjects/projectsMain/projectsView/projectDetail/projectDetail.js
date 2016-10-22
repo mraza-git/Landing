@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  var main = 'form'; // Change this with containing folder name
+  var main = 'project'; // Change this with containing folder name
   var type = 'Detail'; // Change This with Component functionality Detail, Add, Remove, Delete, List etc.
 
   /**
@@ -37,7 +37,7 @@
   }
 
   var name = main + type;
-  var templateUrl = 'app/adminComponents/forms/form/formView/' + name + '/' + name + '.html';
+  var templateUrl = 'app/supplierComponents/proProjects/projectsMain/projectsDetail/'+ name + '/' + name + '.html';
   var controller = ControllerFunction;
   angular
     .module(name, [

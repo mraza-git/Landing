@@ -2,7 +2,7 @@
   'use strict';
 
 
-  var main = 'form'; // Change this with containing folder name
+  var main = 'lead'; // Change this with containing folder name
   var type = 'Owner';
 
   function ControllerFunction($scope, $reactive) {
@@ -29,7 +29,7 @@
   }
 
   var name = main + type; // Change This with Component Name
-  var templateUrl = 'app/adminComponents/forms/form/formView/formList/' + name + '/' + name + '.html';  
+  var templateUrl = 'app/supplierComponents/proProjects/projectsMain/projectsView/projectsList/' + name + '/' + name + '.html';  
   var controller = ControllerFunction;
   angular
     .module(name, ['angular-meteor', 'thumbImage' ])
