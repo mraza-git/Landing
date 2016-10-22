@@ -15,6 +15,7 @@
         self.remove = remove;
 
         self.getBlob();
+        console.log(self.file);
         
 
         /////////// Method Definition //////////////
@@ -80,7 +81,6 @@
         .module('saveImage', [])
         .component('saveImage', {
             bindings: {
-                imageClass:'@',
                 file: '=',                
                 okToSave: '=',
                 done: '&',

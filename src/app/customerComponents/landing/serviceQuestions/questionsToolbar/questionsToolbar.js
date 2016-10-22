@@ -4,7 +4,7 @@
   var main = 'questions'; // Change this with containing folder name
   var type = 'Toolbar'; // Change This with Component functionality Detail, Add, Remove, Delete, List etc.
 
-  function ControllerFunction($scope,$reactive,AuthModals,serviceName) {
+  function ControllerFunction($scope,$reactive,AuthModals,serviceName,$mdMedia) {
     'ngInject';
     ///////////Data///////////
     var self = this;
@@ -13,11 +13,13 @@
     self.helpers({
       isLoggedIn: function (){
         return !!Meteor.userId();
-      },
-      service: function (){
-        return serviceName.get();
-      }
+      }     
     });
+
+    $scope.$watch(function() { return $mdMedia('(min-width: 768px)'); }, function() {
+      self.service = serviceName.get();      
+    });
+    
 
 
   ///////////Methods Declarations///////////
