@@ -76,7 +76,7 @@
       template: template,
     },     
      'main@':{
-       templateUrl: 'app/core/layouts/content-with-toolbar.html',
+       templateUrl: 'app/sharedComponents/layouts/service-questions.html',
        controller: 'MainController as vm'
      },
      'toolbar@app.serviceQuestions':{

@@ -1,5 +1,138 @@
-<stong>
-    Profile Detail
+<div id="pro-detail" layout="column" flex>
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg md-accent-bg" layout="column">
+      </div>
 
-    {{proDetail.user}}
-</stong>
+    <!-- / TOP BACKGROUND -->
+
+    <div class="form-content" layout="column" flex layout-align="start center">
+      <div class="headline">
+        Profile Edit Page
+      </div>
+      <form name="pro-detail" class="content-area" layout="column" flex="80">
+     
+          <div class="list" layout="column" flex>    
+            <div layout="column" class="preview-content flex-scrollable"  ms-scroll flex>
+              <div class="formly-container" layout="column" flex>
+                <div class="formly-field" layout="column">
+                  <md-input-container>
+                    <label for="name">Name</label>
+                     <input name="name"
+                            type="input"
+                            ng-model="leadSummary.lead.name" 
+                            required                             
+                            minlength="3"                           
+                            aria-label="Name">
+                  </md-input-container>
+                   <md-input-container>
+                    <label for="gender">Gender</label>
+                     <input name="gender"
+                            type="input"
+                            ng-model="leadSummary.lead.gender" 
+                            required                             
+                            minlength="3"                           
+                            aria-label="Gender">
+                  </md-input-container>
+             
+                    <label for="birthday">Birthday</label>                    
+                    <md-datepicker ng-model="leadSummary.lead.birthday"
+                                   md-placeholder="mm/dd/yyyy"
+                                   ng-disabled="false"
+                                   ng-required="true">
+                    </md-datepicker>
+                     <md-input-container>
+                    <label for="email">Email</label>
+                     <input name="email"
+                            type="input"
+                            ng-model="leadSummary.lead.email" 
+                            required                             
+                            minlength="3"                           
+                            aria-label="email">
+                  </md-input-container>
+                  <md-input-container>
+                    <label for="phone">Phone</label>
+                     <input name="phone"
+                            type="number"
+                            ng-model="leadSummary.lead.phone" 
+                            required                             
+                            minlength="3"                           
+                            aria-label="phone">
+                  </md-input-container>
+                  <md-input-container>
+                    <label for="website">Website</label>
+                     <input name="website"
+                            type="input"
+                            ng-model="leadSummary.lead.website" 
+                            required                             
+                            minlength="3"                           
+                            aria-label="website">
+                  </md-input-container>
+                  <md-input-container>
+                    <label for="gender">Gender</label>
+                     <input name="gender"
+                            type="input"
+                            ng-model="leadSummary.lead.gender" 
+                            required                             
+                            minlength="3"                           
+                            aria-label="Gender">
+                  </md-input-container>
+
+                 
+         
+                   <md-input-container>
+                    <label for="about">About</label>
+                     <textarea name="about"
+                            type="textarea"
+                            ng-model="leadSummary.lead.about" 
+                            required                             
+                            md-maxlength="150" 
+                            rows="5"                       
+                            aria-label="about"></textarea>
+                  </md-input-container>
+                <md-input-container>
+                    <files-upload  
+                  ok-to-save="leadSummary.okToSave"
+                  done="leadSummary.uploadedPictures($event)"
+                  crop-settings = "leadSummary.cropSettings"
+                  >
+                </files-upload></md-input-container>                
+                
+                
+                
+                 <label for="servies">Select Services</label>
+                      <md-contact-chips
+                        ng-model="ctrl.asyncContacts"
+                        md-contacts="ctrl.delayedQuerySearch($query)"
+                        md-contact-name="name"
+                        md-contact-image="image"
+                        md-contact-email="email"
+                        md-require-match="true"
+                        md-highlight-flags="i"
+                        filter-selected="ctrl.filterSelected"
+                        placeholder="To">
+                </div>
+     
+          </div>          </div>
+      </div>
+
+        <div layout="column" layout-align="space between center">
+            <div layout="row" layout-align="space-between-center" class="controls">
+              
+                <md-button href="#"
+                           id="submit"
+                           class="md-primary"
+                           ng-model="leadSummary.lead.submit"
+                           ng-disabled="true"
+                           md-ripple-size="full | partial | auto"
+                           md-no-ink="true"
+                           aria-label="button-label"> Submit </md-button>
+
+
+            </div>        
+              </div>
+      </form>
+      </div>
+    </div>
+
+
+

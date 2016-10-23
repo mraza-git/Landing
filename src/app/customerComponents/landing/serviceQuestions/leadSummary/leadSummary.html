@@ -36,16 +36,47 @@
     <!-- / TOP BACKGROUND -->
 
     <div class="form-content" layout="column" flex layout-align="start center">
-      <files-upload  
-        ok-to-save="leadSummary.okToSave"
-        done="leadSummary.uploadedPictures($event)"
-        crop-settings = "leadSummary.cropSettings"
-        >
-      </files-upload>
+      <div class="headline">
+        Final Step
+      </div>
+        <div class="content-area" layout="column" flex="80">
+          <div class="list" layout="column" flex>    
+            <div layout="column" class="preview-content flex-scrollable"  ms-scroll flex>
+              <div class="formly-container" layout="column" flex>
+                <div class="formly-field" layout="column">
+                  <md-input-container>
+                    <label for="title">Job Title</label>
+                     <input name="title"
+                            type="input"
+                            ng-model="leadSummary.lead.title" 
+                            required                             
+                            minlength="3"                           
+                            aria-label="Job Title">
+                  </md-input-container>
+                   <md-input-container>
+                    <label for="detail">Job Details</label>
+                     <textarea name="detail"
+                            type="textarea"
+                            ng-model="leadSummary.lead.detail" 
+                            required                             
+                            md-maxlength="150" 
+                            rows="5"                       
+                            aria-label="Job Details"></textarea>
+                  </md-input-container>
+                </div>
+                <files-upload  
+                  ok-to-save="leadSummary.okToSave"
+                  done="leadSummary.uploadedPictures($event)"
+                  crop-settings = "leadSummary.cropSettings"
+                  >
+                </files-upload>
+          </div>          </div>
+      </div>
+    </div>
 
-
-
-              <div layout="row" layout-align="center center">
+        <div layout="column" layout-align="space between center">
+            <div layout="row" layout-align="space-between-center" class="controls">
+              
                 <md-button ng-click="leadSummary.isLoggedIn && leadSummary.startSave()"
                           id="save-lead"             
                           ng-class="{'md-raised md-primary': leadSummary.isLoggedIn}"
@@ -84,9 +115,10 @@
                 </md-button>
 
 
-                          
+            </div>        
               </div>
-
+      </div>
     </div>
-</div>
+
+
 
