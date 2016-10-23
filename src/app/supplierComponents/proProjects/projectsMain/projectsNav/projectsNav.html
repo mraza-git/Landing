@@ -3,18 +3,20 @@
 
   <div class="logo" layout="row" layout-align="start center">
     <span class="logo-icon">
-      <md-icon md-font-icon="icon-format-float-none" class="icon"></md-icon>
+      <md-icon md-font-icon="icon-chart-line" class="s35 icon"></md-icon>
     </span>
-    <span class="logo-text" translate="FORM.APPTITLE">FOC FORMS</span>
+    <span class="logo-text" >Projects</span>
   </div>
 
   <div class="account">
-    <div class="title">{{formNav.currentUser.profile.name}}</div>
-    <!-- <md-select class="account-selection simplified" placeholder="Mail Selection"
-                   ng-model="vm.selectedAccount">
-            <md-option ng-repeat="(provider, address) in vm.accounts" value="{{provider}}">{{address}}
+    <div class="title">{{projectsNav.currentUser.profile.name}}</div>
+     <md-select class="account-selection simplified" placeholder="Select services"
+                   ng-model="projectsNav.selectedService" ng-change="projectsNav.setService()">
+            <md-option ng-value="null"> All Services </md-option>
+            <md-option ng-repeat="service in projectsNav.services track by $index" ng-value="service">
+              {{service.name}}
             </md-option>
-        </md-select> -->
+      </md-select> 
   </div>
 
 </div>
@@ -22,16 +24,12 @@
 
 <!-- SIDENAV CONTENT -->
 <md-content ms-scroll class="content" flex>
-
-  <div class="compose-button">
-    <md-button class="md-accent md-raised" aria-label="compose" ng-click="formNav.openCreateDialog($event)" translate="FORM.CREATE">CREATE
-    </md-button>
-  </div>
-  <form-folders
-  current-form="formNav.currentForm"
-  master-settings = "formNav.masterSettings"
-  current-folder = "formNav.currentFolder"
-  ></form-folders>
+  
+  <projects-folders
+  current-form="projectsNav.currentForm"
+  master-settings = "projectsNav.masterSettings"
+  current-folder = "projectsNav.currentFolder"
+  ></projects-folders>
 
 
 

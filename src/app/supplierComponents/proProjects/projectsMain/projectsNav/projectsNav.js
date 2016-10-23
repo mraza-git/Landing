@@ -11,18 +11,22 @@
     ///////////Initialization Checks///////////
     var self = this;
     self.limit = 5;
-    self.iconSearch = "";
+    self.iconSearch = "";    
     $reactive(self).attach($scope);
     ///////////Data///////////
     self.helpers({
       currentUser: function(){
         return Meteor.user();
       },
+      services: function(){
+        return Services.find();
+      }
     });
 
 
     ///////////Methods Declarations///////////
     self.openCreateDialog = openCreateDialog;
+    self.setService = setService;
 
 
     // self.openEditDialog = openEditDialog;
@@ -30,6 +34,9 @@
 
 
     ///////////Method Definitions///////////
+    function setService(){
+      // console.log(self.selectedService);
+    }
     function openCreateDialog(ev){
       $mdDialog.show({
               controller       : CreateEditDialogController,
@@ -61,16 +68,17 @@
     .module(name, [
       'angular-meteor',
       'ngMessages',
-      'formFolders',
+      'projectsFolders',
     ])
     .component(name, {
       templateUrl: templateUrl,
       controller: controller,
       controllerAs: name,
       bindings: {
-        currentForm: '=',
+        selectedService: '=',
         masterSettings: '=',
         currentFolder: '=',
+        currentProject: '=',
       }
     });
 

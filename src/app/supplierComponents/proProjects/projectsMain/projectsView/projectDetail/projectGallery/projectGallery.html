@@ -1,0 +1,43 @@
+<!-- DETAILS PAGE -->
+<div ng-show="projectGallery.images" flex layout="column" class="slide-top md-whiteframe-2dp" ng-cloak>
+  <!--  HEADER-->
+  <div class="thread-header" layout="row" layout-align="space-between center">    
+    <div>
+      <!--  TITLE-->
+      <div class="name">Project Images</div>
+      <!--  /TITLE-->
+    </div>
+  </div>
+  <!--  /HEADER-->
+  <!--  PROJECT PAGE LIST-->
+  <div layout="column" flex>
+    <md-grid-list class="list"
+                layout="column" flex
+                md-cols-xs="3" md-cols-sm="4" md-cols-md="6" md-cols-gt-md="8"
+                md-row-height-gt-md="1:1" md-row-height="4:3"
+                md-gutter-gt-md="20px" md-gutter-gt-sm="12px" md-gutter="8px">
+
+      <md-grid-tile class="foc-tile"                
+                ng-repeat="file in projectGallery.images" 
+                md-rowspan="1" md-colspan="1" md-colspan-sm="1" md-colspan-xs="1">
+      <!--CONTENT IMAGE-->       
+        <div id="gallery-image" class="post__image-container img-box-shadow">
+                <img ng-src="{{file.url}}"
+                class="post__featured-image toggle"
+                alt="alt">                
+        </div>
+      <!--CONTENT IMAGE-->
+
+      </md-grid-tile>
+
+
+    </md-grid-list>
+  </div>  
+  <!--  /PROJECT PAGE LIST-->
+</div>
+
+<!--<pre> 
+  {{projectGallery.currentProject.pages}}
+</pre>-->
+
+<!--  /DETAILS PAGE-->

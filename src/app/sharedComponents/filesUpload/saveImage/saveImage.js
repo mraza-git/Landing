@@ -14,8 +14,7 @@
         self.getBlob = getBlob;
         self.remove = remove;
 
-        self.getBlob();
-        console.log(self.file);
+        self.getBlob();        
         
 
         /////////// Method Definition //////////////

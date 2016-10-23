@@ -2,7 +2,7 @@
   <div ng-repeat="ser in formServices.services">
     
     <thumb-image ng-if="formServices.type==='image'" layout="row" image-id="ser.image.id" size="40" image-class="avatar"></thumb-image>
-    <label ng-if="formServices.type!=='image'" class="md-grey-600-bg label-padding">
+    <label ng-if="formServices.type!=='image'" class="md-grey-600-bg label-padding form-label">
       {{ser.name}}
     </label>
 
