@@ -16,8 +16,10 @@
       }     
     });
 
-    $scope.$watch(function() { return $mdMedia('(min-width: 768px)'); }, function() {
-      self.service = serviceName.get();      
+    var handle = $scope.$watch(function() { return $mdMedia('(min-width: 768px)'); }, function() {
+      self.service = serviceName.get();    
+      console.log("Watch running at size change...");
+      handle(); 
     });
     
 

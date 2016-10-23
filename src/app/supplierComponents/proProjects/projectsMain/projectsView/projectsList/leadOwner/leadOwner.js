@@ -13,6 +13,11 @@
     // self.subscribe('services');
     ///////////Data///////////
     self.colors = ['blue-bg', 'blue-grey-bg', 'orange-bg', 'pink-bg', 'purple-bg'];
+    self.subscribe('userById',function(){
+      return [
+        [self.getReactively('ownerId')] || []
+      ]
+    });
     self.helpers({
       owner: function() {
         return Meteor.users.findOne({

@@ -1,0 +1,38 @@
+<!-- DETAILS PAGE -->
+<div ng-show="projectMap.currentProject" flex layout="column" class="slide-top md-whiteframe-2dp" ng-cloak>
+  <!--  HEADER-->
+  <div class="thread-header" layout="row" layout-align="space-between center">    
+    <div>
+      <!--  TITLE-->
+      <div class="name">Inquiry Detail</div>
+      <!--  /TITLE-->
+    </div>
+  </div>
+  <!--  /HEADER-->
+  <!--  PROJECT PAGE LIST-->
+  <div layout="column" flex>
+    <div ng-repeat="pages in projectMap.currentProject.pages">
+      <div ng-repeat="question in pages.questions track by $index">
+        <div layout="row">
+          <span>
+          {{$index}}.
+          </span>
+          <span>
+          {{question.supplierDescription}}
+          </span>
+        </div>
+        <div layout="row">
+          {{question.answer}}
+        </div>
+
+      </div>
+    </div>
+  </div>  
+  <!--  /PROJECT PAGE LIST-->
+</div>
+
+<!--<pre> 
+  {{projectMap.currentProject.pages}}
+</pre>-->
+
+<!--  /DETAILS PAGE-->

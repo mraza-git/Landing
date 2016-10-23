@@ -13,56 +13,11 @@
     $reactive(self).attach($scope);
     self.limit = 10;
     self.page = 1;
-    self.subscribe('leads', function() {
-      var search= self.getReactively('search');
-      var selector ={};
-      if(self.getReactively('currentFolder') === 'all'){
-        if (search) {
-            selector ={
-              $and : [
-              {
-                title: {
-                  $regex: '.*'+self.getReactively('search')+'.*',
-                  $options: 'i',
-                }
-              },        
-              { 
-                folder:{$ne:'deleted'}
-              }
-              ]
-            };
-        }else{
-          selector = {folder:{$ne:'deleted'}};
-        }        
-      }else{
-        if (search) {
-            selector ={
-              $and : [
-              {
-                title: {
-                  $regex: '.*'+self.getReactively('search')+'.*',
-                  $options: 'i',
-                }
-              },        
-              { 
-                folder: self.getReactively('currentFolder')
-              }
-              ]
-            };
-        }
-        else{
-          selector = {folder:self.getReactively('currentFolder')};
-        } 
-      }
-      return [{
-        limit: parseInt(self.getReactively('limit')),
-        skip: parseInt((self.getReactively('page') - 1) * self.limit),
-        sort: {
-          updatedAt: 1
-        },
-      }, selector];
+    self.subscribe('serviceLeads',function(){
+      return [
+        [self.getReactively('selectedService._id')] || self.getReactively('currentUser.serviceIds')
+      ]
     });
-
 
     ///////////Data///////////
     self.helpers({
@@ -73,7 +28,7 @@
         return Settings.findOne({
           owner: Meteor.userId(),
         });
-      }
+      },      
     });
 
 
