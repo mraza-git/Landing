@@ -10,13 +10,11 @@
    * @param {any} $scope
    * @param {any} $stateParams
    */
-  function ControllerFunction($scope, $stateParams) {
+  function ControllerFunction($scope) {
     'ngInject';
     ///////////Initialization Checks///////////
     var self = this;
-    if ($stateParams.itemId) {
-      self.itemId = $stateParams.itemId;
-    }
+    
     ///////////Data///////////
     
 
