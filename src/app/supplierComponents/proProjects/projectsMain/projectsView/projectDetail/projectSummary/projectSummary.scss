@@ -1,0 +1,24 @@
+project-summary {
+    .heading {
+        border-radius: 3px 3px 0 0;
+        box-shadow: 0 1px rgba(255,255,255,.1);
+        background-color: rgb(45,50,62);
+        color: rgba(255,255,255,0.87);
+    }
+    .conent {
+        padding: 10px;
+    }
+    .question {
+    font-size: 18px !important;
+    margin-bottom: 10px;
+    padding-left: 0 !important;
+    font-weight: 500;
+    color: #2d323e !important;
+    }
+    .answer {
+    font-size: 18px !important;
+    margin-left: 10px;
+    padding-left: 0 !important;
+    font-weight: normal;
+    }
+}

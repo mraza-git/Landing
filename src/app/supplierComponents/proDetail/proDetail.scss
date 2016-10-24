@@ -157,9 +157,10 @@
       font-weight:bold;
       display: inline-table;
       }
-      .footer {
+     .footer {
             height: 50px;
              display: inline-table;
+             margin: auto;
       }
     .steps-indicator.steps-3:before {
                   left: calc(107% / 3 / 2);
