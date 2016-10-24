@@ -6,7 +6,7 @@
 
   <!-- SIDENAV -->
   <md-sidenav class="sidenav" md-is-locked-open="$mdMedia('gt-md')" md-component-id="projects-sidenav" ms-scroll ms-sidenav-helper>
-    <projects-nav current-folder="formMain.currentFolder" master-settings="formMain.masterSettings" current-form="formMain.currentForm"></projects-nav>
+    <projects-nav current-folder="projects.currentFolder" master-settings="projects.masterSettings" current-project="projects.currentProject" selected-service="projects.selectedService"></projects-nav>
   </md-sidenav>
   <!-- / SIDENAV -->
 
@@ -17,13 +17,34 @@
     <div class="header" layout="row" layout-align="start center">
 
       <div class="search-wrapper md-whiteframe-4dp" layout="row" layout-align="start center" flex>
-        <md-button class="md-icon-button sidenav-toggle" ng-click="formMain.toggleSidenav('projects-sidenav')" hide-gt-md aria-label="Toggle Sidenav" translate translate-attr-aria-label="FORM.TOGGLE_SIDENAV">
+        <md-button class="md-icon-button sidenav-toggle" ng-click="projects.toggleSidenav('projects-sidenav')" hide-gt-md aria-label="Toggle Sidenav"
+          translate translate-attr-aria-label="FORM.TOGGLE_SIDENAV">
           <md-icon class="icon" md-font-icon="icon-menu"></md-icon>
         </md-button>
 
-        <div class="search" flex layout="row" layout-align="start center">
-          <md-icon md-font-icon="icon-magnify" class="icon s24"></md-icon>
-          <input flex ng-model="formMain.search" type="text" placeholder="Search for an e-mail or contact" translate translate-attr-placeholder="FORM.SEARCH_PLACEHOLDER">
+        <div class="search" flex layout="row" layout-align="space between center">
+          <md-icon flex="10" md-font-icon="icon-magnify" class="icon s24 md-ink-ripple" ng-click="projects.showSearch=!projects.showSearch"></md-icon>
+          <div class="google-map-autocomplete" ng-show="projects.showSearch" flex>
+            <ng-form name="gmap" ng-submit="focGmap.updateLocation()" class="" layout="row">
+                <div class="" layout="row" layout-align="start start" flex>                    
+                    <md-input-container md-no-float flex>
+                        <input type="text" g-places-autocomplete ng-model="focGmap.myScopeVar" placeholder="Enter a location" />
+                    </md-input-container>
+                    <md-button type="submit" ng-click="focGmap.updateLocation()" class="md-raised md-primary" md-ripple-size="partial" md-no-ink="true" aria-label="map search go">
+                    Go </md-button>
+                </div>
+            </ng-form>
+
+          </div>    
+          <!--<input flex ng-model="projects.search" type="text" placeholder="Search for an e-mail or contact" translate translate-attr-placeholder="FORM.SEARCH_PLACEHOLDER"/>-->
+          <md-slider flex
+              ng-hide="projects.showSearch" 
+              class="md-warn" 
+              md-discrete 
+              ng-model="projects.range" 
+              step="10" min="10" max="1000" 
+          aria-label="rating">
+          </md-slider>
         </div>
       </div>
 
@@ -32,7 +53,8 @@
 
     <!-- CONTENT CARD -->
     <div class="content-card outlook" ng-class="vm.currentView" layout="column" flex>
-      <projects-view layout="column" flex current-folder="formMain.currentFolder" search="formMain.search" current-form="formMain.currentForm" master-settings="formMain.masterSettings"></projects-view>     
+      <projects-view layout="column" flex current-folder="projects.currentFolder" search="projects.search" current-project="projects.currentProject"
+        master-settings="projects.masterSettings"></projects-view>
     </div>
     <!-- / CONTENT CARD -->
 

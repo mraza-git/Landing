@@ -22,35 +22,35 @@
     
 
     ///////////Methods Declarations///////////
-    self.openForm = openForm;
-    self.closeThread = closeForm;
-    self.toggleSelectForm = toggleSelectForm;
+    self.openProject = openProject;
+    self.closeThread = closeProject;
+    self.toggleSelectProject = toggleSelectProject;
     self.isSelected = isSelected;
 
     ///////////Method Definitions///////////
-    function openForm(form,sidenavId) {
+    function openProject(project,sidenavId) {
       // Assign thread as the current thread
-      self.currentForm = form;
+      self.currentProject = project;
       $mdSidenav(sidenavId).toggle();
     }
 
-    function closeForm() {
-      self.currentForm = undefined;
+    function closeProject() {
+      self.currentProject = undefined;
     }
 
-    function toggleSelectForm(form, event) {
+    function toggleSelectProject(project, event) {
       if (event) {
         event.stopPropagation();
       }
-      if (self.selectedForms.indexOf(form) > -1) {
-        self.selectedForms.splice(self.selectedForms.indexOf(form), 1);
+      if (self.selectedProjects.indexOf(project) > -1) {
+        self.selectedProjects.splice(self.selectedProjects.indexOf(project), 1);
       } else {
-        self.selectedForms.push(form);
+        self.selectedProjects.push(project);
       }
     }
 
-    function isSelected(form) {
-      return self.selectedForms.indexOf(form) > -1;
+    function isSelected(project) {
+      return self.selectedProjects.indexOf(project) > -1;
     }
 
 
@@ -66,6 +66,7 @@
       'angular-meteor',
       'leadOwner',
       'leadFoldericon',
+      'projectBudget',
     ])
     .component(name, {
       templateUrl: templateUrl,
@@ -73,11 +74,11 @@
       controllerAs: name,
       bindings: {
         // shared data
-        currentForm: '=',
-        selectedForms: '=',
+        currentProject: '=',
+        selectedProjects: '=',
         currentFilter: '=',
         search: '<',
-        forms: '<',
+        projects: '<',
         masterSettings:"<",
 
 

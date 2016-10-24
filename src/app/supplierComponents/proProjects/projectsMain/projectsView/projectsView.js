@@ -10,48 +10,29 @@
     var self = this;
     $reactive(self).attach($scope);
     ///////////Data///////////    
-    self.currentForm = undefined;
+    self.currentProject = undefined;
     self.loading = false;
-    self.selectedForms = [];
-    self.selectedForm = undefined;
+    self.selectedProjects = [];    
+    self.selectedProject = undefined;
+    
     self.helpers({
       currentUser: function() {
         return Meteor.user();
       },
-      forms: function() {
-        self.loading = true;
-        var forms =[];
-        var selector = {
-          folder:{$ne:'deleted'}
-        };
-        if(self.getReactively('currentFolder') !== 'all'){
-          selector = {
-              $and : [
-                {folder: self.getReactively('currentFolder') || 'all'},
-                {deleted: false},                
-              ]
-          };
-        }
-        var cursor = FocForms.find(selector,{sort:{updatedAt:-1,}});          
-                
-        if(self.loading){
-          self.currentForm = cursor.fetch()[0]; //populating the first item at the start.
-          if(self.currentForm)
-          self.loading=false;
-        }
-        
-        return cursor;
+      projects: function(){
+        return Leads.find();
       }
+     
     });
 
 
     ///////////Methods Declarations///////////
     self.done = done;
-    self.deselectForms = deselectForms;
+    self.deselectProjects = deselectProjects;
     self.toggleListNav = toggleListNav;
-    self.toggleSelectForms = toggleSelectForms;
+    self.toggleSelectProjects = toggleSelectProjects;
     self.update = update;
-    self.selectForms = selectForms;
+    self.selectProjects = selectProjects;
 
 
 
@@ -59,11 +40,11 @@
 
     ///////////Method Definitions///////////
     function done(event){
-      self.currentForm.isChanged = true;
+      self.currentProject.isChanged = true;
     }
 
-    function deselectForms() {
-      self.selectedForms = [];
+    function deselectProjects() {
+      self.selectedProjects = [];
     }
 
     function toggleListNav(sidenavId){
@@ -71,48 +52,48 @@
       self.listNavIsOpen = $mdSidenav(sidenavId).isOpen();
     }
 
-    function toggleSelectForms() {
-      if (self.selectedForms.length > 0) {
-        self.deselectForms();
+    function toggleSelectProjects() {
+      if (self.selectedProjects.length > 0) {
+        self.deselectProjects();
       } else {
-        self.selectForms();
+        self.selectProjects();
       }
     }
 
     function update(){
-      var form = angular.copy(self.currentForm);
-      var id = form._id;
-      delete form._id;  
-      delete form.isChanged;
-      FocForms.update({
+      var project = angular.copy(self.currentProject);
+      var id = project._id;
+      delete project._id;  
+      delete project.isChanged;
+      Leads.update({
         _id:id
       }, {
-        $set: form,
+        $set: project,
       },function(err,docs){
         if(err){
-          console.log("Error while saving form:",err);
+          console.log("Error while saving project:",err);
         }
         else{
-          console.log("Form Saved.", docs);
-          self.currentForm.isChanged = false;
+          console.log("Project Saved.", docs);
+          self.currentProject.isChanged = false;
         }
       });
       
     }
 
-    function selectForms(key, value) {
+    function selectProjects(key, value) {
       // Make sure the current selection is cleared
       // before trying to select new threads
-      self.selectedForms = [];
+      self.selectedProjects = [];
 
-      for (var i = 0; i < self.forms.length; i++) {
+      for (var i = 0; i < self.projects.length; i++) {
         if (angular.isUndefined(key) && angular.isUndefined(value)) {
-          self.selectedForms.push(self.forms[i]);
+          self.selectedProjects.push(self.projects[i]);
           continue;
         }
 
-        if (angular.isDefined(key) && angular.isDefined(value) && self.forms[i][key] === value) {
-          self.selectedForms.push(self.forms[i]);
+        if (angular.isDefined(key) && angular.isDefined(value) && self.projects[i][key] === value) {
+          self.selectedProjects.push(self.projects[i]);
         }
       }
 
@@ -135,7 +116,7 @@
       'angular-meteor',
       'leadmoveTo',      
       'projectDetail',
-      // 'projectsList',
+      'projectsList',
     ])
     .component(name, {
       templateUrl: templateUrl,
@@ -146,7 +127,7 @@
         list: '=',
         done: '&',
         search: '<',
-        currentForm: '=',
+        currentProject: '=',
         currentFolder: '=',
         masterSettings: '<',
 

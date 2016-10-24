@@ -38,7 +38,7 @@
             .thread {
               background: #FAFAFA;
               position: relative;
-              padding: 10px;
+              padding: 10px 2px 10px 5px !important;
               border-bottom: 1px solid rgba(0, 0, 0, 0.12);
               cursor: pointer;
 
@@ -46,11 +46,11 @@
                 background: #FFFFFF;
 
                 .info {
+                  margin-right:0px !important;
                   .name,
                   .subject {
                     font-weight: 700;
                   }
-
                   .message {
                     .labels {
                       background: #FFFFFF;

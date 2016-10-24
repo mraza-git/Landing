@@ -66,7 +66,7 @@
           }
         });
 
-        // $state.go('app.landing');
+        $state.go('app.landing');
 
       }
       function login(event){
@@ -77,12 +77,12 @@
       }
       function uploadedPictures(event){
         self.lead.images = event.images;
-        // self.saveLead();
+        self.saveLead();
 
-        angular.forEach(event.images,function(value,index){
-          Images.remove(value.id);
-          console.log("Removing: ",value.url);
-        });
+        // angular.forEach(event.images,function(value,index){
+        //   Images.remove(value.id);
+        //   console.log("Removing: ",value.url);
+        // });
       }
 
     }

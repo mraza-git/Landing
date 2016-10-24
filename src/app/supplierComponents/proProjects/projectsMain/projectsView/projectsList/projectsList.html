@@ -1,43 +1,65 @@
-<div class="no-threads" ng-if="!formList.forms.length">There are no Forms yet in '{{formList.currentFilter.filter}}'!</div>
-<div class="loading-threads" layout="column" layout-align="center center" ng-if="!formList.forms && formList.loading">
+<div class="no-threads" ng-if="!projectsList.projects.length">There are no Projects yet in '{{projectsList.currentFilter.filter}}'!</div>
+<div class="loading-threads" layout="column" layout-align="center center" ng-if="!projectsList.projects && projectsList.loading">
     <md-progress-circular class="md-accent" md-mode="indeterminate" md-diameter="64"></md-progress-circular>
-    <div>Loading forms...</div>
+    <div>Loading projects...</div>
 </div>
-<div class="thread {{thread.status}} slide-top" md-ink-ripple ng-if="!formList.loading" ng-repeat="thread in formList.forms | filter: formList.search | filter: global.search "
-    ng-click="formList.openForm(thread,'formlist-sidenav')" ng-class="{'unread': !thread.read, 'current-thread': formList.currentForm === thread, 'selected': formList.isSelected(thread)}"
+<div class="thread {{thread.status}} slide-top" md-ink-ripple ng-if="!projectsList.loading" ng-repeat="thread in projectsList.projects | filter: projectsList.search | filter: global.search "
+    ng-click="projectsList.openProject(thread,'projects-list-sidenav')" ng-class="{'unread': !thread.read, 'current-thread': projectsList.currentProject === thread, 'selected': projectsList.isSelected(thread)}"
     ng-cloak>
 
     <div layout="row" layout-align="start center">
-        <md-checkbox class="no-label" ng-checked="formList.isSelected(thread)" ng-click="formList.toggleSelectForm(thread, $event)"
-            aria-label="{{formList.isSelected(thread) ? 'Deselect' : 'Select'}}">
+        <md-checkbox class="no-label" ng-checked="projectsList.isSelected(thread)" ng-click="projectsList.toggleSelectProject(thread, $event)"
+            aria-label="{{projectsList.isSelected(thread) ? 'Deselect' : 'Select'}}">
         </md-checkbox>
 
         <div class="info" flex layout="column">
-            <div class="name" layout="row" layout-align="start center">
-                <form-owner owner-id="thread.owner"></form-owner>
+            <div class="name" layout="row" layout-align="space between center">
+                <lead-owner owner-id="thread.owner"></lead-owner>
 
-                <span class="text-truncate">{{thread.title}}</span>
+                <span class="text-truncate">{{thread.detail}}</span>
+                <project-budget thread="thread"></project-budget>
 
                 <!-- Add below icons from tags -->
                 <!-- <md-icon md-font-icon="icon-paperclip" class="has-attachment s16"
                          ng-if="thread.hasAttachments"></md-icon> -->
             </div>
-            <div class="message text-truncate">
-                <form-foldericon folder="thread.folder" master-settings="formList.masterSettings"></form-foldericon>
-                {{thread.folder}}
+            <div class="message text-truncate" layout>
+                                
+                
                 <!-- <div class="labels">
                     <div class="label" ng-repeat="labelId in thread.labels"
-                         ng-class="formList.getLabelColor(labelId)">{{formList.getLabelTitle(labelId)}}
+                         ng-class="projectsList.getLabelColor(labelId)">{{projectsList.getLabelTitle(labelId)}}
                     </div>
                 </div> -->
             </div>
+            <div class="" layout="row" layout-align="space between center">
+                <span>
+                    {{thread.createdAt | date}}
+                </span> 
+                <project-foldericon folder="thread.folder" master-settings="projectsList.masterSettings"></project-foldericon>
+                <span>
+                    {{thread.folder}}
+                </span>
+                <!--<geo-distance 
+                current-user-location="projectsList.currentUser.profile.address.location"
+                project="thread"
+                ></geo-distance>-->
+                <div layout layout-align="end end">
+                <md-icon md-font-icon="icon-map-marker" aria-label="label" class="s16 md-primary">
+                </md-icon>
+                <span>180Km</span> 
+                </div>
+                
+                
+            </div>
+            <form-services service-ids="[thread.serviceId]"></form-services>
 
         </div>
 
         <div layout="column" layout-align="space-between end">
             <div class="time">{{thread.time}}</div>
         </div>
-        <md-icon md-font-icon="icon-checkbox-blank-circle" ng-show="thread.isChanged" aria-label="updated form marker" class="S18 md-warn"></md-icon>
+        <md-icon md-font-icon="icon-checkbox-blank-circle" ng-show="thread.isChanged" aria-label="updated project marker" class="S18 md-warn"></md-icon>
 
     </div>
 </div>

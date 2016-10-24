@@ -30,7 +30,7 @@
   }
 
   var name = main + type; // Change This with Component Name
-  var templateUrl = 'app/adminComponents/utils/' + main + '/' + name + '/' + name + '.html';
+  var templateUrl = 'app/adminComponents/forms/utils/' + name + '/' + name + '.html';
   var controller = ControllerFunction;
   angular
     .module(name, ['angular-meteor', ])
