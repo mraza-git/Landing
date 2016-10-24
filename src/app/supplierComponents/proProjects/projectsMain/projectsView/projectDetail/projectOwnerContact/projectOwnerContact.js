@@ -10,14 +10,24 @@
    * @param {any} $scope
    * @param {any} $stateParams
    */
-  function ControllerFunction($scope, $stateParams) {
+  function ControllerFunction($scope, $reactive) {
     'ngInject';
     ///////////Initialization Checks///////////
     var self = this;
-    if ($stateParams.itemId) {
-      self.itemId = $stateParams.itemId;
-    }
+    $reactive(self).attach($scope);
     ///////////Data///////////
+    self.subscribe('userById',function(){
+      return [
+        [self.getReactively('ownerId')] || []
+      ]
+    });
+    self.helpers({
+      owner: function() {
+        return Meteor.users.findOne({
+          _id: self.getReactively('ownerId'),
+        })
+      },
+    });
 
 
     ///////////Methods Declarations///////////
@@ -47,7 +57,7 @@
       controller: controller,
       controllerAs: name,
       bindings: {        
-        currentProject: '=',       
+        ownerId: '<',       
         
       }
     });   

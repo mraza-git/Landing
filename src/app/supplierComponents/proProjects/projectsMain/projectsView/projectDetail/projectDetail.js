@@ -10,18 +10,24 @@
    * @param {any} $scope
    * @param {any} $stateParams
    */
-  function ControllerFunction($scope, $stateParams) {
+  function ControllerFunction($scope,$reactive) {
     'ngInject';
     ///////////Initialization Checks///////////
     var self = this;
-    if ($stateParams.itemId) {
-      self.itemId = $stateParams.itemId;
-    }
+    $reactive(self).attach($scope);
     ///////////Data///////////
 
 
     ///////////Methods Declarations///////////
     self.done = done;
+    
+    self.getQuestion = getQuestion;
+    self.autorun(function(){      
+      if(self.getReactively('currentProject')){        
+        self.getQuestion('gmap');
+      }
+
+    });
 
     ///////////Method Definitions///////////
     /**
@@ -33,6 +39,34 @@
       console.log('Form: ',self.currentForm);
       self.update(event);
     }    
+
+      function getQuestion(qtype){            
+      if(self.getReactively('currentProject').pages){
+        angular.forEach(self.getReactively('currentProject').pages,function(value,i){          
+         angular.forEach(value.questions,function(question,j){           
+            if(question.questionType===qtype){
+              console.log('found question:',question);
+              self.question = question;
+              self.location = question.answer;
+                            
+              $scope.$apply();                           
+              return;
+            }            
+          });
+        });
+      }else{
+        if(self.done){
+                self.done({
+                  $event:{
+                    question:null,
+                    error:"no map found mentioned..."
+                  }
+                });
+              }
+        return "no map found...";
+      }
+
+    }
 
   }
 

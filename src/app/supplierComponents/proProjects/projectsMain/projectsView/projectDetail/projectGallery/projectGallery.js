@@ -10,15 +10,19 @@
    * @param {any} $scope
    * @param {any} $stateParams
    */
-  function ControllerFunction($scope) {
+  function ControllerFunction($scope,Lightbox) {
     'ngInject';
     ///////////Initialization Checks///////////
     var self = this;    
     ///////////Data///////////
-
+    self.realImages = angular.copy(self.images);
+    angular.forEach(self.realImages,function(value,index){
+      self.realImages.thumbUrl = self.imagages[index];
+    });
 
     ///////////Methods Declarations///////////
     self.done = done;
+    self.openLightBoxModal = openLightBoxModal;
 
     ///////////Method Definitions///////////
     /**
@@ -29,6 +33,10 @@
     function done(event) {      
       self.update(event);
     }    
+    function openLightBoxModal(index){
+      console.log('opening');
+      Lightbox.openModal(self.images,index);
+    }
 
   }
 
@@ -38,7 +46,8 @@
   angular
     .module(name, [
       'angular-meteor',   
-      'saveImage',   
+      'saveImage', 
+      'mdLightbox',  
     ])
     .component(name, {
       templateUrl: templateUrl,

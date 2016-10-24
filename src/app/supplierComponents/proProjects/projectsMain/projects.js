@@ -15,7 +15,7 @@
     self.page = 1;
     self.subscribe('serviceLeads',function(){
       return [
-        [self.getReactively('selectedService._id')] || self.getReactively('currentUser.serviceIds')
+        [self.getReactively('selectedService._id')] || self.getReactively('currentUser.profile.serviceIds')
       ]
     });
 
