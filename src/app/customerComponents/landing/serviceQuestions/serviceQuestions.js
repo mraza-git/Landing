@@ -29,7 +29,11 @@
       self.helpers({
         form: function(){
           return FocForms.findOne({
-            serviceIds: $stateParams.serviceId,
+            $and:[
+              {serviceIds: {$in:[$stateParams.serviceId]},},
+              {folder: {$ne:'deleted'}},
+              {folder: {$ne:'draft'}},
+            ]
           });
         },
         service: function(){
