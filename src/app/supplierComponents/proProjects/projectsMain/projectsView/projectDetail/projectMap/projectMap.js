@@ -10,18 +10,19 @@
    * @param {any} $scope
    * @param {any} $stateParams
    */
-  function ControllerFunction($scope, $stateParams) {
+  function ControllerFunction($scope, $reactive) {
     'ngInject';
     ///////////Initialization Checks///////////
     var self = this;
-    if ($stateParams.itemId) {
-      self.itemId = $stateParams.itemId;
-    }
+    
+    
     ///////////Data///////////
 
 
     ///////////Methods Declarations///////////
     self.done = done;
+   
+    
 
     ///////////Method Definitions///////////
     /**
@@ -29,10 +30,11 @@
      * 
      * @param {any} event
      */
-    function done(event) {
-      console.log('Form: ',self.currentForm);
+    function done(event) {   
       self.update(event);
     }    
+
+    
 
   }
 
@@ -41,14 +43,15 @@
   var controller = ControllerFunction;
   angular
     .module(name, [
-      'angular-meteor',      
+      'angular-meteor',   
+      'focGmap',   
     ])
     .component(name, {
       templateUrl: templateUrl,
       controller: controller,
       controllerAs: name,
       bindings: {        
-        currentProject: '=',       
+        location: '=',       
         
       }
     });   

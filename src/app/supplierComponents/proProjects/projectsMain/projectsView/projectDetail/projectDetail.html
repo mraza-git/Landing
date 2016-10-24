@@ -35,14 +35,16 @@
   <!--  PROJECT PAGE LIST-->
   <div layout="column" flex>
     <div layout="row" flex>
-      <project-summary current-project="projectDetail.currentProject" flex="70"></project-summary>
+      <div layout="column" layout-padding flex="70">
+      <project-summary current-project="projectDetail.currentProject" flex="50"></project-summary>
+      <project-gallery images="projectDetail.currentProject.images" flex="50"></project-gallery>
+      </div>
       <div layout="column" flex="30">
         <project-owner-contact current-project="projectDetail.currentProject"></project-owner-contact>
-        <project-map current-project="projectDetail.currentProject"></project-map>
+        <project-map location="projectDetail.location"></project-map>
       </div>
     </div>
     <div layout="column" flex>
-      <project-gallery images="projectDetail.currentProject.images" flex></project-gallery>
     </div>
     
   

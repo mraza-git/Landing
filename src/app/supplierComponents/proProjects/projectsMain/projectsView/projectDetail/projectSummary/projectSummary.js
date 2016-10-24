@@ -18,10 +18,12 @@
       self.itemId = $stateParams.itemId;
     }
     ///////////Data///////////
+    
 
 
     ///////////Methods Declarations///////////
     self.done = done;
+   
 
     ///////////Method Definitions///////////
     /**
@@ -30,9 +32,11 @@
      * @param {any} event
      */
     function done(event) {
-      console.log('Form: ',self.currentForm);
+      console.log('Form: ',self.currentProject);
       self.update(event);
     }    
+
+  
 
   }
 
