@@ -1,14 +1,14 @@
-@charset "UTF-8";
-/*
- * blueimp Gallery CSS
- * https://github.com/blueimp/Gallery
- *
- * Copyright 2013, Sebastian Tschan
- * https://blueimp.net
- *
- * Licensed under the MIT license:
- * http://www.opensource.org/licenses/MIT
- */
+project-gallery {
+  .heading {
+        border-radius: 3px 3px 0 0;
+        box-shadow: 0 1px rgba(255,255,255,.1);
+        background-color: rgb(45,50,62);
+        color: rgba(255,255,255,0.87);
+    }
+    .conent {
+        padding: 10px;
+    }
+}
 
 .blueimp-gallery,
 .blueimp-gallery > .slides > .slide > .slide-content {
