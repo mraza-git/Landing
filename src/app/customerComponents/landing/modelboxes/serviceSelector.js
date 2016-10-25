@@ -11,7 +11,10 @@ function serviceSelectorModelController($scope,$rootScope,$reactive,$mdDialog,ca
         services: function(){
             if(category){
                 return Services.find({
-                    categoryIds: category._id
+                    $and:[
+                        {categoryIds: category._id},
+                        {publish:true},
+                    ]
                 });
             }
             else{
