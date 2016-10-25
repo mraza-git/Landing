@@ -12,7 +12,9 @@
       $reactive(self).attach($scope);
       
       ///////////Data///////////
-      self.lead = $cookies.getObject('foc.lead');
+      var sessionStr = sessionStorage.getItem('foc.lead');
+      self.lead = angular.fromJson(sessionStr);
+      
       self.okToSave = false;
       if(self.lead){
         console.log("lead: ", self.lead);                
@@ -30,6 +32,9 @@
           }
           return service;
         },         
+        userId: function(){
+          return Meteor.userId();
+        }
       });
       
 
@@ -44,18 +49,24 @@
       
 
 
-      ///////////Method Definitions///////////
+      ///////////Method Definitions///////////      
       function startSave(){
-        self.okToSave=true;
+        if(self.isLoggedIn){
+          self.okToSave = true;
+        }else{
+          console.log("there is still some problem in logging you in please login again.");
+        }
       }
       function saveLead(){    
-        var lead = angular.copy(self.lead);    
+        var lead = angular.copy(self.lead); 
+        lead.owner = self.userId;   
         Leads.insert(lead,function(err,id){
           if(err){
             console.log("error saving request..>",err);
           }else{
             console.log('document saved:',id);
-            $cookies.remove('foc.lead');
+            // $cookies.remove('foc.lead');
+            sessionStorage.clear();
             $mdToast.show(
               $mdToast.simple()
               .textContent('Your inquiry is published successfully')               
@@ -76,13 +87,10 @@
         AuthModals.openRegisterModal(event);
       }
       function uploadedPictures(event){
-        self.lead.images = event.images;
+        if(angular.isDefined(event.images)){
+          self.lead.images = event.images;
+        }
         self.saveLead();
-
-        // angular.forEach(event.images,function(value,index){
-        //   Images.remove(value.id);
-        //   console.log("Removing: ",value.url);
-        // });
       }
 
     }

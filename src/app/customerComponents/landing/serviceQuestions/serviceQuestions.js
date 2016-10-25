@@ -10,6 +10,7 @@
       ///////////Initialization Checks///////////
       var self = this;
       $reactive(self).attach($scope);
+      self.ready=false;
       if($stateParams.serviceId){        
       }
 
@@ -25,6 +26,8 @@
         return [
           {},selector
         ];
+      },function(){
+        self.ready =true;
       });
       self.helpers({
         form: function(){

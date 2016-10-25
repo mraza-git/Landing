@@ -1,6 +1,10 @@
 <div class="service-questions" layout="column" flex>
+<md-progress-linear
+md-mode="indeterminate" 
+ng-disabled="serviceQuestions.ready">
+</md-progress-linear>
 
-<form-preview form="serviceQuestions.form" lead="serviceQuestions.lead" service="serviceQuestions.service" layout="column" flex>
+<form-preview ng-show="serviceQuestions.ready" form="serviceQuestions.form" lead="serviceQuestions.lead" service="serviceQuestions.service" layout="column" flex>
 
 </form-preview>
 

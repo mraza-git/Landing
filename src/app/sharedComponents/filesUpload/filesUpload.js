@@ -35,6 +35,15 @@ function FilesUpload($scope, $reactive,$mdMedia) {
     self.setProgress = setProgress; 
 
     //////////// Method Definition //////////////
+    //watch if its ok to upload.
+    self.autorun(function () {
+        if (self.getReactively('okToSave')) {
+            if(self.files.length<=0){
+                self.updated();                
+            }
+        }
+    });
+
     function addImages(files) {
         angular.forEach(files,function(file,index){
             self.files.push(file);                   
@@ -49,7 +58,9 @@ function FilesUpload($scope, $reactive,$mdMedia) {
     }
     function updated(event,index){
         // prepare images object
-        self.images[index]= event.file;
+        if(event){
+            self.images[index]= event.file;
+        }
         
         //count if all the images are well uploaded.
         self.count++;
