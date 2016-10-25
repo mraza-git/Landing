@@ -50,6 +50,8 @@
     'angular-meteor',  
     'pagesToolbar',
     'validation.match',
+    'ngMessages',
+    'focGmap',
     ])
   .component(name,{
     templateUrl: templateUrl,
