@@ -43,7 +43,6 @@
           <div class="list" layout="column" flex>    
             <div layout="column" class="preview-content flex-scrollable"  ms-scroll flex>
               <div class="formly-container" layout="column" flex>
-                <div class="formly-field" layout="column">
                   <md-input-container>
                     <label for="title">Job Title</label>
                      <input name="title"
@@ -63,7 +62,6 @@
                             rows="5"                       
                             aria-label="Job Details"></textarea>
                   </md-input-container>
-                </div>
                 <files-upload  
                   ok-to-save="leadSummary.okToSave"
                   done="leadSummary.uploadedPictures($event)"
@@ -74,7 +72,7 @@
       </div>
     </div>
 
-        <div layout="column" layout-align="space between center">
+        <div layout="column" layout-align="space between center" class="footer">
             <div layout="row" layout-align="space-between-center" class="controls">
               
                 <md-button ng-click="leadSummary.isLoggedIn && leadSummary.startSave()"

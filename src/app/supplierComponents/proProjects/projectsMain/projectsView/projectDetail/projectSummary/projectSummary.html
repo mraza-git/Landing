@@ -1,7 +1,7 @@
 <!-- DETAILS PAGE -->
 <div ng-show="projectSummary.currentProject" flex layout="column" class="slide-top md-whiteframe-2dp" ng-cloak>
   <!--  HEADER-->
-  <div class="thread-header" layout="row" layout-align="space-between center">    
+  <div class="thread-header heading" layout="row" layout-align="space-between center">    
     <div>
       <!--  TITLE-->
       <div class="name">Inquiry Detail</div>
@@ -10,14 +10,14 @@
   </div>
   <!--  /HEADER-->
   <!--  PROJECT PAGE LIST-->
-  <div layout="column" flex>
+  <div layout="column" flex class="content">
     <div ng-repeat="pages in projectSummary.currentProject.pages ">
       <div ng-repeat="question in pages.questions | orderBy: 'adminKey'">
-        <div layout="row">
-          <span>
+        <div layout="row" ng-hide="question.questionType==='gmap'">
+          <span class="question">
           {{$index}}.
           </span>
-          <span>
+          <span class="answer">
           {{question.supplierDescription}}
           </span>
         </div>

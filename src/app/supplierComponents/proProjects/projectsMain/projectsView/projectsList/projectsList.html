@@ -8,7 +8,7 @@
     ng-cloak>
 
     <div layout="row" layout-align="start center">
-        <md-checkbox class="no-label" ng-checked="projectsList.isSelected(thread)" ng-click="projectsList.toggleSelectProject(thread, $event)"
+        <md-checkbox class="no-label checkbox" ng-checked="projectsList.isSelected(thread)" ng-click="projectsList.toggleSelectProject(thread, $event)"
             aria-label="{{projectsList.isSelected(thread) ? 'Deselect' : 'Select'}}">
         </md-checkbox>
 
@@ -16,8 +16,8 @@
             <div class="name" layout="row" layout-align="space between center">
                 <lead-owner owner-id="thread.owner"></lead-owner>
 
-                <span class="text-truncate">{{thread.detail}}</span>
-                <project-budget thread="thread"></project-budget>
+                <span class="text-truncate">{{thread.title}}</span>
+               
 
                 <!-- Add below icons from tags -->
                 <!-- <md-icon md-font-icon="icon-paperclip" class="has-attachment s16"
@@ -49,7 +49,7 @@
                 </md-icon>
                 <span>180Km</span> 
                 </div>
-                
+                 <project-budget thread="thread"></project-budget>
                 
             </div>
             <form-services service-ids="[thread.serviceId]"></form-services>

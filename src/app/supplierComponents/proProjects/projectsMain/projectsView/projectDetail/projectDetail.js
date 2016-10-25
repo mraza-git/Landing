@@ -87,7 +87,7 @@
       controller: controller,
       controllerAs: name,
       bindings: {
-        itemId: '<',
+        
         update: '&',
         currentProject: '=',       
         
