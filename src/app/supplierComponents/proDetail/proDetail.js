@@ -55,6 +55,9 @@
     'pagesToolbar',
     'validation.match',
     'proRegister',
+    'ngMessages',
+    'focGmap',
+
     ])
   .component(name,{
     templateUrl: templateUrl,

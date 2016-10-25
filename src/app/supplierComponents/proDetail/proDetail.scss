@@ -1,5 +1,5 @@
 #pro-detail {
-   height: 100%;    
+  // height: 100%;    
     .top-bg {
     position: relative;
     z-index: 1;
@@ -48,6 +48,18 @@
                       width: 100%;
                     }
                   }
+          .ms-stepper .ms-stepper-horizontal .ms-stepper-steps {
+              padding: 0;
+          }
+          .ms-stepper .ms-stepper-horizontal, .ms-stepper .ms-stepper-horizontal .ms-stepper-navigation-wrapper .ms-stepper-navigation {              
+              box-shadow:none;
+          }
+          .ms-stepper .ms-stepper-horizontal { 
+              border-top: solid 1px rgba(194, 194, 194, 0.78);
+          }
+          .ms-stepper .ms-stepper-horizontal .ms-stepper-controls {
+              padding: 1px 0;
+          }
         .content-area {
             width: 100%;
             .list {
@@ -56,6 +68,7 @@
               // -moz-box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.1);
               // box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.1);
               background-color: whitesmoke;
+             // max-width: 805px;
               
               .toolbar-height {
                 height: 23px;
@@ -91,13 +104,13 @@
                               height: 12.33333px;
                               }
                         }
-                   md-input-container label, label {
-                        font-size: 18px !important;
-                          margin-bottom: 10px;
-                          padding-left: 0 !important;
-                          font-weight: 500;
-                          color: rgb(45,50,62) !important;
-                    }
+                  //  md-input-container label, label {
+                  //       font-size: 18px !important;
+                  //         margin-bottom: 10px;
+                  //         padding-left: 0 !important;
+                  //         font-weight: 500;
+                  //         color: rgb(45,50,62) !important;
+                  //   }
                     @media (max-width: 768px) {
                     md-input-container  label {
                       font-size: 16px !important;
@@ -106,14 +119,14 @@
                      md-input-container label {
                       font-size: 14px !important;
                     }}
-                    .md-input {
-                          border-color: rgba(0,0,0,0.12);
-                      }
-                    md-input-container{
-                      width: 70%;
-                      min-width: 275px;
-                      margin-top: 22px ;
-                    }
+                    // .md-input {
+                    //       border-color: rgba(0,0,0,0.12);
+                    //   }
+                    // md-input-container{
+                    //   width: 70%;
+                    //   min-width: 275px;
+                    //   margin-top: 22px ;
+                    // }
                     md-select{
                       font-size: 16px !important;
                     }
@@ -121,10 +134,39 @@
                         background: rgba(255, 255, 255, 0.74);
                         margin-top: -7px;
                     }
+                    md-input-container {
+                      .address {                      
+                      top: -50px;
+                      }
+                      &.pictures {                        
+                        margin: 48px 0;
+                        
+                        label {
+                          font-size: 18px;
+                          padding: 35px 0px;
+                          color: black;
+                        }
+                      }
+                    }
+                    md-input-container.md-input-has-value > md-icon {
+                    color: green; }               
+                    md-input-container.md-input-invalid > md-icon {
+                      color: red; }
+                    // md-input-container > .md-font {
+                    //  color: dodgerblue; }
                     .md-datepicker-input-container, md-contact-chips {
-                        width: 342px;
-                        min-width: 275px;
-                        margin-bottom: 20px;
+                            min-width: 275px;
+                            border-bottom: none;
+                            padding-left: 28px;
+                            width: 100%;
+                    }
+                    .md-datepicker-button {
+                      display: none;
+                    }
+                     .container{
+                        height: 350px;
+                        position: relative;
+
                     }
                   }
                   .formly-field-radio {
@@ -191,18 +233,4 @@
                                      
 }
 
-.lead {
-  border-collapse: collapse;
-}
-
-.lead th {
-  border-bottom: 1px solid;
-}
-.lead td, .lead th {
-  border-left: 1px solid;
-  padding: 5px 10px;
-}
-.lead td:first-child, .lead th:first-child {
-  border-left: none;
-}
 

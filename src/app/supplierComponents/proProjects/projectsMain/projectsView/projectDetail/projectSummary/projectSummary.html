@@ -12,8 +12,8 @@
   <!--  PROJECT PAGE LIST-->
   <div layout="column" flex class="content">
     <div ng-repeat="pages in projectSummary.currentProject.pages ">
-      <div ng-repeat="question in pages.questions | orderBy: 'adminKey'">
-        <div layout="row" ng-hide="question.questionType==='gmap'">
+      <div ng-repeat="question in pages.questions | orderBy: 'adminKey'" ng-hide="question.questionType === 'gmap'">
+        <div layout="row">
           <span class="question">
           {{$index}}.
           </span>
