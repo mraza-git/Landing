@@ -6,11 +6,13 @@
     top: 0;
     right: 0;
     left: 0;
-    height: 200px;
+    height: 150px;
     //width: 100%;
     background-image: url(/assets/images/backgrounds/header-bg.png);
     background-size: cover;
-  text-align: center;
+    text-align: center;
+    display: inline-table;
+    width: 100%;
   h1{
     margin: 10px 0px 0px 0px;
   }
@@ -71,8 +73,6 @@
                   padding: 10px 20px;
                 }
                       
-                  .formly-field {
-                    width: 100%;
 
                     md-radio-button, md-checkbox {
                       margin-bottom: 0;
@@ -124,7 +124,7 @@
                         min-width: 275px;
                         margin-bottom: 20px;
                     }
-                  }
+               
                   .formly-field-radio {
                     padding: 20px 0;
                   }
@@ -153,6 +153,11 @@
       font-family:Roboto, "Helvetica Neue", Arial, sans-serif;
       font-size:16px;
       font-weight:bold;
+      display: inline-table;
+      }
+      .footer {
+            height: 50px;
+             display: inline-table;
       }
     .steps-indicator.steps-3:before {
                   left: calc(107% / 3 / 2);

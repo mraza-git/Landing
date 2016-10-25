@@ -6,11 +6,13 @@
     top: 0;
     right: 0;
     left: 0;
-    height: 200px;
+    height: 150px;
     //width: 100%;
     background-image: url(/assets/images/backgrounds/header-bg.png);
     background-size: cover;
-  text-align: center;
+    text-align: center;
+    display: inline-table;
+    width: 100%;
   h1{
     margin: 10px 0px 0px 0px;
   }
@@ -18,6 +20,10 @@
     margin: 0px 0px 0px 0px;
   }
     }
+    .footer {
+            height: 50px;
+             display: inline-table;
+      }
 
     .form-content {
         width: 95%;      
@@ -34,6 +40,9 @@
                     .question-wizard{
                       .steps-indicator{
                         height:50px !important;
+                        display: inline-table;
+                      margin: auto;
+                      width: 100%;
                       }
                     }
                     question-preview {
@@ -41,6 +50,11 @@
                     }
                   }
     }
+          .footer {
+            height: 50px;
+             display: inline-table;
+             margin: auto;
+      }
     .steps-indicator.steps-3:before {
                   left: calc(107% / 3 / 2);
                   right: calc(107% / 3 / 2);

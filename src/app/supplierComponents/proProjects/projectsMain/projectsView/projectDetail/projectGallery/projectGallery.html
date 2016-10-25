@@ -1,7 +1,7 @@
 <!-- DETAILS PAGE -->
 <div ng-show="projectGallery.images" flex layout="column" class="slide-top md-whiteframe-2dp" ng-cloak>
   <!--  HEADER-->
-  <div class="thread-header" layout="row" layout-align="space-between center">    
+  <div class="thread-header heading" layout="row" layout-align="space-between center">    
     <div>
       <!--  TITLE-->
       <div class="name">Project Images</div>
@@ -10,7 +10,7 @@
   </div>
   <!--  /HEADER-->
   <!--  PROJECT PAGE LIST-->
-  <div layout="column" flex>
+  <div layout="column" flex class="content">
     <md-grid-list class="list"
                 layout="column" flex
                 md-cols-xs="3" md-cols-sm="4" md-cols-md="6" md-cols-gt-md="8"
@@ -28,9 +28,11 @@
                 <!--<img ng-src="{{file.url}}"
                 class="post__featured-image toggle img-thumbnail"
                 alt="alt"/>            -->
+        <div class="post__image-container">
         <a href="{{file.url}}">
-                <img src="{{file.url}}" alt="{{file.url}}">
+                <img src="{{file.url}}" alt="{{file.url}}" class="post__featured-image">
         </a>
+        </div>
                 
 
 

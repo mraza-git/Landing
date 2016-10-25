@@ -1,16 +1,20 @@
-<pre>
-  {{projectOwnerContact.owner |json:4}}
-  
-</pre> 
+<div layout="column" layout-align="center center">
 
-<div>
-  <div>
-    Name: {{projectOwnerContact.owner.profile.name}}
-  </div>
+<div flex> 
+
+    <md-button ng-click=""
+               id="send-message"
+               class="md-raised md-primary contact-btn"
+               ng-disabled="false"
+               aria-label="Send Message">Send Message</md-button>
+  
 </div>
 
-<div>
-  <div>
-    Email: {{projectOwnerContact.owner.emails[0].address}}
-  </div>
+<div flex>
+     <md-button ng-click=""
+               id="show-phone"
+               class="md-raised md-accent contact-btn"
+               ng-disabled="false"
+               aria-label="Show Phone">Show Phone</md-button>
+</div>
 </div>
