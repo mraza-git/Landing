@@ -9,225 +9,312 @@
       <div class="headline">
         Profile Edit Page
       </div>
-      <form name="pro-detail" ms-horizontal-stepper ng-submit="vm.submitStepper()" ng-model="vm.stepper" novalidate class="content-area" layout="column" flex="80">
-          <!-- Step 1 -->
-        <ms-horizontal-stepper-step ng-form="step1" step="1" step-title="'Personal Information'">
-          <div class="list" layout="column" flex>    
-            <div layout="column" class="preview-content" flex>
-              <div class="formly-container" layout="column" flex>
-                <div class="formly-field" layout="column" layout-gt-xs="row" flex>
-                  <md-input-container class="md-icon-float md-block" flex-gt-xs="50" flex>
-                    <label for="name">Name</label>
-                    <md-icon md-font-icon="icon-account" class="s24"></md-icon>
-                     <input name="name"
-                            type="text"
-                            ng-model="leadSummary.user.name" 
-                                                         
-                                                   
-                            aria-label="Name">
-                  </md-input-container>
-                  <md-input-container class="md-icon-float md-block" flex-gt-xs="50" flex>
-                    <label for="phone">Mobile</label>
-                    <md-icon  md-font-icon="icon-cellphone" class="s24"></md-icon>
-                     <input name="phone"
-                            type="text"
-                            ng-model="leadSummary.user.phone" 
-                                                         
-                                                   
-                            aria-label="phone">
-                  </md-input-container>
-                  </div>
-                <div class="formly-field" layout="column" layout-gt-xs="row" flex>
-                    <md-input-container class="md-icon-float md-block" flex-gt-xs="50" flex>
-                      <label for="email">Email</label>
-                      <md-icon  md-font-icon="icon-email" class="s24"></md-icon>
-                      <input name="email"
-                              type="email"
-                              ng-model="leadSummary.user.email" 
-                            
-                                                           
-                                                     
-                              aria-label="email">
-                  </md-input-container>
-                  <md-input-container class="md-icon-float md-block" flex-gt-xs="50" flex>
-                    <label for="gender">Gender</label>
-                    <md-icon md-font-icon="icon-gender-male-female" class="s24"></md-icon>
-                    <md-select ng-model="leadSummary.user.gender">
-                      <md-option>Male</md-option>
-                      <md-option>Female</md-option>
-                    </md-select>                     
-                  </md-input-container>
-                  <md-input-container class="md-icon-float md-block" flex-gt-xs="50" flex>             
-                    <!--<label for="birthday">Birthday</label>                    -->
-                    <md-icon md-font-icon="icon-calendar-today" class="s24"></md-icon>
-                    <md-datepicker ng-model="leadSummary.user.birthday"
-                                   ng-disabled="false"
-                                   ng-required="false"
-                                   md-placeholder="Birthday">
-                    </md-datepicker>    
-                  </md-input-container>
-                </div>
-                <div class="formly-field" layout="column" flex>
+    <ms-form-wizard flex  class="content-area" layout="column" flex>
+    <md-tabs md-dynamic-height md-selected="msWizard.selectedIndex" md-center-tabs="true" layout="column" flex>
 
-                   <md-input-container class="md-icon-float md-block">
-                    <label for="address" class="address">Address</label>
-                    <div class="container" flex> 
-                      <foc-gmap location="proDetail.user.profile.address.location" key="proDetail.user._id" readonly="false" ></foc-gmap>
-                    </div>
+       <!-- Step 1 -->
+        <md-tab layout="column" flex>
+            <md-tab-label>
+            <span class="ms-form-wizard-step-label">
+                <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep1.$invalid">1</span>
+                <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep1.$valid">
+                    <i class="icon-check s16"></i>
+                </span>
+                <span class="ms-form-wizard-step-text">Personal Information</span>
+            </span>
+            </md-tab-label>
+            <md-tab-body layout="column" flex>
+                <form name="wizardStep1" class="md-inline-form" layout="column" flex ms-form-wizard-form novalidate>
+                     <div class="list" layout="column" layout-gt-xs="row" flex>    
+                        <div layout="column" class="preview-content" flex>
+                          <div class="formly-container flex-scrollable" ms-scroll flex>
+                            <div class="formly-field" layout="column" layout-gt-xs="row" flex>
+
+                              <md-input-container class="md-icon-float md-block" flex-gt-xs="50" flex>
+                                <label for="name">Name</label>
+                                <md-icon md-font-icon="icon-account" class="s24"></md-icon>
+                                <input name="name"
+                                        type="text"
+                                        ng-model="vm.formWizard.user.name" 
+                                        required                            
+                                                              
+                                        aria-label="Name">
+                                    <div ng-messages="wizardStep1.name.$error" ng-show="wizardStep1.name.$touched" role="alert">
+                                        <div ng-message="required">
+                                          <span>Name field is required.</span>
+                                        </div>
+                                    </div>
+                              </md-input-container>
+                              <md-input-container class="md-icon-float md-block" flex-gt-xs="50" flex>
+                                <label for="phone">Mobile</label>
+                                <md-icon  md-font-icon="icon-cellphone" class="s24"></md-icon>
+                                <input name="phone"
+                                        type="text"
+                                        ng-model="vm.formWizard.user.phone" 
+                                                                    
+                                                              
+                                        aria-label="phone">
+                                        <div ng-messages="wizardStep1.firstname.$error" ng-show="wizardStep1.firstname.$touched" role="alert">
+                                        <div ng-message="required">
+                                          <span>Mobile field is required.</span>
+                                        </div>
+                                    </div>
+                              </md-input-container>
+                              </div>
+                            <div class="formly-field" layout="column" layout-gt-xs="row" flex>
+                                <md-input-container class="md-icon-float md-block" flex-gt-xs="50" flex>
+                                  <label for="email">Email</label>
+                                  <md-icon  md-font-icon="icon-email" class="s24"></md-icon>
+                                  <input name="email"
+                                          type="email"
+                                          ng-model="leadSummary.user.email" 
                                         
-                  </md-input-container>  
-                    </div>
-                </div>         
-            </div>
-          </div>
-        </ms-horizontal-stepper-step>
-        <!-- / Step 1 -->
-        <!-- Step 2 -->
-        <ms-horizontal-stepper-step ng-form="step1" step="1" step-title="'Business Information'"  layout="column" flex>
-          <div class="list" layout="column" flex>    
-            <div layout="column" class="preview-content flex-scrollable"  ms-scroll flex>
-              <div class="formly-container" layout="column" flex>
-                <div class="formly-field" layout="column">
-                  <md-input-container class="md-icon-float md-block">
-                    <label for="cname">Company Name</label>
-                    <md-icon md-font-icon="icon-briefcase" class="s24"></md-icon>
-                     <input name="company-name"
-                            type="text"
-                            ng-model="leadSummary.user.cname" 
-                                                         
-                                                   
-                            aria-label="Company Name">
-                  </md-input-container>
-                  <md-input-container class="md-icon-float md-block">
-                    <label for="phone">Business Phone</label>
-                    <md-icon  md-font-icon="icon-phone" class="s24"></md-icon>
-                     <input name="bphone"
-                            type="text"
-                            ng-model="leadSummary.user.bphone" 
-                                                         
-                                                   
-                            aria-label="Business Phone">
-                  </md-input-container>
-                    <md-input-container class="md-icon-float md-block">
-                      <label for="email">Business Email</label>
-                      <md-icon  md-font-icon="icon-email" class="s24"></md-icon>
-                      <input name="bemail"
-                              type="email"
-                              ng-model="leadSummary.user.bemail" 
-                             
-                                                           
-                                               
-                              aria-label="Business Email">
-                  </md-input-container>
-                  <md-input-container class="md-icon-float md-block">
-                    <label for="website">Website</label>
-                    <md-icon md-font-icon="icon-web" class="s24"></md-icon>
-                     <input name="website"
-                            type="input"
-                            ng-model="leadSummary.user.website" 
-                                                       
-                                                   
-                            aria-label="website">
-                  </md-input-container>
-                   <md-input-container class="md-icon-float md-block">
-                    <label for="address" class="address">Company Address</label>
-                    <div class="container" flex> 
-                      <foc-gmap location="proDetail.user.profile.address.location" key="proDetail.user._id" readonly="false" ></foc-gmap>
-                    </div>
-                  </md-input-container>              
+                                                                      
+                                                                
+                                          aria-label="email">
+                              </md-input-container>
+                              <md-input-container class="md-icon-float md-block" flex-gt-xs="50" flex>
+                                <label for="gender">Gender</label>
+                                <md-icon md-font-icon="icon-gender-male-female" class="s24"></md-icon>
+                                <md-select ng-model="leadSummary.user.gender">
+                                  <md-option>Male</md-option>
+                                  <md-option>Female</md-option>
+                                </md-select>                     
+                              </md-input-container>
+                              <md-input-container class="md-icon-float md-block" flex-gt-xs="50" flex>             
+                                <!--<label for="birthday">Birthday</label>                    -->
+                                <md-icon md-font-icon="icon-calendar-today" class="s24"></md-icon>
+                                <md-datepicker ng-model="leadSummary.user.birthday"
+                                              ng-disabled="false"
+                                              ng-required="false"
+                                              md-placeholder="Birthday">
+                                </md-datepicker>    
+                              </md-input-container>
+                            </div>
+                            <div class="formly-field" layout="column" flex>
 
-                   <md-input-container class="md-icon-float md-block">
-                    <label for="about">About</label>
-                     <textarea name="about"
-                            type="textarea"
-                            ng-model="leadSummary.user.about" 
+                              <md-input-container class="md-icon-float md-block">
+                                <label for="address" class="address">Address</label>
+                                <div class="container" flex> 
+                                  <foc-gmap location="proDetail.user.profile.address.location" key="proDetail.user._id" readonly="false" ></foc-gmap>
+                                </div>
+                                                    
+                              </md-input-container>  
+                                </div>
+                            </div>         
+                        </div>
+                      </div>
+                       
+                </form>
+            </md-tab-body>
+        </md-tab>
+        <!-- /Step 1 -->
+
+        <!-- Step 2 -->
+        <md-tab ng-disabled="wizardStep1.$invalid">
+            <md-tab-label>
+            <span class="ms-form-wizard-step-label">
+                <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep2.$invalid">2</span>
+                <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep2.$valid">
+                    <i class="icon-check s16"></i>
+                </span>
+                <span class="ms-form-wizard-step-text">Business Information</span>
+            </span>
+            </md-tab-label>
+            <md-tab-body layout="column" flex>
+                <form name="wizardStep2" ms-form-wizard-form novalidate layout="column" flex>
+                  <div class="list" layout="column" flex>    
+                    <div layout="column" class="preview-content" flex>
+                      <div class="formly-container flex-scrollable" layout="column" ms-scroll flex>
+                        <div class="formly-field" layout="column" flex>
+                          <md-input-container class="md-icon-float md-block">
+                            <label for="cname">Company Name</label>
+                            <md-icon md-font-icon="icon-briefcase" class="s24"></md-icon>
+                            <input name="company-name"
+                                    type="text"
+                                    ng-model="leadSummary.user.cname" 
+                                                                
+                                                          
+                                    aria-label="Company Name">
+                          </md-input-container>
+                          <md-input-container class="md-icon-float md-block">
+                            <label for="phone">Business Phone</label>
+                            <md-icon  md-font-icon="icon-phone" class="s24"></md-icon>
+                            <input name="bphone"
+                                    type="text"
+                                    ng-model="leadSummary.user.bphone" 
+                                                                
+                                                          
+                                    aria-label="Business Phone">
+                          </md-input-container>
+                            <md-input-container class="md-icon-float md-block">
+                              <label for="email">Business Email</label>
+                              <md-icon  md-font-icon="icon-email" class="s24"></md-icon>
+                              <input name="bemail"
+                                      type="email"
+                                      ng-model="leadSummary.user.bemail" 
+                                    
+                                                                  
                                                       
-                            md-maxlength="150" 
-                            rows="5"                       
-                            aria-label="about"></textarea>
-                  </md-input-container>                
-                
-                
-                
-                 <label for="servies">Select Services</label>
-                      <md-contact-chips
-                        ng-model="ctrl.asyncContacts"
-                        md-contacts="ctrl.delayedQuerySearch($query)"
-                        md-contact-name="name"
-                        md-contact-image="image"
-                        md-contact-email="email"
-                        md-require-match="true"
-                        md-highlight-flags="i"
-                        filter-selected="ctrl.filterSelected"
-                        placeholder="To">
+                                      aria-label="Business Email">
+                          </md-input-container>
+                          <md-input-container class="md-icon-float md-block">
+                            <label for="website">Website</label>
+                            <md-icon md-font-icon="icon-web" class="s24"></md-icon>
+                            <input name="website"
+                                    type="input"
+                                    ng-model="leadSummary.user.website" 
+                                                              
+                                                          
+                                    aria-label="website">
+                          </md-input-container>
+
+                          <md-input-container class="md-icon-float md-block">
+                            <label for="about">About</label>
+                            <textarea name="about"
+                                    type="textarea"
+                                    ng-model="vm.formWizard.user.about" 
+                                    columns="1"                           
+                                    md-maxlength="150" 
+                                    rows="5"                       
+                                    aria-label="about"></textarea>
+                            <div ng-messages="wizardStep2.address.$error" ng-show="wizardStep2.address.$touched" role="alert" multiple>
+                            <div ng-message="required"><span>Address field is required.</span></div>
+                            <div ng-message="md-maxlength">
+                                <span>Address can't be longer than 150 characters.</span>
+                            </div>
+                        </div>
+                          </md-input-container>                
+                        
+                        
+                        
+                        <label for="servies">Select Services</label>
+                              <md-contact-chips
+                                ng-model="ctrl.asyncContacts"
+                                md-contacts="ctrl.delayedQuerySearch($query)"
+                                md-contact-name="name"
+                                md-contact-image="image"
+                                md-contact-email="email"
+                                md-require-match="true"
+                                md-highlight-flags="i"
+                                filter-selected="ctrl.filterSelected"
+                                placeholder="To">
+
+
+                          <md-input-container class="md-icon-float md-block">
+                            <label for="address" class="address">Company Address</label>
+                            <div class="container" flex> 
+                              <foc-gmap location="proDetail.user.profile.address.location" key="proDetail.user._id" readonly="false" ></foc-gmap>
+                            </div>
+                          </md-input-container>     
+
+
+                            </div>
+                        </div>         
                     </div>
-                </div>         
-            </div>
-          </div>
-        </ms-horizontal-stepper-step>
-        <!-- / Step 2 -->
+                  </div>
+                 </form>
+            </md-tab-body>
+        </md-tab>
+        <!-- /Step 2 -->
+
         <!-- Step 3 -->
-        <ms-horizontal-stepper-step ng-form="step1" step="1" step-title="'Pictures'">
-          <div class="list" layout="column" flex>    
-            <div layout="column" class="preview-content flex-scrollable"  ms-scroll flex>
-              <div class="formly-container" layout="column" flex>
-                <div class="formly-field" layout="column">
-                 <md-input-container class="pictures">
-                 <label for="images">Profile Picture</label>
-                 <files-upload  
-                  ok-to-save="leadSummary.okToSave"
-                  done="leadSummary.uploadedPictures($event)"
-                  crop-settings = "leadSummary.cropSettings"
-                  >
-                </files-upload>
-                </md-input-container>    
-                  
-                <md-input-container class="pictures">
-                 <label for="images">Upload Images</label>
-                 <files-upload  
-                  ok-to-save="leadSummary.okToSave"
-                  done="leadSummary.uploadedPictures($event)"
-                  crop-settings = "leadSummary.cropSettings"
-                  >
-                </files-upload>
-                </md-input-container>                
-                
-                
-                
-                
+        <md-tab ng-disabled="wizardStep1.$invalid || wizardStep2.$invalid" layout="column" flex>
+            <md-tab-label>
+            <span class="ms-form-wizard-step-label">
+                <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep3.$invalid">3</span>
+                <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep3.$valid">
+                    <i class="icon-check s16"></i>
+                </span>
+                <span class="ms-form-wizard-step-text">Images</span>
+            </span>
+            </md-tab-label>
+            <md-tab-body layout="column" flex>
+                <form name="wizardStep3" ms-form-wizard-form novalidate layout="column" flex>
+                  <div class="list" layout="column" flex>    
+                      <div layout="column" class="preview-content" flex>
+                        <div class="formly-container flex-scrollable" ms-scroll layout="column" flex>
+                          <div class="formly-field" layout="column">
+                                            
+                          <md-input-container class="pictures">
+                          <label for="images">Upload Images</label>
+                          <files-upload  
+                            ok-to-save="leadSummary.okToSave"
+                            done="leadSummary.uploadedPictures($event)"
+                            crop-settings = "leadSummary.cropSettings"
+                            >
+                          </files-upload>
+                          </md-input-container>            
+          
+                              </div>
+                          </div>         
+                      </div>
                     </div>
-                </div>         
-            </div>
-          </div>
-        </ms-horizontal-stepper-step>
-        <!-- / Step 3 -->
-       <!-- Step 4 -->
-        <ms-horizontal-stepper-step ng-form="step1" step="1" step-title="'License Details'"  layout="column" flex>
-          <div class="list" layout="column" flex>    
-            <div layout="column" class="preview-content flex-scrollable"  ms-scroll flex>
-              <div class="formly-container" layout="column" flex>
-                <div class="formly-field" layout="column">
-                <md-input-container class="md-icon-float md-block">
-                    <label for="license">Trade License Number</label>
-                    <md-icon  md-font-icon="icon-briefcase-checked" class="s24"></md-icon>
-                     <input name="license"
-                            type="text"
-                            ng-model="leadSummary.user.license" 
-                            required                             
-                                                   
-                            aria-label="Trade License Number">
-                  </md-input-container>                
-                
-                
-                
-                
+                </form>
+            </md-tab-body>
+        </md-tab>
+        <!-- /Step 3 -->
+        
+        <!-- Step 4 -->
+         <md-tab ng-disabled="wizardStep1.$invalid || wizardStep2.$invalid || wizardStep3.$invalid">
+            <md-tab-label>
+            <span class="ms-form-wizard-step-label">
+                <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep4.$invalid">4</span>
+                <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep4.$valid">
+                    <i class="icon-check s16"></i>
+                </span>
+                <span class="ms-form-wizard-step-text">Trade License Details</span>
+            </span>
+            </md-tab-label>
+            <md-tab-body layout="column" flex>
+                <form name="wizardStep4" ms-form-wizard-form novalidate layout="column" flex>
+                  <div class="list" layout="column" flex>    
+                      <div layout="column" class="preview-content flex-scrollable" ms-scroll flex>
+                        <div class="formly-container" layout="column" flex>
+                          <div class="formly-field" layout="column">
+                          <md-input-container class="md-icon-float md-block">
+                              <label for="license">Trade License Number</label>
+                              <md-icon  md-font-icon="icon-briefcase-checked" class="s24"></md-icon>
+                              <input name="license"
+                                      type="text"
+                                      ng-model="leadSummary.user.license" 
+                                      required                             
+                                                            
+                                      aria-label="Trade License Number">
+                            </md-input-container>                
+                          
+                          
+                          
+                          
+                              </div>
+                          </div>         
+                      </div>
                     </div>
-                </div>         
-            </div>
-          </div>
-        </ms-horizontal-stepper-step>
-        <!-- / Step 4 -->
-      </form>
+                </form>
+            </md-tab-body>
+        </md-tab>
+        <!-- /Step 4 -->
+
+        </md-tabs>
+    <div class="navigation footer" flex layout="row" layout-align="center center">
+        <md-button class="md-raised md-accent" ng-click="msWizard.previousStep()" ng-disabled="msWizard.isFirstStep()">
+            Previous
+        </md-button>
+        <div class="steps">
+        <span ng-repeat="form in msWizard.forms" ng-class="{'selected md-accent-bg':msWizard.selectedIndex === $index}"></span>
+        </div>
+        <md-button class="md-raised md-accent" ng-click="msWizard.nextStep()" ng-hide="msWizard.isLastStep()" ng-disabled="msWizard.currentStepInvalid()">
+            Next
+        </md-button>
+        <md-button class="md-raised md-warn" ng-click="vm.sendForm(); msWizard.resetForm();" ng-show="msWizard.isLastStep()" ng-disabled="msWizard.formsIncomplete()">
+            Send
+        </md-button>
+    </div>
+</ms-form-wizard>
+
+
+
+
       </div>
     </div>
 
