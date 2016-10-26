@@ -25,7 +25,7 @@
 
 
     ///////////Methods Declarations///////////
-    self.openCreateDialog = openCreateDialog;
+    
     self.setService = setService;
 
 
@@ -75,8 +75,7 @@
       controller: controller,
       controllerAs: name,
       bindings: {
-        selectedService: '=',
-        masterSettings: '=',
+        selectedService: '=',        
         currentFolder: '=',
         currentProject: '=',
       }
