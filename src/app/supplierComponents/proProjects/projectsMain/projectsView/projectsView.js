@@ -14,13 +14,19 @@
     self.loading = false;
     self.selectedProjects = [];    
     self.selectedProject = undefined;
+    Roles.subscription = Meteor.subscribe("_roles")
     
     self.helpers({
       currentUser: function() {
         return Meteor.user();
       },
       projects: function(){
-        return Leads.find();
+        return Leads.find({                              
+                folder:{$nin:['delete','archive']},
+        });
+      },
+      isAdmin: function(){
+        return Roles.userIsInRole(Meteor.userId(),['admin'],'default-group');
       }
      
     });
