@@ -1,5 +1,9 @@
 <div id="pro-detail" layout="column" flex>
     <!-- TOP BACKGROUND -->
+    <md-progress-linear
+      md-mode="indeterminate" 
+      ng-disabled="proDetail.ready">
+    </md-progress-linear>
     <div class="top-bg md-accent-bg" layout="column">
       </div>
 
@@ -8,139 +12,351 @@
     <div class="form-content" layout="column" flex layout-align="start center">
       <div class="headline">
         Profile Edit Page
+        <h2>  
+          {{proDetail.isSupplier}}
+        </h1>
       </div>
-      <form name="pro-detail" class="content-area" layout="column" flex="80">
-     
-          <div class="list" layout="column" flex>    
-            <div layout="column" class="preview-content flex-scrollable"  ms-scroll flex>
-              <div class="formly-container" layout="column" flex>
-                <div class="formly-field" layout="column">
-                  <md-input-container>
-                    <label for="name">Name</label>
-                     <input name="name"
-                            type="input"
-                            ng-model="proDetail.user.profile.name" 
-                            required                             
-                            minlength="3"                           
-                            aria-label="Name">
-                  </md-input-container>
-                  <md-input-container>
-                    <label for="name">Username</label>
-                     <input name="name"
-                            type="input"
-                            ng-model="proDetail.user.username" 
-                            required
-                            disabled="true"                 
-                            minlength="3"                           
-                            aria-label="Name">
-                  </md-input-container>
-                   <md-input-container>
-                    <label for="gender">Gender</label>
-                     <input name="gender"
-                            type="input"
-                            ng-model="proDetail.user.profile.gender" 
-                            required                             
-                            minlength="3"                           
-                            aria-label="Gender">
-                  </md-input-container>
-             
-                    <label for="birthday">Birthday</label>                    
-                    <md-datepicker ng-model="proDetail.user.profile.birthday"
-                                   md-placeholder="mm/dd/yyyy"
-                                   ng-disabled="false"
-                                   ng-required="true">
-                    </md-datepicker>
-                     <md-input-container>
-                    <label for="email">Login Email</label>
-                     <input name="email"
-                            type="input"
-                            ng-model="proDetail.user.emails[0].address" 
-                            required     
-                            disabled="true."                        
-                            minlength="3"                           
-                            aria-label="email">
-                  </md-input-container>
-                  <md-input-container>
-                    <label for="phone">Phone</label>
-                     <input name="phone"
-                            type="input"
-                            ng-model="proDetail.user.phone"
-                            ng-pattern="/^(\+\971{1,3}[- ])\d{6,9}$/" required                           
-                            aria-label="phone">
-                  </md-input-container>
-                  <md-input-container>
-                    <label for="website">Website</label>
-                     <input name="website"
-                            type="input"
-                            ng-model="proDetail.user.website" 
-                            required                             
-                            minlength="3"                           
-                            aria-label="website">
-                  </md-input-container>
-                  <md-input-container>
-                    <label for="gender">Gender</label>
-                     <input name="gender"
-                            type="input"
-                            ng-model="proDetail.user.gender" 
-                            required                             
-                            minlength="3"                           
-                            aria-label="Gender">
-                  </md-input-container>
+    <ms-form-wizard flex  class="content-area" layout="column" flex>
+    <md-tabs md-dynamic-height md-selected="msWizard.selectedIndex" md-center-tabs="true" layout="column" flex>
 
-                 
-         
-                   <md-input-container>
-                    <label for="about">About</label>
-                     <textarea name="about"
-                            type="textarea"
-                            ng-model="proDetail.user.about" 
-                            required                             
-                            md-maxlength="150" 
-                            rows="5"                       
-                            aria-label="about"></textarea>
-                  </md-input-container>
-                <md-input-container>
-                    <files-upload  
-                  ok-to-save="proDetail.okToSave"
-                  done="proDetail.uploadedPictures($event)"
-                  crop-settings = "proDetail.cropSettings"
-                  >
-                </files-upload></md-input-container>                
-                
-                
-                
-                 <label for="servies">Select Services</label>
-                      <md-contact-chips
-                        ng-model="ctrl.asyncContacts"
-                        md-contacts="ctrl.delayedQuerySearch($query)"
-                        md-contact-name="name"
-                        md-contact-image="image"
-                        md-contact-email="email"
-                        md-require-match="true"
-                        md-highlight-flags="i"
-                        filter-selected="ctrl.filterSelected"
-                        placeholder="To">
-                </div>
-     
-          </div>          </div>
-      </div>
+       <!-- Step 1 -->
+        <md-tab layout="column" flex>
+            <md-tab-label>
+            <span class="ms-form-wizard-step-label">
+                <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep1.$invalid">1</span>
+                <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep1.$valid">
+                    <i class="icon-check s16"></i>
+                </span>
+                <span class="ms-form-wizard-step-text">Personal Information</span>
+            </span>
+            </md-tab-label>
+            <md-tab-body layout="column" flex>
+                <form name="wizardStep1" class="md-inline-form" layout="column" flex ms-form-wizard-form novalidate>
+                     <div class="list" layout="column" layout-gt-xs="row" flex>    
+                        <div layout="column" class="preview-content" flex>
+                          <div class="formly-container flex-scrollable" ms-scroll flex>
+                            <div class="formly-field" layout="column" layout-gt-xs="row" flex>
 
-        <div layout="column" layout-align="space between center">
-            <div layout="row" layout-align="space-between-center" class="controls">
-              
-                <md-button href="#"
-                           id="submit"
-                           class="md-primary"
-                           ng-model="proDetail.user.submit"
-                           ng-disabled="true"
-                           md-ripple-size="full | partial | auto"
-                           md-no-ink="true"
-                           aria-label="button-label"> Submit </md-button>
+                              <md-input-container class="md-icon-float md-block" flex-gt-xs="50" flex>
+                                <label for="name">Name</label>
+                                <md-icon md-font-icon="icon-account" class="s24"></md-icon>
+                                <input name="name"
+                                        type="text"
+                                        ng-model="proDetail.user.profile.name" 
+                                        required
+                                        minlength="3"
+                                        maxlength="50"        
+                                        aria-label="Name">
+                                    <div ng-messages="wizardStep1.name.$error" ng-show="wizardStep1.name.$touched" role="alert">
+                                        <div ng-message="required">
+                                          <span>Name field is required.</span>
+                                        </div>
+                                        <div ng-message="minlength">
+                                          <span>Your name should comprise of at least 3 characters.</span>
+                                        </div>
+                                        <div ng-message="maxlength">
+                                          <span>Maximum length for name is 50 characters.</span>
+                                        </div>
+                                    </div>
+                              </md-input-container>
+                              <md-input-container class="md-icon-float md-block" flex-gt-xs="50" flex>
+                                <label for="phone">Mobile</label>
+                                <md-icon  md-font-icon="icon-cellphone" class="s24"></md-icon>
+                                <input name="phone"
+                                        type="text"
+                                        ng-model="proDetail.user.profile.cellPhone" 
+                                        aria-label="phone">
+                                        <!--ng-pattern="/^(\+\971{1,3}[- ])\d{6,9}$/" 
+                                        required                            
+                                                              -->
+                                   <div ng-messages="wizardStep1.phone.$error" ng-show="wizardStep1.phone.$touched" role="alert">
+                                        <div ng-message="required">
+                                          <span>Mobile field is required.</span>
+                                        </div>
+                                        <div ng-message="pattern">
+                                          <span>Phone must be valid e.g +971-551234567</span>
+                                        </div>
+                                    </div>
+                              </md-input-container>
+                              </div>
+                            <div class="formly-field" layout="column" layout-gt-xs="row" flex>
+                                <md-input-container class="md-icon-float md-block" flex-gt-xs="50" flex>
+                                  <label for="email">Email</label>
+                                  <md-icon  md-font-icon="icon-email" class="s24"></md-icon>
+                                  <input name="email"
+                                          type="email"
+                                          ng-model="proDetail.user.profile.secEmail" 
+                                        
+                                                                      
+                                                                
+                                          aria-label="email">
+                              </md-input-container>
+                              <md-input-container class="md-icon-float md-block" flex-gt-xs="50" flex>
+                                <label for="gender">Gender</label>
+                                <md-icon md-font-icon="icon-gender-male-female" class="s24"></md-icon>
+                                <md-select ng-model="proDetail.user.profile.gender">
+                                  <md-option>Male</md-option>
+                                  <md-option>Female</md-option>
+                                </md-select>                     
+                              </md-input-container>
+                              <div class="md-icon-float md-block" flex-gt-xs="50" flex>
+                                <label for="dob">Date of Birth</label>                    
+                                <md-icon md-font-icon="icon-calendar-today" class="s24"></md-icon>
+                                <md-datepicker 
+                                              name="dob"
+                                              ng-model="proDetail.user.profile.dob"
+                                              ng-disabled="false"
+                                              ng-required="false"
+                                              md-placeholder="mm/dd/yyyy">
+                                </md-datepicker>    
+                              </div>
+                              
+                            </div>
+                            <div class="formly-field" layout="column" flex>
+
+                              <md-input-container class="md-icon-float md-block">
+                                <label for="address" class="address">Address</label>
+                                <div class="container" flex> 
+                                  <foc-gmap location="proDetail.user.profile.address.location" key="proDetail.user._id" readonly="false" ></foc-gmap>
+                                </div>
+                                                    
+                              </md-input-container>  
+                                </div>
+                            </div>         
+                        </div>
+                      </div>
+                       
+                </form>
+            </md-tab-body>
+        </md-tab>
+        <!-- /Step 1 -->
+
+        <!-- Step 2 -->
+        <md-tab ng-disabled="wizardStep1.$invalid" layout="column" flex>
+            <md-tab-label>
+            <span class="ms-form-wizard-step-label">
+                <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep2.$invalid">2</span>
+                <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep2.$valid">
+                    <i class="icon-check s16"></i>
+                </span>
+                <span class="ms-form-wizard-step-text">Business Information</span>
+            </span>
+            </md-tab-label>
+            <md-tab-body layout="column" flex>
+                <form name="wizardStep2" ms-form-wizard-form novalidate layout="column" flex>
+                  <div class="list" layout="column" flex>    
+                    <div layout="column" class="preview-content" flex>
+                      <div class="formly-container flex-scrollable" layout="column" ms-scroll flex>
+                        <div class="formly-field" layout="column" flex>
+                          <md-input-container class="md-icon-float md-block">
+                            <label for="cname">Company Name</label>
+                            <md-icon md-font-icon="icon-briefcase" class="s24"></md-icon>
+                            <input name="company-name"
+                                    type="text"
+                                    ng-model="proDetail.user.profile.cname" 
+                                                                
+                                                          
+                                    aria-label="Company Name">
+                          </md-input-container>
+                          <md-input-container class="md-icon-float md-block">
+                            <label for="phone">Business Phone</label>
+                            <md-icon  md-font-icon="icon-phone" class="s24"></md-icon>
+                            <input name="bphone"
+                                    type="text"
+                                    ng-model="proDetail.user.profile.bphone" 
+                                                                
+                                                          
+                                    aria-label="Business Phone">
+                          </md-input-container>
+                            <md-input-container class="md-icon-float md-block">
+                              <label for="email">Business Email</label>
+                              <md-icon  md-font-icon="icon-email" class="s24"></md-icon>
+                              <input name="bemail"
+                                      type="email"
+                                      ng-model="proDetail.user.profile.bemail" 
+                                    
+                                                                  
+                                                      
+                                      aria-label="Business Email">
+                          </md-input-container>
+                          <md-input-container class="md-icon-float md-block">
+                            <label for="website">Website</label>
+                            <md-icon md-font-icon="icon-web" class="s24"></md-icon>
+                            <input name="website"
+                                    type="input"
+                                    ng-model="proDetail.user.profile.website" 
+                                                              
+                                                          
+                                    aria-label="website">
+                          </md-input-container>
+
+                          <md-input-container class="md-icon-float md-block">
+                            <label for="about">About</label>
+                            <textarea name="about"
+                                    type="textarea"
+                                    ng-model="proDetail.user.profile.about" 
+                                    columns="1"                           
+                                    md-maxlength="150" 
+                                    rows="5"                       
+                                    aria-label="about"></textarea>
+                            <div ng-messages="wizardStep2.address.$error" ng-show="wizardStep2.address.$touched" role="alert" multiple>
+                            <div ng-message="required"><span>Address field is required.</span></div>
+                            <div ng-message="md-maxlength">
+                                <span>Address can't be longer than 150 characters.</span>
+                            </div>
+                        </div>
+                          </md-input-container>                
+                        
+                        
+                        
+                        <label for="servies">Select Services</label>
+                              <md-chips 
+                                md-autocomplete-snap
+                                ng-model="proDetail.selectedServices"                                
+                                md-require-match="true">
+                                
+                                <md-autocomplete 
+                                  id="autocomplete" 
+                                  md-selected-item="item" 
+                                  md-search-text="proDetail.searchText" 
+                                  md-items="item in proDetail.querySearch(proDetail.searchText)"
+                                  md-item-text="item.name" 
+                                  md-min-length="0" 
+                                  placeholder="select your business services?">
+                                  <thumb-image image-id='item.image.id' image-class="avatar"></thumb-image>
+                                  <span md-highlight-text="proDetail.searchText">
+                                     {{item.name}}
+                                  </span>                                  
+                              </md-autocomplete>
+                              <md-chip-template>
+                                <span>
+                                  <thumb-image image-id='$chip.image.id' image-class="avatar"></thumb-image>
+                                </span>
+                                <span>
+                                  <strong>{{$chip.name}}</strong>
+                                </span>
+                              </md-chip-template>                                  
+                                
+                            </md-chips>
 
 
-            </div>        
-              </div>
-      </form>
+                          <md-input-container class="md-icon-float md-block">
+                            <label for="address" class="address">Company Address</label>
+                            <div class="container" flex> 
+                              <foc-gmap location="proDetail.user.profile.profile.address.location" key="proDetail.user.profile._id" readonly="false" ></foc-gmap>
+                            </div>
+                          </md-input-container>     
+
+
+                            </div>
+                        </div>         
+                    </div>
+                  </div>
+                 </form>
+            </md-tab-body>
+        </md-tab>
+        <!-- /Step 2 -->
+
+        <!-- Step 3 -->
+         <md-tab ng-disabled="wizardStep1.$invalid || wizardStep2.$invalid" layout="column" flex>
+            <md-tab-label>
+            <span class="ms-form-wizard-step-label">
+                <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep4.$invalid">4</span>
+                <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep4.$valid">
+                    <i class="icon-check s16"></i>
+                </span>
+                <span class="ms-form-wizard-step-text">Trade License Details</span>
+            </span>
+            </md-tab-label>
+            <md-tab-body layout="column" flex>
+                <form name="wizardStep4" ms-form-wizard-form novalidate layout="column" flex>
+                  <div class="list" layout="column" flex>    
+                      <div layout="column" class="preview-content flex-scrollable" ms-scroll flex>
+                        <div class="formly-container" layout="column" flex>
+                          <div class="formly-field" layout="column">
+                          <md-input-container class="md-icon-float md-block">
+                              <label for="license">Trade License Number</label>
+                              <md-icon  md-font-icon="icon-briefcase-checked" class="s24"></md-icon>
+                              <input name="license"
+                                      type="text"
+                                      ng-model="proDetail.user.profile.license" 
+                                      required                             
+                                                            
+                                      aria-label="Trade License Number">
+                            </md-input-container>    
+
+                                        
+                          
+                          
+                          
+                          
+                              </div>
+                          </div>         
+                      </div>
+                    </div>
+                </form>
+            </md-tab-body>
+        </md-tab>
+        <!-- /Step 3 -->
+
+        <!-- Step 4 -->
+        <md-tab ng-disabled="wizardStep1.$invalid || wizardStep2.$invalid || wizardStep3.$invalid" layout="column" flex>
+            <md-tab-label>
+            <span class="ms-form-wizard-step-label">
+                <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep3.$invalid">3</span>
+                <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep3.$valid">
+                    <i class="icon-check s16"></i>
+                </span>
+                <span class="ms-form-wizard-step-text">Images</span>
+            </span>
+            </md-tab-label>
+            <md-tab-body layout="column" flex>
+                <form name="wizardStep3" ms-form-wizard-form novalidate layout="column" flex>
+                  <div class="list" layout="column" flex>    
+                      <div layout="column" class="preview-content" flex>
+                        <div class="formly-container flex-scrollable" ms-scroll layout="column" flex>
+                          <div class="formly-field" layout="column">
+                                            
+                          <md-input-container class="pictures">
+                          <label for="images">Upload Images</label>
+                          <files-upload  
+                            ok-to-save="proDetail.okTo.profileSave"
+                            done="proDetail.uplo.profileadedPictures($event)"
+                            crop-settings = "proDetail.crop.profileSettings"
+                            >
+                          </files-upload>
+                          </md-input-container>            
+          
+                              </div>
+                          </div>         
+                      </div>
+                    </div>
+                </form>
+            </md-tab-body>
+        </md-tab>
+        <!-- /Step 4 -->
+        
+
+    </md-tabs>
+    <div class="navigation footer" flex layout="row" layout-align="center center">
+        <md-button class="md-raised md-accent" ng-click="msWizard.previousStep()" ng-disabled="msWizard.isFirstStep()">
+            Previous
+        </md-button>
+        <div class="steps">
+        <span ng-repeat="form in msWizard.forms" ng-class="{'selected md-accent-bg':msWizard.selectedIndex === $index}"></span>
+        </div>
+        <md-button class="md-raised md-accent" ng-click="msWizard.nextStep()" ng-hide="msWizard.isLastStep()" ng-disabled="msWizard.currentStepInvalid()">
+            Next
+        </md-button>
+        <md-button class="md-raised md-warn" ng-click="proDetail.updateUserInfo(); msWizard.resetForm();" ng-show="msWizard.isLastStep()" ng-disabled="msWizard.formsIncomplete()">
+            Send
+        </md-button>
+    </div>
+</ms-form-wizard>
+
+
+
+
       </div>
     </div>
 

@@ -13,17 +13,18 @@
       <md-checkbox class="no-label" aria-label="select or unselect all" ng-checked="projectsView.selectedProjects.length > 0" ng-click="projectsView.toggleSelectProjects()"></md-checkbox>
 
       <div class="divider-vertical"></div>
-      <div class="" ng-show="projectsView.currentProject && projectsView.selectedProjects.length <= 0">        
+      <div class="" ng-show="projectsView.currentProject && projectsView.selectedProjects.length <= 0">
       </div>
       <div class="mybouncy-slide-left" ng-show="projectsView.selectedProjects.length > 0">
-        <leadmove-to ng-cloak master-settings="projectsView.masterSettings" selected-projects="projectsView.selectedProjects"></leadmove-to>
+        <leadmove-to ng-cloak selected-projects="projectsView.selectedProjects" ng-show="projectsView.isAdmin">          
+        </leadmove-to>                
       </div>
 
     </div>
     <!-- /ACTION BUTTONS -->
 
   </div>
-  <md-button class="md-warn md-raised" aria-label="button-label" ng-disabled="!projectsView.currentProject.isChanged" ng-click="projectsView.update()"> Save </md-button>
+  <!--<md-button class="md-warn md-raised" aria-label="button-label" ng-disabled="!projectsView.currentProject.isChanged" ng-click="projectsView.update()"> Save </md-button>-->
 
 
 </div>
@@ -47,7 +48,7 @@
   
 
   <!-- THREAD DETAIL -->
-  <div class="content thread-detail" layout="column" flex>
+  <div class="content thread-detail flex-scrollable" ms-scroll  layout="column" flex>
     <project-detail layout="column" flex current-project="projectsView.currentProject" update="projectsView.done($event)"></project-detail>
   </div>
   <!-- / THREAD DETAIL -->

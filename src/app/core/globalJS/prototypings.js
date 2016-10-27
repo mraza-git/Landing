@@ -26,3 +26,18 @@ Array.prototype.insertArray = function(index) {
 };
 // ["a", "b", "c", "d"].insert2(2, 'Z', ["W", "X", "Y"]) call like this will return:
 // ["a","b","V","W","X","Y","Z","c","d"]
+
+
+Array.prototype.flatten = function() {
+    var ret = [];
+    for(var i = 0; i < this.length; i++) {
+        if(Array.isArray(this[i])) {
+            ret = ret.concat(this[i].flatten());
+        } else {
+            ret.push(this[i]);
+        }
+    }
+    return ret;
+};
+
+//[[[[[0]], [1]], [[[2], [3]]], [[4], [5]]]].flatten() // [0, 1, 2, 3, 4, 5]

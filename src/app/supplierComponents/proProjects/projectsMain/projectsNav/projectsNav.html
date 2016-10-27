@@ -23,15 +23,20 @@
 <!-- / SIDENAV HEADER -->
 
 <!-- SIDENAV CONTENT -->
-<md-content ms-scroll class="content" flex>
-  
+<md-content ms-scroll class="content" flex layout="column">
+  <md-button ng-click="projectsNav.quote($event)"
+             id="quote"
+             class="md-raised md-warn"
+             ng-disabled="false"
+             flex
+             aria-label="quote"> Quote </md-button>
   <projects-folders
-  current-form="projectsNav.currentForm"
+  current-project="projectsNav.currentProject"
   master-settings = "projectsNav.masterSettings"
   current-folder = "projectsNav.currentFolder"
   ></projects-folders>
-
-
+<br>  
+<md-divider></md-divider>
 
 </md-content>
 <!-- / SIDENAV CONTENT -->

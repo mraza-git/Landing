@@ -42,11 +42,11 @@
   <!--  PROJECT PAGE LIST-->
   <div layout="column" flex>
     <div layout="row" layout-xs="column" flex>
-      <div layout="column" layout-padding flex="66" class="content-area">
+      <div layout="column" layout-padding  flex-gt-sm="66" flex class="content-area">
       <project-summary current-project="projectDetail.currentProject"></project-summary>
-      <project-gallery images="projectDetail.currentProject.images"></project-gallery>
+      <project-gallery ng-show="projectDetail.currentProject.images.length>0" images="projectDetail.currentProject.images"></project-gallery>
       </div>
-      <div layout="column" flex="33" class="side-nav">
+      <div layout="column"  flex-gt-sm="33" flex class="side-nav">
         <project-owner-contact owner-id="projectDetail.currentProject.owner"></project-owner-contact>
         <project-map location="projectDetail.location" layout="column" flex></project-map>
       </div>

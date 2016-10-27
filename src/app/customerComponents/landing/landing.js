@@ -118,8 +118,18 @@ Meteor.subscribe("categories");
                 return Categories.find();
             },
             services: function () {
-                return Services.find();
+                return Services.find({
+
+                });
+            },
+            servicesNames: function(){
+                var strings=[];
+                angular.forEach(self.getReactively('services'),function(value,index){
+                    strings.push(value.name);
+                });
+                return strings;
             }
+
         });
         self.counter = [];
 
@@ -134,8 +144,10 @@ Meteor.subscribe("categories");
 
         ////////////////Method Definitions///////////////////
 
-
-        self.typedFunction();
+        self.autorun(function(){
+            if(self.getReactively('servicesNames'))
+                self.typedFunction();
+        });
         // Methods
 
         function goToService(event){
@@ -169,7 +181,8 @@ Meteor.subscribe("categories");
         }
         function typedFunction(){
             $(".typed-heading").typed({
-            strings: ["Service needs, made easy.", ".احتياجات الخدمة، جعلت من السهل", "besoins de service, en toute simplicité."],
+            strings: ["Fix certified serive professionals in just a click","Service needs, made easy.", "Problem?... no problem!", "Mushkil?... mafi muskila"],
+            // ["Service needs, made easy.", "Problem?... no problem!", "Mushkil?... mafi muskila"],
             // Optionally use an HTML element to grab strings from (must wrap each string in a <p>)
             stringsElement: null,
             // typing speed

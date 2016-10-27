@@ -14,13 +14,56 @@
     self.loading = false;
     self.selectedProjects = [];    
     self.selectedProject = undefined;
+    Roles.subscription = Meteor.subscribe("_roles")
     
     self.helpers({
       currentUser: function() {
         return Meteor.user();
       },
       projects: function(){
-        return Leads.find();
+        self.loading = true;
+        var forms =[];
+        var selector = {
+          folder:{$nin:['delete','archive']}
+        };
+        var folder = self.getReactively('currentFolder');
+        if( folder !== 'all'){
+          if(_.contains(['delete','archive'],folder)){
+            selector = {
+                $and : [
+                  {folder: self.getReactively('currentFolder') || 'all'},
+                  // {folder: {$nin:['delete','archive']}},                
+                ]
+            };
+          }else if (folder === 'quoted'){
+            selector ={
+              _id:{$in: self.getReactively('currentUser.business.quoted')}
+            }
+          }
+          else if (folder === 'jobs'){
+            selector ={
+              _id:{$in: self.getReactively('currentUser.business.jobs')}
+            }
+          }
+          else if (folder === 'favorites'){
+            selector ={
+              _id:{$in: self.getReactively('currentUser.business.favorites')}
+            }
+          }
+
+        }
+        var cursor = Leads.find(selector,{sort:{createdAt:-1,}});          
+                
+        if(self.loading){
+          self.currentProject = cursor.fetch()[0]; //populating the first item at the start.
+          if(self.currentProject)
+          self.loading=false;          
+        }
+        
+        return cursor;        
+      },
+      isAdmin: function(){
+        return Roles.userIsInRole(Meteor.userId(),['admin'],'default-group');
       }
      
     });

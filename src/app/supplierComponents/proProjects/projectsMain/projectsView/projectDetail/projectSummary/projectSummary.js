@@ -10,12 +10,20 @@
    * @param {any} $scope
    * @param {any} $stateParams
    */
-  function ControllerFunction($scope) {
+  function ControllerFunction($scope,$reactive) {
     'ngInject';
     ///////////Initialization Checks///////////
     var self = this;
-    
+    $reactive(self).attach($scope);
     ///////////Data///////////
+    self.helpers({
+      userId: function(){
+        return Meteor.userId();
+      },
+      isAdminOrSupport: function(){
+        return Roles.userIsInRole(self.getReactively('userId'),['admin','support'],'default-group');
+      }
+    });
     
 
 
