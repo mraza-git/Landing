@@ -144,7 +144,8 @@
     'proRegister',
     'ngMessages',
     'focGmap',
-    'thumbImage'
+    'thumbImage',
+    'imageUpload',
 
     ])
   .component(name,{

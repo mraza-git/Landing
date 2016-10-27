@@ -187,23 +187,86 @@
             md-input-container.md-input-invalid>md-icon {
               color: red;
             }
+            .google-map-margin {
+              margin-top: 20px;
+            }
             // md-input-container > .md-font {
             //  color: dodgerblue; }
-            .md-datepicker-input-container,
-            md-contact-chips {
-              min-width: 275px;
-              border-bottom: none;
-              padding-left: 28px;
-              width: 100%;
+            // .md-datepicker-input-container,
+            // md-contact-chips {
+            //   min-width: 275px;
+            //   padding-left: 28px;
+            //   width: 100%;
+            // }
+
+            md-chips {
+              md-chip {
+                    min-width: 160px;
+                    background: rgb(236, 64, 122);
+                    color: rgb(255, 255, 255);
+                    font-weight: normal;
+                    border-radius: 24px;
+                    height: 40px;
+                    line-height: 40px;
+                    padding: 0 19px 0 0;
+
+                    span {
+                      strong {
+                        font-weight: normal;
+                        padding-right: 10px;
+                      }
+                    }
+                    md-icon {
+                           top: 62%;
+                           left: 40%;
+                           color: white;
+                    }
+              }
+
             }
+
+            md-datepicker {
+                margin-top: 24px;
+            }
+            .datepicker-container {
+              padding: 2px;
+              margin-bottom: 25px;
+               }
+            .md-datepicker-input-container {
+              display: flex;
+              -webkit-box-flex: 1;
+              -ms-flex: 1;
+              flex: 1;
+              -webkit-box-orient: horizontal;
+              -webkit-box-direction: normal;
+              -ms-flex-direction: column;
+              flex-direction: column;
+              }
             .md-datepicker-button {
-              display: none;
+                      margin: 0;
+                      padding: 4px;
+                      float: left;
+                      margin-top: -5px;
+
+                  .md-icon {
+                        margin: 0;
+                        color: black !important;
+                  }
+            }
+            .md-datepicker-calendar-icon {
+                color: black !important;
+            }
+            .md-datepicker-focused {
+                border-color: black !important;
             }
             .container {
               height: 350px;
               position: relative;
             }
           }
+          .certifications  .md-datepicker-calendar-icon {
+                display: none !important;
+            }
           .formly-field-radio {
             padding: 20px 0;
           }

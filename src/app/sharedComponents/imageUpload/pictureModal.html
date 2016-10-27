@@ -9,12 +9,12 @@
     </div>
   </md-toolbar>
   <md-dialog-content>
-    <div class="md-dialog-content">
+    <div class="md-dialog-content" layout="column" layout-align="center center">
       <file-upload
         ok-to-save="true"
         done="imageModal.done($event)"
         crop-settings = "imageModal.cropSettings"
-        >
+        flex>
       </file-upload>
     </div>
   </md-dialog-content>
