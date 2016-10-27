@@ -5,7 +5,7 @@
   var main = 'foc'; // Change this with containing folder name
   var type = 'Gmap';
 
-  function ControllerFunction($scope,$reactive) {
+  function ControllerFunction($scope,$reactive,$timeout) {
     'ngInject';
     var self = this;
     /////////////////Data/////////////////////
@@ -18,34 +18,36 @@
     };    
 
     ///////////Methods Declarations///////////
-     self.init = init;
+    self.init = init;
     self.setLocation = setLocation;
     self.updateLocation = updateLocation;
+    
 
-    self.autorun(function(){
-      self.refresh = true;
-      if(self.getReactively('location')){
+    var handle=$scope.$watch('location',function(newValue,oldValue){     
+      if(newValue){
         console.log("update center");
         self.init();        
+        handle();
       }else{
         self.map = {};
-        self.map.center = self.geoLocation;
-        console.log("do not update center");
+        self.map.center = angular.copy(self.geoLocation);
+        self.init();        
       }
     });
 
     ///////////Initialization/////////////////
-    
 
 
     ////////////Method Definitions////////////
-    function init() {      
+    function init() {
+      console.log(self.readonly);      
         self.map = {        
         zoom: 13,
+        visualRefresh : true,
         options: {
               minZoom: 3,
-              scrollwheel: !self.readonly,
-              draggable: !self.readonly,
+              scrollwheel: true,
+              draggable: true,
         },
         events: {
           click: function (mapModel, eventName, originalEventArgs) {
@@ -57,14 +59,15 @@
         }
       };
 
-      // if(angular.isUndefined(self.location)){
-      //   self.location = self.geoLocation;
-      // }
+      if(angular.isUndefined(self.location)){
+        self.location = self.geoLocation;
+      }
+      
       self.map.center = angular.copy(self.location);
 
       self.marker = {
         options: {
-          draggable: !self.readonly,
+          draggable: true,
         },
         events: {
           dragend: function (marker, eventName, args) {
@@ -72,13 +75,16 @@
             $scope.$apply();
           }
         }
-      };      
-      self.refresh = false;
+      };     
+      // self.marker.options ={};
+      // self.marker.options.draggable = !self.readonly || true;
+      self.refresh=false; 
+      
     }
 
     function updateLocation() {
       self.setLocation(self.myScopeVar.geometry.location.lat(), self.myScopeVar.geometry.location.lng());
-      self.map.center = angular.copy(self.location);      
+      // self.map.center = angular.copy(self.location);      
       self.location.title = self.myScopeVar.formatted_address;
 
     }

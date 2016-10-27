@@ -10,11 +10,12 @@
       ///////////Initialization Checks///////////
       var self = this;
       $reactive(self).attach($scope);
+      self.ready=false;
       if($stateParams.serviceId){        
       }
 
-      if($stateParams.lead){        
-        self.lead = JSON.parse($stateParams.lead);        
+      if($stateParams.leadId){        
+        self.leadId = $stateParams.leadId;        
       }
 
       ///////////Data///////////
@@ -25,6 +26,11 @@
         return [
           {},selector
         ];
+      },function(){
+        self.ready =true;
+      });
+      self.subscribe('leads',function(){
+        
       });
       self.helpers({
         form: function(){
@@ -74,7 +80,7 @@
   .config(config);
   var template = '<'+main+'-'+type.toLowerCase()+'></'+main+'-'+type.toLowerCase()+'>';
   var state = 'app.'+name;
-  var stateUrl = '/'+name + '/:serviceId/:lead';
+  var stateUrl = '/'+name + '/:serviceId/:leadId';
   var views = {
     'content@app.serviceQuestions': {
       template: template,

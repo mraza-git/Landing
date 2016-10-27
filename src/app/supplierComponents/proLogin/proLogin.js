@@ -27,18 +27,18 @@
 
       function login(){
         self.loading = true;
-        // Meteor.loginWithPassword(self.form.email, self.form.password,
-        //     function (err) {
-        //       if (err) {
-        //         self.error = err.reason;
-        //         self.loading = false;
-        //       } else {
-        //         console.log("Logged In");
-        //         self.loading = false;
-        //         $state.go('app.p',{username: Meteor.user().username});
-        //       }
-        //     }
-        //   );       
+        Meteor.loginWithPassword(self.form.email, self.form.password,
+            function (err) {
+              if (err) {
+                self.error = err.reason;
+                self.loading = false;
+              } else {
+                console.log("Logged In");
+                self.loading = false;
+                $state.go('app.p',{username: Meteor.user().username});
+              }
+            }
+          );       
         
       }
 

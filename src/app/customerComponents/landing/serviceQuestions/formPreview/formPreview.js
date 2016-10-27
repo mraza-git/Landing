@@ -4,7 +4,7 @@
   var main = 'form'; // Change this with containing folder name
   var type = 'Preview'; // Change This with Component functionality Detail, Add, Remove, Delete, List etc.
 
-  function ControllerFunction($scope,WizardHandler,$state,$stateParams,$cookies) {
+  function ControllerFunction($scope,WizardHandler,$state,$stateParams,$cookies,$timeout) {
     'ngInject';
     ///////////Data///////////
     var self = this;    
@@ -46,13 +46,15 @@
            self.lead.pages[vindex].questions.push(question);
          });
       });
-      self.lead.createdAt = new Date();
-      self.lead.owner = Meteor.userId();
+      self.lead.createdAt = new Date();      
       self.lead.serviceId = self.service._id;
-      self.lead.formId = self.form._id;
-      $cookies.putObject('foc.lead',self.lead);
-
-      $state.go('app.leadSummary');
+      self.lead.formId = self.form._id;      
+      
+      sessionStorage.setItem('foc.lead',angular.toJson(self.lead));
+      
+      $timeout(function(){
+        $state.go('app.leadSummary');
+      },500);
       
     }
 

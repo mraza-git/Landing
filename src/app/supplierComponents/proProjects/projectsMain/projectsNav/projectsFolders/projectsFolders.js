@@ -4,42 +4,44 @@
   var main = 'projects'; // Change this with containing folder name
   var type = 'Folders'; // Change This with Component functionality Detail, Add, Remove, Delete, List etc.
 
-  function ControllerFunction($scope,SettingService) {
+  function ControllerFunction($scope,$reactive) {
     'ngInject';
     ///////////Data///////////
     var self = this;
-    self.addingFolder = false;
-    self.newFolder = {};
+    $reactive(self).attach($scope);
+    Roles.subscription = Meteor.subscribe("_roles");
+
+    self.folders = [
+      {name:'All Leads', key:'all',icon:'select-all'},
+      {name:'Quoted',key:'quoted',icon:'pencil-box-outline'},
+      {name:'Jobs',key:'jobs',icon:'square-inc-cash'},
+      {name:'Favorites',key:'favorites',icon:'star'},
+    ];
+
+    self.helpers({
+      isAdmin: function(){
+        return Roles.userIsInRole(Meteor.userId(),['admin'],'default-group');
+      }
+    });
+    self.autorun(function(){
+      if(self.getReactively('isAdmin')){
+        var adminFolders = [
+          {name:'Archive', key:'archive',icon:'archive'},
+          {name:'Delete',key:'delete',icon:'delete-variant'},
+          {name:'Trash',key:'trash',icon:'trash'},
+        ];
+        self.folders.insertArray(0,adminFolders); 
+      }
+    });
 
 
     ///////////Methods Declarations///////////
-    self.addFolder = addFolder;
-    self.iconSelected = iconSelected;
-    self.setCurrentFolder = setCurrentFolder;
+    self.setCurrentFolder = setCurrentFolder;    
     self.isFolderActive = isFolderActive;
 
 
 
     ///////////Method Definitions///////////
-    function addFolder(){
-      self.newFolder.key = self.newFolder.name.toLowerCase();
-      SettingService.addFormsFolder(self.newFolder).then(function(result){
-        // success toast here.
-      },function(error){
-        // error toast here
-      });
-      self.addingFolder=false;
-    }
-    function removeFolder(folder){
-      SettingService.removeFormsFolder(folder).then(function(result){
-        // success toast here.
-      },function(error){
-        // error toast here
-      });
-    }
-    function iconSelected(event){
-      self.newFolder.icon = event.icon;
-    }
     function setCurrentFolder(folder){
       self.currentFolder = folder;
     }
@@ -55,8 +57,7 @@
   angular
     .module(name, [
       'angular-meteor',
-      'iconAutocomplete',
-      'settingService'
+      'iconAutocomplete',      
      ])
     .component(name, {
       templateUrl: templateUrl,
@@ -65,7 +66,6 @@
       bindings: {
         masterSettings: '<',
         currentFolder: '=',
-
       }
     });
 

@@ -19,6 +19,9 @@ function CreateQuestionDialogController($mdDialog, selectedQuestion, questions, 
 
   if (angular.isDefined(questions)) {
     vm.questions = angular.copy(questions);
+    vm.statementOptions = vm.questions.filter(function(obj){
+                                return obj.questionType === 'statement';
+                              });
   } else {
     questions = [];
     vm.questions = [];
@@ -107,7 +110,7 @@ function CreateQuestionDialogController($mdDialog, selectedQuestion, questions, 
         {
           key: 'requiredCheck',
           type: 'checkbox',
-          className: 'flex-50',
+          className: 'flex-30',
           defaultValue: false,
           templateOptions: {
             label: 'Will this be a required question?',
@@ -132,7 +135,7 @@ function CreateQuestionDialogController($mdDialog, selectedQuestion, questions, 
         {
           key: 'questionType',
           type: 'select',
-          className: 'flex-35',
+          className: 'flex-15',
           defaultValue: 'input',
           templateOptions: {
             label: 'Select question Type',
@@ -144,6 +147,19 @@ function CreateQuestionDialogController($mdDialog, selectedQuestion, questions, 
           validation: {
             messages: messages,
           },
+        },
+        {
+          key: 'checkStatement',
+          type: 'select',
+          className: 'flex-40',                    
+          templateOptions: {
+            label: 'Select "statement"',
+            //required: true,
+            options: vm.statementOptions,
+            labelProp: 'supplierDescription',
+            valueProp: 'supplierDescription',
+          },
+          hideExpression: 'model.questionType !=="checkbox"',
         },
       ]
     },
