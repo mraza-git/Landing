@@ -12,9 +12,7 @@
     <div class="form-content" layout="column" flex layout-align="start center">
       <div class="headline">
         Profile Edit Page
-        <h2>  
-          {{proDetail.isSupplier}}
-        </h1>
+       
       </div>
     <ms-form-wizard flex  class="content-area" layout="column" flex>
     <md-tabs md-dynamic-height md-selected="msWizard.selectedIndex" md-center-tabs="true" layout="column" flex>
@@ -99,22 +97,21 @@
                                   <md-option>Female</md-option>
                                 </md-select>                     
                               </md-input-container>
-                              <div class="md-icon-float md-block" flex-gt-xs="50" flex>
-                                <label for="dob">Date of Birth</label>                    
-                                <md-icon md-font-icon="icon-calendar-today" class="s24"></md-icon>
+                              <div class="md-icon-float md-block datepicker-container" layout="column" flex-gt-xs="50" flex>
+                                <!--<label for="dob">Date of Birth</label>                    -->
                                 <md-datepicker 
                                               name="dob"
                                               ng-model="proDetail.user.profile.dob"
                                               ng-disabled="false"
                                               ng-required="false"
-                                              md-placeholder="mm/dd/yyyy">
+                                              md-placeholder="Date of Birth">
                                 </md-datepicker>    
                               </div>
                               
                             </div>
                             <div class="formly-field" layout="column" flex>
 
-                              <md-input-container class="md-icon-float md-block">
+                              <md-input-container class="md-icon-float md-block google-map-margin">
                                 <label for="address" class="address">Address</label>
                                 <div class="container" flex> 
                                   <foc-gmap location="proDetail.user.profile.address.location" key="proDetail.user._id" readonly="false" ></foc-gmap>
@@ -147,73 +144,82 @@
                   <div class="list" layout="column" flex>    
                     <div layout="column" class="preview-content" flex>
                       <div class="formly-container flex-scrollable" layout="column" ms-scroll flex>
-                        <div class="formly-field" layout="column" flex>
-                          <md-input-container class="md-icon-float md-block">
-                            <label for="cname">Company Name</label>
+                        <div class="formly-field" layout="column" layout-gt-xs="row" flex>
+                          <md-input-container class="md-icon-float md-block" flex-gt-xs="50" flex>
+                            <label for="organization">Company Name</label>
                             <md-icon md-font-icon="icon-briefcase" class="s24"></md-icon>
-                            <input name="company-name"
+                            <input name="organization"
                                     type="text"
-                                    ng-model="proDetail.user.profile.cname" 
+                                    ng-model="proDetail.user.business.organization" 
                                                                 
                                                           
                                     aria-label="Company Name">
                           </md-input-container>
-                          <md-input-container class="md-icon-float md-block">
+                          <md-input-container class="md-icon-float md-block" flex-gt-xs="50" flex>
+                            <label for="tagline">Tagline</label>
+                            <md-icon  md-font-icon="icon-alpha" class="s24"></md-icon>
+                            <input name="tagline"
+                                    type="text"
+                                    ng-model="proDetail.user.business.tagLine" 
+                                    ng-placeholder="Service needs, made easy."                           
+                                                          
+                                    aria-label="Tagline">
+                          </md-input-container>
+                          </div>
+                          <div class="formly-field" layout="column" layout-gt-xs="row" flex>
+                            <md-input-container class="md-icon-float md-block" flex-gt-xs="50" flex>
                             <label for="phone">Business Phone</label>
                             <md-icon  md-font-icon="icon-phone" class="s24"></md-icon>
-                            <input name="bphone"
+                            <input name="phone"
                                     type="text"
-                                    ng-model="proDetail.user.profile.bphone" 
+                                    ng-model="proDetail.user.business.phone" 
                                                                 
                                                           
                                     aria-label="Business Phone">
                           </md-input-container>
-                            <md-input-container class="md-icon-float md-block">
+                            <md-input-container class="md-icon-float md-block" flex-gt-xs="50" flex>
                               <label for="email">Business Email</label>
                               <md-icon  md-font-icon="icon-email" class="s24"></md-icon>
-                              <input name="bemail"
+                              <input name="email"
                                       type="email"
-                                      ng-model="proDetail.user.profile.bemail" 
+                                      ng-model="proDetail.user.business.businessEmail" 
                                     
                                                                   
                                                       
                                       aria-label="Business Email">
                           </md-input-container>
-                          <md-input-container class="md-icon-float md-block">
+                          </div>
+                          <div class="formly-field" layout="column" layout-gt-xs="row" flex>
+                           <md-input-container class="md-icon-float md-block" flex-gt-xs="50" flex>
                             <label for="website">Website</label>
                             <md-icon md-font-icon="icon-web" class="s24"></md-icon>
                             <input name="website"
                                     type="input"
-                                    ng-model="proDetail.user.profile.website" 
+                                    ng-model="proDetail.user.business.website" 
                                                               
                                                           
                                     aria-label="website">
                           </md-input-container>
+                           <md-input-container class="md-icon-float md-block" flex-gt-xs="50" flex>
+                            <label for="designation">Designation</label>
+                            <md-icon md-font-icon="icon-account" class="s24"></md-icon>
+                            <input name="designation"
+                                    type="input"
+                                    ng-model="proDetail.user.business.designation" 
+                                                              
+                                                          
+                                    aria-label="Designation">
+                          </md-input-container>
+                          </div>
 
-                          <md-input-container class="md-icon-float md-block">
-                            <label for="about">About</label>
-                            <textarea name="about"
-                                    type="textarea"
-                                    ng-model="proDetail.user.profile.about" 
-                                    columns="1"                           
-                                    md-maxlength="150" 
-                                    rows="5"                       
-                                    aria-label="about"></textarea>
-                            <div ng-messages="wizardStep2.address.$error" ng-show="wizardStep2.address.$touched" role="alert" multiple>
-                            <div ng-message="required"><span>Address field is required.</span></div>
-                            <div ng-message="md-maxlength">
-                                <span>Address can't be longer than 150 characters.</span>
-                            </div>
-                        </div>
-                          </md-input-container>                
-                        
-                        
-                        
-                        <label for="servies">Select Services</label>
-                              <md-chips 
+                          <div class="formly-field" layout="column" layout-gt-xs="row" flex>
+                          
+                          <!--<label for="servies">Select Services</label>-->
+                              <div class="md-icon-float md-block datepicker-container" layout="column" flex-gt-xs="50"  flex="90">
+                                <md-chips  
                                 md-autocomplete-snap
                                 ng-model="proDetail.selectedServices"                                
-                                md-require-match="true">
+                                md-require-match="true" >
                                 
                                 <md-autocomplete 
                                   id="autocomplete" 
@@ -222,7 +228,7 @@
                                   md-items="item in proDetail.querySearch(proDetail.searchText)"
                                   md-item-text="item.name" 
                                   md-min-length="0" 
-                                  placeholder="select your business services?">
+                                  placeholder="Select your services?">
                                   <thumb-image image-id='item.image.id' image-class="avatar"></thumb-image>
                                   <span md-highlight-text="proDetail.searchText">
                                      {{item.name}}
@@ -238,12 +244,59 @@
                               </md-chip-template>                                  
                                 
                             </md-chips>
-
-
+                              </div>
+                              <div class="md-icon-float md-block datepicker-container" layout="column" flex-gt-xs="50" flex="90">
+                             <md-chips 
+                                md-autocomplete-snap
+                                ng-model="proDetail.selectedServices"                                
+                                md-require-match="true"  flex-gt-xs="50" flex>
+                                
+                                <md-autocomplete 
+                                  id="autocomplete" 
+                                  md-selected-item="item" 
+                                  md-search-text="proDetail.searchText" 
+                                  md-items="item in proDetail.querySearch(proDetail.searchText)"
+                                  md-item-text="item.name" 
+                                  md-min-length="0" 
+                                  placeholder="Enter your tags">
+                                  <thumb-image image-id='item.image.id' image-class="avatar"></thumb-image>
+                                  <span md-highlight-text="proDetail.searchText">
+                                     {{item.name}}
+                                  </span>                                  
+                              </md-autocomplete>
+                              <md-chip-template>
+                                <span>
+                                  <thumb-image image-id='$chip.image.id' image-class="avatar"></thumb-image>
+                                </span>
+                                <span>
+                                  <strong>{{$chip.name}}</strong>
+                                </span>
+                              </md-chip-template>                                  
+                                
+                            </md-chips>
+                              </div>
+                            </div>
+                            <div class="formly-field" layout="column" flex>
                           <md-input-container class="md-icon-float md-block">
+                            <label for="about">About</label>
+                            <textarea name="about"
+                                    type="textarea"
+                                    ng-model="proDetail.user.business.about" 
+                                    columns="1"                           
+                                    md-maxlength="150" 
+                                    rows="5"                       
+                                    aria-label="about"></textarea>
+                            <div ng-messages="wizardStep2.address.$error" ng-show="wizardStep2.address.$touched" role="alert" multiple>
+                            <div ng-message="required"><span>Address field is required.</span></div>
+                            <div ng-message="md-maxlength">
+                                <span>Address can't be longer than 150 characters.</span>
+                            </div>
+                        </div>
+                          </md-input-container>  
+                          <md-input-container class="md-icon-float md-block google-map-margin">
                             <label for="address" class="address">Company Address</label>
                             <div class="container" flex> 
-                              <foc-gmap location="proDetail.user.profile.profile.address.location" key="proDetail.user.profile._id" readonly="false" ></foc-gmap>
+                              <foc-gmap location="proDetail.user.business.address.location" key="proDetail.user.business._id" readonly="false" ></foc-gmap>
                             </div>
                           </md-input-container>     
 
@@ -261,32 +314,67 @@
          <md-tab ng-disabled="wizardStep1.$invalid || wizardStep2.$invalid" layout="column" flex>
             <md-tab-label>
             <span class="ms-form-wizard-step-label">
-                <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep4.$invalid">4</span>
-                <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep4.$valid">
+                <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep3.$invalid">3</span>
+                <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep3.$valid">
                     <i class="icon-check s16"></i>
                 </span>
-                <span class="ms-form-wizard-step-text">Trade License Details</span>
+                <span class="ms-form-wizard-step-text">Certifications</span>
             </span>
             </md-tab-label>
             <md-tab-body layout="column" flex>
-                <form name="wizardStep4" ms-form-wizard-form novalidate layout="column" flex>
+                <form name="wizardStep3" ms-form-wizard-form novalidate layout="column" flex>
                   <div class="list" layout="column" flex>    
                       <div layout="column" class="preview-content flex-scrollable" ms-scroll flex>
                         <div class="formly-container" layout="column" flex>
-                          <div class="formly-field" layout="column">
-                          <md-input-container class="md-icon-float md-block">
-                              <label for="license">Trade License Number</label>
-                              <md-icon  md-font-icon="icon-briefcase-checked" class="s24"></md-icon>
-                              <input name="license"
-                                      type="text"
-                                      ng-model="proDetail.user.profile.license" 
-                                      required                             
-                                                            
-                                      aria-label="Trade License Number">
-                            </md-input-container>    
-
-                                        
-                          
+                          <div class="formly-field" layout="column" layout-gt-xs="row" flex>
+                            <image-upload-button 
+                            icon="icon-upload" 
+                            crop-settings="{aspectRatio: 4/3, resultImageSize: {w:300,h:300}, crop:false, areaType:'rectangle'}" 
+                            update="landing.done($event)" 
+                            type="button" 
+                            type-class="'md-button md-raised md-icon-button md-accent md-ink-ripple'" >
+                            </image-upload-button>        
+                            <md-input-container class="md-icon-float md-block" flex-gt-xs="50" >
+                                <label for="license">Certificate Name</label>
+                                <input name="license"
+                                        type="text"
+                                        ng-model="proDetail.user.business.license" 
+                                        required                             
+                                                              
+                                        aria-label="Trade License Number">
+                              </md-input-container>    
+                              <div class="md-icon-float md-block datepicker-container" flex-gt-xs="50" >
+                                  <md-datepicker 
+                                                name="issue"
+                                                ng-model="proDetail.user.business.issue"
+                                                ng-disabled="false"
+                                                ng-required="false"
+                                                md-placeholder="Issue Date"
+                                                md-hide-icons="calendar">
+                                  </md-datepicker>    
+                                </div>
+                                <div class="md-icon-float md-block datepicker-container" flex-gt-xs="50" >
+                                  <md-datepicker 
+                                                name="expire"
+                                                ng-model="proDetail.user.business.expire"
+                                                ng-disabled="false"
+                                                ng-required="false"
+                                                md-placeholder="Expire Date"
+                                                md-hide-icons="calendar">
+                                  </md-datepicker>    
+                                </div>
+                                
+                              <md-input-container class="md-icon-float md-block" flex-gt-xs="50" >
+                                <label for="certificate">Select Certificate</label>
+                                <md-select ng-model="proDetail.user.business.certificate">
+                                  <md-option>Trade License</md-option>
+                                  <md-option>ISO</md-option>
+                                </md-select>                     
+                              </md-input-container>
+                              
+                          <a class="" href="#" >
+                            <md-icon md-font-icon="icon-plus" class="s24" aria-hidden="true">
+                           </a>
                           
                           
                           
@@ -303,15 +391,15 @@
         <md-tab ng-disabled="wizardStep1.$invalid || wizardStep2.$invalid || wizardStep3.$invalid" layout="column" flex>
             <md-tab-label>
             <span class="ms-form-wizard-step-label">
-                <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep3.$invalid">3</span>
-                <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep3.$valid">
+                <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep4.$invalid">4</span>
+                <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep4.$valid">
                     <i class="icon-check s16"></i>
                 </span>
                 <span class="ms-form-wizard-step-text">Images</span>
             </span>
             </md-tab-label>
             <md-tab-body layout="column" flex>
-                <form name="wizardStep3" ms-form-wizard-form novalidate layout="column" flex>
+                <form name="wizardStep4" ms-form-wizard-form novalidate layout="column" flex>
                   <div class="list" layout="column" flex>    
                       <div layout="column" class="preview-content" flex>
                         <div class="formly-container flex-scrollable" ms-scroll layout="column" flex>

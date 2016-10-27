@@ -114,3 +114,11 @@
         }
     }
 }
+    md-progress-linear {
+            position: absolute !important;
+            z-index: 2 !important;
+
+            ._md-container {
+                background-color: transparent !important;
+            }            
+        }
