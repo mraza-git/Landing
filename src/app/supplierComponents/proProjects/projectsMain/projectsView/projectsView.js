@@ -28,7 +28,7 @@
         };
         var folder = self.getReactively('currentFolder');
         if( folder !== 'all'){
-          if(_.contains(['delete','archive'],folder)){
+          if(_.contains(['delete','archive','draft'],folder)){
             selector = {
                 $and : [
                   {folder: self.getReactively('currentFolder') || 'all'},
@@ -37,17 +37,17 @@
             };
           }else if (folder === 'quoted'){
             selector ={
-              _id:{$in: self.getReactively('currentUser.business.quoted')}
+              _id:{$in: self.getReactively('currentUser.business.quotes') || []}
             }
           }
           else if (folder === 'jobs'){
             selector ={
-              _id:{$in: self.getReactively('currentUser.business.jobs')}
+              _id:{$in: self.getReactively('currentUser.business.jobs') || []}
             }
           }
           else if (folder === 'favorites'){
             selector ={
-              _id:{$in: self.getReactively('currentUser.business.favorites')}
+              _id:{$in: self.getReactively('currentUser.business.favorites') || []}
             }
           }
 

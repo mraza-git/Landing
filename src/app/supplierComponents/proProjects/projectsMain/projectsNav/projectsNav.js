@@ -37,12 +37,12 @@
     function setService(){
       // console.log(self.selectedService);
     }
-    function openCreateDialog(ev){
+    function openQuoteDialog(ev){
       $mdDialog.show({
-              controller       : CreateEditDialogController,
+              controller       : QuoteDialogController,
               controllerAs  : 'form',
               locals             : {
-                  selectedForm: undefined
+                  selectedProject: self.currentProject
               },
               templateUrl    : 'app/adminComponents/forms/form/modalBoxes/formCreate-dialog/formCreate-dialog.html',
               parent             : angular.element(document.body),
@@ -50,7 +50,7 @@
               clickOutsideToClose: true
           }).then(function(res){
             if(res){
-              self.currentForm = res;
+              self.quotedValue = res.quotedValue;
               self.currentFolder = 'draft';
             }
           });

@@ -174,19 +174,20 @@ Meteor.subscribe("categories");
                             .addClass('compat-object-fit');
 
                     }
-                });
+                });.
+                
             } else {
                 console.log("New Browser")
             }
         }
         function typedFunction(){
             $(".typed-heading").typed({
-            strings: ["Fix certified serive professionals in just a click","Service needs, made easy.", "Problem?... no problem!", "Mushkil?... mafi muskila"],
+            strings: ["Fix certified service professionals in just a click","Service needs, made easy.", "Problem?... no problem!", "Mushkil?... mafi muskila"],
             // ["Service needs, made easy.", "Problem?... no problem!", "Mushkil?... mafi muskila"],
             // Optionally use an HTML element to grab strings from (must wrap each string in a <p>)
             stringsElement: null,
             // typing speed
-            typeSpeed: 10,
+            typeSpeed: 30,
             // time before typing starts
             startDelay: 1000,
             // backspacing speed

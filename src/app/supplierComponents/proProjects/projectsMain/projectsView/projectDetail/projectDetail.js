@@ -35,8 +35,7 @@
      * 
      * @param {any} event
      */
-    function done(event) {
-      console.log('Form: ',self.currentForm);
+    function done(event) {      
       self.update(event);
     }    
 
@@ -44,11 +43,9 @@
       if(self.getReactively('currentProject').pages){
         angular.forEach(self.getReactively('currentProject').pages,function(value,i){          
          angular.forEach(value.questions,function(question,j){           
-            if(question.questionType===qtype){
-              console.log('found question:',question);
+            if(question.questionType===qtype){              
               self.question = question;
-              self.location = question.answer;
-                            
+              self.location = question.answer;                            
               $scope.$apply();                           
               return;
             }            
