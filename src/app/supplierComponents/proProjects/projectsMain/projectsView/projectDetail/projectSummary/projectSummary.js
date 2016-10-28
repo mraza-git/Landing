@@ -16,13 +16,15 @@
     var self = this;
     $reactive(self).attach($scope);
     ///////////Data///////////
+    
     self.helpers({
       userId: function(){
         return Meteor.userId();
       },
       isAdminOrSupport: function(){
         return Roles.userIsInRole(self.getReactively('userId'),['admin','support'],'default-group');
-      }
+      },
+      
     });
     
 
@@ -38,8 +40,7 @@
      * @param {any} event
      */
     function done(event) {
-      console.log('Form: ',self.currentProject);
-      self.update(event);
+      console.log('Project: ',self.currentProject);      
     }    
 
   

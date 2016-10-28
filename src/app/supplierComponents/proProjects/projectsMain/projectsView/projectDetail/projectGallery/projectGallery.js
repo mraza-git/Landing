@@ -10,15 +10,18 @@
    * @param {any} $scope
    * @param {any} $stateParams
    */
-  function ControllerFunction($scope) {
+  function ControllerFunction($scope,$reactive) {
     'ngInject';
     ///////////Initialization Checks///////////
-    var self = this;    
-    ///////////Data///////////
-    
+    var self = this;       
+    $reactive(self).attach($scope);
+    ///////////Data///////////    
+    self.images = self.images ||[];
 
     ///////////Methods Declarations///////////
     self.done = done;
+    self.remove = remove;
+
     
 
     ///////////Method Definitions///////////
@@ -30,6 +33,17 @@
     function done(event) {      
       self.update(event);
     }    
+
+    function remove(id,index){
+      Images.remove({_id:id},function(error,doc){
+        console.log(error);
+        console.log(doc);
+      });      
+      self.images.splice(index,1);
+      if(self.saveNow){
+        self.saveNow();
+      }
+    }
     
 
   }
@@ -47,7 +61,9 @@
       controller: controller,
       controllerAs: name,
       bindings: {        
-        images: '<',       
+        images: '<', 
+        readonly: '<',
+        saveNow: '&',      // save original document.
         
       }
     });   

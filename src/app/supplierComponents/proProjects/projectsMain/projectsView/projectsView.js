@@ -37,12 +37,12 @@
             };
           }else if (folder === 'quoted'){
             selector ={
-              _id:{$in: self.getReactively('currentUser.business.quotes') || []}
+              quotedBy: self.getReactively('currentUser._id')
             }
           }
           else if (folder === 'jobs'){
             selector ={
-              _id:{$in: self.getReactively('currentUser.business.jobs') || []}
+              assignedTo: self.getReactively('currentUser._id')
             }
           }
           else if (folder === 'favorites'){

@@ -7,10 +7,11 @@
   var CreateEditDialogController = CreateEditDialogController;
 
 
-  function ControllerFunction($scope, $reactive, $mdDialog,$mdSidenav) {
+  function ControllerFunction($scope, $reactive, $mdDialog,$mdSidenav,$timeout) {
     'ngInject';
     ///////////Initialization Checks///////////
     var self = this;
+    self.ready = true;
 
     $reactive(self).attach($scope);
 
@@ -18,6 +19,14 @@
 
     ///////////Data///////////
     self.filter = "deleted";
+    self.autorun(function(){
+      if(self.getReactively('currentProject')){
+        self.ready = false;
+        $timeout(function(){
+          self.ready = true;
+        },100);
+      }
+    });
     
     
 
@@ -80,6 +89,7 @@
         search: '<',
         projects: '<',
         masterSettings:"<",
+        ready: '=',
 
 
         // Output

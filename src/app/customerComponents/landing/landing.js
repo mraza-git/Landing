@@ -174,8 +174,8 @@ Meteor.subscribe("categories");
                             .addClass('compat-object-fit');
 
                     }
-                });.
-                
+                });
+
             } else {
                 console.log("New Browser")
             }

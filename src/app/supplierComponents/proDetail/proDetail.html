@@ -216,13 +216,16 @@
                           
                           <!--<label for="servies">Select Services</label>-->
                               <div class="md-icon-float md-block datepicker-container" layout="column" flex-gt-xs="50"  flex="90">
-                                <md-chips  
+                                <md-chips 
+                                name = "services" 
                                 md-autocomplete-snap
+                                md-max-chips="proDetail.user.business.subscription.maxservices || 10"
                                 ng-model="proDetail.selectedServices"                                
                                 md-require-match="true" >
                                 
                                 <md-autocomplete 
                                   id="autocomplete" 
+                                  ng-hide="proDetail.selectedServices.length>1"
                                   md-selected-item="item" 
                                   md-search-text="proDetail.searchText" 
                                   md-items="item in proDetail.querySearch(proDetail.searchText)"
@@ -244,11 +247,14 @@
                               </md-chip-template>                                  
                                 
                             </md-chips>
+                            <div ng-messages="wizardStep2.services.$error" ng-if="wizardStep2.services.$dirty" role="alert">
+                              <div ng-message="md-max-chips">You've reached the maximum amount of services in your subscription</div>
+                          </div>
                               </div>
                               <div class="md-icon-float md-block datepicker-container" layout="column" flex-gt-xs="50" flex="90">
                              <md-chips 
                                 md-autocomplete-snap
-                                ng-model="proDetail.selectedServices"                                
+                                ng-model="proDetail.selectedTags"                                
                                 md-require-match="true"  flex-gt-xs="50" flex>
                                 
                                 <md-autocomplete 
@@ -283,7 +289,7 @@
                                     type="textarea"
                                     ng-model="proDetail.user.business.about" 
                                     columns="1"                           
-                                    md-maxlength="150" 
+                                    md-maxlength="250" 
                                     rows="5"                       
                                     aria-label="about"></textarea>
                             <div ng-messages="wizardStep2.address.$error" ng-show="wizardStep2.address.$touched" role="alert" multiple>
@@ -296,7 +302,7 @@
                           <md-input-container class="md-icon-float md-block google-map-margin">
                             <label for="address" class="address">Company Address</label>
                             <div class="container" flex> 
-                              <foc-gmap location="proDetail.user.business.address.location" key="proDetail.user.business._id" readonly="false" ></foc-gmap>
+                              <foc-gmap location="proDetail.user.business.address.location" key="proDetail.user._id" readonly="false" ></foc-gmap>
                             </div>
                           </md-input-container>     
 
@@ -339,7 +345,7 @@
                                 <input name="license"
                                         type="text"
                                         ng-model="proDetail.user.business.license" 
-                                        required                             
+                                                                     
                                                               
                                         aria-label="Trade License Number">
                               </md-input-container>    
@@ -408,17 +414,24 @@
                           <md-input-container class="pictures">
                           <label for="images">Upload Images</label>
                           <files-upload  
-                            ok-to-save="proDetail.okTo.profileSave"
-                            done="proDetail.uplo.profileadedPictures($event)"
-                            crop-settings = "proDetail.crop.profileSettings"
+                            ok-to-save="proDetail.okToSave"
+                            done="proDetail.pictureUploaded($event);msWizard.resetForm()"
+                            crop-settings = "proDetail.crop.profileSettings",
+                            uploaded-files-count = "proDetail.user.business.images.length || 0"
                             >
                           </files-upload>
                           </md-input-container>            
+                          <project-gallery 
+                          images="proDetail.user.business.images" 
+                          readonly="false"
+                          save-now="proDetail.saveImages($event)"
+                          >
+                          </project-gallery>
           
                               </div>
                           </div>         
                       </div>
-                    </div>
+                    </div>                    
                 </form>
             </md-tab-body>
         </md-tab>
@@ -436,7 +449,7 @@
         <md-button class="md-raised md-accent" ng-click="msWizard.nextStep()" ng-hide="msWizard.isLastStep()" ng-disabled="msWizard.currentStepInvalid()">
             Next
         </md-button>
-        <md-button class="md-raised md-warn" ng-click="proDetail.updateUserInfo(); msWizard.resetForm();" ng-show="msWizard.isLastStep()" ng-disabled="msWizard.formsIncomplete()">
+        <md-button class="md-raised md-warn" ng-click="proDetail.startSave(msWizard); " ng-show="msWizard.isLastStep()" ng-disabled="msWizard.formsIncomplete()">
             Send
         </md-button>
     </div>

@@ -21,26 +21,27 @@
     self.init = init;
     self.setLocation = setLocation;
     self.updateLocation = updateLocation;
-    
-
-    var handle=$scope.$watch('location',function(newValue,oldValue){     
-      if(newValue){
-        console.log("update center");
-        self.init();        
-        handle();
+    self.autorun(function(handle){
+      if(angular.isDefined(self.getReactively('location'))){
+        if(angular.isUndefined(self.map)){
+          self.init();
+        }        
+        self.map.center = angular.copy(self.location);
       }else{
-        self.map = {};
-        self.map.center = angular.copy(self.geoLocation);
-        self.init();        
+        self.map = {};        
+        self.init();
       }
     });
+    
+
+    // var handle=$scope.$watch('location',function(newValue,oldValue){     
+    // });
 
     ///////////Initialization/////////////////
 
 
     ////////////Method Definitions////////////
-    function init() {
-      console.log(self.readonly);      
+    function init() {      
         self.map = {        
         zoom: 13,
         visualRefresh : true,
@@ -59,15 +60,15 @@
         }
       };
 
-      if(angular.isUndefined(self.location)){
-        self.location = self.geoLocation;
+      if(angular.isUndefined(self.location)){        
+        self.map.center = angular.copy(self.geoLocation);
       }
       
-      self.map.center = angular.copy(self.location);
 
       self.marker = {
         options: {
           draggable: true,
+          animation: google.maps.Animation.DROP,
         },
         events: {
           dragend: function (marker, eventName, args) {
@@ -84,7 +85,7 @@
 
     function updateLocation() {
       self.setLocation(self.myScopeVar.geometry.location.lat(), self.myScopeVar.geometry.location.lng());
-      // self.map.center = angular.copy(self.location);      
+      self.map.center = angular.copy(self.location);      
       self.location.title = self.myScopeVar.formatted_address;
 
     }
