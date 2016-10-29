@@ -4,7 +4,7 @@
     <div>Loading projects...</div>
 </div>
 <div class="thread {{thread.status}} slide-top" md-ink-ripple ng-if="!projectsList.loading" ng-repeat="thread in projectsList.projects | filter: projectsList.search | filter: global.search "
-    ng-click="projectsList.openProject(thread,'projects-list-sidenav')" ng-class="{'unread': !thread.read, 'current-thread': projectsList.currentProject === thread, 'selected': projectsList.isSelected(thread)}"
+    ng-click="projectsList.openProject(thread,'projects-list-sidenav')" ng-class="{'unread': !thread.read, 'current-thread': projectsList.currentProject._id === thread._id, 'selected': projectsList.isSelected(thread)}"
     ng-cloak>
 
     <div layout="row" layout-align="start center">

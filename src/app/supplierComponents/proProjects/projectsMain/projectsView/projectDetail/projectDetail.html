@@ -26,11 +26,33 @@
     <!--  /TITLE-->
     <!--  PROJECT ACTIONS-->
     <div class="actions" layout="column" layout-align="start end">
-      
-      <div class="">        
-          <md-icon md-font-icon="icon-star" class="icon amber-600-fg s24 ng-scope md-default-theme md-font material-icons icon-star"></md-icon>
-          <md-icon md-font-icon="icon-share" class="md-primary s24 ng-scope md-default-theme md-font material-icons icon-share"></md-icon>
 
+      <h2>
+        You Bid: {{projectDetail.quote.quotedValue}}
+      </h2>
+      <div class="icons">        
+          <md-button class="md-icon-button">
+            <md-icon md-font-icon="icon-tooltip-text" class="md-primary s24"></md-icon>
+            <drop classes="'drop-theme-arrows-bounce-dark'" position="'left '">
+
+            <div id="displayTextWithinDrop">
+              <h3>
+                Your Message:
+              </h3>
+              <div ta-bind ng-model="projectDetail.quote.quoteMessage"></div>
+            </div>
+
+            </drop>
+          </md-button>
+          <md-button class="md-icon-button" ng-show="projectDetail.isFavorite" ng-click="projectDetail.setFavorite(true)">
+            <md-icon md-font-icon="icon-star" class="icon amber-600-fg s24 "></md-icon>
+          </md-button>
+          <md-button class="md-icon-button" ng-hide="projectDetail.isFavorite" ng-click="projectDetail.setFavorite(false)">
+            <md-icon md-font-icon="icon-star" class="icon s24 "></md-icon>
+          </md-button>
+          <md-button class="md-icon-button md-primary">
+            <md-icon md-font-icon="icon-share" class="s24"></md-icon>
+          </md-button>
       </div>      
       <!--  PROJECT ACTION BUTTONS-->
       
@@ -43,8 +65,8 @@
   <div layout="column" flex>
     <div layout="row" layout-xs="column" flex>
       <div layout="column" layout-padding  flex-gt-sm="66" flex class="content-area">
-      <project-summary current-project="projectDetail.currentProject"></project-summary>
-      <project-gallery ng-show="projectDetail.currentProject.images.length>0" images="projectDetail.currentProject.images"></project-gallery>
+      <project-summary ng-show="projectDetail.ready" class="slide-top" current-project="projectDetail.currentProject"></project-summary>
+      <project-gallery ng-show="projectDetail.currentProject.images.length>0 && projectDetail.ready" class="slide-top" images="projectDetail.currentProject.images" readonly="true"></project-gallery>
       </div>
       <div layout="column"  flex-gt-sm="33" flex class="side-nav">
         <project-owner-contact owner-id="projectDetail.currentProject.owner"></project-owner-contact>

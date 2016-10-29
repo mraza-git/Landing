@@ -9,6 +9,7 @@ var Settings = new Meteor.Collection('settings');
 var Icons = new Meteor.Collection('icons');
 var EmailList = new Meteor.Collection('emaillist');
 var Leads = new Meteor.Collection('leads');
+var Quotes = new Meteor.Collection('quotes');
 
 
 Meteor.subscribe("categories");
@@ -56,6 +57,10 @@ Meteor.subscribe("settings");
             'contactUs',
             'privacyPolicy',
             'partnerList',
+            'activeJobs',
+            'assignedJobs',
+            'jobDetail',
+            'quoteDetail',
 
             //supplier
             'p', // profile view page or supplier homepage

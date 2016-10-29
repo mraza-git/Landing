@@ -62,15 +62,14 @@
                 }
                 return obj;
           });
+        },
+        selectedServices: function(){
+          return Services.find({
+            _id: {$in: self.getReactively('user.business.serviceIds')||[]}
+          });
         }
-      });
-
-      if(!!self.getReactively('userId')){        
-        self.helpers({
-        });        
-      }else{
-        
-      }
+      });     
+      
       
       ///////////       Data         ///////////
       
@@ -79,9 +78,30 @@
       self.querySearch = querySearch;
       self.createFilterFor = createFilterFor;
       self.updateUserInfo = updateUserInfo;
+      self.startSave = startSave;
+      self.pictureUploaded = pictureUploaded;
+      self.saveImages = saveImages;
 
 
-      ///////////Method Definitions///////////      
+      ///////////Method Definitions///////////
+      function startSave(msWizard){
+        self.okToSave = true;        
+        self.msWizard = msWizard;
+      }      
+      function pictureUploaded(event){
+        self.okToSave = false;
+        if(angular.isDefined(event.images)){          
+          if(event.images.length>0){
+            if(angular.isUndefined(self.user.business.images)){
+              self.user.business.images = event.images;  
+            }else{
+              self.user.business.images.insertArray(0,event.images);
+            }            
+          }
+        }
+        self.updateUserInfo();       
+      }
+
       /**
        * Search for services.
        */
@@ -101,13 +121,26 @@
 
       }
 
+      function saveImages(){
+        var images = angular.copy(self.user.business.images);
+        Meteor.users.update(
+          {_id: self.userId},
+          {
+            $set:
+            {
+              'business.images': images
+            }
+          }
+        );
+      }
+
       function updateUserInfo(){
-        console.log("cannot update now...");
-        return;
+        
         var serviceIds = self.selectedServices.map(function(obj){
           return obj._id;
         });
-        self.user.serviceIds = serviceIds || [];
+        self.user.business.serviceIds = serviceIds || [];       
+        
         Meteor.users.update(
           {_id:self.userId},
           {
@@ -121,8 +154,23 @@
           function(error,doc){
             if(error){
               console.log(error);
+              $mdToast.show(
+                $mdToast.simple()
+                .textContent('there was an error saving your record, please try again later.')               
+                .position('top right')
+                .action('x')
+                .hideDelay(5000)
+              );
             }else{
               console.log('records updated:',doc);
+              $mdToast.show(
+                $mdToast.simple()
+                .textContent('User record saved successfully.')               
+                .position('top right')
+                .action('x')
+                .hideDelay(5000)
+              );
+
             }
           }
           );
@@ -146,6 +194,7 @@
     'focGmap',
     'thumbImage',
     'imageUpload',
+    'projectGallery',
 
     ])
   .component(name,{

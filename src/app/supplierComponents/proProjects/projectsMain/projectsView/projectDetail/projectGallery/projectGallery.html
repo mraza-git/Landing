@@ -1,10 +1,10 @@
 <!-- DETAILS PAGE -->
-<div ng-show="projectGallery.images" flex layout="column" class="slide-top md-whiteframe-2dp" ng-cloak>
+<div ng-show="projectGallery.images.length>0" flex layout="column" class="slide-top md-whiteframe-2dp" ng-cloak>
   <!--  HEADER-->
   <div class="thread-header heading" layout="row" layout-align="space-between center">    
     <div>
       <!--  TITLE-->
-      <div class="name">Project Images</div>
+      <div class="name">Uploaded Images</div>
       <!--  /TITLE-->
     </div>
   </div>
@@ -19,8 +19,7 @@
 
       <md-grid-tile class="foc-tile"
                 id="links"  
-                onclick="myFunction(event)"              
-                ng-repeat="file in projectGallery.images" 
+                ng-repeat="file in projectGallery.images track by $index" 
                 md-rowspan="1" md-colspan="1" md-colspan-sm="1" md-colspan-xs="1"
                 >
       <!--CONTENT IMAGE-->       
@@ -28,12 +27,24 @@
                 <!--<img ng-src="{{file.url}}"
                 class="post__featured-image toggle img-thumbnail"
                 alt="alt"/>            -->
-        <div class="post__image-container">
+        <div class="post__image-container"
+                ng-if="projectGallery.readonly"
+                onclick="myFunction(event)">              
         <a href="{{file.url}}">
                 <img src="{{file.url}}" alt="{{file.url}}" class="post__featured-image">
         </a>
         </div>
-                
+
+        <div ng-if="!projectGallery.readonly" class="post__image-container">
+          <md-icon              
+              ng-click="projectGallery.remove(file.id,$index)" 
+              md-font-icon="icon-minus-circle-outline"
+              aria-label="remove" class="md-raised md-icon-button md-accent icon-remove s25">     
+          </md-icon> 
+          <img ng-src="{{file.url}}"
+          class="post__featured-image toggle"
+          alt="alt">
+        </div>        
 
 
 
