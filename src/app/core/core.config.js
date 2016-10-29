@@ -27,7 +27,7 @@
                 taOptions.toolbar = [
                     
                     ['bold', 'italics', 'underline', 'ul', 'ol', 'quote','h1', 'h2', 'h3', 'h4'],
-                    ['redo', 'undo', 'clear','justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink', 'insertVideo'],
+                    ['redo', 'undo', 'clear','justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink', 'insertVideo','html'],
 
                 ];
 
