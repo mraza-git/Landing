@@ -61,6 +61,7 @@ Meteor.subscribe("settings");
             'assignedJobs',
             'jobDetail',
             'quoteDetail',
+            'jobs',
 
             //supplier
             'p', // profile view page or supplier homepage

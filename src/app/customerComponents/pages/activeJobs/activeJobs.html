@@ -58,7 +58,7 @@
                 <div class="padding-10" layout="row" flex>
                         <div class="name" layout="row" layout-align="start center">
                             <form-services ng-hide="thread.images" service-ids="[thread.serviceId]" type="image"></form-services>
-                            <img ng-show="thread.images" ng-src="thread.images[0].url" />
+                            <thumb-image image-id="thread.images[0].id" image-class="avatar"></thumb-image>                            
 
                             <span class="text-truncate">{{thread.title}}</span>
                             
