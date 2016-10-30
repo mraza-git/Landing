@@ -13,7 +13,7 @@
       ///////////Data///////////
       self.subscribe('leadsByOwnerId');
       self.helpers({
-        projects:function(){
+        projects:function(){          
           return Leads.find({
             owner: Meteor.userId(),
             status:'closed'
@@ -49,20 +49,12 @@
     }
   })
   .config(config);
-  var template = '<'+main+ (type?'-':'')+(type?type.toLowerCase():'')+'></'+main+(type?'-':'')+(type?type.toLowerCase():'')+'>';
-  var state = 'app.'+name.toLowerCase();
+ var template = '<'+main+ (type?'-':'')+(type?type.toLowerCase():'')+'></'+main+(type?'-':'')+(type?type.toLowerCase():'')+'>';
+  var state = 'jobs.assignedjobs';
   var stateUrl = '/'+main+'-'+type.toLowerCase();
   var views = {
-    'main@': {
-          templateUrl: 'app/core/layouts/content-with-toolbar.html',
-          controller: "MainController as self"
-    },
-    'content@app.assignedjobs': {
-      template: template,
-    },     
-    'toolbar@app.assignedjobs':{
-      template: '<landing-toolbar></landing-toolbar>',
-      
+    'jobview':{
+      template:template
     }
      
   };
@@ -74,7 +66,9 @@
     .state(state, {
       url    : stateUrl,
       views  : views,
-
+      data:{
+        displayName:'Active Jobs'
+      }
     });
   }
 

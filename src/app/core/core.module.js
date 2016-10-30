@@ -20,6 +20,6 @@
                 'formly',
                 'formlyMaterial',
                 'duScroll',
-
+                'angularUtils.directives.uiBreadcrumbs',
             ]);
 })();
