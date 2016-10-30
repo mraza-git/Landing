@@ -41,6 +41,8 @@
   .module(name, [
     'angular-meteor',  
     'pagesToolbar',    
+    'formServices',
+    'thumbImage'
 
     ])
   .component(name,{

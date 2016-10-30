@@ -1,0 +1,47 @@
+<div id="form-main" class="page-layout carded fullwidth single-scroll" layout="row">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg md-accent-bg"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center" flex>
+
+        <!-- CONTENT HEADER -->
+        <div class="header">
+            <span class="h2 white-fg">Active Jobs</span>
+            <div class="search-wrapper md-whiteframe-4dp" layout="row" layout-align="start center" flex>
+         <div class="search" flex layout="row" layout-align="start center">
+          <md-icon md-font-icon="icon-magnify" class="icon s24"></md-icon>
+          <input flex ng-model="activeJobs.search" type="text" placeholder="Search for an e-mail or contact" translate translate-attr-placeholder="FORM.SEARCH_PLACEHOLDER">
+        </div>
+      </div>
+        </div>
+        <!-- / CONTENT HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card outlook">
+
+            <!-- CONTENT TOOLBAR -->
+            <div class="toolbar" layout="row" layout-align="start center">
+                 <md-button href="#" class="md-primary md-hue-1 foc-nav">Active Jobs</md-button>
+                <div class="toolbar-separator"></div>
+                <md-button href="#" class="md-primary md-hue-1 foc-nav">Assigned Jobs</md-button>
+                <div class="toolbar-separator"></div>
+            </div>
+            <!-- / CONTENT TOOLBAR -->
+
+            <!-- CONTENT -->
+            <md-content class="content-wrapper" ui-view="jobs" ms-scroll>
+
+
+            </md-content>
+            <!-- / CONTENT -->
+
+        </div>
+        <!-- / CONTENT CARD -->
+
+    </div>
+    <!-- / CENTER -->
+
+</div>
