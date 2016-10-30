@@ -4,8 +4,8 @@
     </md-progress-linear>
 
 
-    <div class="thread {{thread.status}} slide-top" md-ink-ripple ng-if="!activeJobs.loading" ng-repeat="thread in activeJobs.projects | filter: activeJobs.search"
-        ui-sref="jobs.jobdetail({jobId:thread._id})" ng-class="{'current-thread': mouseOver, 'selected': activeJobs.isSelected(thread)}"
+    <div class="thread {{thread.status}} slide-top" md-ink-ripple ng-if="!assignedJobs.loading" ng-repeat="thread in assignedJobs.projects | filter: assignedJobs.search"
+        ui-sref="jobs.jobdetail({jobId:thread._id})" ng-class="{'current-thread': mouseOver, 'selected': assignedJobs.isSelected(thread)}"
         ng-mouseenter="mouseOver=true" ng-mouseleave="mouseOver=false" ng-cloak layout="row" layout-xs="column">
         <div class="padding-10" layout="row" flex>
             <div class="name" layout="row" layout-align="start center">
@@ -22,8 +22,8 @@
 
             <div class="" flex>
                 <span>
-                                    {{thread.createdAt | date}}
-                                </span>
+                    {{thread.createdAt | date}}
+                </span>
 
             </div>
             <div flex>
