@@ -1,10 +1,10 @@
-<md-dialog aria-label="Login">
+<md-dialog id="auth-modals" aria-label="Login">
   <md-toolbar>
     <div class="md-toolbar-tools">
-      <h2>Login to continue</h2>
+      <h2>Log in to your account</h2>
       <span flex></span>
       <md-button ng-click="modalLogin.close()">
-        Close
+        <md-icon md-font-icon="icon-close" aria-label="close"></md-icon>
       </md-button>
     </div>
   </md-toolbar>
@@ -18,15 +18,15 @@
 
       <div layout="row" layout-fill layout-margin layout-padding layout-wrap>
         <md-button class="md-raised">
-          <md-icon md-svg-icon="social:ic_google_24px" style="color: #DC4A38;"></md-icon>
+          <md-icon md-font-icon="icon-google-plus" aria-label="Google"></md-icon>
           <span>Google</span>
         </md-button>
         <md-button class="md-raised">
-          <md-icon md-svg-icon="social:ic_facebook_24px" style="color: #3F62B4;"></md-icon>
+          <md-icon md-font-icon="icon-facebook" aria-label="Facebook"></md-icon>
           <span>Facebook</span>
         </md-button>
         <md-button class="md-raised">
-          <md-icon md-svg-icon="social:ic_twitter_24px" style="color: #27AAE2;"></md-icon>
+          <md-icon md-font-icon="icon-twitter" aria-label="Twitter"></md-icon>
           <span>Twitter</span>
         </md-button>
       </div>

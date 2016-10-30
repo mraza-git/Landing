@@ -4,19 +4,21 @@ project-summary {
         box-shadow: 0 1px rgba(255,255,255,.1);
         background-color: rgb(45,50,62);
         color: rgba(255,255,255,0.87);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+        padding: 15px 15px 10px;
     }
     .conent {
         padding: 10px;
     }
     .question {
-    font-size: 18px !important;
-    margin-bottom: 10px;
+    font-size: 16px !important;
+    margin-left: 10px;
     padding-left: 0 !important;
-    font-weight: 500;
+    font-weight: bold;
     color: #2d323e !important;
     }
     .answer {
-    font-size: 18px !important;
+    font-size: 16px !important;
     margin-left: 10px;
     padding-left: 0 !important;
     font-weight: normal;
