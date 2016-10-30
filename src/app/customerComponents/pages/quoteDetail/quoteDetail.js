@@ -48,7 +48,7 @@
   angular
   .module(name, [
     'angular-meteor',  
-    'pagesToolbar',    
+    'pagesToolbar',      
 
     ])
   .component(name,{
@@ -62,19 +62,11 @@
   })
   .config(config);
   var template = '<'+main+ (type?'-':'')+(type?type.toLowerCase():'')+'></'+main+(type?'-':'')+(type?type.toLowerCase():'')+'>';
-  var state = 'app.'+name.toLowerCase();
+  var state = 'jobs.quotedetail';
   var stateUrl = '/'+main+'-'+type.toLowerCase()+'/:quoteId';
   var views = {
-    'main@': {
-          templateUrl: 'app/core/layouts/content-with-toolbar.html',
-          controller: "MainController as self"
-    },
-    'content@app.quotedetail': {
-      template: template,
-    },     
-    'toolbar@app.quotedetail':{
-      template: '<landing-toolbar></landing-toolbar>',
-      
+    'jobview':{
+      template:template
     }
      
   };
@@ -85,7 +77,7 @@
     $stateProvider
     .state(state, {
       url    : stateUrl,
-      views  : views,
+      views  : views,      
 
     });
   }

@@ -24,7 +24,7 @@
   var controller = ControllerFunction;
   angular
   .module(name, [    
-
+      
     ])
   .component(name,{
     templateUrl: templateUrl,
@@ -37,17 +37,17 @@
   })
   .config(config);
   var template = '<jobs><jobs/>';
-  var state = 'app.'+name.toLowerCase();
+  var state = 'jobs';
   var stateUrl = '/'+main;
   var views = {
     'main@': {
           templateUrl: 'app/core/layouts/content-with-toolbar.html',
           controller: "MainController as self"
     },
-    'content@app.jobs': {
+    'content@jobs': {
       template: template,
     },     
-    'toolbar@app.jobs':{
+    'toolbar@jobs':{
       template: '<landing-toolbar></landing-toolbar>',      
     },
      
@@ -58,8 +58,10 @@
     // State
     $stateProvider
     .state(state, {
-      url    : stateUrl,
+      url    : stateUrl,      
+      parent :'app',
       views  : views,
+      abstract:true,
 
     });
   }

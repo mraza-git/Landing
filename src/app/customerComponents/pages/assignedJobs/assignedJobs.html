@@ -1,57 +1,58 @@
-<div id="contactus" class="page-layout carded fullwidth single-scroll" layout="row">
+<div class="thread-list">
+    <md-progress-linear ng-disabled="!assignedJobs.loading"
+                        aria-label="label">
+    </md-progress-linear>
 
-    <!-- TOP BACKGROUND -->
-    <div class="top-bg md-accent-bg"></div>
-    <!-- / TOP BACKGROUND -->
 
-    <!-- CENTER -->
-    <div class="center" flex>
+    <div class="thread {{thread.status}} slide-top" md-ink-ripple ng-if="!assignedJobs.loading" ng-repeat="thread in assignedJobs.projects | filter: assignedJobs.search"
+        ui-sref="jobs.jobdetail({jobId:thread._id})" ng-class="{'current-thread': mouseOver, 'selected': assignedJobs.isSelected(thread)}"
+        ng-mouseenter="mouseOver=true" ng-mouseleave="mouseOver=false" ng-cloak layout="row" layout-xs="column">
+        <div class="padding-10" layout="row" flex>
+            <div class="name" layout="row" layout-align="start center">
+                <form-services ng-hide="thread.images" service-ids="[thread.serviceId]" type="image"></form-services>
+                <thumb-image image-id="thread.images[0].id" image-class="avatar"></thumb-image>
 
-        <!-- CONTENT HEADER -->
-        <div class="header">
-            <span class="h2 white-fg">Assigned Jobs</span>
-        </div>
-        <!-- / CONTENT HEADER -->
+                <span class="text-truncate">{{thread.title}}</span>
 
-        <!-- CONTENT CARD -->
-        <div class="content-card">
 
-            <!-- CONTENT TOOLBAR -->
-            <div class="toolbar" layout="row" layout-align="start center">
-                <h2 class="md-primary">Jobs</h2>
             </div>
-            <!-- / CONTENT TOOLBAR -->
-
-            <!-- CONTENT -->
-            <md-content class="content" ms-scroll>
-
-                <div>
-                    <div class="top-image"></div>
-                </div>
-
-                <div>
-                    <h1>
-                        Assigned Jobs:                        
-                    </h1>
-                    <div>
-                        <ul>
-                            <li ng-repeat="job in assignedJobs.projects" ui-sref="app.jobdetail({jobId:job._id})">
-                                <pre>
-                                {{job|json:4}}
-                                </pre>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-      
-            </md-content>
-            <!-- / CONTENT -->
 
         </div>
-        <!-- / CONTENT CARD -->
+        <div layout="row" flex layout-align="start center">
+
+            <div class="" flex>
+                <span>
+                    {{thread.createdAt | date}}
+                </span>
+
+            </div>
+            <div flex>
+                <form-services service-ids="[thread.serviceId]"></form-services>
+
+            </div>
+            <div flex><strong>Total quotes :</strong> {{thread.quotes.length || 0}}</div>
+
+        </div>
+        <md-menu>
+            <md-button ng-click="$mdOpenMenu($event)" id="button-id" class="md-primary-bg s14" ng-disabled="false" aria-label="button-label">
+            Action </md-button>
+
+            <md-menu-content width="2">
+                <md-menu-item>
+                    <md-button ng-click="">
+                        <md-icon md-menu-align-target md-font-icon="icon-archive"></md-icon>
+                        Archive
+                    </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                    <md-button ng-click="">
+                        <md-icon md-menu-align-target md-font-icon="icon-trash"></md-icon>
+                        Delete
+                    </md-button>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
 
     </div>
-    <!-- / CENTER -->
 
 </div>

@@ -23,7 +23,7 @@
       return [
         [self.jobId]
       ]
-    })
+    });
     self.helpers({
       quotes: function () {
         return Quotes.find({
@@ -31,9 +31,10 @@
         });
       },
       job: function () {
-        return Leads.findOne({
+        var job =Leads.findOne({
           _id: self.jobId
-        })
+        });        
+        return job; 
       }
     });
 
@@ -205,7 +206,7 @@
       'quoteOwner',
       'projectSummary',
       'projectMap',
-      'projectGallery',
+      'projectGallery',      
 
     ])
     .component(name, {
@@ -218,32 +219,65 @@
       }
     })
     .config(config);
-  var template = '<' + main + (type ? '-' : '') + (type ? type.toLowerCase() : '') + '></' + main + (type ? '-' : '') + (type ? type.toLowerCase() : '') + '>';
-  var state = 'app.' + name.toLowerCase();
-  var stateUrl = '/' + main + '-' + type.toLowerCase() + '/:jobId';
+ var template = '<'+main+ (type?'-':'')+(type?type.toLowerCase():'')+'></'+main+(type?'-':'')+(type?type.toLowerCase():'')+'>';
+  var state = 'jobs.jobdetail';
+  var stateUrl = '/'+main+'-'+type.toLowerCase()+'/:jobId';
   var views = {
-    'main@': {
-      templateUrl: 'app/core/layouts/content-with-toolbar.html',
-      controller: "MainController as self"
-    },
-    'content@app.jobdetail': {
-      template: template,
-    },
-    'toolbar@app.jobdetail': {
-      template: '<landing-toolbar></landing-toolbar>',
-
+    'jobview':{
+      template:template
     }
-
+     
   };
   /** @ngInject */
-  function config($stateProvider) {
+  function config($stateProvider)
+  {
     // State
     $stateProvider
-      .state(state, {
-        url: stateUrl,
-        views: views,
+    .state(state, {
+      url    : stateUrl,
+      views  : views,    
+      data:{
+        displayName:'{{stateVariable.title}}'
+      },
+      // resolve:{
+      //   job: function($stateParams,$q,$timeout){
+      //     var defer = $q.defer();
+      //     var obj;    
+      //     var jobId = $stateParams.jobId;
+      //     console.log(jobId);
+      //     Meteor.subscribe('leadsByIds',function(){return [[jobId]]},{
+      //         onStart: function () {
+      //           console.log("New subscribtion has been started");
+      //         },
+      //         onReady: function () {
+      //         var job = Leads.findOne({
+      //           _id: jobId
+      //         })
+      //         console.log("Aya",job);
+      //         obj = job;
+      //        defer.resolve(job);
+                
+      //         },
+      //         onStop: function(error){
+      //           console.log('stopped:',error);
+      //         }
 
-      });
+      //       }
+      //       );
+
+      //     $timeout(function(){
+      //       if(!obj){
+      //         defer.reject();
+      //       }
+      //     },5000);
+
+      //     return defer.promise;
+      //   }
+      // }  
+
+    });
   }
 
 })();
+
+var stateVariable = "";

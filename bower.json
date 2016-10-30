@@ -39,7 +39,9 @@
     "ng-img-crop-full-extended": "ngImgCropFullExtended#^0.6.1",
     "ng-file-upload": "^12.2.12",
     "drop-ng": "^0.1.5",
-    "textAngular": "^1.5.12"
+    "textAngular": "^1.5.12",
+    "angular-breadcrumb": "^0.4.1",
+    "angular-utils-ui-breadcrumbs": "^0.2.2"
   },
   "devDependencies": {
     "angular-mocks": "1.5.7"
