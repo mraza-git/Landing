@@ -48,7 +48,7 @@
       template: template,
     },     
     'toolbar@jobs':{
-      template: '<landing-toolbar></landing-toolbar>',      
+      template: '<pages-toolbar></pages-toolbar>',      
     },
      
   };

@@ -13,26 +13,16 @@
   <div layout="column" flex class="content">
     <div ng-repeat="pages in projectSummary.currentProject.pages ">
       <div ng-repeat="question in pages.questions | orderBy: 'adminKey'" ng-hide="question.questionType === 'gmap'">
-        <div layout="row" ng-hide="question.questionType==='checkbox'">
-          <span class="question">
-          
-          </span>
-          <span class="answer">
+        <div layout="row" ng-hide="question.questionType==='checkbox'" class="question">
           {{question.supplierDescription}}
-          </span>
-        </div>
-        <div layout="row" ng-hide="question.questionType==='checkbox'">
+         </div>
+        <div layout="row" ng-hide="question.questionType==='checkbox'" class="answer">
           {{question.answer}}
         </div>
-        <div layout="row" ng-show="question.questionType==='checkbox'">
-          <span class="question">
-          
-          </span>
-          <span class="answer">
+        <div layout="row" ng-show="question.questionType==='checkbox'" class="question">
           {{question.checkStatement}}
-          </span>
         </div>
-        <div layout="row" ng-show="question.questionType==='checkbox'">
+        <div layout="row" ng-show="question.questionType==='checkbox'" class="question">
           {{question.supplierDescription}}
         </div>
 
@@ -40,15 +30,15 @@
     </div>
   </div>  
   <div layout="column">
-    <div layout layout-align="space between center">
-    <h2>  
-    More Details:
-    </h2>
+    
+    <p class="question">  
+    More Details:<br />
+    
     <md-button aria-label="Edit" class="md-icon-button" ng-if="projectSummary.isAdminOrSupport">
        <md-icon md-font-icon="icon-pencil"></md-icon>       
     </md-button>
-    </div>
-      {{projectSummary.currentProject.detail}}
+    
+     <span  class="answer">{{projectSummary.currentProject.detail}}</span></p>
     
   </div>
   <!--  /PROJECT PAGE LIST-->

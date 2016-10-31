@@ -1,6 +1,6 @@
-<div>
-    <h1>
-        Quotes
+<div id="job-detail">
+    <h1 class="main-title">
+        Job Detail
     </h1>
     <div>
         <div layout="column" flex>
@@ -42,4 +42,60 @@
             </li>
         </ul>
     </div>
+</div>
+ 
+
+<div class="thread-list" layout="column" flex>
+    <md-progress-linear ng-disabled="!jobDetail.quote.loading"
+                        aria-label="label">
+    </md-progress-linear>
+
+    <div class="thread {{thread.status}} slide-top" md-ink-ripple ng-repeat="quote in jobDetail.quotes" 
+        ui-sref="jobs.quotedetail({quoteId:quote._id})" ng-class="{'current-thread': mouseOver, 'selected': jobDetail.quote.isSelected(thread)}"
+        ng-mouseenter="mouseOver=true" ng-mouseleave="mouseOver=false" ng-cloak layout="row" layout-xs="column">
+        <div class="padding-5-10" layout="row" flex>
+            <div class="name" layout="row" layout-align="start center">
+                <form-services ng-hide="thread.images" service-ids="[thread.serviceId]" type="image"></form-services>
+                <thumb-image ng-show="thread.images" image-id="thread.images[0].id" image-class="avatar"></thumb-image>
+                <span class="text-truncate">{{quote.quoteMessage}}</span>
+                <span class="text-truncate">{{quote.owner.username}}</span>
+            </div>
+        </div>
+        <div layout="row" flex layout-align="start center">
+
+            <div class="" flex>
+                <span>
+                    {{quote.createdAt | date}}
+                </span>
+
+            </div>
+            <div flex>
+                <form-services service-ids="[thread.serviceId]"></form-services>
+
+            </div>
+            <div flex><strong>Quoted Value :</strong> {{quote.quotedValue}}</div>
+
+        </div>
+        <md-menu>
+            <md-button ng-click="$mdOpenMenu($event)" id="button-id" class="md-primary-bg s14" ng-disabled="false" aria-label="button-label">
+            Action </md-button>
+
+            <md-menu-content width="2">
+                <md-menu-item>
+                    <md-button ng-click="">
+                        <md-icon md-menu-align-target md-font-icon="icon-archive"></md-icon>
+                        Archive
+                    </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                    <md-button ng-click="">
+                        <md-icon md-menu-align-target md-font-icon="icon-trash"></md-icon>
+                        Delete
+                    </md-button>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
+
+    </div>
+
 </div>
