@@ -4,7 +4,7 @@
   var main = 'projects'; // Change this with containing folder name
   var type = 'Nav'; // Change This with Component functionality Detail, Add, Remove, Delete, List etc.
 
-  function ControllerFunction($scope,$reactive,$mdDialog) {
+  function ControllerFunction($scope,$reactive,$mdDialog,$mdMedia,$mdToast) {
     'ngInject';
 
 
@@ -19,13 +19,15 @@
         return Meteor.user();
       },
       services: function(){
-        return Services.find();
+        return Services.find({
+          _id: {$in: self.getReactively('currentUser.business.serviceIds') || []}
+        });
       }
     });
 
 
     ///////////Methods Declarations///////////
-    
+    self.openQuoteDialog = openQuoteDialog;
     self.setService = setService;
 
 
@@ -37,21 +39,31 @@
     function setService(){
       // console.log(self.selectedService);
     }
-    function openCreateDialog(ev){
+    function openQuoteDialog(ev){
+      if(angular.isUndefined(self.currentProject)){
+         $mdToast.show(
+          $mdToast.simple()
+          .textContent('Please select a lead first....')               
+          .position('top right')
+          .action('x')
+          .hideDelay(3000)
+        );
+        return;
+      }
       $mdDialog.show({
-              controller       : CreateEditDialogController,
-              controllerAs  : 'form',
+              controller       : QuoteDialogController,
+              controllerAs  : 'quote',
               locals             : {
-                  selectedForm: undefined
+                  currentProject: self.currentProject
               },
-              templateUrl    : 'app/adminComponents/forms/form/modalBoxes/formCreate-dialog/formCreate-dialog.html',
+              templateUrl    : 'app/supplierComponents/proProjects/modalBoxes/quoteCreate-dialog/quoteCreate-dialog.html',
               parent             : angular.element(document.body),
               targetEvent     : ev,
-              clickOutsideToClose: true
+              clickOutsideToClose: true,
+              fullscreen: $mdMedia('sm') || $mdMedia('xs')
           }).then(function(res){
             if(res){
-              self.currentForm = res;
-              self.currentFolder = 'draft';
+              console.log(res);              
             }
           });
     }

@@ -1,0 +1,58 @@
+<div class="thread-list">
+    <md-progress-linear ng-disabled="!assignedJobs.loading"
+                        aria-label="label">
+    </md-progress-linear>
+
+
+    <div class="thread {{thread.status}} slide-top" md-ink-ripple ng-if="!assignedJobs.loading" ng-repeat="thread in assignedJobs.projects | filter: assignedJobs.search"
+        ui-sref="jobs.jobdetail({jobId:thread._id})" ng-class="{'current-thread': mouseOver, 'selected': assignedJobs.isSelected(thread)}"
+        ng-mouseenter="mouseOver=true" ng-mouseleave="mouseOver=false" ng-cloak layout="row" layout-xs="column">
+        <div class="padding-10" layout="row" flex>
+            <div class="name" layout="row" layout-align="start center">
+                <form-services ng-hide="thread.images" service-ids="[thread.serviceId]" type="image"></form-services>
+                <thumb-image image-id="thread.images[0].id" image-class="avatar"></thumb-image>
+
+                <span class="text-truncate">{{thread.title}}</span>
+
+
+            </div>
+
+        </div>
+        <div layout="row" flex layout-align="start center">
+
+            <div class="" flex>
+                <span>
+                    {{thread.createdAt | date}}
+                </span>
+
+            </div>
+            <div flex>
+                <form-services service-ids="[thread.serviceId]"></form-services>
+
+            </div>
+            <div flex><strong>Total quotes :</strong> {{thread.quotes.length || 0}}</div>
+
+        </div>
+        <md-menu>
+            <md-button ng-click="$mdOpenMenu($event)" id="button-id" class="md-primary-bg s14" ng-disabled="false" aria-label="button-label">
+            Action </md-button>
+
+            <md-menu-content width="2">
+                <md-menu-item>
+                    <md-button ng-click="">
+                        <md-icon md-menu-align-target md-font-icon="icon-archive"></md-icon>
+                        Archive
+                    </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                    <md-button ng-click="">
+                        <md-icon md-menu-align-target md-font-icon="icon-trash"></md-icon>
+                        Delete
+                    </md-button>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
+
+    </div>
+
+</div>

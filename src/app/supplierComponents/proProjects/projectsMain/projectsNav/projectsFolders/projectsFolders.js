@@ -26,11 +26,11 @@
     self.autorun(function(){
       if(self.getReactively('isAdmin')){
         var adminFolders = [
+          {name:'Draft',key:'draft',icon:'message-draw'},
           {name:'Archive', key:'archive',icon:'archive'},
           {name:'Delete',key:'delete',icon:'delete-variant'},
-          {name:'Trash',key:'trash',icon:'trash'},
         ];
-        self.folders.insertArray(0,adminFolders); 
+        self.folders.insertArray(100,adminFolders); 
       }
     });
 

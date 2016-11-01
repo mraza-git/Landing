@@ -13,10 +13,15 @@
     $reactive(self).attach($scope);
     self.limit = 10;
     self.page = 1;
+    self.subscribe('userData');
     self.subscribe('serviceLeads',function(){
-      return [
-        [self.getReactively('selectedService._id')] || self.getReactively('currentUser.profile.serviceIds')
-      ]
+      if(angular.isDefined(self.getReactively('selectedService._id'))){
+        return [[self.getReactively('selectedService._id')]];
+      }else{
+        return [
+          self.getReactively('currentUser.business.serviceIds') || []
+        ]
+      }
     });
 
     ///////////Data///////////
@@ -56,6 +61,7 @@
       'pagesToolbar',
       'projectsView',  
       'projectsNav',  
+      'app.core',
          
     ])
     .component(name, {

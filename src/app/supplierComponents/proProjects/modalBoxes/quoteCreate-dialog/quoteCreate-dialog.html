@@ -1,0 +1,74 @@
+<md-dialog class="form-create-dialog " aria-label="New Quote">
+  <form class="md-inline-quote" name="quoteCreate" ng-submit="quote.save()">
+    <md-toolbar class="md-accent md-hue-2" layout="column">
+      <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+        <span class="title">Quote</span>
+        <md-button class="md-icon-button" ng-click="quote.closeDialog()" aria-label="Close dialog" aria-label="close">
+          <md-icon md-font-icon="icon-close"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-progress-linear class="md-primary"
+                        md-mode="indeterminate"
+                        ng-disabled="!quote.loading"                                            
+                        aria-label="loading">
+    </md-progress-linear>
+
+    <md-dialog-content ms-scroll>
+      <md-input-container class="md-block">
+        <label >Lead Value</label>
+        <input ng-model="quote.quote.quotedValue"
+         type="number" name="quoteValue"         
+         md-autofocus required>
+        <div class="errors" ng-messages="quoteCreate.qutoeValue.$error">
+          <div ng-message="required">Value is Required</div>
+        </div>
+      </md-input-container>
+      <label>
+        Message
+      </label>
+      <text-angular ng-model="quote.quote.quoteMessage"></text-angular>      
+      <!--<md-input-container class="md-block">
+        <label>
+          Message
+        </label>
+          <textarea name="quoteMessage"
+                  type="textarea"
+                  ng-model="quote.quote.quoteMessage" 
+                  columns="1"                           
+                  md-maxlength="150" 
+                  rows="4"                       
+                  aria-label="quote message"></textarea>
+          <div ng-messages="quoteCreate.quoteMessage.$error" ng-show="quoteCreate.quoteMessage.$touched" role="alert" multiple>          
+          <div ng-message="md-maxlength">
+              <span>Message can't be longer than 150 characters.</span>
+          </div>  
+          </div>        
+      </md-input-container>-->
+      <br>  
+    
+
+    </md-dialog-content>
+    <md-divider md-inset></md-divider>
+    <md-dialog-actions layout="row" layout-align="space-between center">
+      <div layout="row" layout-align="start center">
+        <md-button  type="submit"
+        ng-disabled="!quoteCreate.$valid"
+        class="send-button md-accent md-raised"
+        aria-label="Save" aria-label="save">
+          Save
+        </md-button>
+
+      </div>
+
+      <div layout="row" ng-if="quote.edit">
+        <md-button class="md-icon-button" aria-label="Delete" ng-click="quote.remove()" aria-label="delete">
+          <md-icon md-font-icon="icon-delete"></md-icon>
+          <md-tooltip>
+            <span> delete quote</span>
+          </md-tooltip>
+        </md-button>
+      </div>
+    </md-dialog-actions>
+  </form>
+</md-dialog>
