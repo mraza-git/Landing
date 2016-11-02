@@ -3,5 +3,36 @@
          padding: 0 20px;
          margin: 19px 0 0;
         }
+    .heading {
+        border-radius: 3px 3px 0 0;
+        box-shadow: 0 1px rgba(255, 255, 255, 0.1);
+        background-color: #2d323e;
+        color: rgba(255, 255, 255, 0.87);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+        padding: 15px 15px 10px;
+        }
+    .quotes-margin {
+        margin: 0px 15px 15px;
+        }
+    .thread {
+        background: white !important;
+    }
+    project-summary {
+        .heading {
+           
+            background-color: #eaf1f5;
+            color: rgb(55, 71, 79);
+            border-top: 1px solid rgba(0, 0, 0, 0.12);
+            
+        }
+    }
+    project-gallery {
+        .heading {
+
+            background-color: #eaf1f5;
+            color: rgb(55, 71, 79);
+            border-top: 1px solid rgba(0, 0, 0, 0.12);
+        }
+    }
   
 }

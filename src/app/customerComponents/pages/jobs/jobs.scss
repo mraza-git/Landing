@@ -9,6 +9,8 @@
   
 }
 #form-main {
+
+&.jobs {
         height: 100% !important;
 
         .center {
@@ -70,4 +72,5 @@
     //             white-space: nowrap !important;
     //     }
     // }
+}
 }

@@ -14,7 +14,7 @@
     self.loading = false;
     self.selectedProjects = [];    
     self.selectedProject = undefined;
-    Roles.subscription = Meteor.subscribe("_roles")
+    Roles.subscription = Meteor.subscribe("_roles");
     
     self.helpers({
       currentUser: function() {
