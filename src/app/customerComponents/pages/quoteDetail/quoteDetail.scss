@@ -8,3 +8,55 @@
         }
   
 }
+
+#quote-detail {
+
+   #quote-owner {
+
+       height: 220px;
+   }
+.message {
+    font-size: 17px;
+    padding: 0 8px;
+    color: rgb(145, 149, 158);
+}
+       
+ .main-title {
+         padding: 0 20px;
+         margin: 19px 0 0;
+        }
+    .heading {
+        border-radius: 3px 3px 0 0;
+        box-shadow: 0 1px rgba(255, 255, 255, 0.1);
+        background-color: #2d323e;
+        color: rgba(255, 255, 255, 0.87);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+        padding: 15px 15px 10px;
+        }
+    .quotes-margin {
+        margin: 20px 15px 15px;
+        min-height: 300px;
+        }
+    .thread {
+        background: white !important;
+    }
+    .content-area {
+                padding-right: 0;
+            }
+        .header-image {
+            
+            width: 100%;
+            height: 220px;
+            min-height: 220px;
+            max-height: 220px;
+            // visibility: inherit;
+            z-index: 0;
+            background-color: gray;
+            background-size: cover;
+            background-position: center center;
+            position: absolute;
+            background-image: url("../../../assets/images/backgrounds/fix-landing-bg.jpg");
+            background-repeat: no-repeat;
+            // position: absolute !important;
+        }
+ }
