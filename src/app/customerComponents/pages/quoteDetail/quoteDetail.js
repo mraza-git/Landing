@@ -77,9 +77,14 @@
     $stateProvider
     .state(state, {
       url    : stateUrl,
-      views  : views,      
+      views  : views,
+      resolve: isClient,       
 
     });
   }
 
 })();
+
+
+
+      
