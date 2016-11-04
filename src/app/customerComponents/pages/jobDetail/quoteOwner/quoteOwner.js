@@ -24,6 +24,9 @@
           return Meteor.users.findOne({
             _id: self.getReactively('ownerId')
           });
+        },
+        jobsCount:function(){
+          return Counts.get('numberOfJobs');
         }
       });
 
@@ -54,3 +57,4 @@
     }
   });  
 })();
+

@@ -25,7 +25,14 @@
 
   </div>
   <!--<md-button class="md-warn md-raised" aria-label="button-label" ng-disabled="!projectsView.currentProject.isChanged" ng-click="projectsView.update()"> Save </md-button>-->
-
+  <div>
+    <span>
+      Available Credits: 
+    </span>
+    <strong>
+      152
+    </strong> 
+  </div>
 
 </div>
 
@@ -40,7 +47,7 @@
   <md-sidenav class="sidenav" md-is-locked-open="$mdMedia('gt-md')" md-component-id="projects-list-sidenav" ms-scroll ms-sidenav-helper>
     <div class="content thread-list" ms-scroll flex>
       <projects-list search="projectsView.search" ready="projectsView.ready" current-project="projectsView.currentProject" selected-projects="projectsView.selectedProjects" projects="projectsView.projects"
-        master-settings="projectsView.masterSettings"></projects-list>
+        master-settings="projectsView.masterSettings" get-more="projectsView.loadMore()"></projects-list>
     </div>
   </md-sidenav>
   <!-- / THREAD LIST --> 

@@ -35,6 +35,7 @@
     self.closeThread = closeProject;
     self.toggleSelectProject = toggleSelectProject;
     self.isSelected = isSelected;
+    self.loadMore = loadMore;
 
     ///////////Method Definitions///////////
     function openProject(project,sidenavId) {
@@ -45,6 +46,9 @@
 
     function closeProject() {
       self.currentProject = undefined;
+    }
+    function loadMore(){
+      self.getMore();
     }
 
     function toggleSelectProject(project, event) {
@@ -90,6 +94,7 @@
         projects: '<',
         masterSettings:"<",
         ready: '=',
+        getMore: '&',
 
 
         // Output

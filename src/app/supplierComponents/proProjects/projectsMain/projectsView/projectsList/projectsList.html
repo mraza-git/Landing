@@ -3,6 +3,8 @@
     <md-progress-circular class="md-accent" md-mode="indeterminate" md-diameter="64"></md-progress-circular>
     <div>Loading projects...</div>
 </div>
+<div class="inf-scroll-container" infinite-scroll='projectsList.loadMore()' infinite-scroll-distance='1'>
+
 <div class="thread {{thread.status}} slide-top" md-ink-ripple ng-if="!projectsList.loading" ng-repeat="thread in projectsList.projects | filter: projectsList.search | filter: global.search "
     ng-click="projectsList.openProject(thread,'projects-list-sidenav')" ng-class="{'unread': !thread.read, 'current-thread': projectsList.currentProject._id === thread._id, 'selected': projectsList.isSelected(thread)}"
     ng-cloak>
@@ -62,4 +64,6 @@
         <!--<md-icon md-font-icon="icon-checkbox-blank-circle" ng-show="thread.isChanged" aria-label="updated project marker" class="S18 md-warn"></md-icon>-->
 
     </div>
+</div>
+
 </div>

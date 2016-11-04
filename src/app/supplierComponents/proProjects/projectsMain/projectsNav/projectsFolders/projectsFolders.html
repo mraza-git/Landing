@@ -1,4 +1,16 @@
 <div id="form-folders"  class="navigation-simple" layout="column">
+  <md-divider></md-divider>
+  <div>
+    <md-button class="item" aria-label="dashboard">
+      <md-icon md-font-icon="icon-view-dashboard"></md-icon>
+      <span>Dashboard</span>
+    </md-button>
+    <md-button class="item" aria-label="notifications">
+      <md-icon md-font-icon="icon-bell-outline"></md-icon>
+      <span>Notifications</span>
+    </md-button>
+
+  </div>
   <div class="item subheader">Labels</div>
   <md-button class="item"
   aria-label="inbox"
@@ -9,6 +21,7 @@
       <span class="title">{{folder.name}}</span>
     </div>
   </md-button>
+</div>
   <!--<div id="add-controls" layout="column">
 
     <md-button class="md-raised md-primary toggle" ng-show="!projectsFolders.addingFolder" ng-click="projectsFolders.addingFolder=!projectNav.addingFolder">
