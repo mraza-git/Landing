@@ -61,7 +61,8 @@
       url    : stateUrl,      
       parent :'app',
       views  : views,
-      abstract:true,
+      abstract:true,      
+      
 
     });
   }

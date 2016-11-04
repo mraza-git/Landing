@@ -21,7 +21,6 @@
     self.selectedProject = undefined;
     Roles.subscription = Meteor.subscribe("_roles")
 
-
     self.helpers({
       currentUser: function () {
         return Meteor.user();

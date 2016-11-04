@@ -1,7 +1,120 @@
-<div id="quote-owner">
+<!--<div id="quote-owner">
 <pre>
     {{quoteOwner.jobsCount}}
     {{quoteOwner.user | json:4}}
 </pre>
 
-</div>
+<pre>
+    {{quoteOwner.quote | json:4}}
+</pre>
+
+</div>-->
+
+
+
+        <div id="quote-owner" class="padding-5-10" layout="row" layout-xs="column" flex>
+            <div layout="row" layout-sm="column" flex-gt-xs="40" flex>
+            <div class="name" layout="row" layout-align="start center" flex>
+                
+                <thumb-image ng-show="quoteOwner.user.profile.dpThumbUrl" image-id="quoteOwner.user.profile.dpImageId" image-class="avatar"></thumb-image>
+                <!--<span class="text-truncate">{{quoteOwner.quote.quoteMessage}}</span>-->
+                <div layout="column">
+                <span class="text-truncate"> {{quoteOwner.user.profile.name}}</span>
+                <span class="text-truncate organization">{{quoteOwner.user.business.organization}}
+                </span>
+                </div>
+            </div>
+            <div flex>
+                <div layout="column"  layout-align="start center">
+                    <div flex-20="" class="star-ratings">
+                    <p>9.75</p>
+                                
+                        <span class="stars">
+                            <em style="width: 91%;"></em>
+                        </span>                                            
+                                            
+                    </div>
+                </div>
+            <div layout="row"  layout-align="center center">
+                <md-icon class="marker" md-font-icon="icon-map-marker" layout="row"></md-icon>
+                <span layout="row">
+                    128 Km Away
+                </span>
+            </div>
+            </div>
+           
+            </div>
+        
+        
+        <div layout="row" flex layout-align="start center">
+
+            <!--<div flex>
+                <form-services service-ids="[quoteOwner.quote.serviceId]"></form-services>
+
+            </div>-->
+                       
+            <!--<div hide show-gt-xs class=""  layout-sm="column" flex="25">
+                <span>
+                    {{quoteOwner.quote.createdAt | date}}
+                </span>
+
+            </div>-->
+            
+            <div flex><strong>Jobs Completed :</strong> {{quoteOwner.jobs.completed || 125}}</div>
+            <div hide show-gt-xs flex>
+                <div layout="column"  layout-align="start center">
+                    <span>({{quoteOwner.user.profile.ratings || 320}}) ratings</span>
+                    <span>since {{quoteOwner.user.business.since || 2014}}</span>
+                </div>
+            </div>
+            <div flex>
+            <div layout="column"  layout-align="start center">
+                <span class="bid" >AED {{quoteOwner.quote.quotedValue}}</span></div>
+            <div hide show-gt-xs layout="column"  layout-align="start center">
+                <span>
+                    {{quoteOwner.quote.createdAt | date}}
+                </span>
+            </div>
+
+            </div>
+            
+        </div>
+        <md-menu>
+            <md-button ng-click="$mdOpenMenu($event)" id="button-id" class="md-primary-bg s14" ng-disabled="false" aria-label="button-label">
+            Action </md-button>
+
+            <md-menu-content width="2">
+                 <md-menu-item>
+                    <md-button ng-click="jobDetail.acceptOffer($event,quote)" ng-disabled="quote.status === 'accepted'" id="accept" >
+                        <md-icon md-menu-align-target md-font-icon="icon-trash" ></md-icon>
+                        Accept Offer
+                    </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                    <md-button ng-click="jobDetail.declineOffer($event,quote)" ng-disabled="quote.status === 'rejected'" id="decline">
+                        <md-icon md-menu-align-target md-font-icon="icon-trash" ></md-icon>
+                        Decline Offer
+                    </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                        <md-button ng-click="jobDetail.declineOffer($event,quote)" ng-disabled="quote.status === 'rejected'" id="shortlist" >
+                        <md-icon md-menu-align-target md-font-icon="icon-archive" ></md-icon>
+                        Shortlist
+                    </md-button>
+                </md-menu-item>
+               </md-menu-content>
+        </md-menu>
+        </div>
+       
+
+<!--<div id="quote-owner">
+<pre>
+    {{quoteOwner.user | json:4}}
+</pre>
+
+<pre>
+    {{quoteOwner.quote | json:4}}
+</pre>
+
+</div>-->
+   

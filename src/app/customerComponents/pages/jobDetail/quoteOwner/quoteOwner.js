@@ -10,8 +10,7 @@
       ///////////Initialization Checks///////////
       var self = this;
       $reactive(self).attach($scope);
-      ///////////Data///////////
-      console.log('aya')
+      ///////////Data///////////      
       self.subscribe('userById',function(){
         return [
           [self.getReactively('ownerId')]
@@ -19,8 +18,7 @@
       });
 
       self.helpers({
-        user:function(){
-          console.log(self.getReactively('ownerId'));
+        user:function(){          
           return Meteor.users.findOne({
             _id: self.getReactively('ownerId')
           });
@@ -53,7 +51,8 @@
     controller: controller,
     controllerAs: name,
     bindings:{
-      ownerId:'<',      
+      ownerId:'<',   
+      quote: '<',   
     }
   });  
 })();

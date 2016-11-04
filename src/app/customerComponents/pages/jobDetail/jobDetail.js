@@ -5,7 +5,7 @@
   var main = 'job'; // Change this with containing folder name
   var type = 'Detail';
 
-  function ControllerFunction($scope, $reactive, $stateParams, $state, $mdDialog, $mdToast) {
+  function ControllerFunction($scope, $reactive, $stateParams, $state, $mdDialog, $mdToast, $timeout) {
     'ngInject';
     ///////////Initialization Checks///////////
     var self = this;
@@ -14,16 +14,28 @@
       self.jobId = $stateParams.jobId;
     }
     ///////////Data///////////
+    self.quotesLoading = true;
     self.subscribe('quoteByLeadId', function () {
       return [
         [self.jobId]
       ];
-    });
+    },
+    {
+      onReady:function(){
+         self.quotesLoading = false; 
+      },
+      onStop:function(error){
+        self.quotesLoading = false;
+        self.noQuotesAvailable = true;
+
+      }
+    }
+    );
     self.subscribe('leadsByIds', function () {
       return [
         [self.jobId]
       ]
-    });
+    });    
     self.helpers({
       quotes: function () {
         return Quotes.find({
@@ -35,13 +47,13 @@
           _id: self.jobId
         });        
         return job; 
-      }
+      }            
     });
 
     ///////////Methods Declarations///////////
     self.getLocation = getLocation;
     self.acceptOffer = acceptOffer;
-    self.declineOffer = declineOffer;
+    self.declineOffer = declineOffer;    
 
     ///////////Method Definitions///////////
     self.autorun(function () {
@@ -49,7 +61,7 @@
         self.getLocation('gmap');
       }
 
-    });
+    });    
 
     function acceptOffer(ev, quote) {
       var confirm = $mdDialog.confirm()
