@@ -1,6 +1,6 @@
 <div id="landing-toolbar" layout="column" layout-align="space-between stretch" du-scroll-container="content">
      <div class="navigation-toggle" layout="row" layout-align="start center" flex>
-                <md-button class="md-icon-button" ng-click="vm.toggleHorizontalMobileMenu()"
+                <md-button class="md-icon-button" ng-click="landingToolbar.toggleHorizontalMobileMenu()"
                            aria-label="Toggle Mobile Navigation">
                     <md-icon md-font-icon="icon-menu"></md-icon>
                 </md-button>
@@ -35,7 +35,16 @@
                 <div class="toolbar-separator"></div>
                 <md-button href="home#partner" du-smooth-scroll du-scrollspy class="md-primary md-hue-1 foc-nav">Our Partners</md-button>
                 <div class="toolbar-separator"></div>
-                <md-button href="/pro/login" class="md-accent md-raised md-hue-1">Become a Service Partner</md-button>
+                <md-button 
+                    href="/pro/login" 
+                    class="md-accent md-raised md-hue-1"
+                    ng-hide="landingToolbar.isLoggedIn">
+                Become a Service Partner</md-button>
+                <md-button 
+                    ng-click="landingToolbar.goToDashboard()" 
+                    class="md-primary md-raised"
+                    ng-show="landingToolbar.isLoggedIn">
+                Dashboard</md-button>
             </div>
           </div>
 

@@ -1,9 +1,9 @@
-(function() {
-  'use strict';
+(function ()
+{
+    'use strict';
 
 
-  var name = "thumbImage";
-         
+    var name = "thumbImage";
 
     angular
         .module(name, ['angular-meteor'])
@@ -12,27 +12,50 @@
           controller: ThumbImage,
           controllerAs: name,
           bindings:{
-            imageId:'<',
-            imageClass: '@'
+              imageId: '<',
+              size: '@',
+              imageClass: '@',
+              url:'&',
           }
-        });       
-         /** @ngInject */
+        });
         function ThumbImage($scope,$reactive){
-           $reactive(this).attach($scope);         
-
-           this.subscribe('singleThumb40');
-
-          this.helpers({
-            thumb: function(){              
-              return Thumbs40.findOne({
-                originalId: this.getReactively('imageId',true)
-              });
+            $reactive(this).attach($scope);
+            if (this.size === '40') {
+                this.subscribe('thumbs40', function () {
+                    return [[this.getReactively('imageId')]] || [];
+                });
+            }
+            else {
+                this.subscribe('thumbs96', function () {
+                    return [[this.getReactively('imageId')]] || [];
+                });
             }
 
+          this.helpers({
+              thumb: function () {
+                  if (this.size === '40') {
+                      return Thumbs40.findOne({
+                          originalId: this.getReactively('imageId', true)
+                      });
+
+                  } else {
+                      return Thumbs96.findOne({
+                          originalId: this.getReactively('imageId', true)
+                      });
+                  }
+
+            }
           });
+          this.autorun( ()=> {
+              this.url({
+                  $event: {
+                      imageUrl: this.getReactively('thumb.url')
+                  }
+              });
+          });
+
+
+
+
         }
-   
-
-
-  
 })();

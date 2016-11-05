@@ -19,15 +19,26 @@
         </md-button>
 
         <md-menu-content width="3" style="z-index:999">
-            <md-menu-item class="md-indent" ui-sref='app.pages_profile({userId:""})'>
+            <md-menu-item class="md-indent" ng-click="toolbarUser.goToProfile()" >
                 <md-icon md-font-icon="icon-account" class="icon"></md-icon>
                 <md-button>My Profile</md-button>
             </md-menu-item>
 
-            <md-menu-item class="md-indent" ui-sref="app.chat">
+            <md-menu-item class="md-indent" ng-if="!toolbarUser.isSupplierLoggedIn" ui-sref="jobs.activejobs">
                 <md-icon md-font-icon="icon-email" class="icon"></md-icon>
-                <md-button>Chats</md-button>
+                <md-button>Active Jobs</md-button>
             </md-menu-item>
+            
+            <md-menu-item class="md-indent" ng-if="!toolbarUser.isSupplierLoggedIn" ui-sref="jobs.assignedjobs">
+                <md-icon md-font-icon="icon-email" class="icon"></md-icon>
+                <md-button>Assigned Jobs</md-button>
+            </md-menu-item>
+
+            <md-menu-item class="md-indent" ng-if="toolbarUser.isSupplierLoggedIn" ui-sref="projects">
+                <md-icon md-font-icon="icon-email" class="icon"></md-icon>
+                <md-button>Find Projects</md-button>
+            </md-menu-item>
+
 
             <!-- Change Password  -->
             <md-menu-item class="md-indent" ng-click="toolbarUser.openChangePassword($event)">
