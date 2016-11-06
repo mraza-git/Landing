@@ -11,8 +11,9 @@
         <md-icon class="s18" ng-class="{'rotate-icon-0':projectsView.listNavIsOpen,'rotate-icon-180':!projectsView.listNavIsOpen}"
           md-font-icon="icon-backburger"></md-icon>
       </md-button>
-      <md-checkbox class="no-label" aria-label="select or unselect all" ng-checked="projectsView.selectedProjects.length > 0" ng-click="projectsView.toggleSelectProjects()"></md-checkbox>
-
+      <!-- Multiple Selection Checkbox-->
+      <!--<md-checkbox class="no-label" aria-label="select or unselect all" ng-checked="projectsView.selectedProjects.length > 0" ng-click="projectsView.toggleSelectProjects()"></md-checkbox>-->
+      <!-- /Multiple Selection Checkbox-->
       <div class="divider-vertical"></div>
       <div class="" ng-show="projectsView.currentProject && projectsView.selectedProjects.length <= 0">
       </div>
@@ -31,21 +32,23 @@
       </span>
 
     <md-button class="md-icon-button arrow"
-      ng-click="projectsView.previousPage()" 
-      aria-label="Previous" translate translate-attr-aria-label="MAIL.PREVIOUS">
+      ng-click="projectsView.previousPage()"
+      ng-disabled="(projectsView.page-1)*projectsView.perPage===0" 
+      aria-label="Previous">
       <md-icon md-font-icon="icon-chevron-left"></md-icon>
-      <md-tooltip><span translate="MAIL.PREVIOUS">Previous</span></md-tooltip>
+      <md-tooltip><span>Previous</span></md-tooltip>
     </md-button>
-    <md-select ng-model="projectsView.perPage">
+    <md-select class="page-size-select" ng-model="projectsView.perPage">
       <md-option ng-value="perPage.value" ng-repeat="perPage in projectsView.perPageOptions">
         {{ perPage.value }}
      </md-option>
     </md-select>
     <md-button class="md-icon-button arrow"
       ng-click="projectsView.nextPage()" 
-      aria-label="Next" translate translate-attr-aria-label="MAIL.NEXT">
+      ng-disabled="(projectsView.page-1)*projectsView.perPage+projectsView.perPage>=projectsView.numberOfLeads"
+      aria-label="Next">
       <md-icon md-font-icon="icon-chevron-right"></md-icon>
-      <md-tooltip><span translate="MAIL.NEXT">Next</span></md-tooltip>
+      <md-tooltip><span>Next</span></md-tooltip>
     </md-button>
 
     <div>
