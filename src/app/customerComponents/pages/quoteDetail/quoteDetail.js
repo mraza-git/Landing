@@ -19,6 +19,11 @@
           [self.quoteId]
         ];
       });
+      self.subscribe('userById',function(){
+        return [
+          [self.getReactively('quote.owner')]
+        ]
+      });
       // self.subscribe('leadsByIds',function(){
       //   return [
       //     [self.jobId]
@@ -29,7 +34,12 @@
           return Quotes.findOne({
             _id: self.quoteId,
           });
-        },        
+        },
+        user: function(){
+          return Meteor.users.findOne({
+            _id: self.getReactively('quote.owner')
+          });
+        }        
       });
 
 
@@ -78,7 +88,7 @@
     .state(state, {
       url    : stateUrl,
       views  : views,
-      resolve: isClient,       
+      // resolve: isClient,       
 
     });
   }

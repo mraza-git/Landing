@@ -17,6 +17,59 @@
     .thread {
         background: white !important;
     }
+    .thread-read {
+        background: #efefef !important;
+
+        #form-main.jobs .name {
+            font-size: 15px;
+            font-weight: normal !important;
+        }
+        .jobs-completed {
+                font-weight: normal;
+              }
+        #quote-owner .bid {
+     
+            font-weight: normal;
+           
+        }
+
+    }
+    .content-area {
+                padding-right: 0;
+            }
+    .subject {
+        font-size: 17px;
+        font-weight: 500;
+        span {
+             font-size: 14px;
+             font-weight: normal;
+             color: #a2a2a2;
+        }
+    }
+    .lead-new {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        border-radius: 0;
+        font-size: 9px;
+        margin: 0;
+        padding: 1px 0;
+        width: 40px;
+        text-align: center;
+        text-transform: uppercase;
+        }
+   .lead-updated {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        border-radius: 0;
+        font-size: 9px;
+        margin: 0;
+        padding: 1px 0;
+        width: 40px;
+        text-align: center;
+        text-transform: uppercase;
+        }
     project-summary {
         .heading {
            
