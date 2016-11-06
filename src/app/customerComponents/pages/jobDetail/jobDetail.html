@@ -6,8 +6,13 @@
         <div layout="column" flex>
             <div layout="row" layout-xs="column" flex>
                 <div layout="column" layout-padding flex-gt-sm="66" flex class="content-area">
-                    <project-summary class="slide-top" current-project="jobDetail.job" flex></project-summary>
-                    <project-gallery ng-show="jobDetail.job.images.length>0" class="slide-top" images="jobDetail.job.images" readonly="true" flex></project-gallery>
+                     <div class="subject" flex>
+                        {{jobDetail.job.title}}<br>
+                        <span>{{jobDetail.job.detail}}</span>
+
+                    </div>
+                    <!--<project-summary class="slide-top" current-project="jobDetail.job" flex></project-summary>
+                    <project-gallery ng-show="jobDetail.job.images.length>0" class="slide-top" images="jobDetail.job.images" readonly="true" flex></project-gallery>-->
                 </div>
                 <div hide show-gt-xs layout="column" layout-padding flex-gt-sm="33" flex class="side-nav">
                     <project-map location="jobDetail.location" layout="column" flex></project-map>
@@ -36,13 +41,18 @@
         <!--  /TITLE-->
         </div>
      </div>   
-    <div class="thread {{thread.status}} slide-top" md-ink-ripple ng-repeat="quote in jobDetail.quotes" 
-        ui-sref="jobs.quotedetail({quoteId:quote._id})" ng-class="{'current-thread': mouseOver, 'selected': jobDetail.quote.isSelected(thread)}"
+    <div class="thread {{quote.readStatus}} slide-top" md-ink-ripple ng-repeat="quote in jobDetail.quotes" 
+        ui-sref="jobs.quotedetail({quoteId:quote._id})" ng-class="{'current-thread': mouseOver}"
         ng-mouseenter="mouseOver=true" ng-mouseleave="mouseOver=false" ng-cloak layout="row" layout-xs="column">
                                             
                 <quote-owner quote="quote" owner-id="quote.owner" flex></quote-owner>
                 
-                
+        <label class="label-padding budget-label ng-binding md-orange-600-bg" ng-if="quote.new" ng-class="projectBudget.colors[projectBudget.index]">
+             new
+        </label> 
+        <label class="label-padding budget-label ng-binding md-green-900-bg" ng-if="quote.updated" ng-class="projectBudget.colors[projectBudget.index]">
+             updated
+        </label>      
         </div>
         </div> 
     </div>
