@@ -1,4 +1,25 @@
-<div class="container" ng-if="projectMap.location" flex> 
-  <foc-gmap location="projectMap.location" key="self.currentProject._id" readonly="true" ></foc-gmap>
+<div class="container" layout="column" ng-if="projectMap.ready" flex> 
+  <!--<foc-gmap location="projectMap.location" key="self.currentProject._id" readonly="true" ></foc-gmap>-->
+  <h3>
+    The customer is closer than you think...
+  </h3>
+  <div ng-if="projectMap.location">
+    <ng-map zoom="14" center="24, 55">
+      <directions
+        draggable="false"
+        panel="directions-panel"
+        travel-mode="DRIVING"
+        origin="{lat:projectMap.user.business.address.location.latitude,lng:projectMap.user.business.address.location.longitude} || current-location"
+        destination="{lat:projectMap.location.latitude,lng:projectMap.location.longitude}">
+      </directions>
+    </ng-map>
+    Distance:
+          {{map.directionsRenderers[0].directions.routes[0].legs[0].distance.text}}
+    Duration:
+          {{map.directionsRenderers[0].directions.routes[0].legs[0].duration.text}}
+  
+  </div>
+  <div id="directions-panel" style="width: 100%; float:left; height: 100%; padding: 0px 5px" ms-scroll></div>
+
 </div>
 

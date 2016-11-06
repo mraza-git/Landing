@@ -10,7 +10,12 @@ var Icons = new Meteor.Collection('icons');
 var EmailList = new Meteor.Collection('emaillist');
 var Leads = new Meteor.Collection('leads');
 var Quotes = new Meteor.Collection('quotes');
+var Counts = new Mongo.Collection('counts');
 
+Counts.get = function  (name) {
+  var count = this.findOne(name);
+  return count && count.count || 0;
+};
 
 Meteor.subscribe("categories");
 Meteor.subscribe("services");

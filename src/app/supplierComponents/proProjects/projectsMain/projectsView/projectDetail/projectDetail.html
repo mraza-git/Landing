@@ -50,10 +50,24 @@
           <md-button class="md-icon-button" ng-hide="projectDetail.isFavorite" ng-click="projectDetail.setFavorite(false)">
             <md-icon md-font-icon="icon-star" class="icon s24 "></md-icon>
           </md-button>
-          <md-button class="md-icon-button md-primary">
+          <md-button class="md-icon-button md-primary" ng-click="showSharePanel=!showSharePanel">
             <md-icon md-font-icon="icon-share" class="s24"></md-icon>
           </md-button>
-      </div>      
+      </div>    
+      <div class="icons share-panel slide-right" ng-show="showSharePanel">
+          <md-button class="md-icon-button md-warn md-hue-2">
+            <md-icon md-font-icon="icon-facebook" class="s24"></md-icon>
+          </md-button>
+          <md-button class="md-icon-button md-accent">
+            <md-icon md-font-icon="icon-google" class="s24"></md-icon>
+          </md-button>
+          <md-button class="md-icon-button md-warn md-hue-1">
+            <md-icon md-font-icon="icon-twitter" class="s24"></md-icon>
+          </md-button>
+           <md-button class="md-icon-button md-primary">
+            <md-icon md-font-icon="icon-email" class="s24"></md-icon>
+          </md-button>
+      </div>  
       <!--  PROJECT ACTION BUTTONS-->
       
       <!--  /PROJECT ACTION BUTTONS-->
@@ -70,7 +84,7 @@
       </div>
       <div layout="column"  flex-gt-sm="33" flex class="side-nav">
         <project-owner-contact owner-id="projectDetail.currentProject.owner"></project-owner-contact>
-        <project-map location="projectDetail.location" layout="column" flex></project-map>
+        <project-map ready="projectDetail.ready" location="projectDetail.location" layout="column" flex></project-map>
       </div>
     </div>
     

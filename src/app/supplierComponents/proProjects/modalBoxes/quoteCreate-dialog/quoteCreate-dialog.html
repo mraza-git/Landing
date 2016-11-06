@@ -14,39 +14,67 @@
                         aria-label="loading">
     </md-progress-linear>
 
-    <md-dialog-content ms-scroll>
+    <md-dialog-content layout="column" ms-scroll>
       <md-input-container class="md-block">
-        <label >Lead Value</label>
+        <label >Enter Quote Amount <strong>Cost 1 crdt.</strong></label>
         <input ng-model="quote.quote.quotedValue"
          type="number" name="quoteValue"         
-         md-autofocus required>
-        <div class="errors" ng-messages="quoteCreate.qutoeValue.$error">
-          <div ng-message="required">Value is Required</div>
-        </div>
+         md-autofocus required min="200" >
+        <div class="errors" ng-messages="quoteCreate.quoteValue.$error" role="alert">
+          <div ng-message="required">Quote Amount is Required</div>
+          <div ng-message="min">You should charge at least AED 200/-</div>          
+        </div>        
       </md-input-container>
+      <md-checkbox ng-model="model1"
+                  name="promote"
+                  aria-label="label"> 
+        <label for="promote">
+          Check this if you want to promote your quote <strong> Cost 10 crdt. </strong>
+        </label>
+        <md-icon md-font-icon="icon-question-mark-circle" class="s20">
+          <md-tooltip>
+            Your quote will be highlighted and apear in top 3.
+          </md-tooltip>
+        </md-icon>
+      </md-checkbox>      
+      <md-checkbox ng-model="model2"
+                  name="promote"
+                  aria-label="label"> 
+        <label for="promote">
+          Check this if you want customer insight. <strong> Cost 2 crdt. </strong>
+        </label>
+        <md-icon md-font-icon="icon-question-mark-circle" class="s20">
+          <md-tooltip>
+            This Customer's contact information will be visible to you.
+          </md-tooltip>
+        </md-icon>
+      </md-checkbox>
+      <md-checkbox ng-model="model3"
+                  name="promote"
+                  aria-label="label"> 
+        <label for="promote">
+          Check this if you want deal insight. <strong> Cost 2 crdt. </strong>
+        </label>
+        <md-icon md-font-icon="icon-question-mark-circle" class="s20">
+          <md-tooltip>
+            You can view Avg Bid Value, Max Bid Value, Customer's Favorites and their Avg Bid Value etc.
+          </md-tooltip>
+        </md-icon>
+      </md-checkbox>
+      <br>                       
       <label>
         Message
       </label>
-      <text-angular ng-model="quote.quote.quoteMessage"></text-angular>      
-      <!--<md-input-container class="md-block">
-        <label>
-          Message
-        </label>
-          <textarea name="quoteMessage"
-                  type="textarea"
-                  ng-model="quote.quote.quoteMessage" 
-                  columns="1"                           
-                  md-maxlength="150" 
-                  rows="4"                       
-                  aria-label="quote message"></textarea>
-          <div ng-messages="quoteCreate.quoteMessage.$error" ng-show="quoteCreate.quoteMessage.$touched" role="alert" multiple>          
-          <div ng-message="md-maxlength">
-              <span>Message can't be longer than 150 characters.</span>
-          </div>  
-          </div>        
-      </md-input-container>-->
+      <text-angular ng-model="quote.quote.quoteMessage"></text-angular>    
       <br>  
-    
+    <md-checkbox ng-model="model4"
+                  name="tnc"
+                  required
+                  aria-label="label"> 
+        <label for="promote">
+          I read and accept <a href="/pro/terms">terms and conditions </a> 
+        </label>        
+    </md-checkbox>
 
     </md-dialog-content>
     <md-divider md-inset></md-divider>

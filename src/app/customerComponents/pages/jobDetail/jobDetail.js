@@ -110,6 +110,21 @@
                   );
 
                 } else {
+                  Meteor.users.update(
+                    {
+                      _id:quote.owner,
+                    },
+                    {
+                      $push:
+                      {
+                        'business.jobs':self.job._id
+                      }
+                    },function(err,doc){
+                      if(err){
+                        console.log(err);
+                      }
+                    }
+                  );
                   $mdToast.show(
                     $mdToast.simple()
                     .textContent('Record saved.')
@@ -164,9 +179,44 @@
 
                 }
 
+              },function(err,doc){
+                if(err){
+                  console.log(err);                  
+                }else{
+                   Meteor.users.update(
+                    {
+                      _id:quote.owner,
+                    },
+                    {
+                      $pull:
+                      {
+                        'business.jobs':self.job._id
+                      }
+                    },function(err,doc){
+                      if(err){
+                        console.log(err);
+                      }
+                    }
+                  );
+                }
               }
             );
           }else{
+            Meteor.users.update(
+              {
+                _id:quote.owner,
+              },
+              {
+                $pull:
+                {
+                  'business.jobs':self.job._id
+                }
+              },function(err,doc){
+                if(err){
+                  console.log(err);
+                }
+              }
+            );
             $mdToast.show(
               $mdToast.simple()
               .textContent('Record saved.')
