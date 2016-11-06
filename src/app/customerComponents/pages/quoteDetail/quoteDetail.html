@@ -1,7 +1,7 @@
-
+<div id="quote-detail">
 
                 
-<div>
+<!--<div>
     <pre>   
     {{quoteDetail.quote}}
     </pre>
@@ -12,7 +12,111 @@
         <span>
             {{quoteDetail.quote.quotedValue}}/-
         </span>
+                    {{quoteDetail.quote.status}}/-
+
     </h2>
     <div ta-bind ng-model="quoteDetail.quote.quoteMessage"></div>
-</div>
+</div>-->
+    <div class="header-tint"></div>
+    <div class="header-image toggle" ng-cloak>
+      </div>
+ <div id="quote-owner" class="padding-5-10" layout="column" layout-xs="column" flex>
+            <div layout-align="center center" flex style="z-index:2;color: rgba(255, 255, 255, 0.94) !important">
+            <div class="name" layout="column" layout-align="start center" flex style="z-index:2;color: rgba(255, 255, 255, 0.94) !important">
+                
+                <thumb-image ng-show="quoteDetail.user.profile.dpThumbUrl" image-id="quoteDetail.user.profile.dpImageId" image-class="avatar"></thumb-image>
+                <!--<img src="quoteDetail.user.profile.bgImage.url || 'defaultimage.jpg'" alt="">-->
+                <div layout="column" layout-align="start center" >
+                <span class="text-truncate"> {{quoteDetail.user.profile.name}}</span>
+                <span class="text-truncate organization">{{quoteDetail.user.business.organization}}
+                </span>
+                </div>
+            </div>
+            </div>
+            <div flex style="z-index:2;color: rgba(255, 255, 255, 0.94) !important;">
+                <div layout="column"  layout-align="start center">
+                    <div flex-20="" class="star-ratings">
+                    <p>9.75</p>
+                                
+                        <span class="stars">
+                            <em style="width: 91%;"></em>
+                        </span>                                            
+                                            
+                    </div>
+                </div>
+            <div layout="row"  layout-align="center center">
+                <md-icon class="marker" md-font-icon="icon-map-marker" layout="row"></md-icon>
+                <span layout="row">
+                    128 Km Away
+                </span>
+            </div>
+           
+        <div layout="row" flex layout-align="start center" style="z-index:2;color: rgba(255, 255, 255, 0.94) !important">
 
+    
+            <div flex><strong>Jobs Completed :</strong> {{quoteDetail.jobs.completed || 125}}</div>
+            <div hide show-gt-xs flex>
+                <div layout="column"  layout-align="start center">
+                    <span>({{quoteDetail.user.profile.ratings || 320}}) ratings</span>
+                    <span>since {{quoteDetail.user.business.since || 2014}}</span>
+                </div>
+            </div>
+            <div flex>
+            <div layout="column"  layout-align="start center">
+                <span class="bid" style="color: rgba(255, 255, 255, 0.94) !important">AED {{quoteDetail.quote.quotedValue}}</span></div>
+            <div hide show-gt-xs layout="column"  layout-align="start center">
+                <span>
+                    {{quoteDetail.quote.createdAt | date}}
+                </span>
+            </div>
+
+            </div>
+            
+        </div>
+            </div>
+        
+        
+        <md-menu>
+            <md-button ng-click="$mdOpenMenu($event)" id="button-id" class="md-primary-bg s14" ng-disabled="false" aria-label="button-label">
+            Action </md-button>
+
+            <md-menu-content width="2">
+                 <md-menu-item>
+                    <md-button ng-click="jobDetail.acceptOffer($event,quote)" ng-disabled="quote.status === 'accepted'" id="accept" >
+                        <md-icon md-menu-align-target md-font-icon="icon-trash" ></md-icon>
+                        Accept Offer
+                    </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                    <md-button ng-click="jobDetail.declineOffer($event,quote)" ng-disabled="quote.status === 'rejected'" id="decline">
+                        <md-icon md-menu-align-target md-font-icon="icon-trash" ></md-icon>
+                        Decline Offer
+                    </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                        <md-button ng-click="jobDetail.declineOffer($event,quote)" ng-disabled="quote.status === 'rejected'" id="shortlist" >
+                        <md-icon md-menu-align-target md-font-icon="icon-archive" ></md-icon>
+                        Shortlist
+                    </md-button>
+                </md-menu-item>
+               </md-menu-content>
+        </md-menu>
+        </div>
+               
+    <div class="md-whiteframe-2dp quotes-margin">
+     <div class="heading" layout="row" >    
+        <div>
+        <!--  TITLE-->
+        <div class="name">Message</div>
+        <!--  /TITLE-->
+        </div>
+     </div>   
+    <div>
+                                            
+               
+               <div ta-bind class="message" ng-model="quoteDetail.quote.quoteMessage"></div>
+                
+        </div>
+        </div>
+ 
+</div>

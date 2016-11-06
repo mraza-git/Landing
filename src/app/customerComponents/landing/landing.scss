@@ -80,6 +80,10 @@
           text-align: center;
           width: 520px;
           }}
+          @media (max-width: 520px) {
+          .header-content {
+          width: 300px;
+          }}
       }
     /* Content */
     md-content {
