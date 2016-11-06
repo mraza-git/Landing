@@ -1,6 +1,33 @@
 #form-main{
+
+  .sidenav{
+    &.projects{
+      overflow: hidden;      
+    }
+    .content{
+      &.projects-content{
+        padding:0px !important;
+        .navigation-simple{
+          display: block;  
+          width:100%;
+        }
+      }
+    }
+  }
+
+  .top-bg{
+    &.projects-bg{
+      padding: 18px 0;
+    }
+  }
   .center{
     .header{
+      &.projects-header{
+        padding:18px 0;
+        height: 0px;
+        min-height: 0px;
+        max-height: 0px;
+      }
       .search-wrapper{
         .search{
           .google-map-autocomplete{

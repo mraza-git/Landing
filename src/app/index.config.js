@@ -7,9 +7,11 @@
         .config(config);
 
     /** @ngInject */
-    function config()
+    function config($mdDateLocaleProvider)    
     {
-        // Put your custom configurations here
+    //     $mdDateLocaleProvider.formatDate = function(date) {
+    //    return moment(date).format('DD-MM-YYYY');
+    // };
     }
 
 })();

@@ -5,16 +5,26 @@
     <!-- ACTION BUTTONS -->
     <div class="action-buttons" layout="row" layout-align="start center">
 
-
-      <md-button class="md-icon-button" hide-gt-md aria-label="Toggle navigation fold" translate translate-attr-aria-label="TOOLBAR.TOGGLE_NAVIGATION_FOLD"
-        ng-click="projectsView.toggleListNav('projects-list-sidenav')">
-        <md-icon class="s18" ng-class="{'rotate-icon-0':projectsView.listNavIsOpen,'rotate-icon-180':!projectsView.listNavIsOpen}"
-          md-font-icon="icon-backburger"></md-icon>
-      </md-button>
+      <div layout layout-align="start center" hide-gt-md>
+        <md-button class="md-icon-button" aria-label="Toggle navigation fold" translate translate-attr-aria-label="TOOLBAR.TOGGLE_NAVIGATION_FOLD"
+          ng-click="projectsView.toggleListNav('projects-list-sidenav')">
+          <md-icon class="s18" ng-class="{'rotate-icon-0':projectsView.listNavIsOpen,'rotate-icon-180':!projectsView.listNavIsOpen}"
+            md-font-icon="icon-backburger"></md-icon>
+        </md-button>
+        <div class="divider-vertical"></div>
+      </div>
+      <div>
+        <span class="">
+          Available Credits: 
+        </span>
+        <strong>
+          152
+        </strong>
+      </div>
+       
       <!-- Multiple Selection Checkbox-->
       <!--<md-checkbox class="no-label" aria-label="select or unselect all" ng-checked="projectsView.selectedProjects.length > 0" ng-click="projectsView.toggleSelectProjects()"></md-checkbox>-->
       <!-- /Multiple Selection Checkbox-->
-      <div class="divider-vertical"></div>
       <div class="" ng-show="projectsView.currentProject && projectsView.selectedProjects.length <= 0">
       </div>
       <div class="mybouncy-slide-left" ng-show="projectsView.selectedProjects.length > 0">
@@ -51,14 +61,12 @@
       <md-tooltip><span>Next</span></md-tooltip>
     </md-button>
 
-    <div>
-      <span>
-          Available Credits: 
-        </span>
-      <strong>
-          152
-        </strong>
-    </div>
+    <md-button ng-click="projectsView.openQuoteDialog($event)"
+             id="quote"
+             class="md-raised md-warn"
+             ng-disabled="false"
+             style="width:65px;"             
+             aria-label="quote"> Quote </md-button>
   </div>
   <!--<md-button class="md-warn md-raised" aria-label="button-label" ng-disabled="!projectsView.currentProject.isChanged" ng-click="projectsView.update()"> Save </md-button>-->
 
