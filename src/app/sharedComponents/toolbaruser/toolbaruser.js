@@ -119,7 +119,7 @@ function ToolbarUser($scope, $reactive, $state, AuthModals, $mdDialog, $mdMedia)
 
   function logout(event) {
     Accounts.logout(function () {
-      this.state.go("app.landing");
+      $state.go("app.landing");
     }, function (err) {
       console.log(err);
       return;

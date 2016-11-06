@@ -46,7 +46,7 @@
 
             }
           });
-          this.autorun( ()=> {
+          this.autorun( function (){
               this.url({
                   $event: {
                       imageUrl: this.getReactively('thumb.url')

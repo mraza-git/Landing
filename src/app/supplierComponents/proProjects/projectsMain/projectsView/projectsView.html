@@ -5,10 +5,11 @@
     <!-- ACTION BUTTONS -->
     <div class="action-buttons" layout="row" layout-align="start center">
 
-      
+
       <md-button class="md-icon-button" hide-gt-md aria-label="Toggle navigation fold" translate translate-attr-aria-label="TOOLBAR.TOGGLE_NAVIGATION_FOLD"
         ng-click="projectsView.toggleListNav('projects-list-sidenav')">
-        <md-icon class="s18" ng-class="{'rotate-icon-0':projectsView.listNavIsOpen,'rotate-icon-180':!projectsView.listNavIsOpen}" md-font-icon="icon-backburger"></md-icon>
+        <md-icon class="s18" ng-class="{'rotate-icon-0':projectsView.listNavIsOpen,'rotate-icon-180':!projectsView.listNavIsOpen}"
+          md-font-icon="icon-backburger"></md-icon>
       </md-button>
       <md-checkbox class="no-label" aria-label="select or unselect all" ng-checked="projectsView.selectedProjects.length > 0" ng-click="projectsView.toggleSelectProjects()"></md-checkbox>
 
@@ -16,23 +17,47 @@
       <div class="" ng-show="projectsView.currentProject && projectsView.selectedProjects.length <= 0">
       </div>
       <div class="mybouncy-slide-left" ng-show="projectsView.selectedProjects.length > 0">
-        <leadmove-to ng-cloak selected-projects="projectsView.selectedProjects" ng-show="projectsView.isAdmin">          
-        </leadmove-to>                
+        <leadmove-to ng-cloak selected-projects="projectsView.selectedProjects" ng-show="projectsView.isAdmin">
+        </leadmove-to>
       </div>
 
     </div>
     <!-- /ACTION BUTTONS -->
 
   </div>
-  <!--<md-button class="md-warn md-raised" aria-label="button-label" ng-disabled="!projectsView.currentProject.isChanged" ng-click="projectsView.update()"> Save </md-button>-->
-  <div>
-    <span>
-      Available Credits: 
-    </span>
-    <strong>
-      152
-    </strong> 
+  <div layout="row" layout-align="start center">
+    <span class="page-info" hide-sm>
+      {{(projectsView.page-1)*projectsView.perPage}} - {{(projectsView.page-1)*projectsView.perPage+projectsView.perPage}} of {{projectsView.numberOfLeads}}
+      </span>
+
+    <md-button class="md-icon-button arrow"
+      ng-click="projectsView.previousPage()" 
+      aria-label="Previous" translate translate-attr-aria-label="MAIL.PREVIOUS">
+      <md-icon md-font-icon="icon-chevron-left"></md-icon>
+      <md-tooltip><span translate="MAIL.PREVIOUS">Previous</span></md-tooltip>
+    </md-button>
+    <md-select ng-model="projectsView.perPage">
+      <md-option ng-value="perPage.value" ng-repeat="perPage in projectsView.perPageOptions">
+        {{ perPage.value }}
+     </md-option>
+    </md-select>
+    <md-button class="md-icon-button arrow"
+      ng-click="projectsView.nextPage()" 
+      aria-label="Next" translate translate-attr-aria-label="MAIL.NEXT">
+      <md-icon md-font-icon="icon-chevron-right"></md-icon>
+      <md-tooltip><span translate="MAIL.NEXT">Next</span></md-tooltip>
+    </md-button>
+
+    <div>
+      <span>
+          Available Credits: 
+        </span>
+      <strong>
+          152
+        </strong>
+    </div>
   </div>
+  <!--<md-button class="md-warn md-raised" aria-label="button-label" ng-disabled="!projectsView.currentProject.isChanged" ng-click="projectsView.update()"> Save </md-button>-->
 
 </div>
 
@@ -44,18 +69,21 @@
 <div class="content-wrapper trigger" layout="row" flex ng-hide="projectsView.loading" ng-cloak>
 
   <!-- THREAD LIST -->
-  <md-sidenav class="sidenav" md-is-locked-open="$mdMedia('gt-md')" md-component-id="projects-list-sidenav" ms-scroll ms-sidenav-helper>
-    <div class="content thread-list" ms-scroll flex>
-      <projects-list search="projectsView.search" ready="projectsView.ready" current-project="projectsView.currentProject" selected-projects="projectsView.selectedProjects" projects="projectsView.projects"
-        master-settings="projectsView.masterSettings" get-more="projectsView.loadMore()"></projects-list>
+  <md-sidenav class="sidenav" md-is-locked-open="$mdMedia('gt-md')" md-component-id="projects-list-sidenav" ms-sidenav-helper
+    layout="column" style="overflow:hidden;">
+    <div class="content thread-list" layout="column" flex infinite-scroll='projectsList.loadMore()' infinite-scroll-distance='1'
+      ms-scroll>
+      <projects-list search="projectsView.search" layout="column" flex ready="projectsView.ready" current-project="projectsView.currentProject"
+        selected-projects="projectsView.selectedProjects" projects="projectsView.projects" master-settings="projectsView.masterSettings"
+        get-more="projectsView.loadMore()"></projects-list>
     </div>
   </md-sidenav>
-  <!-- / THREAD LIST --> 
+  <!-- / THREAD LIST -->
 
-  
+
 
   <!-- THREAD DETAIL -->
-  <div class="content thread-detail flex-scrollable" ms-scroll  layout="column" flex>
+  <div class="content thread-detail flex-scrollable" ms-scroll layout="column" flex>
     <project-detail layout="column" ready="projectsView.ready" flex current-project="projectsView.currentProject" update="projectsView.done($event)"></project-detail>
   </div>
   <!-- / THREAD DETAIL -->

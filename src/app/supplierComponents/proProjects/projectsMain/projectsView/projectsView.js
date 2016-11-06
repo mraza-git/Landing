@@ -9,11 +9,19 @@
     ///////////Initialization Checks///////////
     var self = this;
     $reactive(self).attach($scope);
-    self.perPage = 15;
+    self.perPage = 10;
     self.page = 1;
     self.sort = {
       createdAt: -1,
     }
+
+    self.perPageOptions=[
+      {id:1, value: 10},
+      {id:2, value: 20},
+      {id:3, value: 30},
+      {id:4, value: 40},
+      {id:5, value: 50},      
+    ]
     ///////////Data///////////    
     self.currentProject = undefined;
     self.loading = false;
@@ -25,42 +33,13 @@
       currentUser: function () {
         return Meteor.user();
       },
+      numberOfLeads: function(){
+        return Counts.get('numberOfLeads');
+      },
       projects: function () {
         self.loading = true;
-        var forms = [];
-        var selector = {
-          folder: {
-            $nin: ['delete', 'archive']
-          }
-        };
-        var folder = self.getReactively('currentFolder');
-        if (folder !== 'all') {
-          if (_.contains(['delete', 'archive', 'draft'], folder)) {
-            selector = {
-              $and: [{
-                  folder: self.getReactively('currentFolder') || 'all'
-                },
-                // {folder: {$nin:['delete','archive']}},                
-              ]
-            };
-          } else if (folder === 'quoted') {
-            selector = {
-              quotedBy: self.getReactively('currentUser._id')
-            }
-          } else if (folder === 'jobs') {
-            selector = {
-              assignedTo: self.getReactively('currentUser._id')
-            }
-          } else if (folder === 'favorites') {
-            selector = {
-              _id: {
-                $in: self.getReactively('currentUser.business.favorites') || []
-              }
-            }
-          }
-
-        }
-        var cursor = Leads.find(selector);
+        
+        var cursor = Leads.find(self.getReactively('selector'));
 
         if (self.loading) {
           self.currentProject = cursor.fetch()[0]; //populating the first item at the start.
@@ -75,43 +54,92 @@
       }
 
     });
+    var oldValue=undefined;
+    var folderOldValue = undefined;
+    self.autorun(function(){
+      var newValue = self.getReactively('selectedService');
+      if(newValue!==oldValue){
+        console.log(newValue,'-',oldValue);
+        self.page = 1;
+      }
+      oldValue = newValue;
+      var folderNewValue = self.getReactively('currentFolder');
+      if(folderNewValue!==folderOldValue){
+        console.log(folderNewValue,'-',folderOldValue);
+        self.page = 1;
+      }
+      folderOldValue = folderNewValue;
+
+    });
 
     self.subscribe('leads', function () {
+      var serviceIdSelector;
       if (angular.isDefined(self.getReactively('selectedService._id'))) {
-        self.selector = {serviceId:{$in:[self.getReactively('selectedService._id')] || []}}; 
-        return [
-          {
-            sort: self.getReactively('sort'),
-            limit: parseInt(self.perPage),
-            skip: self.getReactively('page') * 15
+         serviceIdSelector = self.getReactively('selectedService._id') || []
+      }
+      else{
+        serviceIdSelector = {$in:self.getReactively('currentUser.business.serviceIds') || []}; 
+      }
+
+      self.selector = {
+          folder: {
+            $nin: ['delete', 'archive']
           },
-          self.selector
-        ];
-      } else {
-        self.selector = {serviceId:{$in:self.getReactively('currentUser.business.serviceIds') || []}}; 
-        console.log("called.",self.getReactively('page'));
-        return [
-          {
-            sort: self.getReactively('sort'),
-            limit: parseInt(self.perPage),
-            skip: parseInt(self.getReactively('page')) * 7
-          },
-          self.selector
-        ]
+          serviceId:serviceIdSelector,
+          quotedBy: {$ne:self.getReactively('currentUser._id')},
+          assignedTo: {$ne:self.getReactively('currentUser._id')},
+        };
+      var folder = self.getReactively('currentFolder');
+        if (folder !== 'all') {
+          if (_.contains(['delete', 'archive', 'draft'], folder)) {
+            self.selector = {
+              $and: [{
+                  folder: self.getReactively('currentFolder') || 'all'
+                },
+                // {folder: {$nin:['delete','archive']}},                
+              ]
+            };
+          } else if (folder === 'quoted') {
+            self.selector = {
+              quotedBy: self.getReactively('currentUser._id'),
+              assignedTo: {$ne:self.getReactively('currentUser._id')},
+            }
+          } else if (folder === 'jobs') {
+            self.selector = {
+              assignedTo: self.getReactively('currentUser._id')
+            }
+          } else if (folder === 'favorites') {
+            self.selector = {
+              _id: {
+                $in: self.getReactively('currentUser.business.favorites') || []
+              }
+            }
+          }
+        }
+
+      return [
+        {
+          sort: self.getReactively('sort'),
+          limit: parseInt(self.perPage),
+          skip: parseInt(self.getReactively('page')-1) * parseInt(self.getReactively('perPage'))
+        },
+        self.selector,
+      ];      
+    }
+    ,
+    {
+      onReady: function(){
+        /// loading ends here...
+        console.log("ready bro");
+      },
+      onStop: function(err){
+        /// no record found
+        console.log('no record found or error: ',err);
       }
     }
-    // ,
-    // {
-    //   onReady: function(){
-    //     /// loading ends here...
-    //     console.log("ready bro");
-    //   },
-    //   onStop: function(err){
-    //     /// no record found
-    //     console.log('no record found or error: ',err);
-    //   }
-    // }
     );
+
+ 
 
 
     ///////////Methods Declarations///////////
@@ -121,8 +149,10 @@
     self.toggleSelectProjects = toggleSelectProjects;
     self.update = update;
     self.selectProjects = selectProjects;
-    self.loadMore = loadMore;
-    self.doSubscription = doSubscription; 
+    self.nextPage = nextPage;
+    self.previousPage = previousPage;
+    self.doSubscription = doSubscription;
+    self.getSelector = getSelector; 
 
 
     
@@ -130,6 +160,18 @@
 
 
     ///////////Method Definitions///////////
+    function getSelector(){
+      
+      
+
+      return selector;
+    }
+    function nextPage(){
+      self.page++;
+    }
+    function previousPage(){
+      self.page--;
+    }
 
     function done(event) {
       self.currentProject.isChanged = true;
@@ -190,14 +232,7 @@
       }
 
     }
-    function loadMore(){
-      if(self.projects){
-        // var length = self.projects.length;
-        self.page=self.page+1;
-        console.log(self.page);
-        // self.doSubscription();
-      }
-    }
+    
 
     function doSubscription(){
       self.subscribe('leads', function () {
@@ -268,6 +303,7 @@
         currentProject: '=',
         currentFolder: '=',
         masterSettings: '<',
+        selectedService: '<',
 
       }
     });
