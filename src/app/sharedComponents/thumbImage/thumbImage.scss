@@ -1,5 +1,34 @@
-thumb-image{
-  .circle {
+#thumbImage .circle {
     border-radius: 50px;
+}
+
+#thumbImage .square {
+}
+#thumbImage .image40 {
+    height: 40px;
+    width: 40px;
+}
+
+#thumbImage .image60 {
+    height: 60px;
+    width: 60px;
+}
+
+#thumbImage .image70 {
+    height: 70px;
+    width: 70px;
+}
+
+#thumbImage .image80 {
+    height: 80px;
+    width: 80px;
+}
+
+#thumbImage
+{
+  .image90 {
+      height: 96px;
+      width: 96px;
   }
+  
 }

@@ -10,14 +10,20 @@
    * @param {any} $scope
    * @param {any} $stateParams
    */
-  function ControllerFunction($scope, $reactive) {
+  function ControllerFunction($scope, $reactive,NgMap,$rootScope) {
     'ngInject';
     ///////////Initialization Checks///////////
     var self = this;
+    $reactive(self).attach($scope);
     
-    
-    ///////////Data///////////
 
+   
+    ///////////Data///////////
+    self.helpers({
+      user:function(){
+        return Meteor.user();
+      }
+    });
 
     ///////////Methods Declarations///////////
     self.done = done;
@@ -44,15 +50,16 @@
   angular
     .module(name, [
       'angular-meteor',   
-      'focGmap',   
+      'focGmap',
+      'ngMap'   
     ])
     .component(name, {
       templateUrl: templateUrl,
       controller: controller,
       controllerAs: name,
       bindings: {        
-        location: '=',       
-        
+        location: '=',
+        ready: '<'        
       }
     });   
 

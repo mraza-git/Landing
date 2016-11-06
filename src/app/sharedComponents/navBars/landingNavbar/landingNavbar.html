@@ -1,0 +1,47 @@
+<!-- SIDENAV HEADER -->
+<div class="header" layout="column" layout-align="space-between start">
+  <div class="logo" layout="column" layout-align="start center">
+    <span class="logo-icon">
+      <thumb-image 
+      image-id="landingNavbar.user.profile.dpImageId" 
+      size="96" 
+      image-class="image90 circle"
+      ng-click="landingNavbar.goToProfile()"></thumb-image>
+    </span>
+    <span class="logo-text" >{{landingNavbar.user.profile.name || 'username'}}</span>
+  </div>
+</div>
+<!-- / SIDENAV HEADER -->
+
+<!-- SIDENAV CONTENT -->
+<md-content ms-scroll class="content" flex layout="column">
+<md-button ng-click="landingNavbar.goToDashboard()">
+
+
+</md-button>
+
+  <md-button ng-click="projectsNav.openQuoteDialog($event)"
+             id="quote"
+             class="md-raised md-warn"
+             ng-disabled="false"
+             flex
+             aria-label="quote"> Quote </md-button>
+  <projects-folders
+  current-project="projectsNav.currentProject"
+  master-settings = "projectsNav.masterSettings"
+  current-folder = "projectsNav.currentFolder"
+  ></projects-folders>
+<br>  
+<md-divider></md-divider>
+
+</md-content>
+
+<md-button ng-click="landingNavbar.openLogin()"           
+           ng-hide="landingNavbar.isLoggedIn"
+           class="md-warn md-raised"
+           aria-label="Login or register"> Login | Register </md-button>
+<md-button ng-click="landingNavbar.logout()"           
+           ng-show="landingNavbar.isLoggedIn"
+           class="md-primary md-raised"
+           aria-label="Logout"> Logout </md-button>
+<!-- / SIDENAV CONTENT -->

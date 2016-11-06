@@ -1,20 +1,36 @@
 <div layout="column" layout-align="center center">
 
-<div flex> 
+    <div flex ng-hide="showMessage">
+        <md-button 
+        ng-click="showMessage=!showMessage" 
+        id="send-message" 
+        class="md-raised md-primary contact-btn" 
+        ng-disabled="false" 
+        aria-label="Send Message">Send Message</md-button>        
+    </div>
+    <div flex ng-show="showMessage">
+        <md-button 
+        id="show-phone" 
+        ng-click="showMessage=!showMessage" 
+        class="md-primary" 
+        ng-disabled="false" 
+        aria-label="Show Message">Messaging is currently not available</md-button>
+    </div>
 
-    <md-button ng-click=""
-               id="send-message"
-               class="md-raised md-primary contact-btn"
-               ng-disabled="false"
-               aria-label="Send Message">Send Message</md-button>
-  
-</div>
-
-<div flex>
-     <md-button ng-click=""
-               id="show-phone"
-               class="md-raised md-accent contact-btn"
-               ng-disabled="false"
-               aria-label="Show Phone">Show Phone</md-button>
-</div>
+    <div flex ng-hide="showPhoneNumber">
+        <md-button 
+        id="show-phone" 
+        ng-click="showPhoneNumber=!showPhoneNumber" 
+        class="md-raised md-accent contact-btn" 
+        ng-disabled="false" 
+        aria-label="Show Phone">Show Phone</md-button>
+    </div>
+    <div flex ng-show="showPhoneNumber">
+        <md-button 
+        id="show-phone" 
+        ng-click="showPhoneNumber=!showPhoneNumber" 
+        class="contact-btn md-primary" 
+        ng-disabled="false" 
+        aria-label="Show Phone">{{owner.profile.cellPhone || "+971554048024"}}</md-button>
+    </div>
 </div>

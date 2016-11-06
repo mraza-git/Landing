@@ -14,15 +14,7 @@
     self.limit = 10;
     self.page = 1;
     self.subscribe('userData');
-    self.subscribe('serviceLeads',function(){
-      if(angular.isDefined(self.getReactively('selectedService._id'))){
-        return [[self.getReactively('selectedService._id')]];
-      }else{
-        return [
-          self.getReactively('currentUser.business.serviceIds') || []
-        ]
-      }
-    });
+   
 
     ///////////Data///////////
     self.helpers({

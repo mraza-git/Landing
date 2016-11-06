@@ -81,6 +81,7 @@
       'angular-meteor',
       'ngMessages',
       'projectsFolders',
+      'ngMessages'
     ])
     .component(name, {
       templateUrl: templateUrl,
