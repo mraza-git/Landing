@@ -1,6 +1,8 @@
 <!-- SIDENAV HEADER -->
-<div class="header" layout="column" layout-align="space-between start">
-  <div class="logo" layout="column" layout-align="start center">
+
+<div id="landing-navbar" layout="column" flex>
+<div class="top-bg md-accent-bg" layout="column" flex>
+  <div class="logo" layout="column" layout-align="center center">
     <span class="logo-icon">
       <thumb-image 
       image-id="landingNavbar.user.profile.dpImageId" 
@@ -10,38 +12,116 @@
     </span>
     <span class="logo-text" >{{landingNavbar.user.profile.name || 'username'}}</span>
   </div>
+  
 </div>
+  <md-button ng-click="projectsNav.openQuoteDialog($event)"
+             id="quote"
+             class="md-raised md-warn padding-fixed"
+             ng-disabled="false"
+             
+             aria-label="quote"> Post a job </md-button>
+  <md-divider></md-divider>
 <!-- / SIDENAV HEADER -->
 
 <!-- SIDENAV CONTENT -->
-<md-content ms-scroll class="content" flex layout="column">
-<md-button ng-click="landingNavbar.goToDashboard()">
+<md-content class="content" flex layout="column">
+
+  <div class="navigation-simple">
+
+    
+  
+    <md-button class="item md-primary" aria-label="dashboard">
+      <md-icon md-font-icon="icon-view-dashboard"></md-icon>
+      <span>Dashboard</span>
+    </md-button>
+    <md-button class="item md-primary" aria-label="notifications">
+      <md-icon md-font-icon="icon-bell-outline"></md-icon>
+      <span>Notifications</span>
+    </md-button>
+    <md-button class="item md-primary" ng-if="!landingNavbar.isSupplierLoggedIn" ui-sref="jobs.activejobs">
+      <md-icon md-font-icon="icon-bell-outline"></md-icon>
+      <span>Active Jobs</span>
+    </md-button>
+    <md-button class="item md-primary" ng-if="!landingNavbar.isSupplierLoggedIn" ui-sref="jobs.assignedjobs">
+      <md-icon md-font-icon="icon-email" class="icon"></md-icon>
+      <span>Assigned Jobs</span>
+    </md-button>
+    <md-button class="item md-primary" ng-if="landingNavbar.isSupplierLoggedIn" ui-sref="app.projects">
+      <md-icon md-font-icon="icon-email" class="icon"></md-icon>
+      <span>Find Projects</span>
+    </md-button>
+  
+  <md-divider></md-divider>
+
+    <md-button class="item md-primary" href="home#categories">
+      <md-icon md-font-icon="icon-view-dashboard"></md-icon>
+      <span>Categories</span>
+    </md-button>
+    <md-button class="item md-primary" href="home#work" aria-label="How it works?">
+      <md-icon md-font-icon="icon-bell-outline"></md-icon>
+      <span>How it works?</span>
+    </md-button>
+    <md-button class="item md-primary" href="home#partner" aria-label="Our Partners">
+      <md-icon md-font-icon="icon-bell-outline"></md-icon>
+      <span>Our Partners</span>
+    </md-button>
 
 
-</md-button>
+     <md-divider></md-divider>
 
-  <md-button ng-click="projectsNav.openQuoteDialog($event)"
-             id="quote"
-             class="md-raised md-warn"
-             ng-disabled="false"
-             flex
-             aria-label="quote"> Quote </md-button>
-  <projects-folders
-  current-project="projectsNav.currentProject"
-  master-settings = "projectsNav.masterSettings"
-  current-folder = "projectsNav.currentFolder"
-  ></projects-folders>
-<br>  
-<md-divider></md-divider>
+    <md-button class="item md-primary" href="tnc" aria-label="Terms & Conditions">
+      <md-icon md-font-icon="icon-view-dashboard"></md-icon>
+      <span>Terms & Conditions</span>
+    </md-button>
+    <md-button class="item md-primary" href="about-us" aria-label="About Us">
+      <md-icon md-font-icon="icon-bell-outline"></md-icon>
+      <span>About Us</span>
+    </md-button>
+    <md-button class="item md-primary" href="contact" aria-label="Contact Us">
+      <md-icon md-font-icon="icon-bell-outline"></md-icon>
+      <span>Contact Us</span>
+    </md-button>
+ 
+  
+  <md-divider></md-divider>
+    <md-button class="item md-primary" ng-click="landingNavbar.goToProfile()">
+      <md-icon md-font-icon="icon-account" class="icon"></md-icon>
+      <span>My Profile</span>
+    </md-button>
+   
+    <md-button class="item md-primary" ng-click="landingNavbar.openChangePassword($event)">
+      <md-icon md-font-icon="icon-alphabetical" class="icon"></md-icon>
+      <span>Change Password</span>
+    </md-button>
+    <md-button class="item md-primary">
+      <md-icon md-font-icon="icon-account-box" class="icon"></md-icon>
+                <image-upload-button 
+                label="Change Picture" 
+                crop-settings="{aspectRatio: 1, resultImageSize: {w:300,h:300}, crop:true, areaType:'circle'}" 
+                update="landingNavbar.pictureUploaded($event)" 
+                type="button" 
+                type-class="'md-button md-ink-ripple menu-image-upload-button'" 
+                class="menu-image-upload-button">
+                </image-upload-button>
+    </md-button>
+
+  </div>
 
 </md-content>
 
+
+</div>
+<md-divider></md-divider>
 <md-button ng-click="landingNavbar.openLogin()"           
            ng-hide="landingNavbar.isLoggedIn"
-           class="md-warn md-raised"
+           ng-disabled="false"
+           
+           class="md-warn md-raised padding-fixed"
            aria-label="Login or register"> Login | Register </md-button>
 <md-button ng-click="landingNavbar.logout()"           
            ng-show="landingNavbar.isLoggedIn"
-           class="md-primary md-raised"
+           ng-disabled="false"
+           
+           class="md-primary md-raised padding-fixed"
            aria-label="Logout"> Logout </md-button>
 <!-- / SIDENAV CONTENT -->

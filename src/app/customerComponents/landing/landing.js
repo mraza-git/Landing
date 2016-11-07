@@ -28,10 +28,18 @@ Meteor.subscribe("categories");
         .directive("focscroll", function () {
             return function(scope, element, attrs) {
                 angular.element(document.getElementById('content')).bind("scroll", function() {
+                     
+                      if (this.scrollTop >= 50) {
+                         scope.position50 = true;
+                     }
+
                      if (this.scrollTop >= 100) {
                          scope.position100 = true;
                      }
 
+                     if (this.scrollTop >= 200) {
+                         scope.position200 = true;
+                     }
                      if(this.scrollTop>= 400){
                        scope.position400 = true;
                      }
