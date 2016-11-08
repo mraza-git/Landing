@@ -4,7 +4,7 @@
   var main = 'projects'; // Change this with containing folder name
   var type = 'View'; // Change This with Component functionality Detail, Add, Remove, Delete, List etc.
 
-  function ControllerFunction($scope, $reactive, $mdDialog, $mdSidenav, $timeout) {
+  function ControllerFunction($scope, $reactive, $mdDialog,$mdMedia, $mdSidenav, $timeout) {
     'ngInject';
     ///////////Initialization Checks///////////
     var self = this;
@@ -84,10 +84,10 @@
       self.selector = {
           folder: {
             $nin: ['delete', 'archive']
-          },
+          },          
           serviceId:serviceIdSelector,
           quotedBy: {$ne:self.getReactively('currentUser._id')},
-          assignedTo: {$ne:self.getReactively('currentUser._id')},
+          assignedTo: {$exists:false},          
         };
       var folder = self.getReactively('currentFolder');
         if (folder !== 'all') {
@@ -116,6 +116,37 @@
             }
           }
         }
+        var search = self.getReactively('search');
+        if(search){          
+          self.selector.$or = [
+            {
+              title:
+              {
+                $regex: '.*'+self.getReactively('search')+'.*',
+                $options:'i'
+              }
+            },
+            {
+              detail:
+              {
+                $regex: '.*'+self.getReactively('search')+'.*',
+                $options:'i'
+              }
+            }
+          ];
+        }
+        var dates = self.getReactively('dates');
+        if(dates){
+          if(!dates.from){
+            dates.from = new Date('01/01/2016');
+          }
+          if(!dates.to){
+            dates.to = new Date();
+          }
+
+          self.selector.createdAt = {$lte: dates.to.toISOString(),$gte:dates.from.toISOString()};          
+        }
+        console.log(self.selector);
 
       return [
         {
@@ -151,8 +182,8 @@
     self.selectProjects = selectProjects;
     self.nextPage = nextPage;
     self.previousPage = previousPage;
-    self.doSubscription = doSubscription;
-    self.getSelector = getSelector; 
+    self.doSubscription = doSubscription;     
+    self.openQuoteDialog = openQuoteDialog;
 
 
     
@@ -160,12 +191,7 @@
 
 
     ///////////Method Definitions///////////
-    function getSelector(){
-      
-      
-
-      return selector;
-    }
+    
     function nextPage(){
       self.page++;
     }
@@ -194,6 +220,34 @@
       }
     }
 
+    function openQuoteDialog(ev){
+      if(angular.isUndefined(self.currentProject)){
+         $mdToast.show(
+          $mdToast.simple()
+          .textContent('Please select a lead first....')               
+          .position('top right')
+          .action('x')
+          .hideDelay(3000)
+        );
+        return;
+      }
+      $mdDialog.show({
+              controller       : QuoteDialogController,
+              controllerAs  : 'quote',
+              locals             : {
+                  currentProject: self.currentProject
+              },
+              templateUrl    : 'app/supplierComponents/proProjects/modalBoxes/quoteCreate-dialog/quoteCreate-dialog.html',
+              parent             : angular.element(document.body),
+              targetEvent     : ev,
+              clickOutsideToClose: true,
+              fullscreen: $mdMedia('sm') || $mdMedia('xs')
+          }).then(function(res){
+            if(res){
+              console.log(res);              
+            }
+          });
+    }
 
     function update() {
       var project = angular.copy(self.currentProject);
@@ -208,8 +262,7 @@
         if (err) {
           console.log("Error while saving project:", err);
         } else {
-          console.log("Project Saved.", docs);
-          self.currentProject.isChanged = false;
+          console.log("Project Saved.", docs);          
         }
       });
 
@@ -300,6 +353,7 @@
         list: '=',
         done: '&',
         search: '<',
+        dates: '<',
         currentProject: '=',
         currentFolder: '=',
         masterSettings: '<',

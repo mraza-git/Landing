@@ -80,7 +80,7 @@
       'leadOwner',
       'leadFoldericon',
       'projectBudget',
-      'getDistance',
+      'geoDistance',
     ])
     .component(name, {
       templateUrl: templateUrl,

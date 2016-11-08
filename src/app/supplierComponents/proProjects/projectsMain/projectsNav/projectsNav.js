@@ -11,7 +11,12 @@
     ///////////Initialization Checks///////////
     var self = this;
     self.limit = 5;
-    self.iconSearch = "";    
+    self.searchText = "";
+    self.selectedService = null;
+    // self.minDate = new Date('12/01/2016');
+    self.minDate = new Date('01/01/2016');    
+    self.today = new Date();  
+    
     $reactive(self).attach($scope);
     ///////////Data///////////
     self.helpers({
@@ -26,47 +31,34 @@
     });
 
 
-    ///////////Methods Declarations///////////
-    self.openQuoteDialog = openQuoteDialog;
-    self.setService = setService;
+    ///////////Methods Declarations///////////    
+    self.searchTextContent = searchTextContent;
+    self.filterDate = filterDate;
+    self.clearFilters = clearFilters;
 
 
-    // self.openEditDialog = openEditDialog;
-
+    
 
 
     ///////////Method Definitions///////////
-    function setService(){
-      // console.log(self.selectedService);
+    function searchTextContent(){
+      self.search = self.searchText;
     }
-    function openQuoteDialog(ev){
-      if(angular.isUndefined(self.currentProject)){
-         $mdToast.show(
-          $mdToast.simple()
-          .textContent('Please select a lead first....')               
-          .position('top right')
-          .action('x')
-          .hideDelay(3000)
-        );
-        return;
-      }
-      $mdDialog.show({
-              controller       : QuoteDialogController,
-              controllerAs  : 'quote',
-              locals             : {
-                  currentProject: self.currentProject
-              },
-              templateUrl    : 'app/supplierComponents/proProjects/modalBoxes/quoteCreate-dialog/quoteCreate-dialog.html',
-              parent             : angular.element(document.body),
-              targetEvent     : ev,
-              clickOutsideToClose: true,
-              fullscreen: $mdMedia('sm') || $mdMedia('xs')
-          }).then(function(res){
-            if(res){
-              console.log(res);              
-            }
-          });
+    function filterDate(){
+      self.dates = {
+        from: self.startDate,
+        to: self.endDate
+      };
     }
+    function clearFilters(){
+      self.startDate = null;
+      self.endDate = null;
+      self.dates = undefined;
+      self.searchText = "";
+      self.search = "";
+      self.selectedService = null;
+    }
+    
 
 
 
@@ -91,6 +83,8 @@
         selectedService: '=',        
         currentFolder: '=',
         currentProject: '=',
+        search : '=',
+        dates: '=',
       }
     });
 

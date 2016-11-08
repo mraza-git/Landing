@@ -10,9 +10,12 @@
         ng-cloak>
 
         <div layout="row" layout-align="start center">
-            <md-checkbox class="no-label checkbox" ng-checked="projectsList.isSelected(thread)" ng-click="projectsList.toggleSelectProject(thread, $event)"
+
+            <!--MULTIPLE SELECTION CHECKBOX-->
+            <!--<md-checkbox class="no-label checkbox" ng-checked="projectsList.isSelected(thread)" ng-click="projectsList.toggleSelectProject(thread, $event)"
                 aria-label="{{projectsList.isSelected(thread) ? 'Deselect' : 'Select'}}">
-            </md-checkbox>
+            </md-checkbox>-->
+            <!--/MULTIPLE SELECTION CHECKBOX-->
 
             <div class="info" flex layout="column">
                 <div class="name" layout="row" layout-align="space between center">
@@ -42,15 +45,15 @@
                     <span>
                         {{thread.folder}}
                     </span>
-                    <!--<geo-distance 
-                    current-user-location="projectsList.currentUser.profile.address.location"
-                    project="thread"
-                    ></geo-distance>-->
-                    <div layout layout-align="end end">
-                    <md-icon md-font-icon="icon-map-marker" aria-label="label" class="s16 md-primary">
-                    </md-icon>
-                    <get-distance lead="thread"></get-distance>
-                    </div>
+
+                    <!--Geological Distance-->
+                    <!--<div layout layout-align="end end">
+                        <md-icon md-font-icon="icon-map-marker" aria-label="label" class="s16 md-primary">
+                        </md-icon>
+                        <geo-distance lead="thread"></geo-distance>
+                    </div>-->
+                    <!--/Geological Distance-->
+
                     <project-budget thread="thread"></project-budget>
                     
                 </div>

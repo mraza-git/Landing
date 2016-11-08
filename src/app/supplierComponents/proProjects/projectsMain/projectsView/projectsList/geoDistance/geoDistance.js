@@ -2,7 +2,7 @@
   'use strict';
 
 
-  var main = 'get'; // Change this with containing folder name
+  var main = 'geo'; // Change this with containing folder name
   var type = 'Distance';
 
   function ControllerFunction($scope, $reactive) {
