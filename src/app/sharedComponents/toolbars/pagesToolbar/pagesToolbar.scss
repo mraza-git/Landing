@@ -2,6 +2,9 @@
     text-transform: none;
     #toolbar {
         padding: 0 0 0 16px;
+
+
+        
         #landing-toolbar {
             .logo {
                 margin-right: 16px;
@@ -34,6 +37,10 @@
             }
         }
     }
+     @media (max-width: 768px) {
+                            #toolbar {
+                                padding: 0;
+                            }}
     .foc-nav:hover,
     .foc-nav:focus {
         height: 64px;
