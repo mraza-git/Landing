@@ -14,6 +14,12 @@
     self.sort = {
       createdAt: -1,
     }
+    self.sortOptions = [
+      {id:1,value:{createdAt:-1},name:"Asc. by lead date"},
+      {id:1,value:{createdAt:1},name:"Dec. by lead date"},
+      {id:1,value:{createdAt:1},name:"By most qutoes"},
+      {id:1,value:{createdAt:1},name:"By least qutoes"},
+    ]
 
     self.perPageOptions=[
       {id:1, value: 10},
@@ -37,15 +43,22 @@
         return Counts.get('numberOfLeads');
       },
       projects: function () {
-        self.loading = true;
-        
-        var cursor = Leads.find(self.getReactively('selector'));
-
-        if (self.loading) {
-          self.currentProject = cursor.fetch()[0]; //populating the first item at the start.
-          if (self.currentProject)
-            self.loading = false;
+        var cursor;
+        var user = self.getReactively('currentUser');
+        if(user)
+        {
+          
+          cursor = Leads.find();
+          if (!self.getReactively('loading')) {
+            self.currentProject = cursor.fetch()[0]; //populating the first item at the start.
+            if (self.currentProject){
+              // self.loading = false;            
+            }else{           
+                
+            }
+          }
         }
+
 
         return cursor;
       },
@@ -58,14 +71,12 @@
     var folderOldValue = undefined;
     self.autorun(function(){
       var newValue = self.getReactively('selectedService');
-      if(newValue!==oldValue){
-        console.log(newValue,'-',oldValue);
+      if(newValue!==oldValue){        
         self.page = 1;
       }
       oldValue = newValue;
       var folderNewValue = self.getReactively('currentFolder');
-      if(folderNewValue!==folderOldValue){
-        console.log(folderNewValue,'-',folderOldValue);
+      if(folderNewValue!==folderOldValue){        
         self.page = 1;
       }
       folderOldValue = folderNewValue;
@@ -73,6 +84,7 @@
     });
 
     self.subscribe('leads', function () {
+      self.loading = true;
       var serviceIdSelector;
       if (angular.isDefined(self.getReactively('selectedService._id'))) {
          serviceIdSelector = self.getReactively('selectedService._id') || []
@@ -80,15 +92,33 @@
       else{
         serviceIdSelector = {$in:self.getReactively('currentUser.business.serviceIds') || []}; 
       }
-
-      self.selector = {
-          folder: {
-            $nin: ['delete', 'archive']
-          },          
-          serviceId:serviceIdSelector,
-          quotedBy: {$ne:self.getReactively('currentUser._id')},
-          assignedTo: {$exists:false},          
-        };
+      var user = self.getReactively('currentUser');
+      if(user)
+      {
+        if(user.business)
+        self.selector = {
+            folder: {
+              $nin: ['delete', 'archive']
+            },          
+            serviceId:serviceIdSelector,
+            quotedBy: {$ne:self.getReactively('currentUser._id')},
+            assignedTo: {$exists:false}, 
+            // 'pages.questions.answer':{$near:[user.business.address.location.latitude,user.business.address.location.longitude],$maxDistance: 30/111}                       
+            // 'pages.questions.answer': 
+            // {
+            //   $near: 
+            //   {
+            //     $geometry:
+            //     {
+            //       type: "Point",
+            //       coordinates: [user.business.address.location.latitude,user.business.address.location.longitude]
+            //     },
+            //     $maxDistance:100
+            //   },
+            // }
+                   
+          };
+      }
       var folder = self.getReactively('currentFolder');
         if (folder !== 'all') {
           if (_.contains(['delete', 'archive', 'draft'], folder)) {
@@ -146,8 +176,6 @@
 
           self.selector.createdAt = {$lte: dates.to.toISOString(),$gte:dates.from.toISOString()};          
         }
-        console.log(self.selector);
-
       return [
         {
           sort: self.getReactively('sort'),
@@ -161,11 +189,11 @@
     {
       onReady: function(){
         /// loading ends here...
-        console.log("ready bro");
+        self.loading = false;   
       },
       onStop: function(err){
         /// no record found
-        console.log('no record found or error: ',err);
+        self.loading = false;        
       }
     }
     );

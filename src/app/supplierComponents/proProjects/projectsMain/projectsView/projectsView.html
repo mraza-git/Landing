@@ -77,10 +77,29 @@
   <md-progress-circular md-diameter="50"></md-progress-circular>
 </div>-->
 
-<div class="content-wrapper trigger" layout="row" flex ng-hide="projectsView.loading" ng-cloak>
+<div class="content-wrapper trigger" layout="row" flex ng-cloak>
+  <!--BACKDROP OR LOADING-->
+  <md-backdrop class="md-opaque" ng-if="projectsView.loading">
+    <span style="position:absolute;top:50%;left:50%;">  
+      Loading...
+    </span>
+    <md-progress-circular 
+                          style="position:absolute;top:55%;left:50%;"
+                          class="md-primary"       
+                          md-diameter="45"
+                          aria-label="loading">
+    </md-progress-circular>
+  </md-backdrop>
+  
+  <!--/BACKDROP OR LOADING-->
 
   <!-- THREAD LIST -->
-  <md-sidenav class="sidenav" md-is-locked-open="$mdMedia('gt-md')" md-component-id="projects-list-sidenav" ms-sidenav-helper
+  <md-sidenav 
+    ng-hide="projectsView.loading"
+    class="sidenav" 
+    md-is-locked-open="$mdMedia('gt-md')" 
+    md-component-id="projects-list-sidenav" 
+    ms-sidenav-helper
     layout="column" style="overflow:hidden;">
     <div class="content thread-list" layout="column" flex infinite-scroll='projectsList.loadMore()' infinite-scroll-distance='1'
       ms-scroll>
@@ -94,7 +113,7 @@
 
 
   <!-- THREAD DETAIL -->
-  <div class="content thread-detail flex-scrollable" ms-scroll layout="column" flex>
+  <div class="content thread-detail flex-scrollable" ms-scroll layout="column" flex ng-hide="projectsView.loading">
     <project-detail layout="column" ready="projectsView.ready" flex current-project="projectsView.currentProject" update="projectsView.done($event)"></project-detail>
   </div>
   <!-- / THREAD DETAIL -->
