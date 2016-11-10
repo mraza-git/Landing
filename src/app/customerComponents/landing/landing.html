@@ -37,20 +37,20 @@
       <div layout="row" layout-align="center start" layout-padding layout-wrap>
         <div flex-gt-md="70" flex-md="80" layout="column">
           <h2 class="md-display-1">How it works?</h2>
-          <div layout="row"  flex layout-align="center start" layout-xs="column">
-                <div flex class="steps slide-left-slow" layout-align="start center" layout="column" ng-show="position200">
+          <div layout="row"  flex layout-align="center start" layout-xs="column" ng-show="howItWorksReached">
+                <div flex class="steps slide-left-slow" layout-align="start center" layout="column" ng-show="howItWorksReached">
                   <div layout-align="center start" flex flex-xs="100"> <img src="../../../assets/images/backgrounds/post-your-requirements.png"></div>
                   <div flex><h3>Post your requirments</h3></div>
                 </div>
-                <div flex class="steps slide-left-slow" layout-align="start center" layout="column" ng-show="position200">
+                <div flex class="steps" ng-class="{'slide-right-slow':$mdMedia('xs'),'slide-left-slow':$mdMedia('gt-xs')}" layout-align="start center" layout="column" ng-show="howItWorksReached">
                   <div layout-align="center start" flex flex-xs="100"> <img src="../../../assets/images/backgrounds/get-quotes.png"></div>
                   <div flex><h3>Get quotes</h3></div>
                 </div>
-               <div flex class="steps slide-right-slow" layout-align="start center" layout="column" ng-show="position200">
+               <div flex class="steps" ng-class="{'slide-right-slow':$mdMedia('gt-xs'),'slide-left-slow':$mdMedia('xs')}" layout-align="start center" layout="column" ng-show="howItWorksReached">
                   <div layout-align="center start" flex flex-xs="100"> <img src="../../../assets/images/backgrounds/select-a-service-provider.png"></div>
                   <div flex><h3>Select a service provider</h3></div>
                 </div>
-                <div flex class="steps slide-right-slow" layout-align="start center" layout="column" ng-show="position200">
+                <div flex class="steps slide-right-slow" layout-align="start center" layout="column" ng-show="howItWorksReached">
                   <div layout-align="center start" flex flex-xs="100"> <img src="../../../assets/images/backgrounds/sit-back-and-relax.png"></div>
                   <div flex><h3>Sit back & relax<br><span>(Yes that is mandatory step)</span><br>   
                       <svg  xmlns="http://www.w3.org/2000/svg" x="0px" y="25px"
@@ -83,10 +83,10 @@
       <div layout="row" layout-align="center start">
         <div flex-gt-md="70" flex-md="80" layout="column">
           <div layout="column"  flex layout-align="center center" >
-            <div class="video-placeholder" ng-hide="position200"></div>
-            <div class="vidoe-outer-wrap slide-top-slow" ng-show="position200">
+            <!--<div class="video-placeholder" ng-hide="videoReached"></div>-->
+            <div class="vidoe-outer-wrap slide-top-slow" ng-show="videoReached">
               <div class="video-bg">
-                <iframe class="video-frame toggle" ng-show="position200" width="780" height="439" src="https://www.youtube-nocookie.com/embed/r9YPdUKAIVQ?rel=0" frameborder="0" allowfullscreen></iframe>
+                <iframe class="video-frame toggle" ng-show="videoReached" width="780" height="439" src="https://www.youtube-nocookie.com/embed/r9YPdUKAIVQ?rel=0" frameborder="0" allowfullscreen></iframe>
               </div>
             </div>
           </div>
@@ -101,7 +101,7 @@
         <div flex-gt-md="70" flex-md="90" flex-gt-sm="100" flex-sm="100" flex-gt-xs="100" flex-xs="100" layout="column">
           <h2 class="md-display-1">Categories</h2>                
             <div layout="row" flex layout-align="center center">
-              <div layout="column" flex-gt-sm="90" flex-sm="90" flex="90" class="section-block" ng-class="{height:position500}">
+              <div layout="column" flex-gt-sm="90" flex-sm="90" flex="90" class="section-block" ng-class="{height:categoriesReached}">
                 <md-grid-list class="list"
                 md-cols-xs="2" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="4"
                 md-row-height-gt-md="1:1" md-row-height="4:3"
@@ -130,10 +130,10 @@
                         <img ng-src="{{cat.image.url}}"
                           id="{{cat.image.id}}"
                           ng-load="landing.showImage($index,landing.categories.length)"
-                          ng-show="landing.imageShow"
+                          ng-show="landing.imageShow && categoriesReached"
                           alt="{{cat.name}}"
                           ng-class="{'coming-soon-category':!cat.publish && itemShow}"
-                          class="post__featured-image toggle">
+                          class="post__featured-image toggle1s">
                           <!--<md-tooltip ng-show="!cat.publish" md-delay="400" md-direction="top" md-autohide="true" class="cat-tooltip">
                               Coming Soon...
                           </md-tooltip>-->
@@ -160,41 +160,196 @@
     <!-- / categories -->
 
     <!-- Our Partners -->
-    <section id="partner">
+    <section id="partner" class="toggle">
       <div layout="row" layout-align="center start" layout-padding layout-wrap>
         <div flex-gt-md="70" flex-md="80" flex-xs="100" flex-gt-xs="100" layout="column">
           <h2 class="md-display-1">Our <span class="md-accent-fg">Partners</span></h2>
-          <div layout="row" layout-xs="column" layout-wrap>
+          <div layout="row" layout-xs="column" layout-wrap style="min-height: 200px;">
                 <div flex="25" flex-xs="100" >
-                  <div class="partner-placeholder slide-left-slow" ng-show="position1000"></div>
+                  <div class="partner-placeholder slide-left-slow" ng-show="partnerReached"></div>
                   </div>
                 <div flex="25" flex-xs="100">
-                  <div class="partner-placeholder slide-left-slow" style="background-color:white;    background-image: none;" ng-show="position1000"></div>
+                  <div class="partner-placeholder" ng-class="{'slide-right-slow':$mdMedia('xs'),'slide-left-slow':$mdMedia('gt-xs')}" style="background-color:white;    background-image: none;" ng-show="partnerReached"></div>
                 </div>
                 <div flex="25" flex-xs="100">
-                  <div class="partner-placeholder slide-right-slow" style="background-color:#bbb7df;    background-image: none;" ng-show="position1000"></div>
+                  <div class="partner-placeholder" ng-class="{'slide-right-slow':$mdMedia('gt-xs'),'slide-left-slow':$mdMedia('xs')}" style="background-color:#bbb7df;    background-image: none;" ng-show="partnerReached"></div>
                 </div>
                 <!--<div flex="25" flex-xs="100">
-                  <div class="partner-placeholder slide-right-slow" style="background-color:#bbb7cc;    background-image: none;" ng-show="position1000"></div>
+                  <div class="partner-placeholder slide-right-slow" style="background-color:#bbb7cc;    background-image: none;" ng-show="partnerReached"></div>
                 </div>
                 <div flex="25" flex-xs="100">
-                  <div class="partner-placeholder slide-left-slow" style="background-color:#bbb7df;    background-image: none;" ng-show="position1000"></div>
+                  <div class="partner-placeholder slide-left-slow" style="background-color:#bbb7df;    background-image: none;" ng-show="partnerReached"></div>
                   </div>
                 <div flex="25" flex-xs="100">
-                  <div class="partner-placeholder slide-left-slow" style="background-color:#bbb7cc;    background-image: none;" ng-show="position1000"></div>
+                  <div class="partner-placeholder slide-left-slow" style="background-color:#bbb7cc;    background-image: none;" ng-show="partnerReached"></div>
                 </div>
                 <div flex="25" flex-xs="100">
-                  <div class="partner-placeholder slide-right-slow" style="background-color:white;    background-image: none;" ng-show="position1000"></div>
+                  <div class="partner-placeholder slide-right-slow" style="background-color:white;    background-image: none;" ng-show="partnerReached"></div>
                 </div>-->
                 <div flex="25" flex-xs="100">
-                  <div class="partner-placeholder slide-right-slow" ng-show="position1000"></div>
+                  <div class="partner-placeholder slide-right-slow" ng-show="partnerReached"></div>
                 </div>
           </div>
         </div>
       </div>
     </section>
     <!-- / Our Partners -->
-    
+    <!-- Bottom -->
+<section id="services" class="toggle">
+       <div layout="row" class="services-content" layout-align="center start" layout-padding layout-wrap>
+        <div flex-gt-md="70" flex-md="80" flex-xs="100" flex-gt-xs="100" layout="column">
+          <h2 class="md-display-1">Our <span class="md-accent-fg">Services</span></h2>
+          <div layout="row" layout-xs="column" layout-wrap style="min-height: 200px;">
+                <div flex="25" flex-xs="100" >
+                  <div class="service-placeholder slide-left-slow" ng-show="partnerReached">
+                      <div class="comment" layout="row" layout-fill>
+                        <md-icon md-font-icon="icon-email" class="icon service-icon"></md-icon>
+                        <div flex layout="column">                   
+                          <div layout="row" layout-align="start center">
+                                <span class="service-name">Plumber</span>
+                            </div>                   
+                          </div>
+                      </div>
+                  </div>
+                  </div>
+                <div flex="25" flex-xs="100">
+                  <div class="service-placeholder" ng-class="{'slide-right-slow':$mdMedia('xs'),'slide-left-slow':$mdMedia('gt-xs')}" ng-show="partnerReached">
+                      <div class="comment" layout="row" layout-fill>
+                        <md-icon md-font-icon="icon-email" class="icon service-icon"></md-icon>
+                        <div flex layout="column">                   
+                          <div layout="row" layout-align="start center">
+                                <span class="service-name">Plumber</span>
+                            </div>                   
+                          </div>
+                      </div>
+                  </div>
+                </div>
+                <div flex="25" flex-xs="100">
+                  <div class="service-placeholder" ng-class="{'slide-right-slow':$mdMedia('gt-xs'),'slide-left-slow':$mdMedia('xs')}" ng-show="partnerReached">
+                      <div class="comment" layout="row" layout-fill>
+                        <md-icon md-font-icon="icon-email" class="icon service-icon"></md-icon>
+                        <div flex layout="column">                   
+                          <div layout="row" layout-align="start center">
+                                <span class="service-name">Plumber</span>
+                            </div>                   
+                          </div>
+                      </div>                    
+                  </div>
+                </div>
+                <div flex="25" flex-xs="100">
+                  <div class="service-placeholder slide-right-slow" ng-show="partnerReached">
+                    <div class="comment" layout="row" layout-fill>
+                        <md-icon md-font-icon="icon-email" class="icon service-icon"></md-icon>
+                        <div flex layout="column">                   
+                          <div layout="row" layout-align="start center">
+                                <span class="service-name">Plumber</span>
+                            </div>                   
+                          </div>
+                      </div>
+                  </div>
+                </div>
+                                <div flex="25" flex-xs="100" >
+                  <div class="service-placeholder slide-left-slow" ng-show="partnerReached">
+                      <div class="comment" layout="row" layout-fill>
+                        <md-icon md-font-icon="icon-email" class="icon service-icon"></md-icon>
+                        <div flex layout="column">                   
+                          <div layout="row" layout-align="start center">
+                                <span class="service-name">Plumber</span>
+                            </div>                   
+                          </div>
+                      </div>
+                  </div>
+                  </div>
+                <div flex="25" flex-xs="100">
+                  <div class="service-placeholder" ng-class="{'slide-right-slow':$mdMedia('xs'),'slide-left-slow':$mdMedia('gt-xs')}" ng-show="partnerReached">
+                      <div class="comment" layout="row" layout-fill>
+                        <md-icon md-font-icon="icon-email" class="icon service-icon"></md-icon>
+                        <div flex layout="column">                   
+                          <div layout="row" layout-align="start center">
+                                <span class="service-name">Plumber</span>
+                            </div>                   
+                          </div>
+                      </div>
+                  </div>
+                </div>
+                <div flex="25" flex-xs="100">
+                  <div class="service-placeholder" ng-class="{'slide-right-slow':$mdMedia('gt-xs'),'slide-left-slow':$mdMedia('xs')}" ng-show="partnerReached">
+                      <div class="comment" layout="row" layout-fill>
+                        <md-icon md-font-icon="icon-email" class="icon service-icon"></md-icon>
+                        <div flex layout="column">                   
+                          <div layout="row" layout-align="start center">
+                                <span class="service-name">Plumber</span>
+                            </div>                   
+                          </div>
+                      </div>                    
+                  </div>
+                </div>
+                <div flex="25" flex-xs="100">
+                  <div class="service-placeholder slide-right-slow" ng-show="partnerReached">
+                    <div class="comment" layout="row" layout-fill>
+                        <md-icon md-font-icon="icon-email" class="icon service-icon"></md-icon>
+                        <div flex layout="column">                   
+                          <div layout="row" layout-align="start center">
+                                <span class="service-name">Plumber</span>
+                            </div>                   
+                          </div>
+                      </div>
+                  </div>
+                </div>
+                                <div flex="25" flex-xs="100" >
+                  <div class="service-placeholder slide-left-slow" ng-show="partnerReached">
+                      <div class="comment" layout="row" layout-fill>
+                        <md-icon md-font-icon="icon-email" class="icon service-icon"></md-icon>
+                        <div flex layout="column">                   
+                          <div layout="row" layout-align="start center">
+                                <span class="service-name">Plumber</span>
+                            </div>                   
+                          </div>
+                      </div>
+                  </div>
+                  </div>
+                <div flex="25" flex-xs="100">
+                  <div class="service-placeholder" ng-class="{'slide-right-slow':$mdMedia('xs'),'slide-left-slow':$mdMedia('gt-xs')}" ng-show="partnerReached">
+                      <div class="comment" layout="row" layout-fill>
+                        <md-icon md-font-icon="icon-email" class="icon service-icon"></md-icon>
+                        <div flex layout="column">                   
+                          <div layout="row" layout-align="start center">
+                                <span class="service-name">Plumber</span>
+                            </div>                   
+                          </div>
+                      </div>
+                  </div>
+                </div>
+                <div flex="25" flex-xs="100">
+                  <div class="service-placeholder" ng-class="{'slide-right-slow':$mdMedia('gt-xs'),'slide-left-slow':$mdMedia('xs')}" ng-show="partnerReached">
+                      <div class="comment" layout="row" layout-fill>
+                        <md-icon md-font-icon="icon-email" class="icon service-icon"></md-icon>
+                        <div flex layout="column">                   
+                          <div layout="row" layout-align="start center">
+                                <span class="service-name">Plumber</span>
+                            </div>                   
+                          </div>
+                      </div>                    
+                  </div>
+                </div>
+                <div flex="25" flex-xs="100">
+                  <div class="service-placeholder slide-right-slow" ng-show="partnerReached">
+                    <div class="comment" layout="row" layout-fill>
+                        <md-icon md-font-icon="icon-email" class="icon service-icon"></md-icon>
+                        <div flex layout="column">                   
+                          <div layout="row" layout-align="start center">
+                                <span class="service-name">Plumber</span>
+                            </div>                   
+                          </div>
+                      </div>
+                  </div>
+                </div>
+
+          </div>
+        </div>
+      </div>
+</section>
+<!-- / Bottom -->
     <!--FOOTER-->
     <landing-footer url="'#header'"></landing-footer>
    <!--/FOOTER-->
