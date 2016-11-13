@@ -1,53 +1,164 @@
-<div class="thread-list" layout="column" flex>
-    <md-progress-linear ng-disabled="!activeJobs.loading"
-                        aria-label="label">
-    </md-progress-linear>
-
-    <div class="thread {{thread.status}} slide-top" md-ink-ripple ng-if="!activeJobs.loading" ng-repeat="thread in activeJobs.projects | filter: activeJobs.search"
-        ui-sref="jobs.jobdetail({jobId:thread._id})" ng-class="{'current-thread': mouseOver, 'selected': activeJobs.isSelected(thread)}"
-        ng-mouseenter="mouseOver=true" ng-mouseleave="mouseOver=false" ng-cloak layout="row" layout-xs="column">
-        <div class="padding-5-10" layout="row" flex>
-            <div class="name" layout="row" layout-align="start center">
-                <form-services ng-hide="thread.images" service-ids="[thread.serviceId]" type="image"></form-services>
-                <thumb-image ng-show="thread.images" image-id="thread.images[0].id" image-class="avatar"></thumb-image>
-                <span class="text-truncate">{{thread.title}}</span>
-            </div>
+<!-- CONTENT TOOLBAR -->
+<div class="toolbar" layout="row" layout-align="space between center">
+    <div layout="row">
+        <div ui-sref-active="foc-nav-active">
+            <md-button href ui-sref="jobs.activejobs" class="md-primary md-hue-1 foc-nav">Active Jobs</md-button>
         </div>
-        <div layout="row" flex layout-align="start center">
+        <div class="toolbar-separator"></div>
+        <div ui-sref-active="foc-nav-active">
+            <md-button href ui-sref="jobs.assignedjobs" class="md-primary md-hue-1 foc-nav">Assigned Jobs</md-button>
+        </div>
+        <div class="toolbar-separator"></div>
+    </div>
+    <div>
+        <md-select ng-model="activeJobs.sort" 
+                   multiple="false"                   
+                   md-on-close="$event.stopPropagation()"                   
+                   placeholder="sort by">
+          <md-option ng-value="option.value" ng-repeat="option in activeJobs.sortOptions">
+            {{ option.name }}
+         </md-option>
+        </md-select>
+    </div>
+    <!--<ui-breadcrumbs displayname-property="data.displayName">
+                </ui-breadcrumbs>-->
+</div>
+<!-- / CONTENT TOOLBAR -->
 
-            <div class="" flex>
-                <span>
+<!-- CONTENT -->
+<md-content class="content-wrapper" layout="column" flex>
+
+
+    <div class="thread-list" ms-scroll flex>        
+        <!--BACKDROP OR LOADING-->
+        <md-backdrop class="md-opaque" ng-if="activeJobs.loading" >
+            <span style="position:absolute;top:50%;left:50%;">  
+            Loading...
+            </span>
+            <md-progress-circular 
+                                style="position:absolute;top:55%;left:50%;"
+                                class="md-primary"       
+                                md-diameter="45"
+                                aria-label="loading">
+            </md-progress-circular>
+        </md-backdrop>
+        
+        <!--/BACKDROP OR LOADING-->
+
+        <div class="thread {{thread.status}} slide-top-nohide" md-ink-ripple ng-if="!activeJobs.loading" ng-repeat="thread in activeJobs.projects track by thread._id | filter: globalSearch"
+            ui-sref="jobs.jobdetail({jobId:thread._id})" ng-class="{'current-thread': mouseOver, 'selected': activeJobs.isSelected(thread)}"
+            ng-mouseenter="mouseOver=true" ng-mouseleave="mouseOver=false" ng-cloak layout="row" layout-xs="column">
+            <div class="padding-5-10" layout="row" flex>
+                <div class="name" layout="row" layout-align="start center">
+                    <form-services ng-hide="thread.images.length>0 || activeJobs.isAdminOrSupport" service-ids="[thread.serviceId]" type="image"></form-services>
+                    <thumb-image ng-show="thread.images.length>0 && !activeJobs.isAdminOrSupport" image-id="thread.images[0].id" image-class="avatar"></thumb-image>
+                    <lead-owner ng-show="activeJobs.isAdminOrSupport" owner-id="thread.owner"></lead-owner>
+
+                    <span class="text-truncate">{{thread.title}}</span>
+                    <span ng-if="thread.images.length>0">
+                    <md-icon md-font-icon="icon-attachment">
+                        <md-tooltip 
+                                    md-direction="bottom">
+                          {{thread.images.length}} images
+                        </md-tooltip>
+                    </md-icon>
+                </span>
+                    <span ng-if="thread.duplicate" class="text-boxed" ng-click="activeJobs.viewOriginal($event,thread.duplicateOf)">
+                    Duplicate
+                    <md-tooltip md-direction="bottom">
+                        Click here to view original
+                    </md-tooltip>
+                </span>
+                    <div layout layout-align="center center" ng-if="activeJobs.isAdminOrSupport">
+                        <span ng-if="thread.folder==='delete'" class="text-boxed">Deleted</span>
+                        <span ng-if="thread.folder==='archive'" class="text-boxed">Archieved</span>
+                    </div>
+                </div>
+            </div>
+            <div layout="row" flex layout-align="start center">
+
+                <div class="" flex>
+                    <span>
                     {{thread.createdAt | date}}
                 </span>
 
-            </div>
-            <div flex>
-                <form-services service-ids="[thread.serviceId]"></form-services>
+                </div>
+                <div flex>
+                    <form-services service-ids="[thread.serviceId]"></form-services>
+
+                </div>
+                <div flex><strong>Total quotes :</strong> {{thread.quotes.length || 0}}</div>
 
             </div>
-            <div flex><strong>Total quotes :</strong> {{thread.quotes.length || 0}}</div>
+            <md-menu>
+                <md-button ng-click="$mdOpenMenu($event)" id="button-id" class="md-primary-bg s14" ng-disabled="false" aria-label="button-label">
+                    Action </md-button>
+
+                <md-menu-content width="2">
+                    <md-menu-item>
+                        <md-button ng-click="activeJobs.duplicateJob($event,thread)">
+                            <md-icon md-menu-align-target md-font-icon="icon-content-copy"></md-icon>
+                            Repost
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button ng-hide="thread.folder==='archive'" ng-click="activeJobs.moveTo($event,thread._id,'archive')">
+                            <md-icon md-menu-align-target md-font-icon="icon-archive"></md-icon>
+                            Archive
+                        </md-button>
+                        <md-button ng-show="thread.folder==='archive'" ng-click="activeJobs.recover($event,thread._id)">
+                            <md-icon md-menu-align-target md-font-icon="icon-archive"></md-icon>
+                            Remove archive
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button ng-hide="thread.folder==='delete'" ng-click="activeJobs.moveTo($event,thread._id,'delete')">
+                            <md-icon md-menu-align-target md-font-icon="icon-trash"></md-icon>
+                            Delete
+                        </md-button>
+
+                        <md-button ng-show="thread.folder==='delete'" ng-click="activeJobs.recover($event,thread._id)">
+                            <md-icon md-menu-align-target md-font-icon="icon-trash"></md-icon>
+                            Recover deleted
+                        </md-button>
+
+                    </md-menu-item>
+                    <md-menu-item ng-if="activeJobs.isAdminOrSupport">
+                        <md-button ng-click="activeJobs.trashJob($event,thread)">
+                            <md-icon md-menu-align-target md-font-icon="icon-delete-variant"></md-icon>
+                            Trash Permanently
+                        </md-button>
+                    </md-menu-item>
+
+
+                </md-menu-content>
+            </md-menu>
 
         </div>
-        <md-menu>
-            <md-button ng-click="$mdOpenMenu($event)" id="button-id" class="md-primary-bg s14" ng-disabled="false" aria-label="button-label">
-            Action </md-button>
-
-            <md-menu-content width="2">
-                <md-menu-item>
-                    <md-button ng-click="">
-                        <md-icon md-menu-align-target md-font-icon="icon-archive"></md-icon>
-                        Archive
-                    </md-button>
-                </md-menu-item>
-                <md-menu-item>
-                    <md-button ng-click="">
-                        <md-icon md-menu-align-target md-font-icon="icon-trash"></md-icon>
-                        Delete
-                    </md-button>
-                </md-menu-item>
-            </md-menu-content>
-        </md-menu>
 
     </div>
 
+</md-content>
+<!-- / CONTENT -->
+
+<!-- The Gallery as lightbox dialog, should be a child element of the document body -->
+<div id="blueimp-gallery" class="blueimp-gallery">
+    <div class="slides"></div>
+    <h3 class="title"></h3>
+    <a class="prev">‹</a>
+    <a class="next">›</a>
+    <a class="close">×</a>
+    <a class="play-pause"></a>
+    <ol class="indicator"></ol>
 </div>
+
+<script>
+var showSlideShow = function (event) {
+    event = event || window.event;
+    var target = event.target || event.srcElement,
+        link = target.src ? target.parentNode : target,
+        options = {index: link, event: event},
+        links = document.getElementsByTagName('a');
+    blueimp.Gallery(links, options);
+};
+</script>

@@ -222,6 +222,38 @@ $foc-transition-duration: 250ms;
 	}
 }
 
+.slide-top-nohide {
+	@include easingTimingFunction();
+
+	&.ng-enter-stagger {
+		@include staggerTimming (0.03s);
+	}
+
+
+	&.ng-enter {
+		@include transform(translateY(15px));
+		@include transitionDuration(150ms);
+		opacity: 0;
+	}
+
+	&.ng-enter-active {
+		@include transform(translateY(0));
+		opacity: 1;
+	}	
+
+	// Show
+	&.ng-hide-remove {
+		@include transform(translateY(15px));
+		@include transitionDuration(150ms);
+		display:block!important;
+		opacity:0;
+	}
+	&.ng-hide-remove.ng-hide-remove-active {
+		@include transform(translateY(0));
+		opacity:1;
+	}
+}
+
 
 
 /* ------------------------------------------- */

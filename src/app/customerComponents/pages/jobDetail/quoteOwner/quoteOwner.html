@@ -85,23 +85,27 @@
 
             <md-menu-content width="2">
                  <md-menu-item>
-                    <md-button ng-click="jobDetail.acceptOffer($event,quote)" ng-disabled="quote.status === 'accepted'" id="accept" >
+                    <md-button ng-click="quoteOwner.acceptOffer($event)" ng-disabled="quote.status === 'accepted'" id="accept" >
                         <md-icon md-menu-align-target md-font-icon="icon-trash" ></md-icon>
                         Accept Offer
                     </md-button>
                 </md-menu-item>
                 <md-menu-item>
-                    <md-button ng-click="jobDetail.declineOffer($event,quote)" ng-disabled="quote.status === 'rejected'" id="decline">
+                    <md-button ng-click="quoteOwner.declineOffer($event,quote)" ng-disabled="quote.status === 'rejected'" id="decline">
                         <md-icon md-menu-align-target md-font-icon="icon-trash" ></md-icon>
                         Decline Offer
                     </md-button>
                 </md-menu-item>
-                <md-menu-item>
-                        <md-button ng-click="jobDetail.declineOffer($event,quote)" ng-disabled="quote.status === 'rejected'" id="shortlist" >
-                        <md-icon md-menu-align-target md-font-icon="icon-archive" ></md-icon>
+                <md-menu-item >
+                    <md-button ng-if="!quoteOwner.isShortListed" ng-click="quoteOwner.shortList($event)" ng-disabled="quote.status === 'rejected'" id="shortlist" >
+                        <md-icon md-menu-align-target md-font-icon="icon-star" ></md-icon>
                         Shortlist
                     </md-button>
-                </md-menu-item>
+                    <md-button ng-if="quoteOwner.isShortListed" ng-click="quoteOwner.removeShortList($event)" ng-disabled="quote.status === 'rejected'" id="shortlist" >
+                        <md-icon md-menu-align-target md-font-icon="icon-star-outline" ></md-icon>
+                        Remove Shortlist
+                    </md-button>
+                </md-menu-item>                
                </md-menu-content>
         </md-menu>
         </div>

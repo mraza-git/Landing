@@ -209,8 +209,7 @@
     self.update = update;
     self.selectProjects = selectProjects;
     self.nextPage = nextPage;
-    self.previousPage = previousPage;
-    self.doSubscription = doSubscription;     
+    self.previousPage = previousPage;         
     self.openQuoteDialog = openQuoteDialog;
 
 
@@ -313,49 +312,6 @@
       }
 
     }
-    
-
-    function doSubscription(){
-      self.subscribe('leads', function () {
-      if (angular.isDefined(self.getReactively('selectedService._id'))) {
-        self.selector = {serviceId:{$in:[self.getReactively('selectedService._id')] || []}}; 
-        return [
-          {
-            sort: self.getReactively('sort'),
-            limit: parseInt(self.perPage),
-            skip: parseInt(self.getReactively('page'), -1) * self.perPage
-          },
-          self.selector
-        ];
-      } else {
-        self.selector = {serviceId:{$in:self.getReactively('currentUser.business.serviceIds') || []}}; 
-        return [
-          {
-            sort: self.getReactively('sort'),
-            limit: parseInt(self.perPage),
-            skip: parseInt(self.getReactively('page'), -1) * self.perPage
-          },
-          self.selector
-        ]
-      }
-    },
-    {
-      onReady: function(){
-        /// loading ends here...
-        console.log("ready bro");
-      },
-      onStop: function(err){
-        /// no record found
-        console.log('no record found or error: ',err);
-      }
-    }
-    );
-    }
-
-
-
-
-
 
   }
   var name = main + type;
@@ -371,6 +327,7 @@
       'projectDetail',
       'projectsList',
       'infinite-scroll',
+      
     ])
     .component(name, {
       templateUrl: templateUrl,
