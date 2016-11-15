@@ -28,7 +28,7 @@
 
       }
       var message = "";
-      if(folder==='deleted'){
+      if(folder==='delete'){
           message = 'All of these projects will be kept in your trash folder for 30days';
       }
       else{

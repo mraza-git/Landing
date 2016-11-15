@@ -1,0 +1,95 @@
+
+<div id="lead-summary" layout="column" flex>
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg md-accent-bg" layout="column">
+        <h1>{{leadSummary.service.name}}</h1>
+        <h3>{{leadSummary.service.description}}</h3>
+    </div>
+
+    <!-- / TOP BACKGROUND -->
+
+    <div class="form-content" layout="column" flex layout-align="start center">
+      <div class="headline">
+        Final Step
+      </div>
+        <div class="content-area" layout="column" flex="80">
+          <div class="list" layout="column" flex>    
+            <div layout="column" class="preview-content flex-scrollable"  ms-scroll flex>
+              <div class="formly-container" layout="column" flex>
+                  <md-input-container>
+                    <label for="title">Job Title</label>
+                     <input name="title"
+                            type="input"
+                            ng-model="leadSummary.lead.title" 
+                            required                             
+                            minlength="3"                           
+                            aria-label="Job Title">
+                  </md-input-container>
+                   <md-input-container>
+                    <label for="detail">Job Details</label>
+                     <textarea name="detail"
+                            type="textarea"
+                            ng-model="leadSummary.lead.detail" 
+                            required                             
+                            md-maxlength="150" 
+                            rows="5"                       
+                            aria-label="Job Details"></textarea>
+                  </md-input-container>
+                <files-upload  
+                  ok-to-save="leadSummary.okToSave"
+                  done="leadSummary.uploadedPictures($event)"
+                  crop-settings = "leadSummary.cropSettings"
+                  >
+                </files-upload>
+          </div>          </div>
+      </div>
+    </div>
+
+        <div layout="column" layout-align="space between center" class="footer">
+            <div layout="row" layout-align="space-between-center" class="controls">
+              
+                <md-button ng-click="leadSummary.isLoggedIn && leadSummary.startSave()"
+                          id="save-lead"             
+                          ng-class="{'md-raised md-primary': leadSummary.isLoggedIn}"
+                          aria-label="post query"> Post
+                          <md-tooltip 
+                            md-direction="top">
+                            <span ng-hide="leadSummary.isLoggedIn">
+                              You need to Signin or register to post this querry.
+                            </span> 
+                            <span ng-show="leadSummary.isLoggedIn">
+                              Post now!
+                            </span>
+                          </md-tooltip>
+                </md-button>
+                <md-button ng-click="leadSummary.login($event)"
+                          ng-hide="leadSummary.isLoggedIn"
+                          class="md-raised md-warn md-hue-2"
+                          aria-label="sign in"> Sign In 
+                          <md-tooltip
+                            md-direction="bottom">
+                            <span ng-hide="leadSummary.isLoggedIn">
+                              Signin to post
+                            </span>
+                          </md-tooltip>
+                </md-button>
+                <md-button ng-click="leadSummary.register($event)"
+                          ng-hide="leadSummary.isLoggedIn"
+                          class="md-raised md-warn"
+                          aria-label="sign up"> Register
+                          <md-tooltip 
+                            md-direction="bottom">
+                            <span ng-hide="leadSummary.isLoggedIn">
+                              Register to post
+                            </span>
+                          </md-tooltip>
+                </md-button>
+
+
+            </div>        
+              </div>
+      </div>
+    </div>
+
+
+

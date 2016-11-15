@@ -5,15 +5,28 @@
 
     var main = 'lead'; // Change this with containing folder name
     var type = 'Summary';
-    function ControllerFunction($scope,$reactive,$cookies,AuthModals,$mdToast,$state,serviceName){
+    function ControllerFunction($scope,$reactive,AuthModals,$mdToast,$state,serviceName,leadSessionService,returnUrlService){
       'ngInject';
       ///////////Initialization Checks///////////
       var self = this;
       $reactive(self).attach($scope);
       
       ///////////Data///////////
-      var sessionStr = sessionStorage.getItem('foc.lead');
-      self.lead = angular.fromJson(sessionStr);
+      leadSessionService.get().then(function(res){
+      self.lead = res;      
+      },function(err){
+        console.log(err);
+      });
+
+      returnUrlService.get().then(function(res){
+        self.returnUrl = res;
+      },function(err){
+        self.returnUrl = {
+          stateName: 'app.landing',
+          stateParams: {}
+        };
+
+      });
       
       self.okToSave = false;
       if(self.lead){
@@ -34,6 +47,9 @@
         },         
         userId: function(){
           return Meteor.userId();
+        },
+        isAdmin: function(){
+          return Roles.userIsInRole(self.getReactively('userId'),'admin','default-group');
         }
       });
       
@@ -51,6 +67,19 @@
 
       ///////////Method Definitions///////////      
       function startSave(){
+        var lead = angular.copy(self.lead);
+        if(lead._id){          
+          if(lead.owner!==self.userId && !self.isAdmin){
+            $mdToast.show(
+                $mdToast.simple()
+                .textContent('Only the owner of this inquiry can update it.')               
+                .position('top right')
+                .action('x')
+                .hideDelay(5000)
+                );                
+                return;
+          }
+        }
         if(self.isLoggedIn){
           self.okToSave = true;
         }else{
@@ -59,25 +88,65 @@
       }
       function saveLead(){    
         var lead = angular.copy(self.lead); 
-        lead.owner = self.userId;   
-        Leads.insert(lead,function(err,id){
-          if(err){
-            console.log("error saving request..>",err);
-          }else{
-            console.log('document saved:',id);
-            // $cookies.remove('foc.lead');
-            sessionStorage.clear();
+        if(lead._id){
+          delete lead._id;
+          if(lead.owner!==self.userId && !self.isAdmin){
             $mdToast.show(
-              $mdToast.simple()
-              .textContent('Your inquiry is published successfully')               
-              .position('top right')
-              .action('x')
-              .hideDelay(5000)
-            );
+                $mdToast.simple()
+                .textContent('Only the owner of this lead can update it.')               
+                .position('top right')
+                .action('x')
+                .hideDelay(5000)
+                );                
+                return;
           }
-        });
+          lead.updatedBy = self.userId;
+          Leads.update(
+            {
+              _id: self.lead._id
+            },
+            {
+              $set: lead,
+            },
+            function(err,doc){
+              if(err){
+                console.log(err);                
+              }
+              else{
+                sessionStorage.clear();
+                $mdToast.show(
+                $mdToast.simple()
+                .textContent('Your inquiry is updated successfully')               
+                .position('top right')
+                .action('x')
+                .hideDelay(5000)
+                );
+                $state.go(self.returnUrl.stateName,self.returnUrl.stateParams);
+              }
+            }
+          );
 
-        $state.go('app.landing');
+        }else{
+          lead.owner = self.userId;
+          Leads.insert(lead,function(err,id){
+            if(err){
+              console.log("error saving request..>",err);
+            }else{
+              console.log('document saved:',id);
+              // $cookies.remove('foc.lead');
+              sessionStorage.clear();
+              $mdToast.show(
+                $mdToast.simple()
+                .textContent('Your inquiry is published successfully')               
+                .position('top right')
+                .action('x')
+                .hideDelay(5000)
+              );
+              $state.go(self.returnUrl.stateName,self.returnUrl.stateParams);
+            }
+          });
+        }   
+
 
       }
       function login(event){
@@ -87,8 +156,13 @@
         AuthModals.openRegisterModal(event);
       }
       function uploadedPictures(event){
+        //setup lead images
+        if(!self.lead.images){
+          self.lead.images = []
+        }
+        // if new images uploaded
         if(angular.isDefined(event.images)){
-          self.lead.images = event.images;
+          self.lead.images.insertArray(0,event.images);
         }
         self.saveLead();
       }
@@ -106,6 +180,9 @@
       'filesUpload',
       'imageUpload',
       'ServiceNameModule',
+      'leadSessionStorage',
+      'returnUrlModule',
+      'projectGallery',
       ])
   .component(name,{
     templateUrl: templateUrl,

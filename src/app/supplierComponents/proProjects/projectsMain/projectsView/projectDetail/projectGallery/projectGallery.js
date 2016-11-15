@@ -34,7 +34,10 @@
       self.update(event);
     }    
 
-    function remove(id,index){
+    function remove(id,index,event){
+      if(event){
+        event.stopPropagation();
+      }
       Images.remove({_id:id},function(error,doc){
         console.log(error);
         console.log(doc);
