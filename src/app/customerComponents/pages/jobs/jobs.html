@@ -1,26 +1,34 @@
-<div id="form-main" class="jobs page-layout carded fullwidth single-scroll" layout="column" flex>
+<div id="dashboard-customer" class="page-layout simple right-sidenav" layout="row">
 
-    <!-- TOP BACKGROUND -->
-    <div class="top-bg md-accent-bg" layout="column" flex></div>
-    <!-- / TOP BACKGROUND -->
 
     <!-- CENTER -->
-    <div class="center" layout="column" flex>
+    <div class="center" layout="column" ms-scroll flex>
 
         <!-- CONTENT HEADER -->
-        <div class="header">
-            <span class="h2 white-fg">Jobs</span>
-            <div class="search-wrapper md-whiteframe-4dp" layout="row" layout-align="start center" flex>
+        <div class="header md-accent-bg" layout="column" layout-align="space-between">
+            <div layout="row" layout-align="space-between">
+            <div>
+                <span class="md-display-1 font-weight-300 message">Welcome back, {{jobs.user.profile.name}}</span>
+            </div>
+             <div class="toolbar">
+                    <md-button class="md-icon-button sidenav-toggle" ng-click="jobs.toggleSidenav('sidenav')" hide-gt-md
+                               aria-label="Toggle sidenav">
+                        <md-icon md-font-icon="icon-menu" class="icon"></md-icon>
+                    </md-button>
+                </div>
+            </div>
+                
+            <!--<div class="search-wrapper md-whiteframe-4dp" layout="row" layout-align="start center" flex>
                 <div class="search" flex layout="row" layout-align="start center">
                     <md-icon md-font-icon="icon-magnify" class="icon s24"></md-icon>
                     <input flex ng-model="globalSearch" type="text" placeholder="Search for an e-mail or contact" translate translate-attr-placeholder="FORM.SEARCH_PLACEHOLDER">
                 </div>
-            </div>
+            </div>-->
         </div>
         <!-- / CONTENT HEADER -->
 
         <!-- CONTENT CARD -->
-        <div class="content-card outlook" layout="column" flex ui-view="jobview">
+        <div class="content" layout="column" flex ui-view="jobview">
 
 
         </div>
@@ -28,5 +36,163 @@
 
     </div>
     <!-- / CENTER -->
+     <md-sidenav class="sidenav md-sidenav-right" md-is-locked-open="$mdMedia('gt-md')" md-component-id="sidenav"
+                ms-scroll ms-sidenav-helper>
+
+        <!-- WIDGET GROUP -->
+        <div class="widget-group">
+
+            <!-- NOW WIDGET -->
+            <ms-widget flippable="false" class="sidenav-widget">
+
+                <!-- Front -->
+                <ms-widget-front>
+
+                    <div class="pl-16 pr-8 pv-16" layout="row" layout-align="space-between center">
+                        <div class="h3">{{jobs.nowWidget.now.weekDay}},
+                            {{jobs.nowWidget.now.hour}}:{{jobs.nowWidget.now.minute}}:{{jobs.nowWidget.now.second}}
+                        </div>
+
+                        <md-menu>
+                            <md-button class="md-icon-button" ng-click="$mdOpenMenu()" md-menu-origin
+                                       md-menu-align-target
+                                       aria-label="Options">
+                                <md-icon md-font-icon="icon-dots-vertical" class="icon"></md-icon>
+                            </md-button>
+
+                            <md-menu-content width="3">
+                                <md-menu-item>
+                                    <md-button ng-click="jobs.nowWidget.dummyFunction()">
+                                        <md-icon md-font-icon="icon-refresh" class="icon"></md-icon>
+                                        Refresh
+                                    </md-button>
+                                </md-menu-item>
+                                <md-menu-item>
+                                    <md-button ng-click="jobs.nowWidget.dummyFunction()">
+                                        <md-icon md-font-icon="icon-cog" class="icon"></md-icon>
+                                        Settings
+                                    </md-button>
+                                </md-menu-item>
+                            </md-menu-content>
+                        </md-menu>
+                    </div>
+
+                    <div class="p-16 pb-24" layout="column" layout-align="center center">
+                        <div class="h1 secondary-text">
+                            <span>{{jobs.nowWidget.now.month}}</span>
+                        </div>
+
+                        <div class="font-size-72 line-height-88 secondary-text font-weight-400">
+                            {{jobs.nowWidget.now.day}}
+                        </div>
+
+                        <div class="h1 secondary-text">
+                            <span>{{jobs.nowWidget.now.year}}</span>
+                        </div>
+                    </div>
+
+                    <md-divider></md-divider>
+
+                </ms-widget-front>
+                <!-- / Front -->
+
+            </ms-widget>
+            <!-- / NOW WIDGET -->
+
+
+            <!-- WEATHER WIDGET -->
+            <ms-widget flippable="false" class="sidenav-widget">
+
+                <!-- Front -->
+                <ms-widget-front>
+
+                    <div class="pl-16 pr-8 pv-16" layout="row" layout-align="space-between center">
+                        <div class="h4">
+                            <md-icon md-font-icon="icon-map-marker" class="icon mr-8"></md-icon>
+                            {{jobs.weatherWidget.locations[jobs.weatherWidget.currentLocation].name}}
+                        </div>
+
+                        <md-menu>
+                            <md-button class="md-icon-button" ng-click="$mdOpenMenu()" md-menu-origin
+                                       md-menu-align-target
+                                       aria-label="Options">
+                                <md-icon md-font-icon="icon-dots-vertical" class="icon"></md-icon>
+                            </md-button>
+
+                            <md-menu-content width="3">
+                                <md-menu-item>
+                                    <md-button ng-click="jobs.nowWidget.dummyFunction()">
+                                        <md-icon md-font-icon="icon-refresh" class="icon"></md-icon>
+                                        Refresh
+                                    </md-button>
+                                </md-menu-item>
+                                <md-menu-item>
+                                    <md-button ng-click="jobs.nowWidget.dummyFunction()">
+                                        <md-icon md-font-icon="icon-cog" class="icon"></md-icon>
+                                        Settings
+                                    </md-button>
+                                </md-menu-item>
+                            </md-menu-content>
+                        </md-menu>
+                    </div>
+
+                    <div class="p-16 pb-32" layout="column" layout-align="center center">
+                        <div layout="row" layout-align="center center">
+                            <md-icon
+                                    md-font-icon="{{jobs.weatherWidget.locations[jobs.weatherWidget.currentLocation].icon}}"
+                                    class="icon s40 mr-16"></md-icon>
+                            <span class="md-display-2 font-weight-300 secondary-text">
+                                {{jobs.weatherWidget.locations[jobs.weatherWidget.currentLocation].temp[jobs.weatherWidget.tempUnit]}}
+                            </span>
+                            <span class="font-size-48 font-weight-300 hint-text text-super ml-8">&deg;</span>
+                            <span class="md-display-2 font-weight-300 hint-text">{{jobs.weatherWidget.tempUnit}}</span>
+                        </div>
+                    </div>
+
+                    <div class="grey-300-bg p-16" layout="row" layout-align="space-between center">
+                        <div layout="row" layout-align="start center">
+                            <md-icon md-font-icon="icon-weather-windy" class="icon mr-8 s20"></md-icon>
+                            <span>
+                                {{jobs.weatherWidget.locations[jobs.weatherWidget.currentLocation].windSpeed[jobs.weatherWidget.speedUnit]}}
+                            </span>
+                            <span class="secondary-text ml-5">{{jobs.weatherWidget.speedUnit}}</span>
+                        </div>
+
+                        <div layout="row" layout-align="start center">
+                            <md-icon md-font-icon="icon-compass-outline" class="icon mr-8 s20"></md-icon>
+                            <span>{{jobs.weatherWidget.locations[jobs.weatherWidget.currentLocation].windDirection}}</span>
+                        </div>
+
+                        <div layout="row" layout-align="start center">
+                            <md-icon md-font-icon="icon-umbrella" class="icon mr-8 s20"></md-icon>
+                            <span>{{jobs.weatherWidget.locations[jobs.weatherWidget.currentLocation].rainProbability}}</span>
+                        </div>
+                    </div>
+
+                    <div class="pv-16">
+                        <div class="pv-16 ph-24" layout="row" layout-align="space-between center"
+                             ng-repeat="day in jobs.weatherWidget.locations[jobs.weatherWidget.currentLocation].next3Days">
+                            <span class="h4">{{day.name}}</span>
+                            <div layout="row" layout-align="start center">
+                                <md-icon class="mr-16" md-font-icon="{{day.icon}}" class="icon"></md-icon>
+                                <span class="h2">{{day.temp[jobs.weatherWidget.tempUnit]}}</span>
+                                <span class="h2 font-weight-300 secondary-text text-super">&deg;</span>
+                                <span class="h2 font-weight-300 secondary-text">{{jobs.weatherWidget.tempUnit}}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <md-divider></md-divider>
+
+                </ms-widget-front>
+                <!-- / Front -->
+
+            </ms-widget>
+            <!-- / WEATHER WIDGET -->
+
+        </div>
+        <!-- / WIDGET GROUP -->
+
+    </md-sidenav>
 
 </div>

@@ -43,7 +43,7 @@
         $state.go('app.adminDashboard');
       }
       else{
-        $state.go('app.dashboard');
+        $state.go('jobs.dashboard');
       }
     }
 

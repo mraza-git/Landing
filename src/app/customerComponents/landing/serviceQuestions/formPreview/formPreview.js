@@ -52,7 +52,7 @@
     }
 
     function setupLead(){
-      if(!self.lead.hasOwnProperty('_id')){
+      if(!self.lead){
         self.lead = {pages:[{questions:[]}]};
         self.lead.createdAt = new Date();      
         self.lead.serviceId = self.service._id;

@@ -15,7 +15,7 @@
         <div id="quote-owner" class="padding-5-10" layout="row" layout-xs="column" flex>
             <div layout="row" layout-sm="column" flex-gt-xs="40" flex>
             <div class="name" layout="row" layout-align="start center" flex>
-                
+                <md-icon ng-if="quoteOwner.isShortListed" md-font-icon="icon-star" style="position: absolute;color: goldenrod;left: 10px;top: 10px;"></md-icon>
                 <thumb-image ng-show="quoteOwner.user.profile.dpThumbUrl" image-id="quoteOwner.user.profile.dpImageId" image-class="avatar"></thumb-image>
                 <!--<span class="text-truncate">{{quoteOwner.quote.quoteMessage}}</span>-->
                 <div layout="column">
@@ -85,7 +85,7 @@
 
             <md-menu-content width="2">
                  <md-menu-item>
-                    <md-button ng-click="quoteOwner.acceptOffer($event)" ng-disabled="quote.status === 'accepted'" id="accept" >
+                    <md-button ng-click="quoteOwner.acceptOffer($event)" ng-disabled="quote.status === 'accepted' || quoteOwner.job.assignedTo" id="accept" >
                         <md-icon md-menu-align-target md-font-icon="icon-trash" ></md-icon>
                         Accept Offer
                     </md-button>

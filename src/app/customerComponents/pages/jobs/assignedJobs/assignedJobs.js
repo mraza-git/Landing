@@ -95,7 +95,7 @@
   }
 
   var name = main + type; // Change This with Component Name
-  var templateUrl = 'app/customerComponents/pages/' + 'activeJobs' + '/' + 'activeJobs' + '.html';
+  var templateUrl = 'app/customerComponents/pages/jobs/' + 'activeJobs' + '/' + 'activeJobs' + '.html';
   var controller = ControllerFunction;
   angular
     .module(name, [

@@ -1,87 +1,168 @@
-#contactus {
-    .top-image {
-        height: 320px;
-        min-height: 320px;
-        max-height: 320px;
-        background: url("/assets/images/backgrounds/fix-landing-bg.jpg") no-repeat 0 45%;
-        background-size: 100% auto;
-    }
-}
-
-#form-main {
-    &.jobs {
-        height: 100% !important;
-        .center {
-            max-height: 95% !important;
-        }
-        .foc-nav {
-            height: 64px;
-            margin: 0;
-            border-radius: 0;
-            padding: 14px 14px 0;
-            display: block;
-        }
-        .foc-nav:hover,
-        .foc-nav:focus {
-            height: 64px;
-            margin: 0;
-            border-radius: 0;
-            padding: 14px 14px 0;
-            border-bottom: solid 2px rgb(84, 110, 122);
-            display: block;
-        }
-        .foc-nav-active {
-            height: 64px;
-            margin: 0;
-            border-radius: 0;
-            padding: 0;
-            border-bottom: solid 2px rgb(84, 110, 122);
-            display: block;
-        }
-        .content-card {
-            .content-wrapper {
-                width: 100% !important;                
-                .thread-list {                    
-                    padding: 15px 0px !important;
-                    overflow-x: hidden !important;
+#dashboard-customer {
+    >.center {
+        >.header {
+            height: 160px;
+            min-height: 160px;
+            max-height: 160px;
+            padding-bottom: 0;
+            .selected-project {
+                background: rgba(0, 0, 0, 0.12);
+                color: #FFFFFF;
+                padding: 8px 16px;
+                height: 40px;
+                line-height: 24px;
+                font-size: 16px;
+            }
+            .project-selector {
+                margin-left: 1px;
+                border-radius: 0;
+                background: rgba(0, 0, 0, 0.12);
+                md-icon {
+                    color: #FFFFFF;
                 }
             }
         }
-        // .foc-nav-active {
-        //     border-bottom: solid 2px rgb(84,110,122);
-        // }
-        // .thread { 
-        //     padding-10 {  
-        //         padding-left: 10px !important;  
-        //     }
-        // .md-button {
-        //     padding: 0 0px;
-        //     margin: 6px 8px;
-        //     line-height: 26px;
-        //     min-height: 26px;
-        //     height: 26px;
-        //     min-width: 66px;
-        //     font-weight: 500;
-        //     font-size: 12px;
-        //     margin-right: 10px;
-        //    top: 12px;
-        //      }
-        // }
-        // .name {
-        //     font-size: 15px;
-        //     font-weight: 500;
-        //     padding-bottom: 8px;
-        // }
-        // form-services {
-        //     label {
-        //             max-width: 89px;
-        //             min-width: 89px;
-        //             text-align: center;
-        //             display: block;
-        //             overflow: hidden;
-        //             text-overflow: ellipsis;
-        //             white-space: nowrap !important;
-        //     }
-        // }
+        >.content {
+            background: none;
+            padding: 0;
+            .toolbar {
+                height: 56px;
+                background: #FFF;
+                box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 2px 1px -1px rgba(0, 0, 0, .12);
+                padding: 0 24px;
+            }
+            .content-wrapper {                
+                background: #FAFAFA;
+                margin: 10px 0px;
+                .thread-list {
+                    background: #FAFAFA;
+                    position: relative;
+                    padding: 0;
+                    border-right: 1px solid rgba(0, 0, 0, 0.12);
+                    .no-threads {
+                        background: #FAFAFA;
+                        width: 100%;
+                        text-align: center;
+                        padding: 32px;
+                        font-size: 20px;
+                    }
+                    .loading-threads {
+                        background: #FAFAFA;
+                        width: 100%;
+                        text-align: center;
+                        padding: 32px;
+                        font-size: 20px;
+                    }
+                    .changed {
+                        font-size: 150px;
+                        line-height: 0px;
+                        height: 20px;
+                        margin-bottom: 40px;
+                    }
+                    .thread {
+                        background: #FAFAFA;
+                        position: relative;
+                        padding: 10px;
+                        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+                        cursor: pointer;
+                        &.unread {
+                            background: #FFFFFF;
+                            .info {
+                                .name,
+                                .subject {
+                                    font-weight: 700;
+                                }
+                                .message {
+                                    .labels {
+                                        background: #FFFFFF;
+                                    }
+                                }
+                            }
+                        }
+                        &.selected {
+                            background: #FFF8E1;
+                            .info {
+                                .message {
+                                    .labels {
+                                        background: #FFF8E1;
+                                    }
+                                }
+                            }
+                        }
+                        &.current-thread {
+                            background: #E3F2FD;
+                            .info {
+                                .message {
+                                    .labels {
+                                        background: #E3F2FD;
+                                    }
+                                }
+                            }
+                        }
+                        .info {
+                            overflow: hidden;
+                            width: 0;
+                            margin: 0 16px;
+                            .name {
+                                font-size: 15px;
+                                font-weight: 500;
+                                padding-bottom: 8px;
+                                .avatar {
+                                    min-width: 32px;
+                                    width: 32px;
+                                    height: 32px;
+                                    line-height: 32px;
+                                }
+                                .has-attachment {
+                                    margin-left: 8px;
+                                    transform: rotate(90deg);
+                                }
+                            }
+                            .subject {}
+                            .message {
+                                position: relative;
+                                color: rgba(0, 0, 0, 0.54);
+                                .labels {
+                                    position: absolute;
+                                    background: #FAFAFA;
+                                    top: 0;
+                                    right: 0;
+                                    padding-left: 6px;
+                                    .label {
+                                        display: inline-block;
+                                        font-size: 11px;
+                                        padding: 0 5px;
+                                        margin-left: 6px;
+                                        &:first-child {
+                                            margin-left: 0;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        .time {
+                            margin: 0 8px 6px;
+                        }
+                    }
+                }
+            }
+        }
     }
+    >.sidenav {
+        width: 330px;
+        min-width: 330px;
+        max-width: 330px;
+        padding: 0;
+        z-index: 51;
+        box-shadow: $whiteframe-shadow-8dp;
+        &._md-locked-open {
+            width: 250px;
+            min-width: 250px;
+            max-width: 250px;
+            z-index: 2;
+            box-shadow: none;
+            background: material-color('grey', '200');
+        }
+    }
+    #widgets {}
 }

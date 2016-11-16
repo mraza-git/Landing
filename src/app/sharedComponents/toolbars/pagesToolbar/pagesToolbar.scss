@@ -49,3 +49,32 @@
         padding: 14px 14px 0;
     }
 }
+
+
+
+.foc-nav {
+    height: 64px;
+    margin: 0;
+    border-radius: 0;
+    padding: 14px 14px 0;
+    display: block;
+}
+
+.foc-nav:hover,
+.foc-nav:focus {
+    height: 64px;
+    margin: 0;
+    border-radius: 0;
+    padding: 14px 14px 0;
+    /*border-bottom: solid 2px rgb(84, 110, 122);*/
+    display: block;
+}
+
+.foc-nav-active {
+    height: 64px;
+    margin: 0;
+    border-radius: 0;
+    padding: 0;
+    border-bottom: solid 2px rgb(84, 110, 122);
+    display: block;
+}

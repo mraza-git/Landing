@@ -59,7 +59,8 @@
       controller: controller,
       controllerAs: name,
       bindings: {        
-        currentProject: '=',       
+        currentProject: '=',   
+        showGallery:'<',    
         
       }
     });   
