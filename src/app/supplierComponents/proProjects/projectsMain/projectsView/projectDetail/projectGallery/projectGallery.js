@@ -67,7 +67,7 @@
         images: '<', 
         readonly: '<',
         saveNow: '&',      // save original document.
-        
+        inline: "<",
       }
     });   
 

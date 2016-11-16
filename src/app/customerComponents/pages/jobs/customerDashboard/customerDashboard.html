@@ -1,0 +1,349 @@
+<!-- CONTENT TOOLBAR -->
+<div class="toolbar" layout="row" layout-align="space between center">
+    <div layout="row">
+        bread > crum > kindofthing
+    </div>
+    <div>
+        <div class="h3">
+            <md-select ng-model="customerDashboard.period" 
+                       multiple="false"
+                       placeholder = "pick a period"                      
+                       >
+              <md-option ng-value="option" ng-selected="customerDashboard.period.id==option.id" ng-repeat="option in customerDashboard.periodOptions track by option.id">
+                {{ option.name }}
+             </md-option>
+            </md-select>
+        </div>
+
+
+        <!--<md-select ng-model="activeJobs.sort" 
+                   multiple="false"                   
+                   md-on-close="$event.stopPropagation()"                   
+                   placeholder="sort by">
+          <md-option ng-value="option.value" ng-repeat="option in activeJobs.sortOptions">
+            {{ option.name }}
+         </md-option>
+        </md-select>-->
+    </div>
+    <!--<ui-breadcrumbs displayname-property="data.displayName">
+                </ui-breadcrumbs>-->
+</div>
+<!-- / CONTENT TOOLBAR -->
+
+
+<md-content class="content-wrapper md-background-bg md-hue-2" layout="column" flex>
+
+    <!-- WIDGET GROUP -->
+    <div class="widget-group " layout="row" flex="100" layout-wrap>
+
+        <!-- WIDGET 1 -->
+        <ms-widget flippable="true" class="foc-tile" layout="column" flex="100" flex-gt-xs="33" flex-gt-md="25">
+
+            <!-- Front -->
+            <ms-widget-front class="white-bg" ng-click="flipWidget()">
+                <div class="ph-8 pv-16 h-55" layout="row" layout-align="space-between center">
+                    <div class="h3">Total# of</div>
+                    <md-menu>
+                        <md-button class="md-icon-button" ng-click="$mdOpenMenu()" aria-label="more">
+                            <md-icon md-font-icon="icon-dots-vertical"></md-icon>
+                        </md-button>
+
+                        <md-menu-content width="3">
+                            <md-menu-item>
+                                <md-button ng-click="flipWidget()" aria-label="Flip widget">
+                                    Preview
+                                </md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button ng-click="refreshWidget()" aria-label="Refresh widget">
+                                    View All
+                                </md-button>
+                            </md-menu-item>
+                        </md-menu-content>
+                    </md-menu>
+                </div>
+
+                <div class="pt-8 pb-32" layout="column" layout-align="center center">
+                    <div class="light-blue-fg font-size-72 line-height-72">
+                        {{customerDashboard.quotesCount || 0}}
+                    </div>
+                    <div class="h3 secondary-text font-weight-500">Quotes Recieved</div>
+                </div>
+
+                <div class="p-16 grey-50-bg border-top" layout="row" layout-align="start center">
+                    <span class="h4 secondary-text text-truncate">Accepted:</span>
+                    <span class="h4 ml-8">{{customerDashboard.assignedCount}}</span>
+                </div>
+            </ms-widget-front>
+            <!-- / Front -->
+
+            <!-- Back -->
+            <ms-widget-back class="p-16 white-bg" ng-click="flipWidget()">
+                <div class="flip-to-front">
+                    <md-button class="md-icon-button" ng-click="flipWidget()" aria-label="Flip widget">
+                        <md-icon md-font-icon="icon-close" class="s16"></md-icon>
+                    </md-button>
+                </div>
+
+                <div>
+                    {{customerDashboard.widget1.detail}}
+                </div>
+            </ms-widget-back>
+            <!-- / Back -->
+
+        </ms-widget>
+        <!-- / WIDGET 1 -->
+
+        <!-- WIDGET 2 -->
+        <ms-widget flippable="true" class="foc-tile" layout="column" flex="100" flex-gt-xs="33" flex-gt-md="25">
+
+            <!-- Front -->
+            <ms-widget-front class="white-bg">
+                <div class="pl-16 pr-8 pv-16 h-55" layout="row" layout-align="space-between center">
+                    <div class="h3">Till Date</div>
+
+                    <md-menu>
+                        <md-button class="md-icon-button" ng-click="$mdOpenMenu()" aria-label="more">
+                            <md-icon md-font-icon="icon-dots-vertical"></md-icon>
+                        </md-button>
+
+                        <md-menu-content width="2">
+                            <md-menu-item>
+                                <md-button ng-click="flipWidget()" aria-label="Flip widget">
+                                    Details
+                                </md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button ng-click="refreshWidget()" aria-label="Refresh widget">
+                                    Refresh
+                                </md-button>
+                            </md-menu-item>
+                        </md-menu-content>
+                    </md-menu>
+                </div>
+
+                <div class="pt-8 pb-32" layout="column" layout-align="center center">
+                    <div class="red-fg font-size-72 line-height-72">
+                        {{customerDashboard.jobsCount}}
+                    </div>
+                    <div class="h3 secondary-text font-weight-500">Issues Logged</div>
+                </div>
+
+                <div class="p-16 grey-50-bg border-top" layout="row" layout-align="start center">
+                    <span class="h4 secondary-text text-truncate">{{customerDashboard.jobsCount}}</span>
+                    <span class="h4 ml-8"> is a small number, share more of your burden</span>
+                </div>
+            </ms-widget-front>
+            <!-- / Front -->
+
+            <!-- Back -->
+            <ms-widget-back class="p-16 white-bg">
+                <div class="flip-to-front">
+                    <md-button class="md-icon-button" ng-click="flipWidget()" aria-label="Flip widget">
+                        <md-icon md-font-icon="icon-close" class="s16"></md-icon>
+                    </md-button>
+                </div>
+
+                <div>
+                    {{customerDashboard.widget2.detail}}
+                </div>
+            </ms-widget-back>
+            <!-- / Back -->
+
+        </ms-widget>
+        <!-- / WIDGET 2 -->
+
+        <!-- WIDGET 3 -->
+        <ms-widget flippable="true" class="foc-tile" layout="column" flex="100" flex-gt-xs="33" flex-gt-md="25">
+
+            <!-- Front -->
+            <ms-widget-front class="white-bg">
+                <div class="pl-16 pr-8 pv-16 h-55" layout="row" layout-align="space-between center">
+                    <div class="h3">Till Date</div>
+
+                    <md-menu>
+                        <md-button class="md-icon-button" ng-click="$mdOpenMenu()" aria-label="more">
+                            <md-icon md-font-icon="icon-dots-vertical"></md-icon>
+                        </md-button>
+
+                        <md-menu-content width="2">
+                            <md-menu-item>
+                                <md-button ng-click="flipWidget()" aria-label="Flip widget">
+                                    Details
+                                </md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button ng-click="refreshWidget()" aria-label="Refresh widget">
+                                    Refresh
+                                </md-button>
+                            </md-menu-item>
+                        </md-menu-content>
+                    </md-menu>
+                </div>
+
+                <div class="pt-8 pb-32" layout="column" layout-align="center center">
+                    <div class="orange-fg font-size-72 line-height-72">
+                        {{customerDashboard.assignedCount}}
+                    </div>
+                    <div class="h3 secondary-text font-weight-500">Issues Resolved</div>
+                </div>
+
+                <div class="p-16 grey-50-bg border-top" layout="row" layout-align="start center">
+                    <span class="h4 secondary-text text-truncate">{{customerDashboard.assignedCount}}</span>
+                    <span class="h4 ml-8"> issues off your shoulder</span>
+                </div>
+            </ms-widget-front>
+            <!-- / Front -->
+
+            <!-- Back -->
+            <ms-widget-back class="p-16 white-bg">
+                <div class="flip-to-front">
+                    <md-button class="md-icon-button" ng-click="flipWidget()" aria-label="Flip widget">
+                        <md-icon md-font-icon="icon-close" class="s16"></md-icon>
+                    </md-button>
+                </div>
+
+                <div>
+                    {{customerDashboard.widget3.detail}}
+                </div>
+            </ms-widget-back>
+            <!-- / Back -->
+
+        </ms-widget>
+        <!-- / WIDGET 3 -->
+
+        <!-- WIDGET 4 -->
+        <ms-widget flippable="true" class="foc-tile" layout="column" flex="100" flex-gt-xs="33" flex-gt-md="25">
+
+            <!-- Front -->
+            <ms-widget-front class="white-bg">
+                <div class="pl-16 pr-8 pv-16 h-55" layout="row" layout-align="space-between center">
+                    <div class="h3">Estimated Savings (AED)</div>
+
+                    <md-menu>
+                        <md-button class="md-icon-button" ng-click="$mdOpenMenu()" aria-label="more">
+                            <md-icon md-font-icon="icon-dots-vertical"></md-icon>
+                        </md-button>
+
+                        <md-menu-content width="2">
+                            <md-menu-item>
+                                <md-button ng-click="flipWidget()" aria-label="Flip widget">
+                                    Details
+                                </md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button ng-click="refreshWidget()" aria-label="Refresh widget">
+                                    Refresh
+                                </md-button>
+                            </md-menu-item>
+                        </md-menu-content>
+                    </md-menu>
+                </div>
+
+                <div class="pt-8 pb-32" layout="column" layout-align="center center">
+                    <div class="blue-grey-fg font-size-72 line-height-72">1250
+                    </div>
+                    <div class="h3 secondary-text font-weight-500">Saved so far</div>
+                </div>
+
+                <div class="p-16 grey-50-bg border-top" layout="row" layout-align="start center">
+                    <span class="h4 secondary-text text-truncate">{{customerDashboard.widget4.detail}}
+                </div>
+            </ms-widget-front>
+
+            <!-- Back -->
+            <ms-widget-back class="p-16 white-bg">
+                <div class="flip-to-front">
+                    <md-button class="md-icon-button" ng-click="flipWidget()" aria-label="Flip widget">
+                        <md-icon md-font-icon="icon-close" class="s16"></md-icon>
+                    </md-button>
+                </div>
+
+                <div>
+                    {{customerDashboard.widget3.detail}}
+                </div>
+            </ms-widget-back>
+            <!-- / Back -->
+
+        </ms-widget>
+        <!-- / WIDGET 4 -->
+    </div>
+    <!-- / WIDGET GROUP -->
+
+    <!-- WIDGET GROUP -->
+    <div class="widget-group" layout="row" flex="100" layout-wrap>
+
+        <!-- WIDGET 5 -->
+        <ms-widget class="foc-tile" layout="column" flex="100" flex-gt-sm="50">
+
+            <!-- Front -->
+            <ms-widget-front class="white-bg">
+
+                <div class="ph-16 border-bottom" layout="row" layout-align="space-between center">
+                    <div class="h3">Issues Distribution</div>
+                    <div class="pv-16">
+                        <md-select class="simplified" ng-model="customerDashboard.widget6.currentRange" ng-change="customerDashboard.widget6.changeRange(customerDashboard.widget6.currentRange)"
+                            aria-label="Change range">
+                            <md-option ng-repeat="(key, range) in customerDashboard.widget6.ranges" value="{{key}}">
+                                {{range}}
+                            </md-option>
+                        </md-select>
+                    </div>
+                </div>
+
+                <div class="p-16">
+                    <nvd3 class="h-400" 
+                        config="customerDashboard.widget6.mainChart.config" 
+                        options="customerDashboard.widget6.mainChart.options"
+                        data="customerDashboard.widget6.mainChart.data">
+                    </nvd3>
+                </div>
+
+                <div class="pv-8 mh-16 border-top" layout="row" layout-align="start center" layout-wrap>
+                    <div class="pv-8 border-right" layout="column" layout-align="center center" flex="100" flex-gt-xs="50">
+                        <span class="font-size-32">{{customerDashboard.widget6.footerLeft.count[customerDashboard.widget6.currentRange]}}</span>
+                        <span class="h4">{{customerDashboard.widget6.footerLeft.title}}</span>
+                    </div>
+
+                    <div class="pv-8" layout="column" layout-align="center center" flex="100" flex-gt-xs="50">
+                        <span class="font-size-32">{{customerDashboard.widget6.footerRight.count[customerDashboard.widget6.currentRange]}}</span>
+                        <span class="h4">{{customerDashboard.widget6.footerRight.title}}</span>
+                    </div>
+                </div>
+
+            </ms-widget-front>
+            <!-- / Front -->
+
+        </ms-widget>
+        <!-- / WIDGET 5 -->
+
+        <!-- WIDGET 6 -->
+        <ms-widget class="foc-tile" layout="column" flex="100" flex-gt-sm="50">
+
+            <!-- Front -->
+            <ms-widget-front class="white-bg">
+
+                <div class="ph-16 border-bottom" layout="row" layout-align="space-between center">
+                    <div class="h3">{{customerDashboard.widget7.currentRange]">
+                        <div>
+                            <div class="h3">{{event.title}}</div>
+                            <div>
+                                <span class="secondary-text">{{event.time}}</span>
+                                <span ng-if="event.location">, {{event.location}}</span>
+                            </div>
+                        </div>
+
+                        <md-button class="md-icon-button" aria-label="More information">
+                            <md-icon md-font-icon="icon-dots-vertical"></md-icon>
+                        </md-button>
+                    </div>
+
+            </ms-widget-front>
+            <!-- / Front -->
+
+        </ms-widget>
+        <!-- / WIDGET 6 -->
+
+        </div>
+        <!-- / WIDGET GROUP -->
+</md-content>

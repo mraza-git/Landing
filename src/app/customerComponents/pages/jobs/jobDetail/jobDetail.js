@@ -49,12 +49,28 @@
     self.helpers({
       quotes: function () {
         delete self.sort.$$mdSelectId;
-        return Quotes.find({
-          leadId: self.jobId,
-        },{
-          sort: self.getReactively('sort')
+        var quotes;
+        if(self.getReactively('showShortListed')){
+          quotes = Quotes.find(
+            {
+            leadId: self.jobId,
+            _id:{$in:self.getReactively('job.shortList') || []}
+            },
+            {
+            sort: self.getReactively('sort')
+            }
+          );
+        }else{
+          quotes = Quotes.find(
+            {
+            leadId: self.jobId,
+            },
+            {
+            sort: self.getReactively('sort')
+            }
+          );
         }
-        );
+        return quotes; 
       },
       job: function () {
         var job =Leads.findOne({
@@ -116,7 +132,7 @@
   }
 
   var name = main + type; // Change This with Component Name
-  var templateUrl = 'app/customerComponents/pages/' + name + '/' + name + '.html';
+  var templateUrl = 'app/customerComponents/pages/jobs/' + name + '/' + name + '.html';
   var controller = ControllerFunction;
   angular
     .module(name, [
