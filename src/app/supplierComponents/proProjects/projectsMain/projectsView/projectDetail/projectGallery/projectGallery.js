@@ -72,3 +72,12 @@
     });   
 
 })();
+
+var slideShow = function (event) {  
+    event = event || window.event;
+    var target = event.target || event.srcElement,
+        link = target.src ? target.parentNode : target,
+        options = {index: link, event: event},
+        links = document.getElementsByClassName('foc-image-slides');
+    blueimp.Gallery(links, options);
+};

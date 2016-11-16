@@ -1,3 +1,8 @@
+<script>
+
+</script>
+
+
 <!-- DETAILS PAGE -->
 <div ng-show="projectGallery.images.length>0" flex layout="column" class="slide-top" ng-class="{'md-whiteframe-2dp':!projectGallery.inline}" ng-cloak>
   <!--  HEADER-->
@@ -26,12 +31,12 @@
         <!--<a id="gallery-image" class="post__image-container img-box-shadow" ng-click="projectGallery.openLightBoxModal($index)">-->
                 <!--<img ng-src="{{file.url}}"
                 class="post__featured-image toggle img-thumbnail"
-                alt="alt"/>            -->
+        alt="alt"/>            -->
         <div 
           class="post__image-container"
           ng-if="projectGallery.readonly"
-          onclick="showSlideShow(event)">              
-          <a href="{{file.url}}">
+          onclick="slideShow(event)">              
+          <a class="foc-image-slides" href="{{file.url}}">
             <img ng-src="{{file.url}}" alt="{{file.url}}" class="post__featured-image">
           </a>
         </div>
@@ -39,13 +44,13 @@
         <div 
           class="post__image-container"
           ng-if="!projectGallery.readonly"
-          onclick="showSlideShow(event)">
+          onclick="slideShow(event)">
           <md-icon              
               ng-click="projectGallery.remove(file.id,$index,$event)" 
               md-font-icon="icon-minus-circle-outline"
               aria-label="remove" class="md-raised md-icon-button md-accent icon-remove s25" style="cursor:pointer;">     
           </md-icon> 
-          <a href="{{file.url}}">
+          <a class="foc-image-slides" href="{{file.url}}">
             <img ng-src="{{file.url}}" alt="{{file.url}}" class="post__featured-image">
           </a>
         </div>        
@@ -78,13 +83,3 @@
 </pre>-->
 
 <!--  /DETAILS PAGE-->
-<script>
-var showSlideShow = function (event) {
-    event = event || window.event;
-    var target = event.target || event.srcElement,
-        link = target.src ? target.parentNode : target,
-        options = {index: link, event: event},
-        links = document.getElementsByTagName('a');
-    blueimp.Gallery(links, options);
-};
-</script>

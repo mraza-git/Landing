@@ -29,39 +29,39 @@ Meteor.subscribe("categories");
       return function (scope, element, attrs) {
         angular.element(document.getElementById('content')).bind("scroll", function () {
 
-            var elemContent = document.getElementById('content');            
-            var elemHowItWorks =  document.getElementById('work');
-            var elemVideo = document.getElementById('video');
-            var elemCategories = document.getElementById('categories');
-            var elemPartner = document.getElementById('partner');
-          
-          var elemPartnerTopRect = elemPartner.getBoundingClientRect().top - elemContent.offsetHeight/1.2;          
-          var elemVideoTopRect = elemVideo.getBoundingClientRect().top - elemContent.offsetHeight/1.2;    
-          var elemCategoriesTopRect = elemCategories.getBoundingClientRect().top - elemContent.offsetHeight/1.2;       
-          var elemHowItWorksTopRect = elemHowItWorks.getBoundingClientRect().top - elemContent.offsetHeight/1.2;
-            
-            
-          if (elemPartnerTopRect <=0) {
-            scope.partnerReached = true;            
-          }else{
-            scope.partnerReached = false;            
-          }       
+          var elemContent = document.getElementById('content');
+          var elemHowItWorks = document.getElementById('work');
+          var elemVideo = document.getElementById('video');
+          var elemCategories = document.getElementById('categories');
+          var elemPartner = document.getElementById('partner');
 
-          if (elemVideoTopRect <=0) {
+          var elemPartnerTopRect = elemPartner.getBoundingClientRect().top - elemContent.offsetHeight / 1.2;
+          var elemVideoTopRect = elemVideo.getBoundingClientRect().top - elemContent.offsetHeight / 1.2;
+          var elemCategoriesTopRect = elemCategories.getBoundingClientRect().top - elemContent.offsetHeight / 1.2;
+          var elemHowItWorksTopRect = elemHowItWorks.getBoundingClientRect().top - elemContent.offsetHeight / 1.2;
+
+
+          if (elemPartnerTopRect <= 0) {
+            scope.partnerReached = true;
+          } else {
+            scope.partnerReached = false;
+          }
+
+          if (elemVideoTopRect <= 0) {
             scope.videoReached = true;
-          }else{
+          } else {
             scope.videoReached = false;
           }
 
-          if (elemCategoriesTopRect <=0) {
+          if (elemCategoriesTopRect <= 0) {
             scope.categoriesReached = true;
-          }else{
+          } else {
             scope.categoriesReached = false;
           }
 
-          if (elemHowItWorksTopRect <=0) {
+          if (elemHowItWorksTopRect <= 0) {
             scope.howItWorksReached = true;
-          }else{
+          } else {
             scope.howItWorksReached = false;
           }
           scope.$apply();
@@ -139,8 +139,7 @@ Meteor.subscribe("categories");
     });
     self.counter = [];
 
-    ////////////////Method Declarations///////////////////
-    self.checkBrowser = checkBrowser;
+    ////////////////Method Declarations///////////////////    
     self.showImage = showImage;
     self.openServiceListDialog = openServiceListDialog;
     self.typedFunction = typedFunction;
@@ -165,29 +164,12 @@ Meteor.subscribe("categories");
     function showImage(index, length) {
       self.counter++;
       if (self.counter >= length) {
-        self.checkBrowser();
+        checkBrowser();
         self.imageShow = true;
       }
     }
 
-    function checkBrowser() {
-      if (!Modernizr.objectfit) {
-        console.log("Old Browser")
-        $('.post__image-container').each(function () {
-          var $container = $(this),
-            imgUrl = $container.find('img').prop('src');
-          if (imgUrl) {
-            $container
-              .css('backgroundImage', 'url(' + imgUrl + ')')
-              .addClass('compat-object-fit');
 
-          }
-        });
-
-      } else {
-        console.log("New Browser")
-      }
-    }
 
     function typedFunction() {
       $(".typed-heading").typed({
@@ -241,3 +223,22 @@ Meteor.subscribe("categories");
   }
 
 })();
+
+var checkBrowser = function () {
+  if (!Modernizr.objectfit) {
+    console.log("Old Browser")
+    $('.post__image-container').each(function () {
+      var $container = $(this),
+        imgUrl = $container.find('img').prop('src');
+      if (imgUrl) {
+        $container
+          .css('backgroundImage', 'url(' + imgUrl + ')')
+          .addClass('compat-object-fit');
+
+      }
+    });
+
+  } else {
+    console.log("New Browser")
+  }
+};
