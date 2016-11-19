@@ -76,6 +76,9 @@
             background-color: #eaf1f5;
             color: rgb(55, 71, 79);
             border-top: 1px solid rgba(0, 0, 0, 0.12);
+            font-size: 15px;
+            z-index: 10;
+            cursor: pointer;
             
         }
     }
@@ -86,6 +89,20 @@
             color: rgb(55, 71, 79);
             border-top: 1px solid rgba(0, 0, 0, 0.12);
         }
+    }
+}
+job-detail {
+    .foc-nav {
+        height: 56px;
+    }
+
+    .foc-nav:hover,
+    .foc-nav:focus {
+        height: 56px !important;
+    }
+
+    .foc-nav-active {
+        height: 56px;
     }
   
 }
