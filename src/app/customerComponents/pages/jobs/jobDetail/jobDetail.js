@@ -5,7 +5,7 @@
   var main = 'job'; // Change this with containing folder name
   var type = 'Detail';
 
-  function ControllerFunction($scope, $reactive, $stateParams, $state, $mdDialog, $mdToast, $timeout,returnUrlService,jobService) {
+  function ControllerFunction($scope, $reactive, $stateParams, $state, $mdDialog, $mdToast, $timeout) {
     'ngInject';
     ///////////Initialization Checks///////////
     var self = this;
@@ -82,7 +82,7 @@
 
     ///////////Methods Declarations///////////
     self.getLocation = getLocation;       
-    self.editJob = editJob; 
+    
 
     ///////////Method Definitions///////////
     self.autorun(function () {
@@ -92,14 +92,7 @@
 
     });    
 
-    function editJob(){
-      var returnUrl = {
-        stateName: $state.current.name,
-        stateParams: $state.params
-      };
-      returnUrlService.set(returnUrl);
-      $state.go("app.serviceQuestions",{serviceId:self.job.serviceId,leadId:self.job._id});
-    }
+    
 
     
 
@@ -143,7 +136,7 @@
       'projectMap',
       'projectGallery',
       'returnUrlModule',
-      'jobServiceModule',            
+              
 
     ])
     .component(name, {

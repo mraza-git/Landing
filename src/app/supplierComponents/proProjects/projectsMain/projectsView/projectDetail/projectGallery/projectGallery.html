@@ -18,8 +18,8 @@
   <div layout="column" flex class="content">
     <md-grid-list class="list"
                 layout="column" flex
-                md-cols="6" md-cols-xs="2" md-cols-sm="3" md-cols-md="4" md-cols-gt-lg="6"
-                md-row-height-gt-md="1:1" md-row-height="4:3"
+                md-cols="{{projectGallery.inline && 4 || 6}}" md-cols-xs="2" md-cols-sm="3" md-cols-md="4" md-cols-gt-lg="6"
+                md-row-height-gt-md="4:3" md-row-height="1:1"
                 md-gutter-gt-md="20px" md-gutter-gt-sm="12px" md-gutter="8px">
 
       <md-grid-tile class="foc-tile"
