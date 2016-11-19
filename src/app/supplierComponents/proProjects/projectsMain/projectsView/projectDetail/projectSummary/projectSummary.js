@@ -10,7 +10,7 @@
    * @param {any} $scope
    * @param {any} $stateParams
    */
-  function ControllerFunction($scope,$reactive) {
+  function ControllerFunction($scope,$reactive,returnUrlService,$state) {
     'ngInject';
     ///////////Initialization Checks///////////
     var self = this;
@@ -24,13 +24,13 @@
       isAdminOrSupport: function(){
         return Roles.userIsInRole(self.getReactively('userId'),['admin','support'],'default-group');
       },
-      
     });
     
 
 
     ///////////Methods Declarations///////////
     self.done = done;
+    self.editJob = editJob; 
    
 
     ///////////Method Definitions///////////
@@ -43,6 +43,15 @@
       console.log('Project: ',self.currentProject);      
     }    
 
+    function editJob(){
+      var returnUrl = {
+        stateName: $state.current.name,
+        stateParams: $state.params
+      };
+      returnUrlService.set(returnUrl);
+      $state.go("app.serviceQuestions",{serviceId:self.currentProject.serviceId,leadId:self.currentProject._id});
+    }
+
   
 
   }
@@ -52,7 +61,8 @@
   var controller = ControllerFunction;
   angular
     .module(name, [
-      'angular-meteor',      
+      'angular-meteor',
+      'returnUrlModule',      
     ])
     .component(name, {
       templateUrl: templateUrl,

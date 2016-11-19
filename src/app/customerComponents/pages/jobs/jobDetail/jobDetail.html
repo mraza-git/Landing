@@ -32,24 +32,17 @@
         <div>
             <div layout="column" flex>
                 <div layout="row" layout-xs="column" flex>
-                    <div layout="column" layout-padding flex-gt-sm="66" flex class="content-area">
-                        <md-button aria-label="edit" class="md-icon-button" ng-click="jobDetail.editJob()">
-                            <md-icon md-font-icon="icon-pencil"></md-icon>
-                            <md-tooltip md-direction="bottom">
-                                Edit Inquiry
-                            </md-tooltip>
-                        </md-button>
-                        <div class="subject" flex>
+                    <div layout="column" layout-padding flex class="content-area">
+                       
+                        <!--<div class="subject" flex>
                             {{jobDetail.job.title}}<br>
                             <span>{{jobDetail.job.detail}}</span>
 
-                        </div>
+                        </div>-->
                         <project-summary current-project="jobDetail.job" show-gallery="true" flex></project-summary>
                     <!--<project-gallery ng-show="jobDetail.job.images.length>0" class="slide-top" images="jobDetail.job.images" readonly="true" flex></project-gallery>-->
                     </div>
-                    <div hide show-gt-xs layout="column" layout-padding flex-gt-sm="33" flex class="side-nav">
-                        Map of all suppliers comes here
-                    </div>
+                    
                 </div>
             </div>
 
