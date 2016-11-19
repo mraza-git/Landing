@@ -14,6 +14,8 @@ Meteor.subscribe("categories");
       'landingFooter',
       'imageUpload',
       'landingNavbar',
+      'jobServiceModule',
+      'returnUrlModule',
     ])
     .component(name, {
       templateUrl: "app/customerComponents/landing/landing.html",
@@ -103,7 +105,7 @@ Meteor.subscribe("categories");
     });
   }
 
-  function LandingController($scope, $reactive, $mdMedia, $mdDialog, $state) {
+  function LandingController($scope, $reactive, $mdMedia, $mdDialog, $state,jobService) {
 
 
     ////////////////Data///////////////////
@@ -206,19 +208,7 @@ Meteor.subscribe("categories");
           return;
         }
       }
-      $mdDialog.show({
-        controller: serviceSelectorModelController,
-        controllerAs: 'serviceList',
-        locals: {
-          category: category,
-        },
-        templateUrl: 'app/customerComponents/landing/modelboxes/serviceSelector.html',
-        parent: angular.element(document.body),
-        targetEvent: ev,
-        clickOutsideToClose: true
-      }).then(function (res) {
-
-      });
+      jobService.openServiceListDialog(ev,category);
     }
   }
 

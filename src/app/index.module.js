@@ -65,6 +65,7 @@ Meteor.subscribe("settings");
             //Customer landing and related.
             'landing',
             'aboutUs',
+            'profile',
             'faq',
             'terms',
             'howitWorks',
@@ -73,6 +74,7 @@ Meteor.subscribe("settings");
             'partnerList',
             'activeJobs',
             'assignedJobs',
+            'archiveJobs',
             'jobDetail',
             'quoteDetail',
             'jobs',

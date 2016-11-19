@@ -1,5 +1,5 @@
 <!-- CONTENT TOOLBAR -->
-<div class="toolbar" layout="row" layout-align="space between center">
+<div class="toolbar" layout="row" layout-align="space between center" ng-if="!activeJobs.inline">
     <div layout="row">
        bread > crum > kindofthing
     </div>
@@ -8,7 +8,7 @@
                    multiple="false"                   
                    md-on-close="$event.stopPropagation()"                   
                    placeholder="sort by">
-          <md-option ng-value="option.value" ng-repeat="option in activeJobs.sortOptions">
+          <md-option ng-value="option" ng-selected="option.id===activeJobs.sort.id" ng-repeat="option in activeJobs.sortOptions track by option.id">
             {{ option.name }}
          </md-option>
         </md-select>
@@ -44,8 +44,8 @@
             <div class="padding-5-10" layout="row" flex>
                 <div class="name" layout="row" layout-align="start center">
                     <form-services ng-hide="thread.images.length>0 || activeJobs.isAdminOrSupport" service-ids="[thread.serviceId]" type="image"></form-services>
-                    <thumb-image ng-show="thread.images.length>0 && !activeJobs.isAdminOrSupport" image-id="thread.images[0].id" image-class="avatar"></thumb-image>
-                    <lead-owner ng-show="activeJobs.isAdminOrSupport" owner-id="thread.owner"></lead-owner>
+                    <thumb-image ng-if="thread.images.length>0 && !activeJobs.isAdminOrSupport" image-id="thread.images[0].id" image-class="avatar"></thumb-image>
+                    <lead-owner ng-if="activeJobs.isAdminOrSupport" owner-id="thread.owner"></lead-owner>
 
                     <span class="text-truncate">{{thread.title}}</span>
                     <span ng-if="thread.images.length>0">
@@ -62,15 +62,16 @@
                         Click here to view original
                     </md-tooltip>
                 </span>
-                    <div layout layout-align="center center" ng-if="activeJobs.isAdminOrSupport">
+                    <div layout layout-align="center center" ng-if="activeJobs.isAdminOrSupport && !activeJobs.inline">
                         <span ng-if="thread.folder==='delete'" class="text-boxed">Deleted</span>
                         <span ng-if="thread.folder==='archive'" class="text-boxed">Archieved</span>
+                        <span ng-if="thread.assignedTo.length>0" class="text-boxed">Closed</span>
                     </div>
                 </div>
             </div>
             <div layout="row" flex layout-align="start center">
 
-                <div class="" flex>
+                <div class="" flex ng-if="!activeJobs.inline">
                     <span>
                     {{thread.createdAt | date}}
                 </span>
@@ -80,7 +81,7 @@
                     <form-services service-ids="[thread.serviceId]"></form-services>
 
                 </div>
-                <div flex><strong>Total quotes :</strong> {{thread.quotes.length || 0}}</div>
+                <div flex ng-if="!activeJobs.inline"><strong>Total quotes :</strong> {{thread.quotes.length || 0}}</div>
 
             </div>
             <md-menu>

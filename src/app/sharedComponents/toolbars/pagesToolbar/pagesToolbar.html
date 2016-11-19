@@ -8,7 +8,7 @@
                 </md-button>
             </div>
             <div class="logo" layout="row" layout-align="end center">
-                <a href="/#header" du-smooth-scroll>
+                <a href="/" du-smooth-scroll>
                     <span class="logo-image">Fix</span>
                 </a>
                 <!--<span class="logo-text">onClick</span>-->
@@ -18,17 +18,44 @@
         <div layout="row" ng-show="pagesToolbar.isLoggedIn">
             <div class="toolbar-separator"></div>
             <div ui-sref-active="foc-nav-active">
-                <md-button href ui-sref="jobs.activejobs" class="md-primary md-hue-1 foc-nav">Active Jobs</md-button>
+                <md-button  ui-sref="jobs.activejobs" class="md-primary md-hue-1 foc-nav">Active Jobs</md-button>
             </div>
             <div class="toolbar-separator"></div>
             <div ui-sref-active="foc-nav-active">
-                <md-button href ui-sref="jobs.assignedjobs" class="md-primary md-hue-1 foc-nav">Assigned Jobs</md-button>
+                <md-button ui-sref="jobs.dashboard" class="md-primary md-hue-1 foc-nav">Dashboard</md-button>
             </div>
             <div class="toolbar-separator"></div>
-            <div ui-sref-active="foc-nav-active">
-                <md-button href ui-sref="jobs.dashboard" class="md-primary md-hue-1 foc-nav">Dashboard</md-button>
-            </div>
+            <md-menu-bar id="history-menu" role="menubar">
+                <div ui-sref-active="foc-nav-active">
+                <md-menu md-position-mode="left bottom">
+                    <md-button ng-click="$mdOpenMenu($event)" id="history" class="menu-button md-primary md-hue-1" ng-disabled="false" aria-label="history">
+                        History 
+                    </md-button>
+                    <md-menu-content width="2">
+                        <md-menu-item>
+                            <md-button ui-sref="jobs.assignedjobs" class="md-primary md-hue-1">
+                                <md-icon md-menu-align-target md-font-icon="icon-history"></md-icon>
+                                Past Jobs
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button ui-sref="jobs.archivejobs" class="md-primary md-hue-1">
+                                <md-icon md-menu-align-target md-font-icon="icon-archive"></md-icon>
+                                Archived Jobs
+                            </md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+                </div>
+            </md-menu-bar>                
             <div class="toolbar-separator"></div>
+
+            <md-button
+                    ng-click="pagesToolbar.openServiceListDialog($event)" 
+                    class="menu-button md-accent md-raised"                    
+                    ng-show="pagesToolbar.isLoggedIn">
+                Post a Job
+            </md-button>
         </div>
 
         <div layout="row" layout-align="start center">

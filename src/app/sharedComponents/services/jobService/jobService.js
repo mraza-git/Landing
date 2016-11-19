@@ -20,10 +20,11 @@
         this.declineOffer = declineOffer;
         this.shortList = shortList;
         this.removeShortList = removeShortList;
+        this.openServiceListDialog = openServiceListDialog;
 
 
         /////////////////////////////////
-        var message = "delete";
+        
         var defer = $q.defer();
         //////////////// Function Definitions ////////////////////////////
         function updateJobFolder(jobId, folder) {
@@ -160,7 +161,8 @@
                     }, {
                         $set: {
                             assignedTo: quote.owner,
-                            status: 'closed'
+                            status: 'closed',
+                            jobIsseDate: new Date().toISOString()
                         }
                     },
                     function (err, doc) {
@@ -337,5 +339,23 @@
             return defer.promise;
         }
 
-    }
+
+        function openServiceListDialog(ev,category) {            
+            $mdDialog.show({
+                controller: serviceSelectorModelController,
+                controllerAs: 'serviceList',
+                locals: {
+                category: category,
+                },
+                templateUrl: 'app/customerComponents/landing/modelboxes/serviceSelector.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose: true
+            }).then(function (res) {
+                $mdDialog.hide();
+            });
+            }
+        }
+
+    
 })();

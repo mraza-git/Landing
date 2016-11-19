@@ -4,21 +4,25 @@
 
   var main = 'jobs'; // Change this with containing folder name
 
-  function ControllerFunction($reactive, $scope,$interval) {
+  function ControllerFunction($reactive, $scope,$interval,$state,$mdSidenav) {
     'ngInject';
     ///////////Initialization Checks///////////
     var self = this;
     $reactive(self).attach($scope);
 
-    ///////////Methods Declarations///////////
     self.helpers({
       user: function () {
         return Meteor.user();
       }
     })
+    ///////////Methods Declarations///////////
+    self.toggleSidenav = toggleSidenav;
 
 
     ///////////Method Definitions///////////
+    function toggleSidenav(nav){      
+      $mdSidenav(nav).toggle();
+    }
 
     // Now widget
     self.nowWidget = {
@@ -44,6 +48,10 @@
       }
     };
 
+    self.state = $state.current;
+    $scope.$on('$stateChangeSuccess',function(){
+      self.state = $state.current;
+    })
     // Now widget ticker
     self.nowWidget.ticker();
 

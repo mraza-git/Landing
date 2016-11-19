@@ -13,7 +13,7 @@
 
 
 
-function ToolbarUser($scope, $reactive, $state, AuthModals, $mdDialog, $mdMedia) {
+function ToolbarUser($scope, $reactive, $state, AuthModals, $mdDialog, $mdMedia,jobService) {
   'ngInject';
   $reactive(this).attach($scope);
   this.state = $state;
@@ -85,11 +85,17 @@ function ToolbarUser($scope, $reactive, $state, AuthModals, $mdDialog, $mdMedia)
   this.openChangePassword = openChangePassword;  
   this.pictureUploaded = pictureUploaded;
   this.goToProfile = goToProfile;
+  this.openServiceListDialog = openServiceListDialog;
+
 
 
 
 
   ////////////// Method Definition ////////////////////
+  function openServiceListDialog(ev) {  
+      jobService.openServiceListDialog(ev);
+  }
+
   function goToProfile(){    
      if(this.isSupplierLoggedIn){
         $state.go('app.p',{username:""});
@@ -174,7 +180,8 @@ angular.module(name, [
   'imageUpload',
   'assignedJobs',
   'activeJobs',
-  'projects'
+  'projects',
+  'jobServiceModule',
 ]).component(name, {
   templateUrl: "app/sharedComponents/toolbaruser/toolbaruser.web.html",
   controller: ToolbarUser,

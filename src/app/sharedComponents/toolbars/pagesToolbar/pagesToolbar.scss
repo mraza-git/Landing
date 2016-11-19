@@ -78,3 +78,21 @@
     border-bottom: solid 2px rgb(84, 110, 122);
     display: block;
 }
+
+#history-menu{
+    height:64px;
+    min-width:110px;
+    padding:0px !important;
+    
+    md-menu{
+        height:64px;
+        min-width:110px;    
+    }
+
+}
+.menu-button{
+    min-width:110px;    
+    height: 64px;
+    padding: 0px;
+    margin: auto;
+}

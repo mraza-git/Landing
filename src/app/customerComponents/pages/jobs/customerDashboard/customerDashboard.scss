@@ -1,0 +1,27 @@
+.back-controls{
+    position: relative !important;
+}
+.ms-widget{
+    .ms-widget-front{
+        min-height: 240px;
+    }
+}
+
+
+.services-list {
+                background: #FAFAFA;
+                position: relative;
+                padding: 10px;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+                cursor: pointer;
+
+    &:hover {
+        background: #dcdcdc;
+    }
+
+    .service-text{
+        font-size: 16px;
+        padding-left: 20px;
+    }
+
+}

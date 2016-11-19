@@ -4,7 +4,7 @@
   var main = 'pages'; // Change this with containing folder name
   var type = 'Toolbar'; // Change This with Component functionality Detail, Add, Remove, Delete, List etc.
 
-  function ControllerFunction($scope,$reactive,AuthModals) {
+  function ControllerFunction($scope,$reactive,AuthModals,jobService) {
     'ngInject';
     ///////////Data///////////
     var self = this;
@@ -12,15 +12,22 @@
     self.helpers({
       isLoggedIn: function (){
         return !!Meteor.userId();
+      },
+      isSupplierLoggedIn: function(){
+      return Roles.userIsInRole(Meteor.userId(),'supplier','supplier-group');
       }
     });
 
 
     ///////////Methods Declarations///////////
     self.openLogin = openLogin;
+    self.openServiceListDialog=openServiceListDialog;
 
 
     ///////////Method Definitions///////////
+    function openServiceListDialog(ev) {  
+      jobService.openServiceListDialog(ev);
+    }
     function openLogin(event){
       AuthModals.openLoginModal(event);
     }
@@ -37,6 +44,7 @@
       'angular-meteor',
       'AuthModals',
       'toolbarUser',
+      'jobServiceModule',
       
       ])
     .component(name, {

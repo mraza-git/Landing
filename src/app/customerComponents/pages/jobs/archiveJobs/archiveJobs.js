@@ -2,48 +2,33 @@
   'use strict';
 
 
-  var main = 'active'; // Change this with containing folder name
+  var main = 'archive'; // Change this with containing folder name
   var type = 'Jobs';
 
-  function ControllerFunction($scope,$state, $reactive, jobService) {
+  function ControllerFunction($scope, $reactive,$state,jobService) {
     'ngInject';
     ///////////Initialization Checks///////////
     var self = this;
     $reactive(self).attach($scope);
-    self.sort = {id:1,value:{createdAt:-1},name:'latest on top'};
+    ///////////Data///////////
+    self.sort = {id:1,value:{createdAt:-1},name:'latest on top'},
      self.sortOptions = [
      {id:1,value:{createdAt:-1},name:'latest on top'},
      {id:2,value:{createdAt:1},name:'oldest on top'},
      {id:3,value:{updatedAt:-1},name:'sort by last updated'},          
     ];
-    ///////////Data///////////
-    self.subscribe('leads',function(){
+    self.subscribe('leads', function () {
       self.loading = true;
-      delete self.sort.$$mdSelectId;      
-      return[
-        {
-          sort: self.getReactively('sort.value')
-        },
-        {
-          owner: self.getReactively('userId'),
-          folder: {$nin:['delete','archieve']},
-          $or: 
-          [
-            {
-              status: 'open'
-            }, 
-            {
-              status: 
-              {
-                $exists: false
-              }
-            } 
-          ]
-        } 
-      ]
+      delete self.sort.$$mdSelectId;
+      return [{
+        sort: self.getReactively('sort.value')
+      }, {
+        owner: self.getReactively('userId'),
+        folder: 'archive',        
+      }]
     },
     {
-      onReady: function(){
+      onReady:function(){
         self.loading = false;
       },
       onStop: function(){
@@ -51,77 +36,43 @@
       }
     }
     );
-    
     self.helpers({
       projects: function () {
         delete self.sort.$$mdSelectId;
-        var leads =Leads.find({          
+        var leads =Leads.find({
           owner: self.getReactively('userId'),
-          folder: {$nin:['delete','archieve']},
-          $or: 
-          [
-            {
-              status: 'open'
-            }, 
-            {
-              status: 
-              {
-                $exists: false
-              }
-            } 
-          ]        
-        });
-
-        // if(leads.fetch().length>0){
-        //   self.loading = false;
-        // }
+          folder: 'archive',    
+        },
+        {
+          sort: self.getReactively('sort.value')          
+        }
+        );        
+        if(leads.fetch().length>0){
+          self.loading = false;
+        }
         return leads;
+      },
+      isAdminOrSupport: function(){
+        return Roles.userIsInRole(Meteor.userId(),['admin','support'],'default-group');
       },
       userId:function(){
         return Meteor.userId();
-      },
-      isAdminOrSupport: function(){
-        return Roles.userIsInRole(self.getReactively('userId'),['admin','support'],'default-group');
       }
     });
-
     self.autorun(function(){
-      if(self.getReactively('isAdminOrSupport')){        
+      if(self.getReactively('isAdminOrSupport')){
+        self.loading = true;
         self.subscribe('leads',function(){
-          self.loading = true;
-          delete self.sort.$$mdSelectId;
           return[
              {
-              sort: self.getReactively('sort.value')
+              sort: self.getReactively('sort.value') 
             },
             {
-              
-                $or: 
-                [
-                  {
-                    status: 'open'
-                  }, 
-                  {
-                    status: 
-                    {
-                      $exists: false
-                    }
-                  } 
-                ]
-              
+              folder: 'archive'
             }
           ]
-        },
-        {
-          onReady: function(){
-            self.loading = false;
-            $scope.$apply();
-          },
-          onStop: function(err){
-            console.log(err);
-            self.loading = false;
-            $scope.$apply();
-          }
+        },function(){
+          self.loading = false;
         });
       }
     });
@@ -170,37 +121,34 @@
       });
     }
 
-
   }
 
   var name = main + type; // Change This with Component Name
-  var templateUrl = 'app/customerComponents/pages/jobs/' + name + '/' + name + '.html';
+  var templateUrl = 'app/customerComponents/pages/jobs/' + 'activeJobs' + '/' + 'activeJobs' + '.html';
   var controller = ControllerFunction;
   angular
     .module(name, [
       'angular-meteor',
       'pagesToolbar',
-      'formServices',
-      'thumbImage',
       'jobServiceModule',
-      'leadOwner'
 
     ])
     .component(name, {
       templateUrl: templateUrl,
       controller: controller,
-      controllerAs: name,
+      controllerAs: 'activeJobs',
       bindings: {
-        inline: '<',        
+        input: '<',
+        output: '&',
       }
     })
     .config(config);
   var template = '<' + main + (type ? '-' : '') + (type ? type.toLowerCase() : '') + '></' + main + (type ? '-' : '') + (type ? type.toLowerCase() : '') + '>';
-  var state = 'jobs.activejobs';
+  var state = 'jobs.archivejobs';
   var stateUrl = '/' + main + '-' + type.toLowerCase();
   var views = {
     'jobview': {
-      template: '<active-jobs layout="column" flex></active-jobs>'
+      template: '<archive-jobs layout="column" flex></archive-jobs>'
     }
 
   };
@@ -212,7 +160,7 @@
         url: stateUrl,
         views: views,
         data: {
-          displayName: 'Active Jobs'
+          displayName: 'Archieved Jobs'
         }
       });
   }

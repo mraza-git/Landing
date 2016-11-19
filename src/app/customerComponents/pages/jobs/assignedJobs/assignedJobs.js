@@ -11,23 +11,55 @@
     var self = this;
     $reactive(self).attach($scope);
     ///////////Data///////////
+    self.sort = {id:1,value:{createdAt:-1},name:'latest on top'},
+     self.sortOptions = [
+     {id:1,value:{createdAt:-1},name:'latest on top'},
+     {id:2,value:{createdAt:1},name:'oldest on top'},
+     {id:3,value:{updatedAt:-1},name:'sort by last updated'},          
+    ];
     self.subscribe('leads', function () {
+      self.loading = true;
+      delete self.sort.$$mdSelectId;
       return [{
-        sort: {
-          updaedAt: -1,
-          createdAt: -1
-        }
+        sort: self.getReactively('sort.value')
       }, {
-        owner: Meteor.userId(),
+        owner: self.getReactively('userId'),
         folder: {
-          $nin: ['delete', 'archieve']
+          $nin: ['delete', 'archive']
         },
-        status: 'closed'
+        status: 'closed'        
       }]
-    });
+    },
+    {
+      onReady:function(){
+        self.loading = false;
+      },
+      onStop: function(){
+        self.loading = false;
+      }
+    }
+    );
     self.helpers({
       projects: function () {
-        return Leads.find({});
+        delete self.sort.$$mdSelectId;
+        var leads =Leads.find({
+          owner: self.getReactively('userId'),
+          folder: {
+            $nin: ['delete', 'archive']
+          },
+          status: 'closed'  
+        },
+        {
+          sort: self.getReactively('sort.value')          
+        }
+        );        
+        if(leads.fetch().length>0){
+          self.loading = false;
+        }
+        return leads;
+      },
+      userId:function(){
+        return Meteor.userId();
       },
       isAdminOrSupport: function(){
         return Roles.userIsInRole(Meteor.userId(),['admin','support'],'default-group');
@@ -38,10 +70,7 @@
         self.subscribe('leads',function(){
           return[
              {
-              sort: {
-                createdAt: -1,
-                updaedAt: -1,
-              }
+              sort: self.getReactively('sort.value')
             },
             {
               status: 'closed'
@@ -53,41 +82,44 @@
 
 
     ///////////Methods Declarations///////////
-    self.deleteJob = deleteJob;
-    self.archieveJob = archieveJob;
+    self.recover = recover;
+    self.moveTo = moveTo;
     self.duplicateJob = duplicateJob;
     self.trashJob = trashJob;
+    self.viewOriginal = viewOriginal;
+
     ///////////Method Definitions///////////
-    function deleteJob(ev, jobId) {
-      jobService.deleteJob(ev, jobId).then(function (res) {
 
-      }, function (err) {
-
-      });
-    }
-
-    function trashJob(ev, job) {
-      jobService.trashJob(ev, job).then(function (res) {
-
-      }, function (err) {
-
-      });
-    }
-
-    function archieveJob(ev, jobId) {
-      jobService.archieveJob(ev, jobId).then(function (res) {}, function (err) {});
-    }
-
-    function duplicateJob(ev, job) {
+    function recover(ev,jobId){
       ev.stopPropagation();
-      jobService.duplicateJob(job).then(function (res) {
-        if (res) {
+      jobService.recover(ev,jobId).then(function(res){},function(err){});
+    }
+
+    function moveTo(ev,jobId,folder){
+      ev.stopPropagation();
+      jobService.moveTo(ev,jobId,folder).then(function(res){},function(err){});
+    }
+
+    function trashJob(ev,job){
+      ev.stopPropagation();
+      jobService.trashJob(ev,job).then(function(res){},function(err){});
+    }
+
+    function viewOriginal(ev,jobId){
+      ev.stopPropagation();
+      $state.go("jobs.jobdetail",{jobId:jobId});
+    }
+
+    function duplicateJob(ev,job){
+      ev.stopPropagation();
+      jobService.duplicateJob(job).then(function(res){
+        if(res){
           console.log(res);
           $state.go('jobs.jobdetail',{jobId:res});
         }
-      }, function (err) {
-        if (err) {
-          console.log('error', err);
+      },function(err){
+        if(err){
+          console.log('error',err);
         }
       });
     }
@@ -131,7 +163,7 @@
         url: stateUrl,
         views: views,
         data: {
-          displayName: 'Active Jobs'
+          displayName: 'Past Assigned Jobs'
         }
       });
   }

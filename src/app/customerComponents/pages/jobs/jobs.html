@@ -7,8 +7,9 @@
         <!-- CONTENT HEADER -->
         <div class="header md-accent-bg" layout="column" layout-align="space-between">
             <div layout="row" layout-align="space-between">
-            <div>
-                <span class="md-display-1 font-weight-300 message">Welcome back, {{jobs.user.profile.name}}</span>
+            <div layout="column">
+                <span class="md-display-1 font-weight-200 message">{{jobs.state.data.displayName}}</span>
+                <span class="md-display-1 font-weight-200 message" ng-hide="jobs.state.data.displayName">Welcome back, {{jobs.user.profile.name}}</span>
             </div>
              <div class="toolbar">
                     <md-button class="md-icon-button sidenav-toggle" ng-click="jobs.toggleSidenav('sidenav')" hide-gt-md

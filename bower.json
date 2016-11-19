@@ -42,7 +42,9 @@
     "textAngular": "^1.5.12",
     "angular-breadcrumb": "^0.4.1",
     "angular-utils-ui-breadcrumbs": "^0.2.2",
-    "ngmap": "^1.17.8"
+    "ngmap": "^1.17.8",
+    "nvd3": "^1.8.4",
+    "angular-nvd3": "^1.0.9"
   },
   "devDependencies": {
     "angular-mocks": "1.5.7"
