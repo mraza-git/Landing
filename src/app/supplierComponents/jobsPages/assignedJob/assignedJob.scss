@@ -1,0 +1,19 @@
+#assigned-job {
+    .top-image {
+        height: 320px;
+        min-height: 320px;
+        max-height: 320px;
+        background: url("/assets/images/backgrounds/fix-landing-bg.jpg") no-repeat 0 45%;
+        background-size: 100% auto;
+        }
+    .content{
+        min-height: 100%;
+    }
+    .show-number-button{
+        width: 185px;        
+    }
+    .loading-number{
+        width: 220px;
+        transition: width 0.35s ease-in-out;
+    }
+}

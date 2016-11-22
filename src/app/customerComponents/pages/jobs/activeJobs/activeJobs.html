@@ -29,10 +29,10 @@
             Loading...
             </span>
             <md-progress-circular 
-                                style="position:absolute;top:55%;left:50%;"
-                                class="md-primary"       
-                                md-diameter="45"
-                                aria-label="loading">
+                    style="position:absolute;top:55%;left:50%;"
+                    class="md-primary"       
+                    md-diameter="45"
+                    aria-label="loading">
             </md-progress-circular>
         </md-backdrop>
         
@@ -81,7 +81,8 @@
                     <form-services service-ids="[thread.serviceId]"></form-services>
 
                 </div>
-                <div flex ng-if="!activeJobs.inline"><strong>Total quotes :</strong> {{thread.quotes.length || 0}}</div>
+                <div flex ng-if="!activeJobs.inline && thread.status!=='closed'"><strong>Total quotes :</strong> {{thread.quotes.length || 0}}</div>
+                <div flex ng-if="thread.status==='closed'" layout="column"><span class="bid">AED {{thread.price}}</span></div>
 
             </div>
             <md-menu>
@@ -129,6 +130,9 @@
             </md-menu>
 
         </div>
+
+
+
 
     </div>
 

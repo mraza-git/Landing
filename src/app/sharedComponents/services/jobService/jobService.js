@@ -12,21 +12,32 @@
     function serviceName($window, $q, $mdDialog, $mdToast) {
         'ngInject';
         this.updateJobFolder = updateJobFolder;
-        this.moveTo = moveTo;        
+        this.moveTo = moveTo;
         this.trashJob = trashJob;
-        this.recover = recover;        
+        this.recover = recover;
         this.duplicateJob = duplicateJob;
         this.acceptOffer = acceptOffer;
+        this.approveProjectOffer = approveProjectOffer;
+        this.declineProjectOffer = declineProjectOffer;
         this.declineOffer = declineOffer;
         this.shortList = shortList;
         this.removeShortList = removeShortList;
         this.openServiceListDialog = openServiceListDialog;
+        this.updateCustomerShowNumberCount = updateCustomerShowNumberCount;
 
 
         /////////////////////////////////
-        
+
         var defer = $q.defer();
         //////////////// Function Definitions ////////////////////////////
+        
+        /**
+         * Updates the Lead status delete/archieve
+         * Customer Side
+         * @param {any} jobId
+         * @param {any} folder
+         * @returns
+         */
         function updateJobFolder(jobId, folder) {
             Leads.update({
                     _id: jobId
@@ -60,13 +71,13 @@
             return defer.promise;
         }
 
-        
+
         function recover(ev, jobId) {
-            var folder = "all";            
+            var folder = "all";
             return updateJobFolder(jobId, folder);
         }
 
-        function moveTo(ev,jobId,folder){              
+        function moveTo(ev, jobId, folder) {
             var confirm = $mdDialog.confirm()
                 .title(folder.toUpperCase())
                 .textContent('Are you sure you want to ' + folder + ' this inquiry?')
@@ -83,7 +94,7 @@
         }
 
         function trashJob(ev, job) {
-            var imageIds = [];            
+            var imageIds = [];
             if ('images' in job && !job.duplicate) {
                 imageIds = job.images.map(function (obj) {
                     return obj.id;
@@ -113,7 +124,7 @@
                 });
             }
             return defer.promise;
-        }        
+        }
 
         function duplicateJob(job) {
             var j = angular.copy(job);
@@ -125,7 +136,7 @@
             j.quotedBy = [];
             j.status = 'open';
             j.updatedAt = null;
-            if(!j.duplicate){
+            if (!j.duplicate) {
                 j.duplicateOf = job._id;
                 j.duplicate = true;
             }
@@ -139,7 +150,7 @@
                         .position('top right')
                         .action('x')
                         .hideDelay(2000)
-                    );                    
+                    );
                     defer.resolve(doc);
                 }
             });
@@ -160,10 +171,16 @@
                         _id: job._id,
                     }, {
                         $set: {
-                            assignedTo: quote.owner,
-                            status: 'closed',
-                            jobIsseDate: new Date().toISOString()
-                        }
+                            status: 'awaiting',
+                        },
+                        $addToSet: {
+                            assignedTo: {
+                                owner: quote.owner,
+                                quote: quote._id,
+                                price: quote.quotedValue
+                            },
+                            shortList: quote._id,
+                        },
                     },
                     function (err, doc) {
                         if (err) {
@@ -194,23 +211,10 @@
                                     );
 
                                 } else {
-                                    // Meteor Server Call here
+                                    Meteor.call('assignUserAJob', job._id, quote.owner, function (err, result) {
+                                        if (err) console.log(err);
 
-                                    // Meteor.users.update(
-                                    //   {
-                                    //     _id:quote.owner,
-                                    //   },
-                                    //   {
-                                    //     $push:
-                                    //     {
-                                    //       'business.jobs':self.job._id
-                                    //     }
-                                    //   },function(err,doc){
-                                    //     if(err){
-                                    //       console.log(err);
-                                    //     }
-                                    //   }
-                                    // );
+                                    });
 
                                     $mdToast.show(
                                         $mdToast.simple()
@@ -230,6 +234,104 @@
             }, function () {
 
             });
+        }
+
+        function approveProjectOffer(ev, quote, job) {
+            var confirm = $mdDialog.confirm()
+                .title('Are you sure you want to accept this project?')
+                .textContent('Click accept if you agree to our standard terms of service usage.')
+                .ariaLabel('accept offer')
+                .targetEvent(ev)
+                .ok('Accept')
+                .cancel('Decline');
+
+            $mdDialog.show(confirm).then(function () {
+                    Quotes.update({
+                        _id: quote._id
+                    }, {
+                        $set: {
+                            status: 'approved'
+                        }
+                    }, function (err, doc) {
+                        if (err) {
+                            console.log(err);
+                            $mdToast.show(
+                                $mdToast.simple()
+                                .textContent('There was an error saving, try again later')
+                                .position('top right')
+                                .action('x')
+                                .hideDelay(2000)
+                            );
+
+                        } else {
+                            // Meteor.call('assignUserAJob',job._id,quote.owner,function(err,result){
+                            //     if(err)console.log(err);
+                            // });
+
+                            $mdToast.show(
+                                $mdToast.simple()
+                                .textContent('Record saved.')
+                                .position('top right')
+                                .action('x')
+                                .hideDelay(2000)
+                            );
+
+                        }
+                    });
+
+                }
+
+            );
+
+        }
+
+        function declineProjectOffer(ev, quote, job) {
+            var confirm = $mdDialog.confirm()
+                .title('Are you sure you want to deline this project?')
+                .textContent('you will lose this job and cannot requote or update.')
+                .ariaLabel('reject project')
+                .targetEvent(ev)
+                .ok('Yes')
+                .cancel('No');
+
+            $mdDialog.show(confirm).then(function () {
+                    Quotes.update({
+                        _id: quote._id
+                    }, {
+                        $set: {
+                            status: 'declined'
+                        }
+                    }, function (err, doc) {
+                        if (err) {
+                            console.log(err);
+                            $mdToast.show(
+                                $mdToast.simple()
+                                .textContent('There was an error saving, try again later')
+                                .position('top right')
+                                .action('x')
+                                .hideDelay(2000)
+                            );
+
+                        } else {
+                            // Meteor.call('assignUserAJob',job._id,quote.owner,function(err,result){
+                            //     if(err)console.log(err);
+                            // });
+
+                            $mdToast.show(
+                                $mdToast.simple()
+                                .textContent('Record saved.')
+                                .position('top right')
+                                .action('x')
+                                .hideDelay(2000)
+                            );
+
+                        }
+                    });
+
+                }
+
+            );
+
         }
 
         function declineOffer(ev, quote, job) {
@@ -252,49 +354,46 @@
 
                 } else {
                     if (job.status === 'closed') {
+                        var status;
+                        if (job.assignedTo.length <= 1) {
+                            status = 'open';
+                        } else {
+                            status = 'closed';
+                        }
                         Leads.update({
                             _id: job._id
                         }, {
                             $set: {
-                                assignedTo: "",
-                                previouslyAssignedTo: job.assignedTo,
-                                status: 'open'
-
+                                //     assignedTo:[],                                                                
+                                status: status,
+                            },
+                            $pull: {
+                                assignedTo: {
+                                    owner: quote.owner,
+                                    quote: quote._id,
+                                    price: quote.quotedValue
+                                },
                             }
 
                         }, function (err, doc) {
                             if (err) {
                                 console.log(err);
                             } else {
-                                //Server call here...
-                                //  Meteor.users.update(
-                                //   {
-                                //     _id:quote.owner,
-                                //   },
-                                //   {
-                                //     $pull:
-                                //     {
-                                //       'business.jobs':self.job._id
-                                //     }
-                                //   },function(err,doc){
-                                //     if(err){
-                                //       console.log(err);
-                                //     }else{
-                                // 
-                                //      }  
-                                //   }
-                                // );
+                                Meteor.call('unassignUserAJob', job._id, quote.owner, function (err, result) {
+                                    if (err) console.log(err);
+                                });
+
+                                $mdToast.show(
+                                    $mdToast.simple()
+                                    .textContent('Record saved.')
+                                    .position('top right')
+                                    .action('x')
+                                    .hideDelay(5000)
+                                );
                             }
                         });
                     } else {
 
-                        $mdToast.show(
-                            $mdToast.simple()
-                            .textContent('Record saved.')
-                            .position('top right')
-                            .action('x')
-                            .hideDelay(5000)
-                        );
                     }
                 }
             });
@@ -339,13 +438,30 @@
             return defer.promise;
         }
 
+        function updateCustomerShowNumberCount(quote){
+            Quotes.update(quote._id,
+                {
+                    $inc:{callCustomer:1}
+                },
+                function(err,doc){
+                    if(err){               
+                        defer.reject();         
+                    }else{
+                        defer.resolve(doc);
+                    }
 
-        function openServiceListDialog(ev,category) {            
+                }
+            );
+            return defer.promise;
+        }
+
+
+        function openServiceListDialog(ev, category) {
             $mdDialog.show({
                 controller: serviceSelectorModelController,
                 controllerAs: 'serviceList',
                 locals: {
-                category: category,
+                    category: category,
                 },
                 templateUrl: 'app/customerComponents/landing/modelboxes/serviceSelector.html',
                 parent: angular.element(document.body),
@@ -354,8 +470,8 @@
             }).then(function (res) {
                 $mdDialog.hide();
             });
-            }
         }
+    }
 
-    
+
 })();

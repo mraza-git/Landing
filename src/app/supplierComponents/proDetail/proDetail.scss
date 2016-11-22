@@ -199,10 +199,10 @@
             //   width: 100%;
             // }
 
-            md-chips {
+            md-chips {              
               md-chip {
                     min-width: 160px;
-                    background: rgb(236, 64, 122);
+                    background: #37474f;
                     color: rgb(255, 255, 255);
                     font-weight: normal;
                     border-radius: 24px;
@@ -221,7 +221,11 @@
                            left: 40%;
                            color: white;
                     }
+
               }
+                    ._md-chip-input-container{
+                      width:90%;
+                    }
 
             }
 

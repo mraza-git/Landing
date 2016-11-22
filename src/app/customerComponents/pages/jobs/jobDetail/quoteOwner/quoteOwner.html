@@ -15,7 +15,8 @@
         <div id="quote-owner" class="padding-5-10" layout="row" layout-xs="column" flex>
             <div layout="row" layout-sm="column" flex-gt-xs="40" flex>
             <div class="name" layout="row" layout-align="start center" flex>
-                <md-icon ng-if="quoteOwner.isShortListed" md-font-icon="icon-star" style="position: absolute;color: goldenrod;left: 10px;top: 10px;"></md-icon>
+                <md-icon ng-if="quoteOwner.isShortListed && quoteOwner.quote.status!=='approved'" md-font-icon="icon-star" class="short-list-icon s30"></md-icon>
+                <md-icon ng-if="quoteOwner.quote.status==='approved'" md-font-icon="icon-crown" class="winner-icon s40"></md-icon>
                 <thumb-image ng-show="quoteOwner.user.profile.dpThumbUrl" image-id="quoteOwner.user.profile.dpImageId" image-class="avatar"></thumb-image>
                 <!--<span class="text-truncate">{{quoteOwner.quote.quoteMessage}}</span>-->
                 <div layout="column">
@@ -79,13 +80,17 @@
             </div>
             
         </div>
-        <md-menu>
+        <div layout="column" layout-align="center center" ng-if="quoteOwner.quote.status==='accepted' || quoteOwner.quote.status==='approved'">
+            <span ng-hide="quoteOwner.quote.status==='approved'">Waiting Approval...</span>
+            <span class="md-title" ng-show="quoteOwner.quote.status==='approved'">Approved</span>
+        </div>
+        <md-menu ng-if="quoteOwner.quote.status!='accepted' && quoteOwner.quote.status!='approved'">
             <md-button ng-click="$mdOpenMenu($event)" id="button-id" class="md-primary-bg s14" ng-disabled="false" aria-label="button-label">
             Action </md-button>
 
             <md-menu-content width="2">
                  <md-menu-item>
-                    <md-button ng-click="quoteOwner.acceptOffer($event)" ng-disabled="quote.status === 'accepted' || quoteOwner.job.assignedTo" id="accept" >
+                    <md-button ng-click="quoteOwner.acceptOffer($event)" ng-disabled="quote.status === 'accepted'" id="accept" >
                         <md-icon md-menu-align-target md-font-icon="icon-trash" ></md-icon>
                         Accept Offer
                     </md-button>

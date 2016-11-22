@@ -62,6 +62,7 @@ Meteor.subscribe("settings");
 
 
             'formMain',
+            'demoList',
             //Customer landing and related.
             'landing',
             'aboutUs',
@@ -89,6 +90,7 @@ Meteor.subscribe("settings");
             'proTerms',
             'projects',
             'projectsList',
+            'assignedJob',
 
 
         ]);
@@ -99,48 +101,50 @@ Meteor.subscribe("settings");
 var isSupplier = {
         user: function($stateParams,$q,$mdToast,$timeout){
           var defer = $q.defer();
-          Roles.subscription = Meteor.subscribe("_roles",null,
+          Meteor.subscribe('currentUser',null,
           {
-            onReady:function(){
-              if(Roles.userIsInRole(Meteor.userId(),'supplier','supplier-group')){                
-                defer.resolve();
-              }else{
-                $mdToast.show(
-                $mdToast.simple()
-                .textContent('You are not a supplier')
-                .position('top right')
-                .action('x')
-                .hideDelay(5000)
-              );
+            onReady:function(){            
+              Roles.subscription = Meteor.subscribe("_roles",null,
+              {
+                onReady:function(){
+                  if(Roles.userIsInRole(Meteor.userId(),'supplier','supplier-group')){                
+                    defer.resolve();
+                  }else{
+                    $mdToast.show(
+                    $mdToast.simple()
+                    .textContent('You are not a supplier')
+                    .position('top right')
+                    .action('x')
+                    .hideDelay(5000)
+                  );
+                      defer.reject();
+                    
+                  }
+                },
+                onStop: function(){
+                  $mdToast.show(
+                    $mdToast.simple()
+                    .textContent('There is no such record.')
+                    .position('top right')
+                    .action('x')
+                    .hideDelay(5000)
+                  );
                   defer.reject();
-                
+                }
               }
+              );
             },
             onStop: function(){
               $mdToast.show(
-                $mdToast.simple()
-                .textContent('There is no such record.')
-                .position('top right')
-                .action('x')
-                .hideDelay(5000)
-              );
-              defer.reject();
-            }
-          }
-          );
-
-          $timeout(function(){
-            $mdToast.show(
-                $mdToast.simple()
-                .textContent('Server time out')
-                .position('top right')
-                .action('x')
-                .hideDelay(5000)
-              );
+                    $mdToast.simple()
+                    .textContent('You need to login to continue')
+                    .position('top right')
+                    .action('x')
+                    .hideDelay(5000)
+                  );
                   defer.reject();
-                  
-                },5000);
-
+            }
+          });
 
           return defer.promise;
 

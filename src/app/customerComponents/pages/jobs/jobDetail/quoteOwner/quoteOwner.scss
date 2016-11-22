@@ -77,3 +77,24 @@
           }
     
 }
+
+.winner-icon{
+  position: absolute;
+    color: goldenrod !important;
+    left: -6px;
+    top: -15px;
+    -webkit-transform: rotate(-32deg);
+    -moz-transform: rotate(-32deg);
+    -ms-transform: rotate(-32deg);
+    -o-transform: rotate(-32deg);
+    transform: rotate(-32deg);
+
+}
+
+.short-list-icon{
+  position: absolute;
+    color: goldenrod !important;
+    left: -6px;
+    top: -3px;   
+
+}

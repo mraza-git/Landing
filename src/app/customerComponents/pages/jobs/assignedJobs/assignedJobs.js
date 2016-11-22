@@ -27,7 +27,7 @@
         folder: {
           $nin: ['delete', 'archive']
         },
-        status: 'closed'        
+        status: {$in: ['closed','awaiting']}        
       }]
     },
     {
@@ -47,7 +47,7 @@
           folder: {
             $nin: ['delete', 'archive']
           },
-          status: 'closed'  
+          status: {$in: ['closed','awaiting']}  
         },
         {
           sort: self.getReactively('sort.value')          

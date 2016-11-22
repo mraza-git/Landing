@@ -53,8 +53,8 @@
         if(self.getReactively('showShortListed')){
           quotes = Quotes.find(
             {
-            leadId: self.jobId,
-            _id:{$in:self.getReactively('job.shortList') || []}
+              leadId: self.jobId,
+              _id:{$in:self.getReactively('job.shortList') || []},              
             },
             {
             sort: self.getReactively('sort')
@@ -63,7 +63,8 @@
         }else{
           quotes = Quotes.find(
             {
-            leadId: self.jobId,
+              leadId: self.jobId,
+              // status:{$ne:'rejected'}
             },
             {
             sort: self.getReactively('sort')

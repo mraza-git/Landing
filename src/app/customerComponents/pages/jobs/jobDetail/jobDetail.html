@@ -44,6 +44,37 @@
                     </div>
                     
                 </div>
+
+                <!-- WINNER -->
+                <div class="thread-list" layout="column" flex ng-if="jobDetail.job.status==='closed' || jobDetail.job.status==='awaiting'">
+                    <md-progress-linear ng-disabled="!jobDetail.quote.loading" aria-label="loading">
+                    </md-progress-linear>
+                    <div class="md-whiteframe-2dp quotes-margin">
+                        <div class="heading" layout="row" layout-align="space between center">
+                            <div>
+                                <!--  TITLE-->
+                                <div class="name">Awarded Supplier</div>
+                                <!--  /TITLE-->
+                            </div>
+                        </div>
+                        <div class="thread {{quote.readStatus}} slide-top-nohide" md-ink-ripple ng-repeat="quote in jobDetail.quotes" ui-sref="jobs.quotedetail({quoteId:quote._id})"
+                        ng-class="{'current-thread': mouseOver}" ng-mouseenter="mouseOver=true" ng-mouseleave="mouseOver=false"
+                        ng-cloak layout="row" layout-xs="column" ng-if="quote.status==='accepted' || quote.status ==='approved'">
+
+                            <quote-owner quote="quote" owner-id="quote.owner" flex></quote-owner>
+
+                            <label class="label-padding budget-label ng-binding md-orange-600-bg" ng-if="quote.new" ng-class="projectBudget.colors[projectBudget.index]">
+                                new
+                            </label>
+                            <label class="label-padding budget-label ng-binding md-green-900-bg" ng-if="quote.updated" ng-class="projectBudget.colors[projectBudget.index]">
+                                updated
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- /WINNER-->
             </div>
 
             <!--<div ng-show="jobDetail.noQuotesAvailable">
@@ -66,16 +97,16 @@
                     </div>
                     <div class="thread {{quote.readStatus}} slide-top-nohide" md-ink-ripple ng-repeat="quote in jobDetail.quotes" ui-sref="jobs.quotedetail({quoteId:quote._id})"
                         ng-class="{'current-thread': mouseOver}" ng-mouseenter="mouseOver=true" ng-mouseleave="mouseOver=false"
-                        ng-cloak layout="row" layout-xs="column">
+                        ng-cloak layout="row" layout-xs="column" ng-if="quote.status!='accepted' && quote.status!='approved'">
 
-                        <quote-owner quote="quote" owner-id="quote.owner" flex></quote-owner>
+                        <quote-owner  quote="quote" owner-id="quote.owner" flex></quote-owner>
 
                         <label class="label-padding budget-label ng-binding md-orange-600-bg" ng-if="quote.new" ng-class="projectBudget.colors[projectBudget.index]">
-             new
-        </label>
+                            new
+                        </label>
                         <label class="label-padding budget-label ng-binding md-green-900-bg" ng-if="quote.updated" ng-class="projectBudget.colors[projectBudget.index]">
-             updated
-        </label>
+                            updated
+                        </label>
                     </div>
                 </div>
             </div>
