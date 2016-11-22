@@ -9,6 +9,14 @@
         .service('jobService', serviceName);
 
 
+    /**
+     * Service for Lead and Quote Management.
+     * Functions for both customer and supplier.
+     * @param {any} $window
+     * @param {any} $q
+     * @param {any} $mdDialog
+     * @param {any} $mdToast
+     */
     function serviceName($window, $q, $mdDialog, $mdToast) {
         'ngInject';
         this.updateJobFolder = updateJobFolder;
@@ -32,12 +40,12 @@
         //////////////// Function Definitions ////////////////////////////
         
         /**
-         * Updates the Lead status delete/archieve
+         * Updates the Lead status delete/archieve, helper function for moveTo and recover.
          * Customer Side
          * @param {any} jobId
          * @param {any} folder
          * @returns
-         */
+         */        
         function updateJobFolder(jobId, folder) {
             Leads.update({
                     _id: jobId
@@ -70,13 +78,28 @@
             );
             return defer.promise;
         }
-
-
+       
+       
+        /**
+         * Recover from a particular folder and put back in access
+         * Admin side for delete and customer side for archieve.
+         * @param {any} ev
+         * @param {any} jobId
+         * @returns
+         */
         function recover(ev, jobId) {
             var folder = "all";
             return updateJobFolder(jobId, folder);
         }
 
+        /**
+         * Move to a particular folder e.g. delete/archieve
+         * customer side.
+         * @param {any} ev
+         * @param {any} jobId
+         * @param {any} folder
+         * @returns
+         */
         function moveTo(ev, jobId, folder) {
             var confirm = $mdDialog.confirm()
                 .title(folder.toUpperCase())
@@ -93,6 +116,13 @@
             });
         }
 
+        /**
+         * Complete removes a lead along with its images and other data.
+         * admin side.
+         * @param {any} ev
+         * @param {any} job
+         * @returns
+         */
         function trashJob(ev, job) {
             var imageIds = [];
             if ('images' in job && !job.duplicate) {
@@ -126,11 +156,17 @@
             return defer.promise;
         }
 
+        /**
+         * Repost or duplicate Lead. only possible
+         * 
+         * @param {any} job
+         * @returns
+         */
         function duplicateJob(job) {
             var j = angular.copy(job);
             delete j._id;
             j.createdAt = new Date();
-            j.assignedTo = "";
+            j.assignedTo = [];
             j.previouslyAssignedTo = "";
             j.quotes = [];
             j.quotedBy = [];
@@ -157,6 +193,13 @@
             return defer.promise;
         }
 
+        /**
+         * 
+         * 
+         * @param {any} ev
+         * @param {any} quote
+         * @param {any} job
+         */
         function acceptOffer(ev, quote, job) {
             var confirm = $mdDialog.confirm()
                 .title('Are you sure you want to accept this offer?')
@@ -236,6 +279,13 @@
             });
         }
 
+        /**
+         * 
+         * 
+         * @param {any} ev
+         * @param {any} quote
+         * @param {any} job
+         */
         function approveProjectOffer(ev, quote, job) {
             var confirm = $mdDialog.confirm()
                 .title('Are you sure you want to accept this project?')
@@ -285,6 +335,13 @@
 
         }
 
+        /**
+         * 
+         * 
+         * @param {any} ev
+         * @param {any} quote
+         * @param {any} job
+         */
         function declineProjectOffer(ev, quote, job) {
             var confirm = $mdDialog.confirm()
                 .title('Are you sure you want to deline this project?')
@@ -334,6 +391,13 @@
 
         }
 
+        /**
+         * 
+         * 
+         * @param {any} ev
+         * @param {any} quote
+         * @param {any} job
+         */
         function declineOffer(ev, quote, job) {
             Quotes.update({
                 _id: quote._id
@@ -400,6 +464,13 @@
 
         }
 
+        /**
+         * 
+         * 
+         * @param {any} quote
+         * @param {any} job
+         * @returns
+         */
         function shortList(quote, job) {
             Leads.update({
                     _id: job._id
@@ -419,6 +490,13 @@
             return defer.promise;
         }
 
+        /**
+         * 
+         * 
+         * @param {any} quote
+         * @param {any} job
+         * @returns
+         */
         function removeShortList(quote, job) {
             Leads.update({
                     _id: job._id
@@ -438,6 +516,12 @@
             return defer.promise;
         }
 
+        /**
+         * 
+         * 
+         * @param {any} quote
+         * @returns
+         */
         function updateCustomerShowNumberCount(quote){
             Quotes.update(quote._id,
                 {
@@ -456,6 +540,12 @@
         }
 
 
+        /**
+         * 
+         * 
+         * @param {any} ev
+         * @param {any} category
+         */
         function openServiceListDialog(ev, category) {
             $mdDialog.show({
                 controller: serviceSelectorModelController,
