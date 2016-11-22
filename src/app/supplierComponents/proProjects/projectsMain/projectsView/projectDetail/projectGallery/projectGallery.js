@@ -34,7 +34,10 @@
       self.update(event);
     }    
 
-    function remove(id,index){
+    function remove(id,index,event){
+      if(event){
+        event.stopPropagation();
+      }
       Images.remove({_id:id},function(error,doc){
         console.log(error);
         console.log(doc);
@@ -64,8 +67,17 @@
         images: '<', 
         readonly: '<',
         saveNow: '&',      // save original document.
-        
+        inline: "<",
       }
     });   
 
 })();
+
+var slideShow = function (event) {  
+    event = event || window.event;
+    var target = event.target || event.srcElement,
+        link = target.src ? target.parentNode : target,
+        options = {index: link, event: event},
+        links = document.getElementsByClassName('foc-image-slides');
+    blueimp.Gallery(links, options);
+};

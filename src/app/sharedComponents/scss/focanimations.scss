@@ -118,6 +118,52 @@ $foc-transition-duration: 250ms;
 }
 
 
+.toggle1s {
+	@include easingTimingFunction();
+
+  &.ng-enter-stagger {
+    @include staggerTimming (0.250s);
+  }
+
+	&.ng-enter {
+		opacity: 0;
+		@include transitionDuration(1000ms);
+	}
+
+	&.ng-enter-active {
+		opacity: 1;
+	}
+
+	&.ng-leave {
+		opacity: 1;
+		@include transitionDuration(100ms);
+	}
+
+	&.ng-leave-active {
+		opacity: 0;
+	}
+
+	// Hide
+	&.ng-hide-add {
+		@include transitionDuration(100ms);
+		opacity:1;
+	}
+	&.ng-hide-add.ng-hide-add-active {
+		opacity:0;
+	}
+
+	// Show
+	&.ng-hide-remove {
+		@include transitionDuration(1000ms);
+		display:block!important;
+		opacity:0;
+	}
+	&.ng-hide-remove.ng-hide-remove-active {
+		opacity:1;
+	}
+}
+
+
 /* ------------------------------------------- */
 /* Slide Top
 /* ------------------------------------------- */
@@ -167,6 +213,38 @@ $foc-transition-duration: 250ms;
 	&.ng-hide-remove {
 		@include transform(translateY(60px));
 		@include transitionDuration(250ms);
+		display:block!important;
+		opacity:0;
+	}
+	&.ng-hide-remove.ng-hide-remove-active {
+		@include transform(translateY(0));
+		opacity:1;
+	}
+}
+
+.slide-top-nohide {
+	@include easingTimingFunction();
+
+	&.ng-enter-stagger {
+		@include staggerTimming (0.03s);
+	}
+
+
+	&.ng-enter {
+		@include transform(translateY(15px));
+		@include transitionDuration(150ms);
+		opacity: 0;
+	}
+
+	&.ng-enter-active {
+		@include transform(translateY(0));
+		opacity: 1;
+	}	
+
+	// Show
+	&.ng-hide-remove {
+		@include transform(translateY(15px));
+		@include transitionDuration(150ms);
 		display:block!important;
 		opacity:0;
 	}

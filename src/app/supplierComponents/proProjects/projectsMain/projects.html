@@ -1,12 +1,24 @@
 <div id="form-main" class="page-layout carded left-sidenav" layout="row">
 
   <!-- TOP BACKGROUND -->
-  <div class="top-bg md-accent-bg"></div>
+  <div class="top-bg md-accent-bg projects-bg"></div>
   <!-- / TOP BACKGROUND -->
 
   <!-- SIDENAV -->
-  <md-sidenav class="sidenav" md-is-locked-open="$mdMedia('gt-md')" md-component-id="projects-sidenav" ms-scroll ms-sidenav-helper>
-    <projects-nav current-folder="projects.currentFolder" master-settings="projects.masterSettings" current-project="projects.currentProject" selected-service="projects.selectedService"></projects-nav>
+  <md-sidenav 
+    class="sidenav projects" 
+    md-is-locked-open="$mdMedia('gt-md')" 
+    md-component-id="projects-sidenav"    
+    layout="column">
+      <projects-nav
+      layout="column"
+      flex 
+      search = "projects.search"
+      dates = "projects.dates"
+      current-folder="projects.currentFolder" 
+      master-settings="projects.masterSettings" 
+      current-project="projects.currentProject" 
+      selected-service="projects.selectedService"></projects-nav>
   </md-sidenav>
   <!-- / SIDENAV -->
 
@@ -14,9 +26,9 @@
   <div class="center" layout="column" flex>
 
     <!-- CONTENT HEADER -->
-    <div class="header" layout="row" layout-align="start center">
+    <div class="header projects-header" layout="row" layout-align="start center">
 
-      <div class="search-wrapper md-whiteframe-4dp" layout="row" layout-align="start center" flex>
+      <!--<div class="search-wrapper md-whiteframe-4dp" layout="row" layout-align="start center" flex>
         <md-button class="md-icon-button sidenav-toggle" ng-click="projects.toggleSidenav('projects-sidenav')" hide-gt-md aria-label="Toggle Sidenav"
           translate translate-attr-aria-label="FORM.TOGGLE_SIDENAV">
           <md-icon class="icon" md-font-icon="icon-menu"></md-icon>
@@ -36,7 +48,7 @@
             </ng-form>
 
           </div>    
-          <!--<input flex ng-model="projects.search" type="text" placeholder="Search for an e-mail or contact" translate translate-attr-placeholder="FORM.SEARCH_PLACEHOLDER"/>-->
+          
           <md-slider flex
               ng-hide="projects.showSearch" 
               class="md-warn" 
@@ -46,15 +58,20 @@
           aria-label="rating">
           </md-slider>
         </div>
-      </div>
+      </div>-->
 
     </div>
     <!-- / CONTENT HEADER -->
 
     <!-- CONTENT CARD -->
     <div class="content-card outlook" ng-class="vm.currentView" layout="column" flex>
-      <projects-view layout="column" flex current-folder="projects.currentFolder" search="projects.search" current-project="projects.currentProject"
-        master-settings="projects.masterSettings"></projects-view>
+      <projects-view layout="column" flex 
+        current-folder="projects.currentFolder" 
+        search="projects.search" 
+        dates = "projects.dates"
+        current-project="projects.currentProject"
+        master-settings="projects.masterSettings" 
+        selected-service="projects.selectedService"></projects-view>
     </div>
     <!-- / CONTENT CARD -->
 

@@ -19,14 +19,32 @@
         </md-button>
 
         <md-menu-content width="3" style="z-index:999">
-            <md-menu-item class="md-indent" ui-sref='app.pages_profile({userId:""})'>
-                <md-icon md-font-icon="icon-account" class="icon"></md-icon>
-                <md-button>My Profile</md-button>
+            <md-menu-item class="md-indent" ng-click="toolbarUser.openServiceListDialog($event)" >
+                <md-icon md-font-icon="icon-clipboard-outline" class="icon"></md-icon>
+                <md-button>Post a Job</md-button>
             </md-menu-item>
 
-            <md-menu-item class="md-indent" ui-sref="app.chat">
+
+            <md-menu-item class="md-indent" ng-if="!toolbarUser.isSupplierLoggedIn" ui-sref="jobs.dashboard">
+                <md-icon md-font-icon="icon-chart-arc" class="icon"></md-icon>
+                <md-button>Dashboard</md-button>
+            </md-menu-item>
+            
+            <md-menu-item class="md-indent" ng-if="!toolbarUser.isSupplierLoggedIn" ui-sref="jobs.activejobs">
+                <md-icon md-font-icon="icon-clipboard-text" class="icon"></md-icon>
+                <md-button>Active Jobs</md-button>
+            </md-menu-item>
+
+            <md-menu-divider></md-menu-divider>
+            
+            <md-menu-item class="md-indent" ng-if="toolbarUser.isSupplierLoggedIn" ui-sref="app.projects">
                 <md-icon md-font-icon="icon-email" class="icon"></md-icon>
-                <md-button>Chats</md-button>
+                <md-button>Find Projects</md-button>
+            </md-menu-item>
+
+            <md-menu-item class="md-indent" ui-sref="app.profile" >
+                <md-icon md-font-icon="icon-account" class="icon"></md-icon>
+                <md-button>My Profile</md-button>
             </md-menu-item>
 
             <!-- Change Password  -->
@@ -47,11 +65,13 @@
                 </image-upload-button>
             </md-menu-item>
 
+            <md-menu-divider></md-menu-divider>
+
             <md-menu-item class="md-indent">
                 <md-icon md-font-icon ng-class="toolbarUser.user.profile.userStatus.icon"
                          ng-style="{'color': toolbarUser.user.profile.userStatus.color }" class="icon"></md-icon>
                 <md-menu id="user-status-menu">
-                    <md-button ng-click="$mdOpenMenu()" class="status" ng-class="toolbarUser.user.profile.userStatus.class">
+                    <md-button ng-click="$mdOpenMenu()" class="status" aria-label="user status" ng-class="toolbarUser.user.profile.userStatus.class">
                         {{toolbarUser.user.profile.userStatus.title}}
                     </md-button>
                     <md-menu-content width="2">

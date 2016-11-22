@@ -9,16 +9,55 @@
       'ngInject';
       ///////////Initialization Checks///////////
       var self = this;
-
+      $reactive(self).attach($scope);
 
       ///////////Data///////////
+      self.subscribe('images');
+      self.subscribe('userById',function(){
+        return [
+          self.getReactively('userIds')
+        ]
+      });
+
+      self.helpers({
+        images: function(){
+          return Images.find({},{
+            sort:{userId:1}
+          });
+        },
+        services: function (){
+          return Services.find();
+        },
+        userIds: function(){
+          var images = self.getReactively('images');
+          var ids = [];
+          if(images){
+            ids = images.map(function (obj){
+              return obj.userId;
+            });
+          }
+          return ids;
+        }
+      });
 
 
       ///////////Methods Declarations///////////
+      self.remove = remove;
+      self.getUserName = getUserName
 
 
 
       ///////////Method Definitions///////////
+      function remove(image){
+        Images.remove(image._id);
+      }
+      function getUserName(id){
+        var user = Meteor.users.findOne({_id:id});
+        if(user){
+          return user.profile.name;
+        } 
+        else return "";
+      }
 
     }
 

@@ -10,33 +10,87 @@
 
   <div class="account">
     <div class="title">{{projectsNav.currentUser.profile.name}}</div>
-     <md-select class="account-selection simplified" placeholder="Select services"
-                   ng-model="projectsNav.selectedService" ng-change="projectsNav.setService()">
-            <md-option ng-value="null"> All Services </md-option>
-            <md-option ng-repeat="service in projectsNav.services track by $index" ng-value="service">
-              {{service.name}}
-            </md-option>
-      </md-select> 
+     
   </div>
 
 </div>
 <!-- / SIDENAV HEADER -->
 
 <!-- SIDENAV CONTENT -->
-<md-content ms-scroll class="content" flex layout="column">
-  <md-button ng-click="projectsNav.openQuoteDialog($event)"
-             id="quote"
-             class="md-raised md-warn"
-             ng-disabled="false"
-             flex
-             aria-label="quote"> Quote </md-button>
+<md-content class="content projects-content" flex layout="column" ms-scroll ms-sidenav-helper>
   <projects-folders
   current-project="projectsNav.currentProject"
   master-settings = "projectsNav.masterSettings"
   current-folder = "projectsNav.currentFolder"
   ></projects-folders>
 <br>  
-<md-divider></md-divider>
+
+  <div class="navigation-simple" layout="column" flex>
+    <div class="item subheader" layout layout-align="space between center">
+      <span>Search Filters</span>
+      <md-button class="md-icon-button" ng-click="projectsNav.clearFilters()">
+        <md-icon md-font-icon="icon-close"></md-icon>
+      </md-button>
+    </div>
+    <!--SERVICE FILTER-->
+    <md-select class="item" placeholder="Select services"
+                  ng-model="projectsNav.selectedService" ng-change="projectsNav.setService()">
+          <md-option ng-value="null"> All Services </md-option>
+          <md-option ng-repeat="service in projectsNav.services track by $index" ng-value="service">
+            {{service.name}}
+          </md-option>
+    </md-select> 
+    <!--/SERVICE FILTER-->
+    <!--SEARCH KEYWORD-->
+    <div layout="column" >
+      <form name="searchTextForm" ng-submit="projectsNav.searchTextContent()" layout="row">
+        <md-input-container class="item" style="padding:5px 0 0 24px;" md-no-float flex layout>
+          <input name="search"
+                  type="input"
+                  ng-model="projectsNav.searchText"
+                  placeholder="search a keyword..."
+                  aria-label="seach"/>
+        </md-input-container>
+        <md-button type="submit" aria-label="search" class="md-icon-button">
+          <md-icon md-font-icon="icon-magnify">
+          </md-icon>           
+        </md-button>        
+      </form>
+    </div>
+    <!--/SEARCH KEYWORD-->
+    <!--SEARCH DATE-->
+    <div layout="column"  flex layout-align="center center">
+      <div class="item subheader">
+        <span>Inquiry date</span>
+      </div>
+      <form name="filterDateForm" ng-submit="projectsNav.filterDate()">
+        <md-datepicker
+          class="item" 
+          ng-model="projectsNav.startDate"                       
+          md-min-date="projectsNav.minDate"
+          md-max-date="projectsNav.today"
+                                
+          md-placeholder="from">
+        </md-datepicker>
+        <md-datepicker
+          class="item"
+          ng-model="projectsNav.endDate"
+          md-min-date="projectsNav.startDate"
+          md-max-date="projectsNav.today"                      
+          md-placeholder="to">
+        </md-datepicker>
+        <md-button type="submit" class="item md-raised md-primary" aria-label="filter date" flex> Filter Date </md-button>
+
+      </form>
+    </div>
+    <!--/SEARCH DATE-->
+    <!--FILTER LOCATION-->
+
+    <!--/FILTER LOCATION-->
+
+  </div>
+
+
 
 </md-content>
 <!-- / SIDENAV CONTENT -->

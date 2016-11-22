@@ -2,6 +2,9 @@
     text-transform: none;
     #toolbar {
         padding: 0 0 0 16px;
+
+
+        
         #landing-toolbar {
             .logo {
                 margin-right: 16px;
@@ -34,6 +37,10 @@
             }
         }
     }
+     @media (max-width: 768px) {
+                            #toolbar {
+                                padding: 0;
+                            }}
     .foc-nav:hover,
     .foc-nav:focus {
         height: 64px;
@@ -41,4 +48,51 @@
         border-radius: 0;
         padding: 14px 14px 0;
     }
+}
+
+
+
+.foc-nav {
+    height: 64px;
+    margin: 0;
+    border-radius: 0;
+    padding: 14px 14px 0;
+    display: block;
+}
+
+.foc-nav:hover,
+.foc-nav:focus {
+    height: 64px;
+    margin: 0;
+    border-radius: 0;
+    padding: 14px 14px 0;
+    /*border-bottom: solid 2px rgb(84, 110, 122);*/
+    display: block;
+}
+
+.foc-nav-active {
+    height: 64px;
+    margin: 0;
+    border-radius: 0;
+    padding: 0;
+    border-bottom: solid 2px rgb(84, 110, 122);
+    display: block;
+}
+
+#history-menu{
+    height:64px;
+    min-width:110px;
+    padding:0px !important;
+    
+    md-menu{
+        height:64px;
+        min-width:110px;    
+    }
+
+}
+.menu-button{
+    min-width:110px;    
+    height: 64px;
+    padding: 0px;
+    margin: auto;
 }

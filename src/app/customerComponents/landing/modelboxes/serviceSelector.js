@@ -1,6 +1,6 @@
 var serviceSelectorModelController = serviceSelectorModelController;
 
-function serviceSelectorModelController($scope,$rootScope,$reactive,$mdDialog,category,$state){
+function serviceSelectorModelController($scope,$rootScope,$reactive,$mdDialog,category,$state,returnUrlService){
     'ngInject';
 
     ///////////Data/////////////
@@ -29,8 +29,13 @@ function serviceSelectorModelController($scope,$rootScope,$reactive,$mdDialog,ca
 
     /////////////Method Definication///////////////////    
     function goToQuestions(serviceId){
-        $state.go('app.serviceQuestions',{serviceId:serviceId});
+        var returnUrl = {
+            stateName: $state.current.name,
+            stateParams: $state.params
+        };
+        returnUrlService.set(returnUrl);
         $mdDialog.hide();
+        $state.go('app.serviceQuestions',{serviceId:serviceId});
     }
 
 

@@ -10,7 +10,15 @@ project-gallery {
     .conent {
         padding: 10px;
     }
+
+    .icon-remove{
+      cursor: pointer;
+      position: absolute;
+      top: 5px;
+      right: 5px;
+    }
 }
+
 
 .blueimp-gallery,
 .blueimp-gallery > .slides > .slide > .slide-content {

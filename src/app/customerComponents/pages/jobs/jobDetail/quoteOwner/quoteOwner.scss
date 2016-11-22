@@ -1,0 +1,100 @@
+#quote-owner {
+
+            .padding-5-10 {  
+            padding: 5px 10px !important;  
+            }
+
+            .bid {
+              margin: 0;
+              font-size: 22px;
+              font-weight: bold;
+              color: #333;
+              text-align: center;
+                 }
+            .marker {
+                margin: 0;
+            }
+            
+            .star-ratings {
+             // position: absolute;
+             // top: 4px;
+             // right: 10px;
+              font-family: sans-serif;
+              font-size: 14px;
+              color: #888;
+              margin-left: 10px;
+               margin-right: 10px;
+
+              small {
+                text-align: center;
+                display: block;
+              }
+
+              strong { 
+                font-weight: normal; 
+                color: #333;
+                }
+              .jobs-completed {
+                font-weight: bold;
+              }
+            
+              h1 {
+              margin: 0;
+              font-size: 22px;
+              font-weight: bold;
+              color: #333;
+              text-align: center;
+                 }
+                p {
+                    margin: 0;
+                    font-weight: bold;
+                    font-size: 14px;
+                    background: rgb(236,64,122);
+                    width: 34px;
+                    float: left;
+                    color: white;
+                    border-radius: 4px;
+                    text-align: center;
+                }
+            .stars, .stars > em {
+              display: block;
+              width: 99px;
+              height: 18px;
+              margin: 0;
+              float: left;
+              margin-left: 2px;
+              text-align: center;
+              background: url("../../../assets/images/backgrounds/stars.png");
+            }
+
+            .stars > em {
+              width: 99px;
+              height: 18px;
+              margin: 0;
+              background: url("../../../assets/images/backgrounds/stars.png");
+              background-position: 0 -18px;
+            }
+          }
+    
+}
+
+.winner-icon{
+  position: absolute;
+    color: goldenrod !important;
+    left: -6px;
+    top: -15px;
+    -webkit-transform: rotate(-32deg);
+    -moz-transform: rotate(-32deg);
+    -ms-transform: rotate(-32deg);
+    -o-transform: rotate(-32deg);
+    transform: rotate(-32deg);
+
+}
+
+.short-list-icon{
+  position: absolute;
+    color: goldenrod !important;
+    left: -6px;
+    top: -3px;   
+
+}

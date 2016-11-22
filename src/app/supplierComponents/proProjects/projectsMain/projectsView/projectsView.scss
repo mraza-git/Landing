@@ -1,0 +1,14 @@
+.content-card{
+    .toolbar{
+        .page-size-select{
+            md-select-value{
+                min-width: auto !important;
+            }
+            md-select-menu{
+                md-content{
+                    min-width: auto !important;
+                }
+            }
+        }
+    }
+}

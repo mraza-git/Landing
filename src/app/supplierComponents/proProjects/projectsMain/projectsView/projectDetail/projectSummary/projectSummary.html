@@ -1,51 +1,76 @@
 <!-- DETAILS PAGE -->
 <div ng-show="projectSummary.currentProject" flex layout="column" class="slide-top md-whiteframe-2dp" ng-cloak>
   <!--  HEADER-->
-  <div class="thread-header heading" layout="row" layout-align="space-between center">    
-    <div>
-      <!--  TITLE-->
-      <div class="name">Inquiry Detail</div>
-      <!--  /TITLE-->
+  <div class="thread-header heading slide-top" layout="row" layout-xs="column" layout-sm="column" layout-align="space-between center"  ng-click="showSummary=!showSummary" >
+    <!--  TITLE-->
+    
+    <div class="name" layout layout-align="center center">
+      <span class="text-truncate">
+      {{projectSummary.currentProject.title}}
+      </span>
+      <span>
+      <md-button flex aria-label="edit" ng-click="projectSummary.editJob()">
+        <md-icon md-font-icon="icon-pencil"></md-icon>
+        Edit
+      </md-button>
+        </span>
+    </div>
+    <!--  /TITLE-->
+    <div layout ng-if="projectSummary.showGallery" layout="row" layout-xs="column" layout-sm="column" >
+      <div layout="row" class="bid-tag">
+        <div flex="25" class="name">
+          Bids<br>
+          <span>20</span>
+        </div>
+        <div flex="40" class="name">
+          Average Bid<br>
+          <span>1500</span>
+        </div>
+        <div flex class="name" style="border-right: none;">
+          Budget<br>
+          <span>1000</span>
+        </div>
+      </div>
     </div>
   </div>
   <!--  /HEADER-->
   <!--  PROJECT PAGE LIST-->
-  <div layout="column" flex class="content">
-    <div ng-repeat="pages in projectSummary.currentProject.pages ">
-      <div ng-repeat="question in pages.questions | orderBy: 'adminKey'" ng-hide="question.questionType === 'gmap'">
-        <div layout="row" ng-hide="question.questionType==='checkbox'" class="question">
-          {{question.supplierDescription}}
-         </div>
-        <div layout="row" ng-hide="question.questionType==='checkbox'" class="answer">
-          {{question.answer}}
+  <div layout="column" class="accordion" ng-class="{'accordion-show': showSummary}">
+   <section  ms-scroll>
+    <div layout="row"  layout-xs="column" layout-sm="column" flex class="content">
+      <div ng-repeat="pages in projectSummary.currentProject.pages" flex>
+        <div ng-repeat="question in pages.questions | orderBy: 'adminKey'" ng-if="question.questionType !== 'gmap'">
+          <div layout="row" ng-hide="question.questionType==='checkbox'" class="question">
+            {{question.supplierDescription}}
+          </div>
+          <div layout="row" ng-hide="question.questionType==='checkbox'" class="answer">
+            {{question.answer}}
+          </div>
+          <div layout="row" ng-show="question.questionType==='checkbox'" class="question">
+            {{question.checkStatement}}
+          </div>
+          <div layout="row" ng-show="question.questionType==='checkbox'" class="question">
+            {{question.supplierDescription}}
+          </div>
         </div>
-        <div layout="row" ng-show="question.questionType==='checkbox'" class="question">
-          {{question.checkStatement}}
-        </div>
-        <div layout="row" ng-show="question.questionType==='checkbox'" class="question">
-          {{question.supplierDescription}}
-        </div>
-
       </div>
+      <project-gallery flex="50" ng-if="projectSummary.currentProject.images.length>0 && projectSummary.showGallery" images="projectSummary.currentProject.images"
+        readonly="true" inline="true"></project-gallery>
+      <project-map ready="jobDetail.ready" location="jobDetail.location" layout="column" flex></project-map>
     </div>
-  </div>  
-  <div layout="column">
-    
-    <p class="question">  
-    More Details:<br />
-    
-    <md-button aria-label="Edit" class="md-icon-button" ng-if="projectSummary.isAdminOrSupport">
-       <md-icon md-font-icon="icon-pencil"></md-icon>       
-    </md-button>
-    
-     <span  class="answer">{{projectSummary.currentProject.detail}}</span></p>
-    
+    <div layout="column">
+      <p class="question">
+        More Details:<br />
+        <md-button aria-label="Edit" class="md-icon-button" ng-if="projectSummary.isAdminOrSupport">
+          <md-icon md-font-icon="icon-pencil"></md-icon>
+        </md-button>
+        <span class="answer">{{projectSummary.currentProject.detail}}</span></p>
+    </div>
+   </section>
+    <!--  /PROJECT PAGE LIST-->
   </div>
-  <!--  /PROJECT PAGE LIST-->
 </div>
-
 <!--<pre> 
   {{projectSummary.currentProject.pages}}
 </pre>-->
-
 <!--  /DETAILS PAGE-->

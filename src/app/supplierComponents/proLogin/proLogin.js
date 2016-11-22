@@ -5,14 +5,22 @@
 
     var main = 'pro'; // Change this with containing folder name
     var type = 'Login';
-    function ControllerFunction($scope,$reactive,$state){
+    function ControllerFunction($scope,$reactive,$state,returnUrlService){
       'ngInject';
       ///////////Initialization Checks///////////
       var self = this;
       $reactive(self).attach($scope);
       ///////////Data///////////
       self.form = {};    
-      
+      returnUrlService.get().then(function(res){
+        self.returnUrl = res;
+      },function(err){
+        self.returnUrl = {
+          stateName: 'app.projects',
+          stateParams: {}
+        };
+
+      });
             
 
       ///////////Methods Declarations///////////
@@ -35,7 +43,7 @@
               } else {
                 console.log("Logged In");
                 self.loading = false;
-                $state.go('app.p',{username: Meteor.user().username});
+                $state.go(self.returnUrl.stateName,self.returnUrl.stateParams);
               }
             }
           );       
@@ -52,6 +60,7 @@
     'angular-meteor',  
     'pagesToolbar',
     'validation.match',
+    'returnUrlModule',
     ])
   .component(name,{
     templateUrl: templateUrl,

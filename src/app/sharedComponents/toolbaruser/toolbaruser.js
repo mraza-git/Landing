@@ -13,7 +13,7 @@
 
 
 
-function ToolbarUser($scope, $reactive, $state, AuthModals, $mdDialog, $mdMedia) {
+function ToolbarUser($scope, $reactive, $state, AuthModals, $mdDialog, $mdMedia,jobService) {
   'ngInject';
   $reactive(this).attach($scope);
   this.state = $state;
@@ -48,6 +48,9 @@ function ToolbarUser($scope, $reactive, $state, AuthModals, $mdDialog, $mdMedia)
           $in: [this.getReactively('user.profile.dpImageId', true)] || []
         }
       });
+    },
+    isSupplierLoggedIn: function(){
+      return Roles.userIsInRole(Meteor.userId(),'supplier','supplier-group');
     }
   });
   // Setup status options, later put them in db.
@@ -81,11 +84,27 @@ function ToolbarUser($scope, $reactive, $state, AuthModals, $mdDialog, $mdMedia)
   this.logout = logout;
   this.openChangePassword = openChangePassword;  
   this.pictureUploaded = pictureUploaded;
+  this.goToProfile = goToProfile;
+  this.openServiceListDialog = openServiceListDialog;
+
 
 
 
 
   ////////////// Method Definition ////////////////////
+  function openServiceListDialog(ev) {  
+      jobService.openServiceListDialog(ev);
+  }
+
+  function goToProfile(){    
+     if(this.isSupplierLoggedIn){
+        $state.go('app.p',{username:""});
+      }
+      else{
+        $state.go('app.profile',{userId: Meteor.userId()});
+      }
+  }
+
   function setUserStatus(status) {
     this.userStatus = status;
     Meteor.users.update({
@@ -106,12 +125,11 @@ function ToolbarUser($scope, $reactive, $state, AuthModals, $mdDialog, $mdMedia)
 
   function logout(event) {
     Accounts.logout(function () {
-
+      $state.go("app.landing");
     }, function (err) {
       console.log(err);
       return;
     });
-    this.state.go("app.landing");
   }
 
   function openChangePassword(event) {
@@ -160,6 +178,10 @@ angular.module(name, [
   'angular-meteor',
   'fileUpload',
   'imageUpload',
+  'assignedJobs',
+  'activeJobs',
+  'projects',
+  'jobServiceModule',
 ]).component(name, {
   templateUrl: "app/sharedComponents/toolbaruser/toolbaruser.web.html",
   controller: ToolbarUser,

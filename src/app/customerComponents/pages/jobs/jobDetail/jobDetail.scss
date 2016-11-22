@@ -1,0 +1,108 @@
+#job-detail {
+    .main-title {
+         padding: 0 20px;
+         margin: 19px 0 0;
+        }
+    .heading {
+        border-radius: 3px 3px 0 0;
+        box-shadow: 0 1px rgba(255, 255, 255, 0.1);
+        background-color: #2d323e;
+        color: rgba(255, 255, 255, 0.87);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+        padding: 15px 15px 10px;
+        }
+    .quotes-margin {
+        margin: 0px 15px 15px;
+        }
+    .thread {
+        background: white !important;
+    }
+    .thread-read {
+        background: #efefef !important;
+
+        #form-main.jobs .name {
+            font-size: 15px;
+            font-weight: normal !important;
+        }
+        .jobs-completed {
+                font-weight: normal;
+              }
+        #quote-owner .bid {
+     
+            font-weight: normal;
+           
+        }
+
+    }
+    .content-area {
+                padding-right: 0;
+            }
+    .subject {
+        font-size: 17px;
+        font-weight: 500;
+        span {
+             font-size: 14px;
+             font-weight: normal;
+             color: #a2a2a2;
+        }
+    }
+    .lead-new {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        border-radius: 0;
+        font-size: 9px;
+        margin: 0;
+        padding: 1px 0;
+        width: 40px;
+        text-align: center;
+        text-transform: uppercase;
+        }
+   .lead-updated {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        border-radius: 0;
+        font-size: 9px;
+        margin: 0;
+        padding: 1px 0;
+        width: 40px;
+        text-align: center;
+        text-transform: uppercase;
+        }
+    project-summary {
+        .heading {
+           
+            background-color: #eaf1f5;
+            color: rgb(55, 71, 79);
+            border-top: 1px solid rgba(0, 0, 0, 0.12);
+            font-size: 15px;
+            z-index: 10;
+            cursor: pointer;
+            
+        }
+    }
+    project-gallery {
+        .heading {
+
+            background-color: #eaf1f5;
+            color: rgb(55, 71, 79);
+            border-top: 1px solid rgba(0, 0, 0, 0.12);
+        }
+    }
+}
+job-detail {
+    .foc-nav {
+        height: 56px;
+    }
+
+    .foc-nav:hover,
+    .foc-nav:focus {
+        height: 56px !important;
+    }
+
+    .foc-nav-active {
+        height: 56px;
+    }
+  
+}

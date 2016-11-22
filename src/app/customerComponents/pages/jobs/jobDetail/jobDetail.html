@@ -1,0 +1,118 @@
+<!-- CONTENT TOOLBAR -->
+<div class="toolbar" layout="row" layout-align="space between center">
+    <div layout="row">
+        <div ng-class="{'foc-nav-active':!jobDetail.showShortListed}">
+            <md-button ng-click="jobDetail.showShortListed=false;" class="md-primary md-hue-1 foc-nav">All Quotes</md-button>
+        </div>
+        <div class="toolbar-separator"></div>
+        <div ng-class="{'foc-nav-active':jobDetail.showShortListed}">
+            <md-button ng-click="jobDetail.showShortListed=true;" class="md-primary md-hue-1 foc-nav">Shortlisted</md-button>
+        </div>
+        <div class="toolbar-separator"></div>
+    </div>    
+    <div class="actions">
+        <md-select ng-model="jobDetail.sort" multiple="false" placeholder="Sort">
+            <md-option ng-value="option.value" ng-repeat="option in jobDetail.sortOptions">
+                {{ option.name }}
+            </md-option>
+        </md-select>
+    </div>    
+    <!--<ui-breadcrumbs displayname-property="data.displayName">
+                </ui-breadcrumbs>-->
+</div>
+<!-- / CONTENT TOOLBAR -->
+
+<!-- CONTENT -->
+<md-content class="content-wrapper" layout="column" flex>
+
+    <div id="job-detail">
+        <!--<h1 class="main-title">
+        Job Detail
+    </h1>-->
+        <div>
+            <div layout="column" flex>
+                <div layout="row" layout-xs="column" flex>
+                    <div layout="column" layout-padding flex class="content-area">
+                       
+                        <!--<div class="subject" flex>
+                            {{jobDetail.job.title}}<br>
+                            <span>{{jobDetail.job.detail}}</span>
+
+                        </div>-->
+                        <project-summary current-project="jobDetail.job" show-gallery="true" flex></project-summary>
+                    <!--<project-gallery ng-show="jobDetail.job.images.length>0" class="slide-top" images="jobDetail.job.images" readonly="true" flex></project-gallery>-->
+                    </div>
+                    
+                </div>
+
+                <!-- WINNER -->
+                <div class="thread-list" layout="column" flex ng-if="jobDetail.job.status==='closed' || jobDetail.job.status==='awaiting'">
+                    <md-progress-linear ng-disabled="!jobDetail.quote.loading" aria-label="loading">
+                    </md-progress-linear>
+                    <div class="md-whiteframe-2dp quotes-margin">
+                        <div class="heading" layout="row" layout-align="space between center">
+                            <div>
+                                <!--  TITLE-->
+                                <div class="name">Awarded Supplier</div>
+                                <!--  /TITLE-->
+                            </div>
+                        </div>
+                        <div class="thread {{quote.readStatus}} slide-top-nohide" md-ink-ripple ng-repeat="quote in jobDetail.quotes" ui-sref="jobs.quotedetail({quoteId:quote._id})"
+                        ng-class="{'current-thread': mouseOver}" ng-mouseenter="mouseOver=true" ng-mouseleave="mouseOver=false"
+                        ng-cloak layout="row" layout-xs="column" ng-if="quote.status==='accepted' || quote.status ==='approved'">
+
+                            <quote-owner quote="quote" owner-id="quote.owner" flex></quote-owner>
+
+                            <label class="label-padding budget-label ng-binding md-orange-600-bg" ng-if="quote.new" ng-class="projectBudget.colors[projectBudget.index]">
+                                new
+                            </label>
+                            <label class="label-padding budget-label ng-binding md-green-900-bg" ng-if="quote.updated" ng-class="projectBudget.colors[projectBudget.index]">
+                                updated
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- /WINNER-->
+            </div>
+
+            <!--<div ng-show="jobDetail.noQuotesAvailable">
+            No quote yet available
+        </div>
+        <div class="padding-5-10">Quote Owners Ids</div>
+        <pre>   
+            {{jobDetail.quotesOwners}}
+        </pre>-->
+            <div class="thread-list" layout="column" flex>
+                <md-progress-linear ng-disabled="!jobDetail.quote.loading" aria-label="loading">
+                </md-progress-linear>
+                <div class="md-whiteframe-2dp quotes-margin">
+                    <div class="heading" layout="row" layout-align="space between center">
+                        <div>
+                            <!--  TITLE-->
+                            <div class="name">Quotes</div>
+                            <!--  /TITLE-->
+                        </div>
+                    </div>
+                    <div class="thread {{quote.readStatus}} slide-top-nohide" md-ink-ripple ng-repeat="quote in jobDetail.quotes" ui-sref="jobs.quotedetail({quoteId:quote._id})"
+                        ng-class="{'current-thread': mouseOver}" ng-mouseenter="mouseOver=true" ng-mouseleave="mouseOver=false"
+                        ng-cloak layout="row" layout-xs="column" ng-if="quote.status!='accepted' && quote.status!='approved'">
+
+                        <quote-owner  quote="quote" owner-id="quote.owner" flex></quote-owner>
+
+                        <label class="label-padding budget-label ng-binding md-orange-600-bg" ng-if="quote.new" ng-class="projectBudget.colors[projectBudget.index]">
+                            new
+                        </label>
+                        <label class="label-padding budget-label ng-binding md-green-900-bg" ng-if="quote.updated" ng-class="projectBudget.colors[projectBudget.index]">
+                            updated
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</md-content>
+<!-- / CONTENT -->

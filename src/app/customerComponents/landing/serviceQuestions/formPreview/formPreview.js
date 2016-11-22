@@ -4,7 +4,7 @@
   var main = 'form'; // Change this with containing folder name
   var type = 'Preview'; // Change This with Component functionality Detail, Add, Remove, Delete, List etc.
 
-  function ControllerFunction($scope,WizardHandler,$state,$stateParams,$cookies,$timeout) {
+  function ControllerFunction($scope,$reactive,WizardHandler,$state,leadSessionService) {
     'ngInject';
     ///////////Data///////////
     var self = this;    
@@ -12,6 +12,7 @@
     self.previousStep = 0;
     self.serviceForm = [];
     self.formIndex = 0;
+    $reactive(self).attach($scope);
 
     self.originalForm = angular.copy(self.form);
     
@@ -22,10 +23,27 @@
     self.setupLead = setupLead;
     self.setupModel = setupModel;
 
+    self.autorun(function(handle){
+      if(self.getReactively('lead')){
+        self.setupModel();
+        handle.stop();
+      }else if(self.getReactively('model')){
+        handle.stop();
+      }
+      else{
+        leadSessionService.get().then(function(res){
+            if(res){
+              self.lead = res;
+              self.setupModel();
+              handle.stop();
+            }
+          },function(err){
 
-    if(angular.isDefined(self.lead)){
-      self.setupModel();
-    }
+          });
+      }
+    });
+
+
     
 
     ///////////Method Definitions///////////
@@ -33,8 +51,15 @@
       self.setupLead();
     }
 
-    function setupLead(){      
-      self.lead = {pages:[{questions:[]}]};
+    function setupLead(){
+      if(!self.lead){
+        self.lead = {pages:[{questions:[]}]};
+        self.lead.createdAt = new Date();      
+        self.lead.serviceId = self.service._id;
+        self.lead.formId = self.form._id;      
+      }else{
+        self.lead.updatedAt = new Date();
+      }      
       angular.forEach(self.model,function(value,vindex){
         self.lead.pages[vindex] = {questions:[]};        
          angular.forEach(value,function(val,key){           
@@ -46,15 +71,11 @@
            self.lead.pages[vindex].questions.push(question);
          });
       });
-      self.lead.createdAt = new Date();      
-      self.lead.serviceId = self.service._id;
-      self.lead.formId = self.form._id;      
       
-      sessionStorage.setItem('foc.lead',angular.toJson(self.lead));
+      leadSessionService.set(self.lead);
+      $state.go('app.leadSummary');
       
-      $timeout(function(){
-        $state.go('app.leadSummary');
-      },500);
+      // find a way to save using a promise.
       
     }
 
@@ -104,7 +125,9 @@
       'angular-meteor',
       'mgo-angular-wizard',
       'questionPreview',
-      'leadSummary',
+      'leadLocation',
+      'leadSummary',      
+      'leadSessionStorage',
     ])
     .component(name, {
       templateUrl: templateUrl,

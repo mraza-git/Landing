@@ -217,69 +217,76 @@
                           <!--<label for="servies">Select Services</label>-->
                               <div class="md-icon-float md-block datepicker-container" layout="column" flex-gt-xs="50"  flex="90">
                                 <md-chips 
-                                name = "services" 
-                                md-autocomplete-snap
-                                md-max-chips="proDetail.user.business.subscription.maxservices || 10"
-                                ng-model="proDetail.selectedServices"                                
-                                md-require-match="true" >
+                                  name = "services" 
+                                  md-autocomplete-snap
+                                  md-max-chips="proDetail.user.business.subscription.maxservices || 10"
+                                  ng-model="proDetail.selectedServices"                                
+                                  md-require-match="true">
                                 
-                                <md-autocomplete 
-                                  id="autocomplete" 
-                                  ng-hide="proDetail.selectedServices.length>1"
-                                  md-selected-item="item" 
-                                  md-search-text="proDetail.searchText" 
-                                  md-items="item in proDetail.querySearch(proDetail.searchText)"
-                                  md-item-text="item.name" 
-                                  md-min-length="0" 
-                                  placeholder="Select your services?">
-                                  <thumb-image image-id='item.image.id' image-class="avatar"></thumb-image>
-                                  <span md-highlight-text="proDetail.searchText">
-                                     {{item.name}}
-                                  </span>                                  
-                              </md-autocomplete>
-                              <md-chip-template>
-                                <span>
-                                  <thumb-image image-id='$chip.image.id' image-class="avatar"></thumb-image>
-                                </span>
-                                <span>
-                                  <strong>{{$chip.name}}</strong>
-                                </span>
-                              </md-chip-template>                                  
+                                  <md-autocomplete 
+                                    id="autocomplete"                                  
+                                    md-selected-item="item" 
+                                    md-search-text="proDetail.searchText" 
+                                    md-items="item in proDetail.querySearch(proDetail.searchText)"
+                                    md-item-text="item.name" 
+                                    md-min-length="0" 
+                                    placeholder="Select your services?">
+                                      <!--<thumb-image image-id='item.image.id' image-class="avatar"></thumb-image>-->
+                                      <md-item-template>
+                                        <div layout flex layout-align="start center">
+                                          <thumb-image layout="row" image-id="item.image.id" size="40" image-class="avatar"></thumb-image>
+                                          <span class="text-truncate" md-highlight-text="proDetail.searchText">
+                                            {{item.name}}
+                                          </span>                                  
+                                        </div>
+
+                                      </md-item-template>
+                                  </md-autocomplete>
+
+                                  <md-chip-template layout>
+                                  
+                                    <span>
+                                      <thumb-image layout="row" image-id="$chip.image.id" size="40" image-class="avatar"></thumb-image>                                  
+                                    </span>
+                                    <span>
+                                      <strong>{{$chip.name}}</strong>
+                                    </span>
+                                  </md-chip-template>                                  
                                 
-                            </md-chips>
-                            <div ng-messages="wizardStep2.services.$error" ng-if="wizardStep2.services.$dirty" role="alert">
-                              <div ng-message="md-max-chips">You've reached the maximum amount of services in your subscription</div>
-                          </div>
+                                </md-chips>
+                                <div ng-messages="wizardStep2.services.$error" ng-if="wizardStep2.services.$dirty" role="alert">
+                                  <div ng-message="md-max-chips">You've reached the maximum amount of services in your subscription</div>
+                                </div>
                               </div>
                               <div class="md-icon-float md-block datepicker-container" layout="column" flex-gt-xs="50" flex="90">
-                             <md-chips 
-                                md-autocomplete-snap
-                                ng-model="proDetail.selectedTags"                                
-                                md-require-match="true"  flex-gt-xs="50" flex>
-                                
-                                <md-autocomplete 
-                                  id="autocomplete" 
-                                  md-selected-item="item" 
-                                  md-search-text="proDetail.searchText" 
-                                  md-items="item in proDetail.querySearch(proDetail.searchText)"
-                                  md-item-text="item.name" 
-                                  md-min-length="0" 
-                                  placeholder="Enter your tags">
-                                  <thumb-image image-id='item.image.id' image-class="avatar"></thumb-image>
-                                  <span md-highlight-text="proDetail.searchText">
-                                     {{item.name}}
-                                  </span>                                  
-                              </md-autocomplete>
-                              <md-chip-template>
-                                <span>
-                                  <thumb-image image-id='$chip.image.id' image-class="avatar"></thumb-image>
-                                </span>
-                                <span>
-                                  <strong>{{$chip.name}}</strong>
-                                </span>
-                              </md-chip-template>                                  
-                                
-                            </md-chips>
+                                <md-chips 
+                                    md-autocomplete-snap
+                                    ng-model="proDetail.selectedTags"                                
+                                    md-require-match="true"  flex-gt-xs="50" flex>
+                                    
+                                    <md-autocomplete 
+                                      id="autocomplete" 
+                                      md-selected-item="item" 
+                                      md-search-text="proDetail.searchText" 
+                                      md-items="item in proDetail.querySearch(proDetail.searchText)"
+                                      md-item-text="item.name" 
+                                      md-min-length="0" 
+                                      placeholder="Enter your tags">
+                                      <thumb-image image-id='item.image.id' image-class="avatar"></thumb-image>
+                                      <span md-highlight-text="proDetail.searchText">
+                                        {{item.name}}
+                                      </span>                                  
+                                  </md-autocomplete>
+                                  <md-chip-template>
+                                    <span>
+                                      <thumb-image image-id='$chip.image.id' image-class="avatar"></thumb-image>
+                                    </span>
+                                    <span>
+                                      <strong>{{$chip.name}}</strong>
+                                    </span>
+                                  </md-chip-template>                                  
+                                    
+                                </md-chips>
                               </div>
                             </div>
                             <div class="formly-field" layout="column" flex>

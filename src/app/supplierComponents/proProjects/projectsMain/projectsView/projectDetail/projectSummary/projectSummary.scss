@@ -1,26 +1,78 @@
 project-summary {
-    .heading {
-        border-radius: 3px 3px 0 0;
-        box-shadow: 0 1px rgba(255,255,255,.1);
-        background-color: rgb(45,50,62);
-        color: rgba(255,255,255,0.87);
-        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-        padding: 15px 15px 10px;
+  .heading {
+    border-radius: 3px 3px 0 0;
+    box-shadow: 0 1px rgba(255, 255, 255, .1);
+    background-color: rgb(45, 50, 62);
+    color: rgba(255, 255, 255, 0.87);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    padding: 15px 15px 10px;
+  }
+  .bid-tag {
+    background: white;
+    padding: 3px 0;
+    border: 1px solid #b0c4ce;
+    border-radius: 4px;
+    width: 225px;
+    .name {
+      font-size: 14px;
+      line-height: 1.2;
+      padding-top: 4px;
+      text-align: center;
+      border-right: 1px solid #b0c4ce;
+      text-transform: uppercase;
+      span {
+        color: #c34a73;
+        font-size: 24px;
+        font-weight: bold;
+      }
     }
-    .conent {
-        padding: 10px;
+  }
+  /*@media (max-width: 560px) {
+    .bid-tag {
+      width: 180px;
+      .name {
+        font-size: 12px;
+        line-height: 1;
+        span {
+          font-size: 18px;
+        }
+      }
     }
-    .question {
+  }*/
+  .conent {
+    padding: 10px;
+  }
+  .question {
     font-size: 16px !important;
     margin-left: 10px;
     padding-left: 0 !important;
     font-weight: bold;
     color: #2d323e !important;
-    }
-    .answer {
+  }
+  .answer {
     font-size: 16px !important;
     margin-left: 10px;
     padding-left: 0 !important;
     font-weight: normal;
-    }
+  }
+}
+
+.accordion {
+  background: white;
+  margin-top: -1px;
+  //overflow: hidden;
+  max-height: 0px;
+  position: relative;
+  z-index: 10;
+  transition: max-height 0.8s ease-in-out, box-shadow 0.6s linear;
+
+  .content {
+     padding: 10px 0px !important;
+  }
+}
+
+.accordion-show {
+  max-height: 1000px;
+  transition: max-height 1s ease-in-out, box-shadow 0.1s linear;
+  box-shadow: 0px 0px 0px 1px rgba(155, 155, 155, 0.3);
 }

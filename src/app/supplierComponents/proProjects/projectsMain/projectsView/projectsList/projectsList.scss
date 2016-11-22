@@ -1,9 +1,10 @@
 project-list {
   .md-checkbox {
-        width: 20px;
-        margin-left: 10px;
+    width: 20px;
+    margin-left: 10px;
   }
 }
+
 #form-main {
   // Center
   .center {
@@ -11,13 +12,11 @@ project-list {
       &.outlook {
         .content-wrapper {
           background: #FAFAFA;
-
           .thread-list {
             background: #FAFAFA;
             position: relative;
             padding: 0;
             border-right: 1px solid rgba(0, 0, 0, 0.12);
-
             .no-threads {
               background: #FAFAFA;
               width: 100%;
@@ -25,7 +24,6 @@ project-list {
               padding: 32px;
               font-size: 20px;
             }
-
             .loading-threads {
               background: #FAFAFA;
               width: 100%;
@@ -33,115 +31,100 @@ project-list {
               padding: 32px;
               font-size: 20px;
             }
-
-            .changed{
-                  font-size: 150px;                  
-                  line-height: 0px;
-                  height: 20px;
-                  margin-bottom: 40px;
+            .changed {
+              font-size: 150px;
+              line-height: 0px;
+              height: 20px;
+              margin-bottom: 40px;
             }
-
-            .thread {
-              background: #FAFAFA;
-              position: relative;
-              padding: 10px 2px 10px 5px !important;
-              border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-              cursor: pointer;
-
-              &.unread {
-                background: #FFFFFF;
-
-                .info {
-                  margin-right:0px !important;
-                  .name,
-                  .subject {
-                    font-weight: 700;
-                  }
-                  .message {
-                    .labels {
-                      background: #FFFFFF;
+            .inf-scroll-container {
+              /*min-height: 500px;
+              height: 500px;*/
+              .thread {
+                background: #FAFAFA;
+                position: relative;
+                padding: 10px 2px 10px 5px !important;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+                cursor: pointer;
+                &.unread {
+                  background: #FFFFFF;
+                  .info {
+                    margin-right: 0px !important;
+                    .name,
+                    .subject {
+                      font-weight: 700;
                     }
-                  }
-                }
-              }
-
-              &.selected {
-                background: #FFF8E1;
-
-                .info {
-                  .message {
-                    .labels {
-                      background: #FFF8E1;
-                    }
-                  }
-                }
-              }
-
-              &.current-thread {
-                background: #E3F2FD;
-
-                .info {
-                  .message {
-                    .labels {
-                      background: #E3F2FD;
-                    }
-                  }
-                }
-                
-              }
-
-              .info {
-                overflow: hidden;
-                width: 0;
-                margin: 0 16px;
-
-                .name {
-                  font-size: 15px;
-                  font-weight: 500;
-                  padding-bottom: 8px;
-
-                  .avatar {
-                    min-width: 32px;
-                    width: 32px;
-                    height: 32px;
-                    line-height: 32px;
-                  }
-
-                  .has-attachment {
-                    margin-left: 8px;
-                    transform: rotate(90deg);
-                  }
-                }
-
-                .subject {}
-
-                .message {
-                  position: relative;
-                  color: rgba(0, 0, 0, 0.54);
-
-                  .labels {
-                    position: absolute;
-                    background: #FAFAFA;
-                    top: 0;
-                    right: 0;
-                    padding-left: 6px;
-
-                    .label {
-                      display: inline-block;
-                      font-size: 11px;
-                      padding: 0 5px;
-                      margin-left: 6px;
-
-                      &:first-child {
-                        margin-left: 0;
+                    .message {
+                      .labels {
+                        background: #FFFFFF;
                       }
                     }
                   }
                 }
-              }
-
-              .time {
-                margin: 0 8px 6px;
+                &.selected {
+                  background: #FFF8E1;
+                  .info {
+                    .message {
+                      .labels {
+                        background: #FFF8E1;
+                      }
+                    }
+                  }
+                }
+                &.current-thread {
+                  background: #E3F2FD;
+                  .info {
+                    .message {
+                      .labels {
+                        background: #E3F2FD;
+                      }
+                    }
+                  }
+                }
+                .info {
+                  overflow: hidden;
+                  width: 0;
+                  margin: 0 16px;
+                  .name {
+                    font-size: 15px;
+                    font-weight: 500;
+                    padding-bottom: 8px;
+                    .avatar {
+                      min-width: 32px;
+                      width: 32px;
+                      height: 32px;
+                      line-height: 32px;
+                    }
+                    .has-attachment {
+                      margin-left: 8px;
+                      transform: rotate(90deg);
+                    }
+                  }
+                  .subject {}
+                  .message {
+                    position: relative;
+                    color: rgba(0, 0, 0, 0.54);
+                    .labels {
+                      position: absolute;
+                      background: #FAFAFA;
+                      top: 0;
+                      right: 0;
+                      padding-left: 6px;
+                      .label {
+                        display: inline-block;
+                        font-size: 11px;
+                        padding: 0 5px;
+                        margin-left: 6px;
+                        &:first-child {
+                          margin-left: 0;
+                        }
+                      }
+                    }
+                  }
+                }
+                .time {
+                  margin: 0 8px 6px;
+                }
               }
             }
           }
